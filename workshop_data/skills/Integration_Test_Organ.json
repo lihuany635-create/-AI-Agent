@@ -1,0 +1,79 @@
+{
+  "name": "Integration Test Organ",
+  "filename": "Integration_Test_Organ.py",
+  "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\Integration_Test_Organ.py",
+  "description": "**工程需求（≤200字）**",
+  "functions": [
+    {
+      "name": "import_module_from_path",
+      "description": "Dynamically import a module from a file path.",
+      "inputs": [
+        "module_path"
+      ]
+    },
+    {
+      "name": "main",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "add",
+      "description": "Simple addition function.",
+      "inputs": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "name": "subtract",
+      "description": "Simple subtraction function.",
+      "inputs": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "name": "test_add",
+      "description": "Test the add function.",
+      "inputs": []
+    },
+    {
+      "name": "test_subtract",
+      "description": "Test the subtract function.",
+      "inputs": []
+    },
+    {
+      "name": "run_auto_tests",
+      "description": "Execute all test cases and report detailed pass/fail status.\nReturns a list of tuples: (test_name, passed, message).",
+      "inputs": []
+    },
+    {
+      "name": "generate_report",
+      "description": "Generate a JSON report from test results.",
+      "inputs": [
+        "results",
+        "output_path"
+      ]
+    },
+    {
+      "name": "send_slack",
+      "description": "",
+      "inputs": [
+        "message"
+      ]
+    },
+    {
+      "name": "load_report",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "get_test_results",
+      "description": "",
+      "inputs": []
+    }
+  ],
+  "example": "python Integration_Test_Organ.py",
+  "has_main": true,
+  "needs_args": false
+}

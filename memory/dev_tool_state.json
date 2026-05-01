@@ -1,0 +1,124 @@
+{
+  "request": "幫我做一個視覺辨識系統",
+  "output_dir": "temp\\幫我做一個視覺辨識系統",
+  "task_name": "幫我做一個視覺辨識系統",
+  "temp_dir": "temp\\幫我做一個視覺辨識系統",
+  "project_dir": "projects\\幫我做一個視覺辨識系統",
+  "groups": {
+    "capture": {
+      "label": "擷取層",
+      "icon": "📸",
+      "desc": "負責從攝影機、螢幕或檔案取得影像幀",
+      "files": [
+        "screen_capture.py",
+        "image_loader.py"
+      ],
+      "done": false,
+      "steps": [
+        {
+          "title": "建立螢幕擷取模組",
+          "desc": "新增 screen_capture.py，定義 capture_screen(region=None) 擷取全螢幕或指定區域並回傳 numpy 陣列影像幀、start_capture(fps=30, callback=None) 啟動持續擷取迴圈並呼叫 callback 傳遞每幀、stop_capture() 停止擷取迴圈、get_screen_size() 回傳當前螢幕解析度",
+          "file": "screen_capture.py",
+          "action": "create"
+        },
+        {
+          "title": "建立影像載入模組",
+          "desc": "新增 image_loader.py，定義 load_image(path) 從本地檔案路徑讀取單張影像並回傳 numpy 陣列、load_images_from_dir(dir_path, extensions=None) 批次讀取資料夾內所有指定格式影像並回傳生成器、load_from_camera(device_id=0) 開啟攝影機裝置並持續回傳影像幀、release_camera() 釋放攝影機資源",
+          "file": "image_loader.py",
+          "action": "create"
+        }
+      ]
+    },
+    "preprocessing": {
+      "label": "前處理層",
+      "icon": "🔧",
+      "desc": "負責影像縮放、正規化與資料增強",
+      "files": [
+        "preprocessor.py",
+        "augmentor.py"
+      ],
+      "done": false,
+      "steps": []
+    },
+    "inference": {
+      "label": "推論層",
+      "icon": "🧠",
+      "desc": "負責物件偵測、影像分類與語意分割",
+      "files": [
+        "detector.py",
+        "classifier.py",
+        "segmentor.py"
+      ],
+      "done": false,
+      "steps": []
+    },
+    "postprocessing": {
+      "label": "後處理與視覺化層",
+      "icon": "🎨",
+      "desc": "負責解碼模型輸出並繪製標註結果",
+      "files": [
+        "postprocessor.py",
+        "visualizer.py"
+      ],
+      "done": false,
+      "steps": []
+    },
+    "tracking": {
+      "label": "追蹤與分析層",
+      "icon": "📊",
+      "desc": "負責多目標追蹤與事件統計分析",
+      "files": [
+        "tracker.py",
+        "analytics.py"
+      ],
+      "done": false,
+      "steps": []
+    },
+    "storage": {
+      "label": "儲存層",
+      "icon": "💾",
+      "desc": "負責將推論結果輸出至檔案或影片",
+      "files": [
+        "result_writer.py"
+      ],
+      "done": false,
+      "steps": []
+    },
+    "config": {
+      "label": "設定與入口層",
+      "icon": "⚙️",
+      "desc": "負責系統設定管理與主程式流程編排",
+      "files": [
+        "config.py",
+        "pipeline.py",
+        "main.py"
+      ],
+      "done": false,
+      "steps": []
+    }
+  },
+  "completed_groups": [],
+  "current_group": "capture",
+  "steps": [
+    {
+      "title": "建立螢幕擷取模組",
+      "desc": "新增 screen_capture.py，定義 capture_screen(region=None) 擷取全螢幕或指定區域並回傳 numpy 陣列影像幀、start_capture(fps=30, callback=None) 啟動持續擷取迴圈並呼叫 callback 傳遞每幀、stop_capture() 停止擷取迴圈、get_screen_size() 回傳當前螢幕解析度",
+      "file": "screen_capture.py",
+      "action": "create"
+    },
+    {
+      "title": "建立影像載入模組",
+      "desc": "新增 image_loader.py，定義 load_image(path) 從本地檔案路徑讀取單張影像並回傳 numpy 陣列、load_images_from_dir(dir_path, extensions=None) 批次讀取資料夾內所有指定格式影像並回傳生成器、load_from_camera(device_id=0) 開啟攝影機裝置並持續回傳影像幀、release_camera() 釋放攝影機資源",
+      "file": "image_loader.py",
+      "action": "create"
+    }
+  ],
+  "completed_steps": [],
+  "active": true,
+  "solo_context": "",
+  "current_step_idx": 0,
+  "paused": false,
+  "auto_pause": true,
+  "last_code": "",
+  "last_error": ""
+}

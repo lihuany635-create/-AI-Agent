@@ -1,0 +1,214 @@
+{
+  "name": "器官技能描述系統",
+  "filename": "器官技能描述系統.py",
+  "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\器官技能描述系統.py",
+  "description": "生成Python模組函式元資料JSON",
+  "functions": [
+    {
+      "name": "load_module_from_path",
+      "description": "Load a Python module from a given file path.",
+      "inputs": [
+        "module_path"
+      ]
+    },
+    {
+      "name": "extract_function_metadata",
+      "description": "Extract metadata from a function.",
+      "inputs": [
+        "func"
+      ]
+    },
+    {
+      "name": "generate_json_from_module",
+      "description": "Generate a JSON-serializable dictionary from a Python module.",
+      "inputs": [
+        "module_path"
+      ]
+    },
+    {
+      "name": "write_json_to_file",
+      "description": "Write the JSON data to the specified file.",
+      "inputs": [
+        "data",
+        "output_path"
+      ]
+    },
+    {
+      "name": "main",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "process_directory",
+      "description": "Scan a directory for .py files and generate JSON descriptions.",
+      "inputs": [
+        "source_dir",
+        "output_dir",
+        "recursive"
+      ]
+    },
+    {
+      "name": "validate_schema",
+      "description": "Validate data against the organ system schema.",
+      "inputs": [
+        "data"
+      ]
+    },
+    {
+      "name": "generate_json",
+      "description": "Generate a pretty-printed JSON string from data.",
+      "inputs": [
+        "data"
+      ]
+    },
+    {
+      "name": "load_registry",
+      "description": "Load a registry JSON file from the given path.",
+      "inputs": [
+        "path"
+      ]
+    },
+    {
+      "name": "register_handler",
+      "description": "Register a handler function for a given event name.",
+      "inputs": [
+        "event_name",
+        "handler"
+      ]
+    },
+    {
+      "name": "dispatch",
+      "description": "Dispatch an event to the registered handler.",
+      "inputs": [
+        "event_name"
+      ]
+    },
+    {
+      "name": "to_dict",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "to_json",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "setUpClass",
+      "description": "",
+      "inputs": [
+        "cls"
+      ]
+    },
+    {
+      "name": "test_validate_schema_with_valid_data",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_validate_schema_with_invalid_data",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_generate_json_output",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_generate_json_format",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_load_registry_success",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_load_registry_file_not_found",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_dispatch_success",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_dispatch_no_handler",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_dispatch_handler_arguments",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_dispatch_handler_kwargs",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "dummy_handler",
+      "description": "",
+      "inputs": [
+        "organ"
+      ]
+    },
+    {
+      "name": "sum_handler",
+      "description": "",
+      "inputs": [
+        "a",
+        "b"
+      ]
+    },
+    {
+      "name": "greet_handler",
+      "description": "",
+      "inputs": [
+        "name",
+        "greeting"
+      ]
+    }
+  ],
+  "example": "python organ_describer.py my_module.py -o my_module.json",
+  "has_main": true,
+  "needs_args": true,
+  "when_to_use": "需要快速瞭解模組函式結構時使用",
+  "inputs": [
+    {
+      "name": "module_file",
+      "description": "Python模組檔案路徑",
+      "required": true
+    }
+  ],
+  "outputs": "輸出JSON檔案，包含模組名稱、說明及所有函式的名稱、說明與參數型別",
+  "ai_described": true
+}

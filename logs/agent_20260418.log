@@ -1,0 +1,20 @@
+[2026-04-18 10:11:25] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-18 10:11:25] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-18 10:11:25] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-18 10:11:25] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-18 10:11:31] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-18 10:11:31] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-18 10:11:31] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-18 10:11:35] [32mINFO[0m [Agent.webhook_server] webhook_server.py:307 - [Webhook] 設定結果：{'ok': True, 'result': True, 'description': 'Webhook is already set'}
+[2026-04-18 10:11:36] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-18 10:11:36] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-18 10:11:36] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-18 10:11:36] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-18 10:11:39] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-18 10:11:39] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-18 10:11:40] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-18 10:11:43] [32mINFO[0m [Agent.webhook_server] webhook_server.py:307 - [Webhook] 設定結果：{'ok': True, 'result': True, 'description': 'Webhook is already set'}
+[2026-04-18 10:12:14] [32mINFO[0m [Agent.dev_brain] dev_brain.py:122 - [DevBrain] PrintNotifier 已設定（測試模式）
+[2026-04-18 10:12:14] [32mINFO[0m [Agent.dev_brain] dev_brain.py:124 - [DevBrain] dev_tool 接入完成，AI可用：True
+[2026-04-18 10:16:36] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-18 10:16:36] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線

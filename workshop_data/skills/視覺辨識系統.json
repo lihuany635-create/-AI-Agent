@@ -1,0 +1,82 @@
+{
+  "name": "視覺辨識系統",
+  "filename": "視覺辨識系統.py",
+  "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\視覺辨識系統.py",
+  "description": "我希望他能夠看到我電腦上的畫面",
+  "functions": [
+    {
+      "name": "capture_screen",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "encode_image",
+      "description": "Encode a PIL Image to bytes in the specified format.\n\n:param image: PIL Image to encode.\n:param fmt: Target format (\"JPEG\", \"PNG\", etc.).\n:param params: Optional format-specific parameters (e.g., quality for JPEG).\n:return: Tuple of (encoded bytes, width, height).",
+      "inputs": [
+        "image",
+        "fmt"
+      ]
+    },
+    {
+      "name": "send_image",
+      "description": "",
+      "inputs": [
+        "sock",
+        "data"
+      ]
+    },
+    {
+      "name": "handle_client",
+      "description": "",
+      "inputs": [
+        "conn",
+        "addr"
+      ]
+    },
+    {
+      "name": "run_server",
+      "description": "",
+      "inputs": [
+        "host",
+        "port"
+      ]
+    },
+    {
+      "name": "receive_image",
+      "description": "Receive a single image from the socket.\nThe image is prefixed with a 4‑byte big‑endian unsigned integer\nindicating the length of the image data.",
+      "inputs": [
+        "sock"
+      ]
+    },
+    {
+      "name": "tcp_client",
+      "description": "Connect to the server and continuously receive images.\nYields PIL Image objects.",
+      "inputs": [
+        "ip",
+        "port"
+      ]
+    },
+    {
+      "name": "main",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "run_client",
+      "description": "",
+      "inputs": [
+        "server_ip",
+        "port",
+        "token"
+      ]
+    },
+    {
+      "name": "capture_screen",
+      "description": "",
+      "inputs": []
+    }
+  ],
+  "example": "python 視覺辨識系統.py",
+  "has_main": true,
+  "needs_args": false
+}

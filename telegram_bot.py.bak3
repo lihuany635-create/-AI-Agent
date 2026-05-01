@@ -1,0 +1,1126 @@
+﻿import sys
+sys.stdout.reconfigure(encoding='utf-8', errors='ignore')
+
+# telegram_bot.py — 立 AI Telegram 機器人
+# 使用輪詢模式（不需要固定 IP，行動數據可用）
+# 安裝依賴：pip install pytelegrambotapi
+# 使用方式：python telegram_bot.py
+
+import threading
+import time
+import pathlib
+import datetime
+
+try:
+    import telebot
+except ImportError:
+    print("請先安裝：pip install pytelegrambotapi")
+    raise
+
+try:
+    from agent_logger import get_logger
+    logger = get_logger("telegram_bot")
+except ImportError:
+    import logging
+    logger = logging.getLogger("telegram_bot")
+
+# ── 設定（從 bot_config.py 讀取）────────────────────────────────────────────
+try:
+    import bot_config
+    TOKEN   = bot_config.TELEGRAM_TOKEN
+    ALLOWED = set(bot_config.ALLOWED_CHAT_IDS)
+except ImportError:
+    raise RuntimeError("找不到 bot_config.py，請確認已建立設定檔")
+
+# ── 載入 AI 核心 ──────────────────────────────────────────────────────────────
+_lobster = None
+_reflex  = None
+_router  = None
+_core_loading = False   # 防止重複載入
+
+def _load_core() -> bool:
+    """
+    懶載入：第一次收到訊息才啟動 AI 核心
+    之後會快取，不會每次都重新載入
+    """
+    global _lobster, _reflex, _router, _core_loading
+    if _lobster is not None:
+        return True   # 已載入，直接回傳
+    if _core_loading:
+        return False  # 正在載入中，避免重複
+    _core_loading = True
+    try:
+        logger.info("首次收到訊息，正在啟動 AI 核心...")
+        # 確認 Ollama 是否在線，不在線就先啟動
+        _ensure_ollama()
+        from Lobster_Core import LobsterCore
+        from reflex_engine import ReflexEngine
+        from task_capability_registry import TaskCapabilityRegistry
+        from intent_router import IntentRouter
+        _lobster = LobsterCore()
+        _reflex  = ReflexEngine()
+        _tasks   = TaskCapabilityRegistry(_lobster.os)
+        _router  = IntentRouter(_tasks)
+        logger.info("AI 核心載入完成")
+        return True
+    except Exception as e:
+        logger.error(f"AI 核心載入失敗：{e}")
+        return False
+    finally:
+        _core_loading = False
+
+def _ensure_ollama():
+    """確認 Ollama 在線，如果沒有就嘗試啟動"""
+    import requests as req, subprocess, time
+    try:
+        r = req.get("http://localhost:11434/api/tags", timeout=3)
+        if r.status_code == 200:
+            logger.info("Ollama 已在線")
+            return
+    except Exception:
+        pass
+    # Ollama 沒在跑，嘗試啟動
+    logger.info("Ollama 未啟動，正在啟動...")
+    try:
+        subprocess.Popen(
+            ["ollama", "serve"],
+            creationflags=subprocess.CREATE_NO_WINDOW if hasattr(subprocess, "CREATE_NO_WINDOW") else 0
+        )
+        # 等最多 30 秒讓 Ollama 啟動
+        for _ in range(15):
+            time.sleep(2)
+            try:
+                r = req.get("http://localhost:11434/api/tags", timeout=2)
+                if r.status_code == 200:
+                    logger.info("Ollama 啟動成功")
+                    return
+            except Exception:
+                pass
+        logger.warning("Ollama 啟動逾時，繼續嘗試...")
+    except Exception as e:
+        logger.error(f"無法啟動 Ollama：{e}")
+
+def _ask_ai(text: str, chat_id: int = None) -> str:
+    """傳送問題給 AI，回傳回覆（首次自動啟動核心）"""
+    global _lobster, _reflex, _router
+
+    # 核心尚未載入 → 自動啟動
+    if _lobster is None:
+        if chat_id:
+            bot.send_message(chat_id, "⏳ AI 核心啟動中，請稍候（約 10～30 秒）...")
+        ok = _load_core()
+        if not ok:
+            return "❌ AI 核心啟動失敗，請確認 Ollama 已安裝"
+
+    if _lobster and _reflex and _router:
+        try:
+            return _lobster.process_input(text, _reflex, _router)
+        except Exception as e:
+            return f"AI 處理錯誤：{e}"
+    elif _lobster:
+        try:
+            return _lobster.run(text)
+        except Exception as e:
+            return f"AI 錯誤：{e}"
+    return "AI 核心尚未載入，請稍後再試"
+
+# ── Bot 建立 ──────────────────────────────────────────────────────────────────
+bot = telebot.TeleBot(TOKEN, parse_mode=None)
+
+# 使用者目前的模式追蹤
+_user_mode: dict = {}  # chat_id → mode
+_DEFAULT_MODE = "chat"
+
+def _get_mode(chat_id: int) -> str:
+    return _user_mode.get(chat_id, _DEFAULT_MODE)
+
+def _set_mode(chat_id: int, mode: str):
+    _user_mode[chat_id] = mode
+
+def _is_allowed(message) -> bool:
+    """檢查是否為允許的使用者"""
+    cid = message.chat.id
+    if not ALLOWED:
+        return True   # 沒設定白名單就全部允許
+    return cid in ALLOWED
+
+# ── 指令處理 ──────────────────────────────────────────────────────────────────
+
+@bot.message_handler(commands=["start", "hello"])
+def cmd_start(message):
+    if not _is_allowed(message):
+        bot.reply_to(message, "❌ 未授權的使用者")
+        return
+    cid = message.chat.id
+    bot.reply_to(message,
+        f"🦞 立 AI 已連線！\n"
+        f"你的 Chat ID：{cid}\n\n"
+        f"直接傳訊息給我就好，不需要任何指令。\n"
+        f"輸入 /help 查看所有功能。"
+    )
+    logger.info(f"[Bot] /start from {cid}")
+
+@bot.message_handler(commands=["help"])
+def cmd_help(message):
+    if not _is_allowed(message): return
+    bot.reply_to(message,
+        "📋 可用指令：\n\n"
+        "💬 對話\n"
+        "直接傳訊息 → AI 回覆\n\n"
+        "🔄 模式切換\n/mode → 切換模式（對話/自主開發/教學/資料庫/終端/桌面）\n\n💻 開發（需先切換到自主開發模式）\n"
+        "/dev [需求] → 生成程式碼並預覽\n"
+        "/confirm → 確認寫入\n"
+        "/cancel → 取消\n"
+        "/history → 開發歷史\n"
+        "/ls → 列出所有 .py 檔案\n"
+        "/read [檔名] → 查看程式碼\n"
+        "/restore [檔名] → 還原備份\n\n"
+        "🤖 Claude 學習\n"
+        "/claude [問題] → 讓 Claude 學習該主題\n"
+        "/claude_stop → 停止 Claude 對話\n"
+        "/knowledge → Claude 知識庫統計\n\n"
+        "💬 ChatGPT 學習\n"
+        "/chatgpt [問題] → 讓 ChatGPT 學習該主題\n"
+        "/chatgpt_stop → 停止 ChatGPT 對話\n"
+        "/gpt_knowledge → ChatGPT 知識庫統計\n\n"
+        "🔧 系統\n"
+        "/status → 系統狀態\n"
+        "/memory → 記憶庫\n"
+        "/id → 你的 Chat ID"
+    )
+
+@bot.message_handler(commands=["id"])
+def cmd_id(message):
+    bot.reply_to(message, f"你的 Chat ID：`{message.chat.id}`")
+
+@bot.message_handler(commands=["status"])
+def cmd_status(message):
+    if not _is_allowed(message): return
+
+    # ── Ollama 本機 ──
+    try:
+        import requests as req
+        r = req.get("http://localhost:11434/api/tags", timeout=3)
+        models = [m["name"] for m in r.json().get("models", [])]
+        ollama_local = f"✅ 在線  模型：{', '.join(models[:3])}"
+    except Exception:
+        ollama_local = "❌ 離線"
+
+    # ── AB 節點連線狀態 ──
+    nodes_text = ""
+    try:
+        from ollama_guard import get_nodes_status, _should_use_distributed
+        ns = get_nodes_status()          # 回傳 dict，key 為節點名稱
+        lines = []
+        for name, info in ns.items():
+            ok      = info.get("online", False)
+            latency = info.get("latency_ms")
+            icon    = "✅" if ok else "❌"
+            lat_str = f"  {latency:.0f}ms" if (ok and latency is not None) else ""
+            lines.append(f"  {icon} {name}{lat_str}")
+        nodes_text = "\n".join(lines) if lines else "  （無節點資訊）"
+
+        # 分散式推論是否啟用
+        dist_ok = _should_use_distributed()
+        dist_str = "✅ 分散式推論啟用中" if dist_ok else "⚪ 單機模式"
+    except Exception as e:
+        nodes_text = f"  （無法讀取：{e}）"
+        dist_str   = ""
+
+    # ── 記憶庫 ──
+    try:
+        from long_term_memory import get_memory
+        mem_count = len(get_memory()._memories)
+    except Exception:
+        mem_count = "?"
+
+    # ── 開發引擎狀態 ──
+    try:
+        from self_dev_engine import get_engine
+        eng = get_engine()
+        if eng.is_in_fix_loop():
+            dev_str = "🔧 修正循環進行中"
+        elif eng.has_pending():
+            dev_str = "⏳ 等待確認"
+        else:
+            dev_str = "⚪ 待機"
+    except Exception:
+        dev_str = "?"
+
+    bot.reply_to(message,
+        f"🦞 立 AI 系統狀態\n"
+        f"{'─'*28}\n"
+        f"🖥 本機 Ollama：{ollama_local}\n\n"
+        f"🔗 AB 節點：\n{nodes_text}\n"
+        f"{dist_str}\n\n"
+        f"💾 記憶庫：{mem_count} 筆\n"
+        f"🛠 開發引擎：{dev_str}\n"
+        f"🕐 {datetime.datetime.now().strftime('%H:%M:%S')}"
+    )
+
+@bot.message_handler(commands=["memory"])
+def cmd_memory(message):
+    if not _is_allowed(message): return
+    try:
+        from long_term_memory import get_memory
+        mem = get_memory()
+        items = sorted(mem._memories, key=lambda m: m["accessed_at"], reverse=True)[:8]
+        if not items:
+            bot.reply_to(message, "記憶庫是空的")
+            return
+        lines = ["🧠 最近記憶：\n"]
+        for m in items:
+            stars = "★" * min(m.get("importance", 5), 5)
+            lines.append(f"{stars} {m['content'][:60]}")
+        bot.reply_to(message, "\n".join(lines))
+    except Exception as e:
+        bot.reply_to(message, f"讀取失敗：{e}")
+
+@bot.message_handler(commands=["dev"])
+def cmd_dev(message):
+    if not _is_allowed(message): return
+    cid = message.chat.id
+    if _get_mode(cid) != "dev":
+        bot.reply_to(message, "⚠️ 請先切換到自主開發模式\n輸入 /mode 選擇模式")
+        return
+    parts = message.text.split(" ", 1)
+    if len(parts) < 2:
+        bot.reply_to(message, "用法：/dev [需求]\n例如：/dev 修改 reflex_engine.py 讓問候更自然")
+        return
+    request = parts[1].strip()
+    # 儲存需求，讓使用者選擇開發模式
+    _dev_pending_requests[message.chat.id] = request
+    from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+    kb = InlineKeyboardMarkup(row_width=1)
+    kb.add(
+        InlineKeyboardButton("🤝 與 Claude 共同開發", callback_data="devmode_claude"),
+        InlineKeyboardButton("🦾 立AI 自己開發",      callback_data="devmode_solo"),
+    )
+    bot.reply_to(message,
+        f"📋 需求：{request[:100]}\n\n請選擇開發模式：",
+        reply_markup=kb
+    )
+
+# 儲存待處理的開發需求
+_dev_pending_requests: dict = {}
+
+@bot.callback_query_handler(func=lambda call: call.data.startswith("devmode_"))
+def on_devmode_callback(call):
+    cid  = call.message.chat.id
+    mode = call.data.replace("devmode_", "")
+    request = _dev_pending_requests.pop(cid, "")
+    if not request:
+        bot.answer_callback_query(call.id, "需求已過期，請重新輸入")
+        return
+    bot.answer_callback_query(call.id, "⏳ 開始處理...")
+    try:
+        bot.edit_message_reply_markup(cid, call.message.message_id, reply_markup=None)
+    except Exception:
+        pass
+    if mode == "solo":
+        bot.send_message(cid, "🦾 立AI自己開發模式，從知識庫找經驗...")
+        try:
+            from self_dev_engine import get_engine, _plan_state
+            from claude_knowledge import get_knowledge
+            results = get_knowledge().search(request, top_k=5)
+            if results:
+                lines = ["相關開發經驗："]
+                for r in results:
+                    lines.append(f"• {r.get('question','')[:60]}")
+                    lines.append(f"  {r.get('answer','')[:100]}")
+                exp_context = "\n".join(lines)
+                _plan_state["_solo_context"] = exp_context
+                bot.send_message(cid, f"找到 {len(results)} 筆相關經驗，開始生成...")
+            else:
+                _plan_state["_solo_context"] = "（無相關經驗，用本地模型直接生成）"
+                bot.send_message(cid, "知識庫無相關經驗，用本地模型直接生成...")
+            result = get_engine().handle(request)
+            bot.send_message(cid, result)
+        except Exception as e:
+            bot.send_message(cid, f"❌ 錯誤：{e}")
+    else:
+        bot.send_message(cid, "🤝 與 Claude 共同開發模式...")
+        try:
+            from self_dev_engine import get_engine, _plan_state
+            _plan_state.pop("_solo_context", None)
+            result = get_engine().handle(request)
+            bot.send_message(cid, result)
+        except Exception as e:
+            bot.send_message(cid, f"❌ 錯誤：{e}")
+
+@bot.message_handler(commands=["mode"])
+def cmd_mode(message):
+    if not _is_allowed(message): return
+    from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+    cid = message.chat.id
+    cur = _get_mode(cid)
+    mode_names = {
+        "chat":     "💬 對話",
+        "dev":      "🤖 自主開發",
+        "teach":    "📚 教學",
+        "database": "🗄 資料庫",
+        "terminal": "⌨️ 終端",
+        "desktop":  "🖥 桌面",
+    }
+    kb = InlineKeyboardMarkup(row_width=2)
+    for mode_id, label in mode_names.items():
+        kb.add(InlineKeyboardButton(
+            f"{'✅ ' if mode_id == cur else ''}{label}",
+            callback_data=f"setmode_{mode_id}"
+        ))
+    bot.reply_to(message,
+        f"目前模式：{mode_names.get(cur, cur)}\n\n請選擇模式：",
+        reply_markup=kb
+    )
+
+@bot.callback_query_handler(func=lambda call: call.data.startswith("setmode_"))
+def on_setmode(call):
+    cid  = call.message.chat.id
+    mode = call.data.replace("setmode_", "")
+    _set_mode(cid, mode)
+    mode_names = {
+        "chat": "💬 對話", "dev": "🤖 自主開發",
+        "teach": "📚 教學", "database": "🗄 資料庫",
+        "terminal": "⌨️ 終端", "desktop": "🖥 桌面",
+    }
+    bot.answer_callback_query(call.id, f"已切換到 {mode_names.get(mode, mode)}")
+    try:
+        bot.edit_message_text(
+            f"✅ 已切換到 {mode_names.get(mode, mode)}",
+            chat_id=cid, message_id=call.message.message_id
+        )
+    except Exception:
+        pass
+
+@bot.message_handler(commands=["confirm"])
+def cmd_confirm(message):
+    if not _is_allowed(message): return
+    try:
+        from self_dev_engine import get_engine
+        eng = get_engine()
+        if not eng.has_pending():
+            bot.reply_to(message, "沒有待確認的行動")
+            return
+        bot.reply_to(message, "⏳ 執行中...")
+        result = eng.confirm()
+        bot.reply_to(message, result)
+    except Exception as e:
+        bot.reply_to(message, f"錯誤：{e}")
+
+@bot.message_handler(commands=["cancel"])
+def cmd_cancel(message):
+    if not _is_allowed(message): return
+    try:
+        from self_dev_engine import get_engine
+        result = get_engine().cancel()
+        bot.reply_to(message, result)
+    except Exception as e:
+        bot.reply_to(message, f"錯誤：{e}")
+
+@bot.message_handler(commands=["history"])
+def cmd_history(message):
+    if not _is_allowed(message): return
+    try:
+        from self_dev_engine import get_engine
+        result = get_engine().get_history(8)
+        bot.reply_to(message, f"📋 開發歷史：\n\n{result}")
+    except Exception as e:
+        bot.reply_to(message, f"錯誤：{e}")
+
+@bot.message_handler(commands=["ls"])
+def cmd_ls(message):
+    """列出專案所有 .py 檔案"""
+    if not _is_allowed(message): return
+    import pathlib
+    files = sorted(pathlib.Path(".").glob("*.py"))
+    if not files:
+        bot.reply_to(message, "找不到任何 .py 檔案")
+        return
+    lines = ["📁 專案檔案清單：\n"]
+    for i, f in enumerate(files, 1):
+        size = f.stat().st_size
+        lines.append(f"{i}. {f.name} ({size} bytes)")
+    bot.reply_to(message, "\n".join(lines))
+
+@bot.message_handler(commands=["read"])
+def cmd_read(message):
+    """讀取指定檔案內容，用法：/read reflex_engine.py"""
+    if not _is_allowed(message): return
+    parts = message.text.split(" ", 1)
+    if len(parts) < 2:
+        bot.reply_to(message, "用法：/read 檔名.py\n例如：/read reflex_engine.py")
+        return
+    fname = parts[1].strip()
+    import pathlib
+    f = pathlib.Path(fname)
+    if not f.exists():
+        bot.reply_to(message, f"找不到檔案：{fname}")
+        return
+    content = f.read_text(encoding="utf-8", errors="ignore")
+    # Telegram 限制 4096 字
+    if len(content) > 3800:
+        content = content[:3800] + "\n...（已截斷，檔案過長）"
+    bot.reply_to(message, f"📄 {fname}：\n\n```python\n{content}\n```")
+
+@bot.message_handler(commands=["restore"])
+def cmd_restore(message):
+    """還原檔案到最新備份，用法：/restore reflex_engine.py"""
+    if not _is_allowed(message): return
+    parts = message.text.split(" ", 1)
+    if len(parts) < 2:
+        bot.reply_to(message, "用法：/restore 檔名.py")
+        return
+    fname = parts[1].strip()
+    try:
+        from self_dev_engine import get_engine
+        result = get_engine().restore(fname)
+        bot.reply_to(message, result)
+    except Exception as e:
+        bot.reply_to(message, f"錯誤：{e}")
+
+# ── Claude 橋接指令 ──────────────────────────────────────────────────────────
+
+@bot.message_handler(commands=["claude"])
+def cmd_claude(message):
+    """手機觸發 Claude 學習對話，用法：/claude 系統設計與架構"""
+    if not _is_allowed(message): return
+    parts = message.text.split(" ", 1)
+    if len(parts) < 2:
+        bot.reply_to(message, "用法：/claude [問題]\n例如：/claude 系統設計與架構")
+        return
+    question = parts[1].strip()
+    bot.reply_to(message, f"🔄 開始與 Claude 對話學習...\n問題：{question}\n\n完成後會通知你。")
+    import threading
+    def _run():
+        try:
+            from claude_desktop_bridge import get_bridge
+            bridge = get_bridge()
+            summary = bridge.chat_loop(question, max_rounds=9999)  # 無限輪，用 /claude_stop 停
+            # 通知已由 chat_loop 內部的 push() 處理，這裡不重複發送
+        except Exception as e:
+            push(f"❌ Claude 學習失敗：{e}")
+    threading.Thread(target=_run, daemon=True).start()
+
+
+@bot.message_handler(commands=["claude_stop"])
+def cmd_claude_stop(message):
+    """停止 Claude 對話循環"""
+    if not _is_allowed(message): return
+    try:
+        from claude_desktop_bridge import get_bridge
+        get_bridge().stop_chat()
+        bot.reply_to(message, "⏹ 已發送停止訊號，對話將在這輪結束後停止。")
+    except Exception as e:
+        bot.reply_to(message, f"❌ 停止失敗：{e}")
+
+
+@bot.message_handler(commands=["knowledge"])
+def cmd_knowledge(message):
+    """查看 Claude 知識庫統計"""
+    if not _is_allowed(message): return
+    try:
+        from claude_knowledge import get_knowledge
+        stats = get_knowledge().get_stats()
+        bot.reply_to(message, stats)
+    except Exception as e:
+        bot.reply_to(message, f"❌ 讀取失敗：{e}")
+
+
+@bot.message_handler(commands=["chatgpt"])
+def cmd_chatgpt(message):
+    """手機觸發 ChatGPT 學習對話，用法：/chatgpt 系統設計與架構"""
+    if not _is_allowed(message): return
+    parts = message.text.split(" ", 1)
+    if len(parts) < 2:
+        bot.reply_to(message, "用法：/chatgpt [問題]\n例如：/chatgpt 系統設計與架構")
+        return
+    question = parts[1].strip()
+    bot.reply_to(message, f"🔄 開始與 ChatGPT 對話學習...\n問題：{question}\n\n完成後會通知你。")
+    import threading
+    def _run():
+        try:
+            from chatgpt_desktop_bridge import get_bridge
+            get_bridge().chat_loop(question, max_rounds=9999)
+        except Exception as e:
+            push(f"❌ ChatGPT 學習失敗：{e}")
+    threading.Thread(target=_run, daemon=True).start()
+
+
+@bot.message_handler(commands=["chatgpt_stop"])
+def cmd_chatgpt_stop(message):
+    """停止 ChatGPT 對話循環"""
+    if not _is_allowed(message): return
+    try:
+        from chatgpt_desktop_bridge import get_bridge
+        get_bridge().stop_chat()
+        bot.reply_to(message, "⏹ 已發送停止訊號，ChatGPT 對話將在這輪結束後停止。")
+    except Exception as e:
+        bot.reply_to(message, f"❌ 停止失敗：{e}")
+
+
+@bot.message_handler(commands=["gpt_knowledge"])
+def cmd_gpt_knowledge(message):
+    """查看 ChatGPT 知識庫統計"""
+    if not _is_allowed(message): return
+    try:
+        from chatgpt_knowledge import get_knowledge
+        stats = get_knowledge().get_stats()
+        bot.reply_to(message, stats)
+    except Exception as e:
+        bot.reply_to(message, f"❌ 讀取失敗：{e}")
+
+
+@bot.message_handler(commands=["analyze"])
+def cmd_analyze(message):
+    """分析指定模組，用法：/analyze telegram_bot.py"""
+    if not _is_allowed(message): return
+    parts = message.text.split(" ", 1)
+    if len(parts) < 2:
+        bot.reply_to(message, "用法：/analyze 檔名.py\n例如：/analyze telegram_bot.py self_dev_engine.py")
+        return
+    fname = parts[1].strip()
+    bot.reply_to(message, f"⏳ 分析中：{fname}")
+    try:
+        import subprocess, pathlib
+        result = subprocess.run(
+            ["python", "analyze_module.py"] + fname.split(),
+            capture_output=True, text=True, timeout=15,
+            encoding="utf-8", errors="ignore",
+            cwd=str(pathlib.Path(__file__).parent)
+        )
+        output = result.stdout or result.stderr or "（無輸出）"
+        if len(output) > 4000:
+            output = output[:4000] + "\n...（已截斷）"
+        bot.reply_to(message, output)
+    except Exception as e:
+        bot.reply_to(message, f"❌ 分析失敗：{e}")
+
+
+# ── Inline Button Callback（按鈕確認/取消）────────────────────────────────────
+
+def _make_fix_keyboard():
+    """修正循環中的按鈕：確認 / 退回 / 停"""
+    from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+    kb = InlineKeyboardMarkup()
+    kb.row(
+        InlineKeyboardButton("✅ 確認修正", callback_data="dev_confirm"),
+        InlineKeyboardButton("⏪ 退回上一步", callback_data="dev_rollback"),
+    )
+    kb.row(
+        InlineKeyboardButton("🛑 停止修正", callback_data="dev_stop"),
+    )
+    return kb
+
+def _make_confirm_keyboard():
+    """一般開發確認按鈕：確認 / 取消"""
+    from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+    kb = InlineKeyboardMarkup()
+    kb.row(
+        InlineKeyboardButton("✅ 確認", callback_data="dev_confirm"),
+        InlineKeyboardButton("❌ 取消", callback_data="dev_cancel"),
+    )
+    return kb
+
+def _send_result_with_buttons(cid: int, result: str, eng):
+    """
+    傳送結果訊息：
+    - 若仍在修正循環中 → 附上修正循環按鈕（確認/退回/停）
+    - 若有 pending（一般確認）→ 附上一般按鈕
+    - 否則純文字
+    """
+    text = result[:4000]
+    try:
+        if eng.is_in_fix_loop():
+            bot.send_message(cid, text, reply_markup=_make_fix_keyboard())
+        elif eng.has_pending():
+            bot.send_message(cid, text, reply_markup=_make_confirm_keyboard())
+        else:
+            bot.send_message(cid, text)
+    except Exception:
+        bot.send_message(cid, text)
+
+@bot.callback_query_handler(func=lambda call: True)
+def callback_dev_action(call):
+    """處理手機按下確認/退回/停 按鈕"""
+    logger.info(f"[Bot] callback 收到：{call.data}")
+    cid = call.message.chat.id
+
+    # ── mode_* 模式切換 ───────────────────────────────────────────────────────
+    if call.data.startswith("mode_"):
+        mode_id = call.data.replace("mode_", "")
+        _set_mode(cid, mode_id)
+        mode_names = {
+            "chat": "💬 對話模式", "terminal": "⌨️ 終端模式",
+            "dev": "🤖 自主開發模式", "teach": "📚 教學模式",
+            "database": "🗄 資料庫模式", "desktop": "🖥 桌面模式",
+        }
+        bot.answer_callback_query(call.id, mode_names.get(mode_id, mode_id))
+        try:
+            bot.edit_message_reply_markup(cid, call.message.message_id, reply_markup=None)
+        except Exception:
+            pass
+        bot.send_message(cid, f"已切換到 {mode_names.get(mode_id, mode_id)}")
+        return
+
+    # ── show_modes ─────────────────────────────────────────────────────────────
+    if call.data == "show_modes":
+        bot.answer_callback_query(call.id, "")
+        from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+        kb = InlineKeyboardMarkup(row_width=2)
+        kb.add(
+            InlineKeyboardButton("💬 對話",    callback_data="mode_chat"),
+            InlineKeyboardButton("⌨️ 終端",    callback_data="mode_terminal"),
+            InlineKeyboardButton("🤖 自主開發", callback_data="mode_dev"),
+            InlineKeyboardButton("📚 教學",    callback_data="mode_teach"),
+            InlineKeyboardButton("🗄 資料庫",  callback_data="mode_database"),
+            InlineKeyboardButton("🖥 桌面",    callback_data="mode_desktop"),
+        )
+        bot.send_message(cid, "請選擇模式：", reply_markup=kb)
+        return
+
+    # ── dt_* dev_tool callback ─────────────────────────────────────────────────
+    if call.data.startswith("dt_"):
+        bot.answer_callback_query(call.id, "⏳ 處理中...")
+        try:
+            from dev_tool import get_tool
+            handled = get_tool().handle_callback(call.data)
+            if not handled:
+                bot.send_message(cid, f"❌ 未知指令：{call.data}")
+        except Exception as e:
+            bot.send_message(cid, f"❌ 執行失敗：{e}")
+        try:
+            bot.edit_message_reply_markup(cid, call.message.message_id, reply_markup=None)
+        except Exception:
+            pass
+        return
+
+    # ── devmode_* ──────────────────────────────────────────────────────────────
+    if call.data.startswith("devmode_"):
+        mode = call.data.replace("devmode_", "")
+        try:
+            bot.edit_message_reply_markup(cid, call.message.message_id, reply_markup=None)
+        except Exception:
+            pass
+        if mode == "solo":
+            bot.answer_callback_query(call.id, "🦾 立AI自己開發")
+            bot.send_message(cid, "🦾 立AI自己開發模式\n\n請直接輸入需求：")
+        else:
+            bot.answer_callback_query(call.id, "🤝 與Claude共同開發")
+            bot.send_message(cid, "🤝 與 Claude 共同開發模式\n\n請直接輸入需求：")
+        return
+
+    # ── mem_* ──────────────────────────────────────────────────────────────────
+    if call.data.startswith("mem_"):
+        if call.data == "mem_save":
+            bot.answer_callback_query(call.id, "已存入記憶")
+            bot.edit_message_text("已存入記憶", chat_id=cid, message_id=call.message.message_id)
+        elif call.data == "mem_skip":
+            bot.answer_callback_query(call.id, "已跳過")
+            bot.edit_message_text("已跳過", chat_id=cid, message_id=call.message.message_id)
+        return
+
+    # ── act_* 功能按鈕 ─────────────────────────────────────────────────────────
+    if call.data.startswith("act_"):
+        import threading, subprocess
+        bot.answer_callback_query(call.id, "⏳ 執行中...")
+        act = call.data
+
+        if act == "act_memory":
+            try:
+                from long_term_memory import get_memory
+                items = sorted(get_memory()._memories, key=lambda m: m["accessed_at"], reverse=True)[:8]
+                lines = ["🧠 最近記憶：\n"] + [f"★ {m['content'][:60]}" for m in items]
+                bot.send_message(cid, "\n".join(lines))
+            except Exception as e:
+                bot.send_message(cid, f"❌ {e}")
+        elif act == "act_capabilities":
+            bot.send_message(cid,
+                "⚡ 立 AI 能力：\n\n💬 對話：自然語言對話、記憶學習\n"
+                "⌨️ 終端：執行系統指令\n🤖 開發：自主生成程式碼\n"
+                "📚 教學：存入記憶庫\n🖥 桌面：截圖、視窗控制\n"
+                "🌐 YouTube：摘要字幕\n🤝 Claude/ChatGPT：橋接學習"
+            )
+        elif act == "act_ck_stats":
+            try:
+                from claude_knowledge import get_knowledge
+                bot.send_message(cid, get_knowledge().get_stats())
+            except Exception as e:
+                bot.send_message(cid, f"❌ {e}")
+        elif act == "act_gpt_knowledge":
+            try:
+                from chatgpt_knowledge import get_knowledge
+                bot.send_message(cid, get_knowledge().get_stats())
+            except Exception as e:
+                bot.send_message(cid, f"❌ {e}")
+        elif act == "act_repair":
+            def _repair():
+                try:
+                    result = subprocess.run(
+                        ["python", "-c", "from repair_engine import RepairEngine; r=RepairEngine(); print(r.run_diagnosis())"],
+                        capture_output=True, text=True, timeout=30, encoding="utf-8", errors="ignore"
+                    )
+                    bot.send_message(cid, result.stdout[:4000] or "完成")
+                except Exception as e:
+                    bot.send_message(cid, f"❌ {e}")
+            threading.Thread(target=_repair, daemon=True).start()
+        elif act == "act_screenshot":
+            def _ss():
+                try:
+                    result = subprocess.run(
+                        ["python", "-c",
+                         "import pyautogui, datetime, pathlib; "
+                         "p=pathlib.Path('memory/screenshots'); p.mkdir(exist_ok=True); "
+                         "f=p/f'ss_{datetime.datetime.now().strftime(\"%H%M%S\")}.png'; "
+                         "pyautogui.screenshot(str(f)); print('截圖：'+str(f))"],
+                        capture_output=True, text=True, timeout=15, encoding="utf-8", errors="ignore"
+                    )
+                    bot.send_message(cid, result.stdout or "截圖完成")
+                except Exception as e:
+                    bot.send_message(cid, f"❌ {e}")
+            threading.Thread(target=_ss, daemon=True).start()
+        elif act == "act_list_windows":
+            try:
+                import pygetwindow as gw
+                wins = [w.title for w in gw.getAllWindows() if w.title][:15]
+                bot.send_message(cid, "🪟 目前視窗：\n" + "\n".join(wins))
+            except Exception as e:
+                bot.send_message(cid, f"❌ {e}")
+        elif act == "act_ls_desktop":
+            try:
+                import pathlib
+                desktop = pathlib.Path.home() / "OneDrive" / "桌面"
+                if not desktop.exists():
+                    desktop = pathlib.Path.home() / "Desktop"
+                files = [f.name for f in desktop.iterdir()][:20]
+                bot.send_message(cid, "📁 桌面：\n" + "\n".join(files))
+            except Exception as e:
+                bot.send_message(cid, f"❌ {e}")
+        elif act == "act_sysinfo":
+            try:
+                import psutil
+                cpu = psutil.cpu_percent(interval=1)
+                mem = psutil.virtual_memory()
+                disk = psutil.disk_usage("/")
+                bot.send_message(cid,
+                    f"💻 系統資訊\nCPU：{cpu}%\n"
+                    f"記憶體：{mem.percent}% ({mem.used//1024//1024}MB/{mem.total//1024//1024}MB)\n"
+                    f"磁碟：{disk.percent}%"
+                )
+            except Exception as e:
+                bot.send_message(cid, f"❌ {e}")
+        elif act == "act_dev_history":
+            try:
+                import json, pathlib
+                hf = pathlib.Path("memory/dev_history.json")
+                if hf.exists():
+                    history = json.loads(hf.read_text(encoding="utf-8"))
+                    lines = ["💻 最近開發歷史：\n"] + [f"✓ {h.get('file','?')} — {h.get('goal','?')[:40]}" for h in history[-5:]]
+                    bot.send_message(cid, "\n".join(lines))
+                else:
+                    bot.send_message(cid, "尚無開發歷史")
+            except Exception as e:
+                bot.send_message(cid, f"❌ {e}")
+        elif act == "act_logs":
+            try:
+                import pathlib
+                log_file = pathlib.Path("memory/agent.log")
+                if log_file.exists():
+                    lines = log_file.read_text(encoding="utf-8", errors="ignore").splitlines()
+                    bot.send_message(cid, "\n".join(lines[-30:])[:4000])
+                else:
+                    bot.send_message(cid, "找不到日誌檔案")
+            except Exception as e:
+                bot.send_message(cid, f"❌ {e}")
+        elif act in ("act_ask_claude", "act_ask_chatgpt", "act_analyze", "act_module_explain", "act_add_knowledge"):
+            prompts = {
+                "act_ask_claude": "請輸入要問 Claude 的問題：",
+                "act_ask_chatgpt": "請輸入要問 ChatGPT 的問題：",
+                "act_analyze": "請輸入要分析的檔名（如：telegram_bot.py）：",
+                "act_module_explain": "請輸入要查詢的檔名（如：desktop_agent.py）：",
+                "act_add_knowledge": "請輸入要存入知識庫的內容：",
+            }
+            bot.send_message(cid, prompts[act])
+        return
+
+    VALID = {"dev_confirm", "dev_cancel", "dev_rollback", "dev_stop", "dev_back_models"}
+    if call.data not in VALID and not call.data.startswith("dev_model_") and not call.data.startswith("dev_start_"):
+        bot.answer_callback_query(call.id, "")
+        return
+
+    if ALLOWED and cid not in ALLOWED:
+        bot.answer_callback_query(call.id, "❌ 未授權")
+        return
+
+    # 先清掉原訊息的按鈕（無論結果）
+    try:
+        bot.edit_message_reply_markup(
+            cid, call.message.message_id, reply_markup=None
+        )
+    except Exception:
+        pass
+
+    from self_dev_engine import get_engine
+    eng = get_engine()
+
+    # 第一層：選分組 → 推送第二層步驟
+    if call.data.startswith("dev_model_"):
+        model_key = call.data.replace("dev_model_", "")
+        bot.answer_callback_query(call.id, "載入步驟...")
+        try:
+            from self_dev_engine import _push_model_steps_to_phone
+            _push_model_steps_to_phone(model_key)
+        except Exception as e:
+            bot.send_message(cid, f"❌ 載入步驟失敗：{e}")
+        return
+
+    # 返回第一層
+    if call.data == "dev_back_models":
+        bot.answer_callback_query(call.id, "返回分組選擇")
+        try:
+            from self_dev_engine import _model_step_map, _push_mindmap_to_phone
+            req   = _model_step_map.get("request", "")
+            steps = _model_step_map.get("steps", [])
+            _push_mindmap_to_phone(req, "", steps)
+        except Exception as e:
+            bot.send_message(cid, f"❌ 返回失敗：{e}")
+        return
+
+    # 第二層：選步驟 → 確認開始製作
+    if call.data.startswith("dev_start_"):
+        try:
+            step_idx = int(call.data.replace("dev_start_", ""))
+            from self_dev_engine import _plan_state
+            if _plan_state["active"]:
+                _plan_state["current_step"] = step_idx
+                _plan_state["pending_write"] = {}
+                step = _plan_state["steps"][step_idx]
+                bot.answer_callback_query(call.id, f"步驟 {step_idx+1}")
+                from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+                kb = InlineKeyboardMarkup()
+                kb.row(
+                    InlineKeyboardButton("✅ 確認開始製作", callback_data="dev_confirm"),
+                    InlineKeyboardButton("⬅️ 返回", callback_data="dev_back_models"),
+                )
+                bot.send_message(cid,
+                    f"▶️ 步驟 {step_idx+1}：{step['title']}\n"
+                    f"   📄 {step['file']}\n\n"
+                    f"{step.get('desc','')[:150]}\n\n"
+                    f"確認開始製作這個步驟？",
+                    reply_markup=kb
+                )
+            else:
+                bot.answer_callback_query(call.id, "沒有進行中的計畫")
+        except Exception as e:
+            bot.send_message(cid, f"❌ 跳步失敗：{e}")
+        return
+
+    if call.data == "dev_confirm":
+        bot.answer_callback_query(call.id, "⏳ 執行中...")
+        try:
+            if not eng.has_pending():
+                bot.send_message(cid, "沒有待確認的行動")
+                return
+            bot.send_message(cid, "⏳ 執行中，請稍候...")
+            result = eng.confirm()
+            _send_result_with_buttons(cid, result, eng)
+        except Exception as e:
+            logger.error(f"[Bot] callback confirm 失敗：{e}")
+            bot.send_message(cid, f"❌ 執行失敗：{e}")
+
+    elif call.data == "dev_cancel":
+        bot.answer_callback_query(call.id, "已取消")
+        try:
+            result = eng.cancel()
+            bot.send_message(cid, result)
+        except Exception as e:
+            bot.send_message(cid, f"❌ 取消失敗：{e}")
+
+    elif call.data == "dev_rollback":
+        bot.answer_callback_query(call.id, "⏪ 退回上一步...")
+        try:
+            result = eng.rollback_step()
+            # 退回後仍有 pending，附上一般確認按鈕
+            _send_result_with_buttons(cid, result, eng)
+        except Exception as e:
+            bot.send_message(cid, f"❌ 退回失敗：{e}")
+
+    elif call.data == "dev_stop":
+        bot.answer_callback_query(call.id, "🛑 停止修正循環")
+        try:
+            result = eng.stop_fix()
+            bot.send_message(cid, result)
+        except Exception as e:
+            bot.send_message(cid, f"❌ 停止失敗：{e}")
+
+
+# ── 一般訊息（傳給 AI 處理）─────────────────────────────────────────────────
+
+@bot.message_handler(func=lambda m: True)
+def handle_message(message):
+    if not _is_allowed(message):
+        bot.reply_to(message, "❌ 未授權的使用者")
+        return
+
+    text = message.text.strip()
+    logger.info(f"[Bot] 收到訊息：{text[:50]}")
+
+    # 發送「思考中」狀態
+    bot.send_chat_action(message.chat.id, "typing")
+
+    # 確認/取消快速攔截
+    if text in ["確認", "好", "執行", "yes", "ok"]:
+        try:
+            from self_dev_engine import get_engine
+            eng = get_engine()
+            if eng.has_pending():
+                bot.reply_to(message, "⏳ 執行中...")
+                result = eng.confirm()
+                _send_result_with_buttons(message.chat.id, result, eng)
+                return
+        except Exception:
+            pass
+
+    if text in ["取消", "不", "算了", "cancel"]:
+        try:
+            from self_dev_engine import get_engine
+            eng = get_engine()
+            if eng.has_pending():
+                result = eng.cancel()
+                bot.reply_to(message, result)
+                return
+        except Exception:
+            pass
+
+    if text in ["停", "停止", "stop"]:
+        try:
+            from self_dev_engine import get_engine
+            eng = get_engine()
+            if eng.is_in_fix_loop():
+                result = eng.stop_fix()
+                bot.reply_to(message, result)
+                return
+            elif eng.has_pending():
+                result = eng.cancel()
+                bot.reply_to(message, result)
+                return
+        except Exception:
+            pass
+
+    if text in ["退回", "上一步", "rollback"]:
+        try:
+            from self_dev_engine import get_engine
+            eng = get_engine()
+            if eng.has_pending():
+                result = eng.rollback_step()
+                _send_result_with_buttons(message.chat.id, result, eng)
+                return
+        except Exception:
+            pass
+
+    # 開發需求直接觸發（不需要加 /dev 前綴）
+    try:
+        from self_dev_engine import get_engine
+        from Lobster_Core import LobsterCore
+        import re
+        dev_keywords = ["修改", "新增", "幫我改", "幫我加", "幫我在", "改一下", "加上", "加入", "建立", "新建", "寫一個"]
+        has_py = bool(re.search(r"\w+\.py", text))
+        has_kw = any(kw in text for kw in dev_keywords)
+        if has_py and has_kw and _get_mode(message.chat.id) == "dev":
+            bot.send_chat_action(message.chat.id, "typing")
+            _dev_pending_requests[message.chat.id] = text
+            from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+            kb = InlineKeyboardMarkup(row_width=1)
+            kb.add(
+                InlineKeyboardButton("🤝 與 Claude 共同開發", callback_data="devmode_claude"),
+                InlineKeyboardButton("🦾 立AI 自己開發",      callback_data="devmode_solo"),
+            )
+            bot.reply_to(message,
+                f"📋 需求：{text[:100]}\n\n請選擇開發模式：",
+                reply_markup=kb
+            )
+            return
+    except Exception:
+        pass
+
+    # 傳給 AI
+    reply = _ask_ai(text, chat_id=message.chat.id)
+    if not reply:
+        reply = "（沒有回應）"
+
+    # Telegram 訊息長度限制 4096 字
+    if len(reply) > 4000:
+        reply = reply[:4000] + "\n...（訊息過長已截斷）"
+
+    bot.reply_to(message, reply)
+
+    # 更新對話上下文
+    try:
+        from cognition_state_manager import update_context
+        update_context(text, reply)
+    except Exception:
+        pass
+
+    # 寫入共享訊息檔，桌面視窗會自動讀取顯示
+    try:
+        import json, pathlib, datetime
+        msg_file = pathlib.Path("memory/mobile_messages.json")
+        msg_file.parent.mkdir(exist_ok=True)
+        msgs = []
+        if msg_file.exists():
+            try: msgs = json.loads(msg_file.read_text(encoding="utf-8"))
+            except: msgs = []
+        msgs.append({
+            "time":  datetime.datetime.now().strftime("%H:%M:%S"),
+            "user":  text,
+            "reply": reply,
+        })
+        msgs = msgs[-50:]  # 最多保留 50 筆
+        msg_file.write_text(json.dumps(msgs, ensure_ascii=False), encoding="utf-8")
+    except Exception:
+        pass
+
+
+# ── 推送通知函式（供其他模組呼叫）──────────────────────────────────────────
+
+def push(message_text: str):
+    """
+    從任何地方主動推送訊息到手機
+    用法：from telegram_bot import push; push("修復完成！")
+    """
+    if not ALLOWED:
+        logger.warning("[Bot] 無法推送：ALLOWED_CHAT_IDS 未設定")
+        return
+    for chat_id in ALLOWED:
+        try:
+            bot.send_message(chat_id, f"🔔 {message_text}")
+            logger.info(f"[Bot] 推送成功 → {chat_id}")
+        except Exception as e:
+            logger.error(f"[Bot] 推送失敗：{e}")
+
+
+# ── 啟動 ─────────────────────────────────────────────────────────────────────
+
+def start_bot(background: bool = False):
+    """啟動 Bot（可背景執行，收到訊息才啟動 AI 核心）"""
+    logger.info("Telegram Bot 啟動中...")
+    print("Telegram Bot 已啟動（輕量待機模式）")
+    print("   AI 核心將在收到第一則訊息時自動啟動")
+    print("   在 Telegram 傳訊息給你的 Bot 即可")
+
+    # 推送 Bot 上線通知（不啟動 AI 核心，很快）
+    push("🤖 Bot 已上線，傳訊息給我就會自動啟動 AI")
+
+    if background:
+        t = threading.Thread(
+            target=lambda: bot.infinity_polling(timeout=30, long_polling_timeout=20),
+            daemon=True
+        )
+        t.start()
+        return t
+    else:
+        bot.infinity_polling(timeout=30, long_polling_timeout=20)
+
+
+if __name__ == "__main__":
+    start_bot(background=False)
+

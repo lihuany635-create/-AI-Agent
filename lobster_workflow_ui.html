@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>立 AI · 工作流程編輯器</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap');
+:root {
+  --bg:#0f1117; --surface:#1a1d27; --surface2:#252836; --surface3:#2e3347;
+  --accent:#2563eb; --purple:#7c3aed; --green:#059669; --red:#dc2626; --yellow:#d97706;
+  --text:#e0e0e0; --dim:#6b7280; --border:#2a2d3a;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);color:var(--text);height:100vh;display:flex;flex-direction:column;overflow:hidden;}
+
+/* Header */
+header{display:flex;align-items:center;gap:12px;padding:10px 16px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;z-index:100;}
+.logo{font-family:'Space Mono',monospace;font-size:16px;font-weight:700;background:linear-gradient(135deg,#2563eb,#7c3aed);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+.hbtn{padding:6px 14px;border-radius:8px;border:none;cursor:pointer;font-size:13px;font-family:'Noto Sans TC',sans-serif;transition:all .2s;}
+.hbtn-primary{background:var(--accent);color:#fff;}
+.hbtn-primary:hover{background:#1d4ed8;}
+.hbtn-ghost{background:var(--surface2);color:var(--text);border:1px solid var(--border);}
+.hbtn-ghost:hover{background:var(--surface3);}
+.hbtn-green{background:var(--green);color:#fff;}
+.hbtn-green:hover{background:#047857;}
+.flow-name{background:transparent;border:none;border-bottom:1px solid var(--border);color:var(--text);font-size:14px;padding:4px 8px;outline:none;width:180px;font-family:'Noto Sans TC',sans-serif;}
+.flow-name:focus{border-bottom-color:var(--accent);}
+.sep{width:1px;height:24px;background:var(--border);}
+
+/* Layout */
+.workspace{display:flex;flex:1;overflow:hidden;}
+
+/* Node Panel */
+.node-panel{width:200px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;}
+.panel-title{padding:12px 16px;font-size:11px;font-family:'Space Mono',monospace;color:var(--dim);text-transform:uppercase;letter-spacing:.1em;border-bottom:1px solid var(--border);}
+.node-type{display:flex;align-items:center;gap:10px;padding:10px 16px;cursor:grab;transition:background .2s;border-bottom:1px solid rgba(255,255,255,.04);}
+.node-type:hover{background:var(--surface2);}
+.node-type:active{cursor:grabbing;}
+.nt-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.nt-info{flex:1;}
+.nt-name{font-size:13px;font-weight:500;}
+.nt-desc{font-size:11px;color:var(--dim);margin-top:2px;}
+
+/* Canvas */
+.canvas-wrap{flex:1;position:relative;overflow:hidden;background:var(--bg);}
+.canvas-bg{position:absolute;inset:0;background-image:radial-gradient(circle,#2a2d3a 1px,transparent 1px);background-size:24px 24px;opacity:.5;}
+#canvas{position:absolute;inset:0;width:100%;height:100%;}
+
+/* SVG edges */
+.edge-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.edge-path{fill:none;stroke:#3a3f52;stroke-width:2;stroke-dasharray:6,3;}
+.edge-path.active{stroke:var(--accent);stroke-dasharray:none;}
+
+/* Nodes */
+.flow-node{position:absolute;background:var(--surface);border:1.5px solid var(--border);border-radius:14px;min-width:200px;cursor:move;user-select:none;transition:border-color .2s,box-shadow .2s;}
+.flow-node:hover{border-color:var(--accent);box-shadow:0 0 20px rgba(37,99,235,.15);}
+.flow-node.selected{border-color:var(--accent);box-shadow:0 0 24px rgba(37,99,235,.25);}
+.flow-node.running{border-color:var(--yellow);box-shadow:0 0 20px rgba(217,119,6,.3);animation:nodePulse 1s infinite;}
+.flow-node.done{border-color:var(--green);box-shadow:0 0 20px rgba(5,150,105,.2);}
+.flow-node.error{border-color:var(--red);box-shadow:0 0 20px rgba(220,38,38,.2);}
+@keyframes nodePulse{0%,100%{box-shadow:0 0 20px rgba(217,119,6,.3)}50%{box-shadow:0 0 30px rgba(217,119,6,.5)}}
+
+.node-header{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--border);border-radius:12px 12px 0 0;}
+.node-icon{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.node-title{font-size:13px;font-weight:600;flex:1;}
+.node-del{width:20px;height:20px;border-radius:4px;border:none;background:transparent;color:var(--dim);cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center;}
+.node-del:hover{background:rgba(220,38,38,.2);color:#ef4444;}
+
+.node-body{padding:10px 14px;}
+.node-output{font-size:11px;color:var(--dim);margin-top:6px;padding:6px 8px;background:rgba(0,0,0,.3);border-radius:6px;max-height:60px;overflow:hidden;font-family:'Space Mono',monospace;line-height:1.4;}
+
+/* Ports */
+.port{position:absolute;width:12px;height:12px;border-radius:50%;border:2px solid var(--border);background:var(--surface);cursor:crosshair;transition:all .2s;z-index:10;}
+.port:hover{transform:scale(1.4);border-color:var(--accent);background:var(--accent);}
+.port-in{left:-6px;top:50%;transform:translateY(-50%);}
+.port-out{right:-6px;top:50%;transform:translateY(-50%);}
+.port-in:hover{transform:translateY(-50%) scale(1.4);}
+.port-out:hover{transform:translateY(-50%) scale(1.4);}
+
+/* Config Panel */
+.config-panel{width:280px;background:var(--surface);border-left:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;transition:width .3s;}
+.config-panel.hidden{width:0;overflow:hidden;}
+.config-header{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.config-title{font-size:14px;font-weight:600;}
+.config-close{background:none;border:none;color:var(--dim);cursor:pointer;font-size:18px;}
+.config-body{flex:1;overflow-y:auto;padding:16px;}
+.cfg-group{margin-bottom:16px;}
+.cfg-label{font-size:11px;font-family:'Space Mono',monospace;color:var(--dim);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;}
+.cfg-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:var(--text);font-size:13px;outline:none;font-family:'Noto Sans TC',sans-serif;}
+.cfg-input:focus{border-color:var(--accent);}
+.cfg-textarea{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:var(--text);font-size:13px;outline:none;resize:vertical;min-height:80px;font-family:'Noto Sans TC',sans-serif;line-height:1.5;}
+.cfg-textarea:focus{border-color:var(--accent);}
+select.cfg-input{cursor:pointer;}
+.cfg-select{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:var(--text);font-size:13px;outline:none;cursor:pointer;}
+.cfg-select:focus{border-color:var(--accent);}
+
+/* Run Panel */
+.run-panel{border-top:1px solid var(--border);padding:14px 16px;}
+.run-input{width:100%;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;color:var(--text);font-size:13px;outline:none;margin-bottom:10px;font-family:'Noto Sans TC',sans-serif;}
+.run-input:focus{border-color:var(--green);}
+.run-output{background:rgba(0,0,0,.4);border:1px solid var(--border);border-radius:8px;padding:10px;font-size:12px;font-family:'Space Mono',monospace;line-height:1.6;max-height:150px;overflow-y:auto;white-space:pre-wrap;word-break:break-word;color:#a0aec0;}
+
+/* Flow list */
+.flow-list{max-height:200px;overflow-y:auto;}
+.flow-item{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;border-radius:8px;cursor:pointer;transition:background .2s;}
+.flow-item:hover{background:var(--surface2);}
+.flow-item-name{font-size:13px;}
+.flow-item-del{background:none;border:none;color:var(--dim);cursor:pointer;font-size:14px;}
+.flow-item-del:hover{color:#ef4444;}
+
+/* Toast */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:10px 20px;font-size:13px;z-index:9999;animation:toastIn .3s ease;pointer-events:none;}
+@keyframes toastIn{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+
+/* Modal */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:500;display:flex;align-items:center;justify-content:center;}
+.modal{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px;min-width:320px;max-width:500px;width:90%;}
+.modal h3{font-size:16px;margin-bottom:16px;}
+.modal-btns{display:flex;gap:10px;margin-top:16px;justify-content:flex-end;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">🦞 立 AI</div>
+  <div class="sep"></div>
+  <input class="flow-name" id="flowName" value="新工作流程" placeholder="流程名稱">
+  <div class="sep"></div>
+  <button class="hbtn hbtn-ghost" onclick="newFlow()">＋ 新增</button>
+  <button class="hbtn hbtn-ghost" onclick="showFlowList()">📂 開啟</button>
+  <button class="hbtn hbtn-ghost" onclick="saveFlow()">💾 儲存</button>
+  <div class="sep"></div>
+  <button class="hbtn hbtn-ghost" onclick="openSettings()">⚙️ AI 設定</button>
+  <button class="hbtn hbtn-ghost" onclick="openCodeEditor()">📝 程式碼</button>
+  <button class="hbtn hbtn-green" onclick="runFlow()">▶ 執行流程</button>
+  <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+    <span style="font-size:11px;color:var(--dim);font-family:'Space Mono',monospace;" id="statusText">就緒</span>
+    <div style="width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);" id="statusDot"></div>
+  </div>
+</header>
+
+<div class="workspace">
+
+  <!-- 節點類型面板 -->
+  <div class="node-panel">
+    <div class="panel-title">節點類型</div>
+    <div class="node-type" draggable="true" ondragstart="dragStart(event,'input')">
+      <div class="nt-icon" style="background:rgba(5,150,105,.2);">📥</div>
+      <div class="nt-info"><div class="nt-name">輸入</div><div class="nt-desc">使用者輸入</div></div>
+    </div>
+    <div class="node-type" draggable="true" ondragstart="dragStart(event,'llm')">
+      <div class="nt-icon" style="background:rgba(37,99,235,.2);">🤖</div>
+      <div class="nt-info"><div class="nt-name">LLM</div><div class="nt-desc">AI 模型推理</div></div>
+    </div>
+    <div class="node-type" draggable="true" ondragstart="dragStart(event,'prompt')">
+      <div class="nt-icon" style="background:rgba(124,58,237,.2);">✏️</div>
+      <div class="nt-info"><div class="nt-name">提示詞</div><div class="nt-desc">組合 Prompt</div></div>
+    </div>
+    <div class="node-type" draggable="true" ondragstart="dragStart(event,'condition')">
+      <div class="nt-icon" style="background:rgba(217,119,6,.2);">🔀</div>
+      <div class="nt-info"><div class="nt-name">條件</div><div class="nt-desc">關鍵字判斷</div></div>
+    </div>
+    <div class="node-type" draggable="true" ondragstart="dragStart(event,'output')">
+      <div class="nt-icon" style="background:rgba(220,38,38,.2);">📤</div>
+      <div class="nt-info"><div class="nt-name">輸出</div><div class="nt-desc">最終結果</div></div>
+    </div>
+
+    <div class="panel-title" style="margin-top:8px;">執行輸入</div>
+    <div style="padding:12px;">
+      <input class="run-input" id="runInput" placeholder="輸入文字給流程...">
+      <div style="font-size:11px;color:var(--dim);margin-bottom:8px;font-family:'Space Mono',monospace;">執行結果：</div>
+      <div class="run-output" id="runOutput">等待執行...</div>
+    </div>
+  </div>
+
+  <!-- 畫布 -->
+  <div class="canvas-wrap" id="canvasWrap"
+    ondragover="event.preventDefault()"
+    ondrop="dropNode(event)"
+    onmousedown="canvasMouseDown(event)"
+    onmousemove="canvasMouseMove(event)"
+    onmouseup="canvasMouseUp(event)">
+    <div class="canvas-bg"></div>
+    <svg class="edge-svg" id="edgeSvg"></svg>
+    <div id="canvas"></div>
+  </div>
+
+  <!-- 設定面板 -->
+  <div class="config-panel hidden" id="configPanel">
+    <div class="config-header">
+      <div class="config-title" id="configTitle">節點設定</div>
+      <button class="config-close" onclick="closeConfig()">✕</button>
+    </div>
+    <div class="config-body" id="configBody"></div>
+  </div>
+
+</div>
+
+<script>
+const API = 'http://localhost:9998';
+const WS_URL = 'ws://localhost:9998/ws/run';
+
+let nodes = [];
+let edges = [];
+let selectedNode = null;
+let draggingNodeType = null;
+let connectingFrom = null;
+let panOffset = {x:0, y:0};
+let isPanning = false;
+let panStart = {x:0, y:0};
+let ws = null;
+let models = [];
+let currentFlowId = 'default';
+
+// ── 初始化 ────────────────────────────────────────────────────────────────
+window.onload = async () => {
+  await loadModels();
+  connectWS();
+  loadDefaultFlow();
+};
+
+async function loadModels() {
+  try {
+    const r = await fetch(API + '/api/models');
+    const d = await r.json();
+    models = d.models || [];
+  } catch(e) {
+    models = ['gemma4:latest', 'qwen2.5:14b', 'mistral:7b'];
+  }
+}
+
+function connectWS() {
+  ws = new WebSocket(WS_URL);
+  ws.onmessage = (e) => {
+    const data = JSON.parse(e.data);
+    handleWSMessage(data);
+  };
+  ws.onclose = () => setTimeout(connectWS, 3000);
+}
+
+function handleWSMessage(data) {
+  if (data.type === 'node_update') {
+    const el = document.getElementById('node-' + data.node_id);
+    if (el) {
+      el.className = `flow-node ${data.status}`;
+      const out = el.querySelector('.node-output');
+      if (out && data.output) out.textContent = data.output;
+    }
+  } else if (data.type === 'flow_done') {
+    document.getElementById('runOutput').textContent = data.output;
+    setStatus('完成 ✓', 'var(--green)');
+    showToast('✅ 流程執行完成');
+  } else if (data.type === 'flow_start') {
+    setStatus('執行中...', 'var(--yellow)');
+  }
+}
+
+// ── 狀態 ─────────────────────────────────────────────────────────────────
+function setStatus(text, color) {
+  document.getElementById('statusText').textContent = text;
+  document.getElementById('statusDot').style.background = color;
+  document.getElementById('statusDot').style.boxShadow = `0 0 8px ${color}`;
+}
+
+// ── 拖拉新增節點 ──────────────────────────────────────────────────────────
+function dragStart(e, type) {
+  draggingNodeType = type;
+}
+
+function dropNode(e) {
+  if (!draggingNodeType) return;
+  const wrap = document.getElementById('canvasWrap');
+  const rect = wrap.getBoundingClientRect();
+  const x = e.clientX - rect.left - panOffset.x - 100;
+  const y = e.clientY - rect.top - panOffset.y - 40;
+  addNode(draggingNodeType, x, y);
+  draggingNodeType = null;
+}
+
+// ── 節點定義 ─────────────────────────────────────────────────────────────
+const NODE_DEFS = {
+  input:     { label:'輸入節點', icon:'📥', color:'rgba(5,150,105,.2)',   borderColor:'#059669', hasIn:false, hasOut:true  },
+  llm:       { label:'LLM 節點', icon:'🤖', color:'rgba(37,99,235,.2)',   borderColor:'#2563eb', hasIn:true,  hasOut:true  },
+  prompt:    { label:'提示詞',   icon:'✏️', color:'rgba(124,58,237,.2)',  borderColor:'#7c3aed', hasIn:true,  hasOut:true  },
+  condition: { label:'條件判斷', icon:'🔀', color:'rgba(217,119,6,.2)',   borderColor:'#d97706', hasIn:true,  hasOut:true  },
+  output:    { label:'輸出節點', icon:'📤', color:'rgba(220,38,38,.2)',   borderColor:'#dc2626', hasIn:true,  hasOut:false },
+};
+
+function addNode(type, x, y) {
+  const id = 'n_' + Date.now();
+  const def = NODE_DEFS[type];
+  const config = getDefaultConfig(type);
+  const node = { id, type, x, y, config };
+  nodes.push(node);
+  renderNode(node);
+  selectNode(id);
+  return node;
+}
+
+function getDefaultConfig(type) {
+  if (type === 'llm') return { model: models[0] || 'gemma4:latest', system: '你是一個有用的AI助理，使用繁體中文回答。', prompt: '{input}' };
+  if (type === 'prompt') return { template: '請根據以下內容回答：\n{input}' };
+  if (type === 'condition') return { keyword: '' };
+  if (type === 'input') return { default: '' };
+  return {};
+}
+
+function renderNode(node) {
+  const def = NODE_DEFS[node.type];
+  const canvas = document.getElementById('canvas');
+  const el = document.createElement('div');
+  el.className = 'flow-node';
+  el.id = 'node-' + node.id;
+  el.style.left = node.x + 'px';
+  el.style.top = node.y + 'px';
+  el.innerHTML = `
+    ${def.hasIn ? `<div class="port port-in" data-node="${node.id}" data-dir="in"></div>` : ''}
+    ${def.hasOut ? `<div class="port port-out" data-node="${node.id}" data-dir="out"></div>` : ''}
+    <div class="node-header" style="background:${def.color};">
+      <div class="node-icon">${def.icon}</div>
+      <div class="node-title">${def.label}</div>
+      <button class="node-del" onclick="deleteNode('${node.id}')">✕</button>
+    </div>
+    <div class="node-body">
+      <div style="font-size:11px;color:var(--dim);">${getNodeSummary(node)}</div>
+      <div class="node-output" id="out-${node.id}"></div>
+    </div>
+  `;
+
+  // 拖移節點
+  el.querySelector('.node-header').addEventListener('mousedown', (e) => {
+    if (e.target.classList.contains('node-del')) return;
+    startDragNode(e, node.id);
+  });
+
+  // 點擊選取
+  el.addEventListener('click', (e) => {
+    if (!e.target.classList.contains('port')) selectNode(node.id);
+  });
+
+  // Port 連線
+  el.querySelectorAll('.port').forEach(p => {
+    p.addEventListener('mousedown', (e) => {
+      e.stopPropagation();
+      startConnect(e, node.id, p.dataset.dir);
+    });
+  });
+
+  canvas.appendChild(el);
+}
+
+function getNodeSummary(node) {
+  if (node.type === 'llm') return `模型：${node.config.model || '未設定'}`;
+  if (node.type === 'prompt') return `模板：${(node.config.template||'').slice(0,30)}...`;
+  if (node.type === 'condition') return `關鍵字：${node.config.keyword || '未設定'}`;
+  if (node.type === 'input') return '使用者輸入';
+  return '最終輸出';
+}
+
+// ── 拖移節點 ─────────────────────────────────────────────────────────────
+let draggingNode = null, dragNodeStart = {x:0,y:0}, dragMouseStart = {x:0,y:0};
+
+function startDragNode(e, nodeId) {
+  draggingNode = nodeId;
+  const node = nodes.find(n => n.id === nodeId);
+  dragNodeStart = {x: node.x, y: node.y};
+  dragMouseStart = {x: e.clientX, y: e.clientY};
+  e.preventDefault();
+}
+
+// ── 連線 ─────────────────────────────────────────────────────────────────
+let connectStart = null, tempLine = null;
+
+function startConnect(e, nodeId, dir) {
+  if (dir === 'out') {
+    connectStart = { nodeId, dir };
+    e.preventDefault();
+  } else if (dir === 'in' && connectStart) {
+    // 完成連線
+    finishConnect(nodeId);
+  }
+}
+
+function finishConnect(toNodeId) {
+  if (!connectStart || connectStart.nodeId === toNodeId) { connectStart = null; return; }
+  const exists = edges.find(e => e.from === connectStart.nodeId && e.to === toNodeId);
+  if (!exists) {
+    edges.push({ id: 'e_'+Date.now(), from: connectStart.nodeId, to: toNodeId });
+    renderEdges();
+  }
+  connectStart = null;
+}
+
+// ── 滑鼠事件 ─────────────────────────────────────────────────────────────
+function canvasMouseDown(e) {
+  if (e.target.id === 'canvasWrap' || e.target.classList.contains('canvas-bg') || e.target.id === 'edgeSvg') {
+    isPanning = true;
+    panStart = { x: e.clientX - panOffset.x, y: e.clientY - panOffset.y };
+    selectedNode = null;
+    closeConfig();
+    document.querySelectorAll('.flow-node').forEach(n => n.classList.remove('selected'));
+  }
+}
+
+function canvasMouseMove(e) {
+  if (draggingNode) {
+    const dx = e.clientX - dragMouseStart.x;
+    const dy = e.clientY - dragMouseStart.y;
+    const node = nodes.find(n => n.id === draggingNode);
+    if (node) {
+      node.x = dragNodeStart.x + dx;
+      node.y = dragNodeStart.y + dy;
+      const el = document.getElementById('node-' + draggingNode);
+      if (el) { el.style.left = node.x + 'px'; el.style.top = node.y + 'px'; }
+      renderEdges();
+    }
+  } else if (isPanning) {
+    panOffset.x = e.clientX - panStart.x;
+    panOffset.y = e.clientY - panStart.y;
+    document.getElementById('canvas').style.transform = `translate(${panOffset.x}px,${panOffset.y}px)`;
+    document.getElementById('edgeSvg').style.transform = `translate(${panOffset.x}px,${panOffset.y}px)`;
+  }
+}
+
+function canvasMouseUp(e) {
+  if (draggingNode) { draggingNode = null; }
+  if (isPanning) { isPanning = false; }
+  // 點到空白取消連線
+  if (connectStart && !e.target.classList.contains('port')) connectStart = null;
+}
+
+// ── 邊線渲染 ─────────────────────────────────────────────────────────────
+function renderEdges() {
+  const svg = document.getElementById('edgeSvg');
+  svg.innerHTML = '';
+  edges.forEach(edge => {
+    const fromNode = nodes.find(n => n.id === edge.from);
+    const toNode = nodes.find(n => n.id === edge.to);
+    if (!fromNode || !toNode) return;
+
+    const fromEl = document.getElementById('node-' + fromNode.id);
+    const toEl = document.getElementById('node-' + toNode.id);
+    if (!fromEl || !toEl) return;
+
+    const x1 = fromNode.x + fromEl.offsetWidth;
+    const y1 = fromNode.y + fromEl.offsetHeight / 2;
+    const x2 = toNode.x;
+    const y2 = toNode.y + toEl.offsetHeight / 2;
+    const cx = (x1 + x2) / 2;
+
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', `M ${x1} ${y1} C ${cx} ${y1}, ${cx} ${y2}, ${x2} ${y2}`);
+    path.setAttribute('class', 'edge-path');
+
+    // 刪除按鈕（點擊邊線）
+    path.style.pointerEvents = 'stroke';
+    path.style.cursor = 'pointer';
+    path.addEventListener('click', () => {
+      if (confirm('刪除這條連線？')) {
+        edges = edges.filter(e => e.id !== edge.id);
+        renderEdges();
+      }
+    });
+
+    svg.appendChild(path);
+
+    // 箭頭
+    const arrow = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    arrow.setAttribute('points', `${x2},${y2} ${x2-8},${y2-4} ${x2-8},${y2+4}`);
+    arrow.setAttribute('fill', '#3a3f52');
+    svg.appendChild(arrow);
+  });
+}
+
+// ── 選取節點 ─────────────────────────────────────────────────────────────
+function selectNode(nodeId) {
+  document.querySelectorAll('.flow-node').forEach(n => n.classList.remove('selected'));
+  const el = document.getElementById('node-' + nodeId);
+  if (el) el.classList.add('selected');
+  selectedNode = nodeId;
+  openConfig(nodeId);
+}
+
+// ── 設定面板 ─────────────────────────────────────────────────────────────
+function openConfig(nodeId) {
+  const node = nodes.find(n => n.id === nodeId);
+  if (!node) return;
+  const def = NODE_DEFS[node.type];
+  document.getElementById('configTitle').textContent = `${def.icon} ${def.label} 設定`;
+  document.getElementById('configBody').innerHTML = buildConfigForm(node);
+  document.getElementById('configPanel').classList.remove('hidden');
+}
+
+function closeConfig() {
+  document.getElementById('configPanel').classList.add('hidden');
+  selectedNode = null;
+}
+
+function buildConfigForm(node) {
+  let html = '';
+  if (node.type === 'llm') {
+    const modelOpts = models.map(m => `<option value="${m}" ${m === node.config.model ? 'selected' : ''}>${m}</option>`).join('');
+    html += `
+      <div class="cfg-group">
+        <div class="cfg-label">AI 模型</div>
+        <select class="cfg-select" onchange="updateCfg('${node.id}','model',this.value);updateNodeSummary('${node.id}')">
+          ${modelOpts}
+        </select>
+      </div>
+      <div class="cfg-group">
+        <div class="cfg-label">System Prompt</div>
+        <textarea class="cfg-textarea" onchange="updateCfg('${node.id}','system',this.value)">${node.config.system||''}</textarea>
+      </div>
+      <div class="cfg-group">
+        <div class="cfg-label">Prompt 模板（{input} = 上游輸出）</div>
+        <textarea class="cfg-textarea" onchange="updateCfg('${node.id}','prompt',this.value)">${node.config.prompt||'{input}'}</textarea>
+      </div>
+    `;
+  } else if (node.type === 'prompt') {
+    html += `
+      <div class="cfg-group">
+        <div class="cfg-label">模板（{input} = 上游輸出）</div>
+        <textarea class="cfg-textarea" style="min-height:120px;" onchange="updateCfg('${node.id}','template',this.value)">${node.config.template||''}</textarea>
+      </div>
+    `;
+  } else if (node.type === 'condition') {
+    html += `
+      <div class="cfg-group">
+        <div class="cfg-label">檢查關鍵字</div>
+        <input class="cfg-input" value="${node.config.keyword||''}" onchange="updateCfg('${node.id}','keyword',this.value)" placeholder="關鍵字...">
+      </div>
+    `;
+  } else if (node.type === 'input') {
+    html += `
+      <div class="cfg-group">
+        <div class="cfg-label">預設值（若無使用者輸入）</div>
+        <input class="cfg-input" value="${node.config.default||''}" onchange="updateCfg('${node.id}','default',this.value)" placeholder="預設輸入...">
+      </div>
+    `;
+  }
+  html += `
+    <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);">
+      <div class="cfg-label">節點 ID</div>
+      <div style="font-family:'Space Mono',monospace;font-size:11px;color:var(--dim);">${node.id}</div>
+    </div>
+  `;
+  return html;
+}
+
+function updateCfg(nodeId, key, value) {
+  const node = nodes.find(n => n.id === nodeId);
+  if (node) node.config[key] = value;
+}
+
+function updateNodeSummary(nodeId) {
+  const node = nodes.find(n => n.id === nodeId);
+  const el = document.getElementById('node-' + nodeId);
+  if (node && el) {
+    const summary = el.querySelector('.node-body div');
+    if (summary) summary.textContent = getNodeSummary(node);
+  }
+}
+
+// ── 刪除節點 ─────────────────────────────────────────────────────────────
+function deleteNode(nodeId) {
+  nodes = nodes.filter(n => n.id !== nodeId);
+  edges = edges.filter(e => e.from !== nodeId && e.to !== nodeId);
+  const el = document.getElementById('node-' + nodeId);
+  if (el) el.remove();
+  renderEdges();
+  closeConfig();
+}
+
+// ── 執行流程 ─────────────────────────────────────────────────────────────
+function runFlow() {
+  if (!ws || ws.readyState !== 1) { showToast('⚠️ 未連線到後端'); return; }
+  if (nodes.length === 0) { showToast('⚠️ 請先新增節點'); return; }
+
+  // 重置所有節點狀態
+  nodes.forEach(n => {
+    const el = document.getElementById('node-' + n.id);
+    if (el) { el.className = 'flow-node'; const out = el.querySelector('.node-output'); if(out) out.textContent = ''; }
+  });
+
+  document.getElementById('runOutput').textContent = '執行中...';
+  const userInput = document.getElementById('runInput').value;
+
+  ws.send(JSON.stringify({
+    action: 'run_flow',
+    flow: { nodes, edges },
+    input: userInput
+  }));
+}
+
+// ── 儲存 / 載入 流程 ─────────────────────────────────────────────────────
+async function saveFlow() {
+  const name = document.getElementById('flowName').value || '未命名';
+  const flow = { name, nodes, edges };
+  try {
+    await fetch(`${API}/api/flows/${currentFlowId}`, {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify(flow)
+    });
+    showToast('💾 已儲存！');
+  } catch(e) { showToast('❌ 儲存失敗'); }
+}
+
+async function showFlowList() {
+  try {
+    const r = await fetch(API + '/api/flows');
+    const d = await r.json();
+    const list = d.flows.map(f => `
+      <div class="flow-item" onclick="loadFlowById('${f.id}')">
+        <span class="flow-item-name">📄 ${f.name}</span>
+        <button class="flow-item-del" onclick="event.stopPropagation();deleteFlowById('${f.id}')">✕</button>
+      </div>
+    `).join('') || '<div style="padding:12px;color:var(--dim);font-size:13px;">沒有儲存的流程</div>';
+
+    showModal('📂 開啟流程', `<div class="flow-list">${list}</div>
+      <button class="hbtn hbtn-primary" onclick="newFlow();closeModal();" style="margin-top:12px;width:100%;">＋ 新增流程</button>`);
+  } catch(e) { showToast('❌ 無法連線到後端'); }
+}
+
+async function loadFlowById(flowId) {
+  try {
+    const r = await fetch(`${API}/api/flows/${flowId}`);
+    const flow = await r.json();
+    currentFlowId = flowId;
+    document.getElementById('flowName').value = flow.name || '未命名';
+    clearCanvas();
+    nodes = flow.nodes || [];
+    edges = flow.edges || [];
+    nodes.forEach(n => renderNode(n));
+    renderEdges();
+    closeModal();
+    showToast('✅ 流程已載入');
+  } catch(e) { showToast('❌ 載入失敗'); }
+}
+
+async function deleteFlowById(flowId) {
+  if (!confirm('確定刪除？')) return;
+  await fetch(`${API}/api/flows/${flowId}`, { method: 'DELETE' });
+  showFlowList();
+}
+
+function newFlow() {
+  currentFlowId = 'flow_' + Date.now();
+  document.getElementById('flowName').value = '新工作流程';
+  clearCanvas();
+  nodes = []; edges = [];
+  closeModal();
+}
+
+function clearCanvas() {
+  document.getElementById('canvas').innerHTML = '';
+  document.getElementById('edgeSvg').innerHTML = '';
+}
+
+function loadDefaultFlow() {
+  // 預設示範流程
+  const n1 = addNode('input', 50, 120);
+  const n2 = addNode('llm', 320, 120);
+  const n3 = addNode('output', 590, 120);
+  edges.push({ id:'e_demo1', from:n1.id, to:n2.id });
+  edges.push({ id:'e_demo2', from:n2.id, to:n3.id });
+  renderEdges();
+}
+
+// ── Toast ─────────────────────────────────────────────────────────────────
+function showToast(msg) {
+  const t = document.createElement('div');
+  t.className = 'toast'; t.textContent = msg;
+  document.body.appendChild(t);
+  setTimeout(() => t.remove(), 2500);
+}
+
+// ── Modal ─────────────────────────────────────────────────────────────────
+function showModal(title, content) {
+  const bg = document.createElement('div');
+  bg.className = 'modal-bg'; bg.id = 'modal';
+  bg.innerHTML = `<div class="modal"><h3>${title}</h3>${content}<div class="modal-btns"><button class="hbtn hbtn-ghost" onclick="closeModal()">關閉</button></div></div>`;
+  bg.addEventListener('click', e => { if(e.target === bg) closeModal(); });
+  document.body.appendChild(bg);
+}
+
+function closeModal() {
+  const m = document.getElementById('modal');
+  if (m) m.remove();
+}
+</script>
+</body>
+</html>
+<!-- 以下由系統附加：設定頁 + 程式碼編輯器 JS -->
+<script>
+// ── 設定頁 ────────────────────────────────────────────────────────────────
+async function openSettings() {
+  const r = await fetch(API + '/api/lobster/config');
+  const cfg = await r.json();
+  const mr = await fetch(API + '/api/models');
+  const md = await mr.json();
+  const modelOpts = md.models.map(m => `<option value="${m}" ${m===cfg.model?'selected':''}>${m}</option>`).join('');
+  showModal('⚙️ Lobster AI 設定', `
+    <div class="cfg-group">
+      <div class="cfg-label">目前 AI 模型</div>
+      <select class="cfg-select" id="cfgModel">${modelOpts}</select>
+    </div>
+    <div class="cfg-group" style="margin-top:14px;">
+      <div class="cfg-label">System Prompt（AI 的個性設定）</div>
+      <textarea class="cfg-textarea" id="cfgPrompt" style="min-height:120px;">${cfg.system_prompt||''}</textarea>
+    </div>
+    <div style="background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.3);border-radius:8px;padding:10px;margin-top:12px;font-size:12px;color:#fca5a5;">
+      ⚠️ 儲存模型設定會直接修改 Lobster_Core.py，修改前會自動備份
+    </div>
+    <div class="modal-btns">
+      <button class="hbtn hbtn-ghost" onclick="closeModal()">取消</button>
+      <button class="hbtn hbtn-primary" onclick="saveSettings()">💾 儲存設定</button>
+    </div>
+  `);
+}
+
+async function saveSettings() {
+  const model = document.getElementById('cfgModel')?.value;
+  const prompt = document.getElementById('cfgPrompt')?.value;
+  const r = await fetch(API + '/api/lobster/config', {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({model, system_prompt: prompt})
+  });
+  const d = await r.json();
+  if (d.ok) { showToast('✅ 設定已儲存！Lobster_Core.py 已更新'); closeModal(); }
+  else showToast('❌ ' + d.error);
+}
+
+// ── 程式碼編輯器 ────────────────────────────────────────────────────────────
+let editingFile = '';
+
+async function openCodeEditor() {
+  const r = await fetch(API + '/api/files');
+  const d = await r.json();
+  const fileList = d.files.map(f => `
+    <div class="flow-item" onclick="loadFileToEditor('${f.name}')">
+      <span class="flow-item-name">🐍 ${f.name}</span>
+      <span style="font-size:11px;color:var(--dim);font-family:'Space Mono',monospace;">${f.size_str} · ${f.modified}</span>
+    </div>
+  `).join('');
+  showModal('📝 程式碼編輯器', `
+    <div style="font-size:12px;color:var(--dim);margin-bottom:10px;">選擇要編輯的檔案：</div>
+    <div class="flow-list" style="max-height:300px;">${fileList}</div>
+    <div class="modal-btns">
+      <button class="hbtn hbtn-ghost" onclick="closeModal()">關閉</button>
+    </div>
+  `);
+}
+
+async function loadFileToEditor(filename) {
+  const r = await fetch(API + '/api/files/' + encodeURIComponent(filename));
+  const d = await r.json();
+  if (!d.ok) { showToast('❌ ' + d.error); return; }
+  editingFile = filename;
+  closeModal();
+  showModal(`✏️ 編輯：${filename}`, `
+    <div style="background:rgba(217,119,6,.1);border:1px solid rgba(217,119,6,.3);border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:12px;color:#fcd34d;">
+      ⚠️ 儲存前會自動語法檢查並備份原始檔案
+    </div>
+    <textarea id="codeEditor" style="width:100%;height:400px;background:#0a0a10;border:1px solid var(--border);border-radius:8px;padding:12px;color:#a0d8a0;font-family:'Space Mono',monospace;font-size:12px;line-height:1.6;outline:none;resize:vertical;">${d.content.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</textarea>
+    <div class="modal-btns">
+      <button class="hbtn hbtn-ghost" onclick="closeModal()">取消</button>
+      <button class="hbtn hbtn-primary" onclick="saveCode()">💾 語法檢查並儲存</button>
+    </div>
+  `);
+}
+
+async function saveCode() {
+  const content = document.getElementById('codeEditor')?.value;
+  if (!content) return;
+  const r = await fetch(API + '/api/files/' + encodeURIComponent(editingFile), {
+    method:'POST', headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({content})
+  });
+  const d = await r.json();
+  if (d.ok) {
+    showToast(`✅ ${editingFile} 已儲存！備份：${d.backup}`);
+    closeModal();
+  } else {
+    showToast('❌ ' + d.error);
+    document.getElementById('codeEditor').style.borderColor = 'var(--red)';
+  }
+}
+</script>

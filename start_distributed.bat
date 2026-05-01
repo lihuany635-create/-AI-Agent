@@ -1,0 +1,1 @@
+cd C:\Users\ACER\OneDrive\орн▒\llama-cpp && llama-server.exe -m "C:\Users\ACER\.ollama\models\blobs\sha256-43f7a214e5329f672bb05404cfba1913cbb70fdaa1a17497224e1925046b0ed5" --rpc 100.91.121.85:50052 -c 4096 --host 0.0.0.0 --port 8080 

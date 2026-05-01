@@ -1,0 +1,1147 @@
+[2026-03-28 00:10:42] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-28 00:10:42] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-28 00:10:42] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 00:11:11] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：幫我截圖
+[2026-03-28 00:11:11] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:231 - [process_input] 桌面控制：幫我截圖
+[2026-03-28 00:11:33] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：讀取畫面
+[2026-03-28 00:11:33] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:231 - [process_input] 桌面控制：讀取畫面
+[2026-03-28 00:11:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：列出視窗
+[2026-03-28 00:11:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:231 - [process_input] 桌面控制：列出視窗
+[2026-03-28 00:12:00] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：切換到 記事本
+[2026-03-28 00:12:02] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 00:12:02] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 00:12:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：最大化
+[2026-03-28 00:12:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:231 - [process_input] 桌面控制：最大化
+[2026-03-28 00:12:26] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：最小化
+[2026-03-28 00:12:26] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:231 - [process_input] 桌面控制：最小化
+[2026-03-28 00:12:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：點擊 確定
+[2026-03-28 00:12:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:231 - [process_input] 桌面控制：點擊 確定
+[2026-03-28 00:13:11] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：輸入「你好」
+[2026-03-28 00:13:22] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：按下 Ctrl+C
+[2026-03-28 00:13:22] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:231 - [process_input] 桌面控制：按下 Ctrl+C
+[2026-03-28 00:13:34] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：監控畫面
+[2026-03-28 00:13:34] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:231 - [process_input] 桌面控制：監控畫面
+[2026-03-28 00:13:40] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：停止監控
+[2026-03-28 00:13:40] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:231 - [process_input] 桌面控制：停止監控
+[2026-03-28 00:15:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：幫我截圖
+[2026-03-28 00:15:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:231 - [process_input] 桌面控制：幫我截圖
+[2026-03-28 00:15:25] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：👤 幫我截圖
+[2026-03-28 00:15:25] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:231 - [process_input] 桌面控制：👤 幫我截圖
+[2026-03-28 00:15:31] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：👤 幫我截圖
+[2026-03-28 00:15:31] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:231 - [process_input] 桌面控制：👤 幫我截圖
+[2026-03-28 00:15:43] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：列出視窗
+[2026-03-28 00:15:43] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:231 - [process_input] 桌面控制：列出視窗
+[2026-03-28 00:17:35] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-28 00:18:05] [32mINFO[0m [Agent.desktop_control] desktop_control.py:143 - [桌面控制] 截圖完成：screenshot_20260328_001805.png (1920x1080)
+[2026-03-28 00:18:42] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-28 00:18:43] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-28 00:18:43] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 00:19:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:186 - [process_input] 收到：幫我截圖
+[2026-03-28 00:19:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:231 - [process_input] 桌面控制：幫我截圖
+[2026-03-28 00:22:26] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-28 00:22:26] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-28 00:22:26] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 00:22:46] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：幫我截圖
+[2026-03-28 00:22:46] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：幫我截圖
+[2026-03-28 00:27:26] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：你覺得現在的自己能力在哪
+[2026-03-28 00:27:28] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 00:27:28] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 00:27:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 推論（qwen2:7b-instruct-q4_0）：你覺得現在的自己能力在哪
+[2026-03-28 00:28:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:129 - 已刪除記憶 ID：34e10784
+[2026-03-28 09:23:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 09:23:22] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 09:23:22] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 09:23:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：幫我截圖
+[2026-03-28 09:23:41] [32mINFO[0m [Agent.desktop_control] desktop_control.py:162 - [桌面控制] 截圖完成：screenshot_20260328_092341.png (1920x1080)
+[2026-03-28 09:23:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：幫我截圖
+[2026-03-28 09:24:55] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：讀取畫面
+[2026-03-28 09:24:57] [32mINFO[0m [Agent.desktop_control] desktop_control.py:180 - [桌面控制] OCR 完成，辨識 577 字
+[2026-03-28 09:24:57] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：讀取畫面
+[2026-03-28 09:25:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：列出視窗
+[2026-03-28 09:25:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：列出視窗
+[2026-03-28 09:26:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：切換到 記事本
+[2026-03-28 09:26:37] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 09:26:37] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 09:27:48] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：切換到 記事本
+[2026-03-28 09:28:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 09:28:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 09:28:08] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 09:28:26] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：切換到記事本
+[2026-03-28 09:28:28] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 09:28:28] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 09:29:09] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "import Lobster_Core, inspect; src = inspect.getso
+[2026-03-28 09:29:09] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import Lobster_Core, inspect; src = inspect.getsource(Lobster_Core.LobsterCore.process_input); print('模型' in src and src[src.find('switch_match'):src.find('switch_match')+100])"
+[2026-03-28 09:29:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 09:29:10] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] 終端指令執行：python -c "import Lobster_Core, inspect;
+[2026-03-28 09:30:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：Remove-Item -Recurse -Force __pycache__
+py desktop_agent.py
+[2026-03-28 09:30:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 推論（qwen2:7b-instruct-q4_0）：Remove-Item -Recurse -Force __pycache__
+
+[2026-03-28 09:31:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 09:31:52] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 09:31:52] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 09:32:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：切換到記事本
+[2026-03-28 09:32:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：切換到記事本
+[2026-03-28 09:33:38] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：切換到記事本
+[2026-03-28 09:33:38] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：切換到記事本
+[2026-03-28 09:35:37] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 09:35:37] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 09:35:37] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 09:35:48] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：切換到記事本
+[2026-03-28 09:35:48] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：切換到記事本
+[2026-03-28 09:36:14] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:147 - 任務已提交：[cc660a16] 自動修復：.（6 個步驟）
+[2026-03-28 09:36:14] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:203 - 開始執行任務：[cc660a16] 自動修復：.
+[2026-03-28 09:36:14] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:212 -   步驟 [scan] 由 project_scanner 執行中...
+[2026-03-28 09:36:14] [33mWARNING[0m [Agent.task_scheduler] task_scheduler.py:117 - 模組 project_scanner 執行失敗：module 'project_scanner' has no attribute 'ProjectScanner'，改用 Lobster_Core
+[2026-03-28 09:36:16] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 09:36:16] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 09:36:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 推論（qwen2:7b-instruct-q4_0）：[project_scanner] 掃描目標：.
+[2026-03-28 09:40:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 09:40:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 09:40:20] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 09:43:41] [32mINFO[0m [Agent.desktop_control] desktop_control.py:162 - [桌面控制] 截圖完成：screenshot_20260328_094341.png (1920x1080)
+[2026-03-28 09:46:00] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 09:46:00] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 09:46:00] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 09:46:13] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：監控畫面
+[2026-03-28 09:46:13] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：監控畫面
+[2026-03-28 09:47:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 09:47:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 09:47:13] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 09:47:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：監控畫面
+[2026-03-28 09:47:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：監控畫面
+[2026-03-28 09:47:57] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "import sys; sys.path.insert(0, r'C:\Users\ACER\Ap
+[2026-03-28 09:47:57] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import sys; sys.path.insert(0, r'C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages'); from desktop_control import _HAS_PIL; print(_HAS_PIL)"
+[2026-03-28 09:47:58] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] 終端指令執行：python -c "import sys; sys.path.insert(0
+[2026-03-28 10:02:00] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:02:01] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:02:01] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 10:02:33] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：監控畫面
+[2026-03-28 10:02:33] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：監控畫面
+[2026-03-28 10:03:25] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:03:25] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:03:25] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 10:03:34] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：監控畫面
+[2026-03-28 10:03:34] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：監控畫面
+[2026-03-28 10:04:02] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "from PIL import Image; print(Image.__version__)"
+[2026-03-28 10:04:02] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "from PIL import Image; print(Image.__version__)"
+[2026-03-28 10:04:02] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] 終端指令執行：python -c "from PIL import Image; print(
+[2026-03-28 10:04:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "import PIL; print(PIL.__file__)"
+[2026-03-28 10:04:29] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import PIL; print(PIL.__file__)"
+[2026-03-28 10:04:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] 終端指令執行：python -c "import PIL; print(PIL.__file_
+[2026-03-28 10:05:07] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "import sys; sys.path.insert(0, r'C:\Users\ACER\Ap
+[2026-03-28 10:05:07] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import sys; sys.path.insert(0, r'C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages'); import PIL; print(PIL.__file__); from PIL import ImageGrab; print('OK')"
+[2026-03-28 10:05:07] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] 終端指令執行：python -c "import sys; sys.path.insert(0
+[2026-03-28 10:07:04] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:07:04] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:07:04] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 10:07:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：監控畫面
+[2026-03-28 10:07:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：監控畫面
+[2026-03-28 10:09:23] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:09:23] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:09:23] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 10:09:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：監控畫面
+[2026-03-28 10:09:41] [32mINFO[0m [Agent.desktop_control] desktop_control.py:421 - [桌面控制] 畫面監控啟動
+[2026-03-28 10:09:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：監控畫面
+[2026-03-28 10:09:44] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:09:47] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:09:50] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:09:53] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:09:56] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:09:59] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:02] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:05] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:08] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:11] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:14] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:18] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:21] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:22] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：截圖
+[2026-03-28 10:10:22] [32mINFO[0m [Agent.desktop_control] desktop_control.py:181 - [桌面控制] 截圖完成：screenshot_20260328_101022.png (1920x1080)
+[2026-03-28 10:10:22] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：截圖
+[2026-03-28 10:10:24] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:27] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:30] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:33] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:39] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:42] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:45] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:48] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:54] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:10:57] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:11:00] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:11:03] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:11:06] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:11:09] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:11:12] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:11:15] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:11:22] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:11:25] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:11:28] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:11:31] [32mINFO[0m [Agent.desktop_control] desktop_control.py:430 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:11:46] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:11:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:11:47] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 10:11:55] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：畫面監控
+[2026-03-28 10:11:57] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 10:11:57] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 10:11:57] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 推論（qwen2:7b-instruct-q4_0）：畫面監控
+[2026-03-28 10:14:25] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:14:25] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:14:25] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 10:14:33] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：畫面監控
+[2026-03-28 10:14:35] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 10:14:35] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 10:14:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 推論（qwen2:7b-instruct-q4_0）：畫面監控
+[2026-03-28 10:16:28] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:16:28] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:16:28] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 10:16:37] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：畫面監控
+[2026-03-28 10:17:09] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "from desktop_control import get_control; c = get_
+[2026-03-28 10:17:09] [32mINFO[0m [Agent.desktop_control] desktop_control.py:445 - [桌面控制] 畫面監控啟動
+[2026-03-28 10:17:09] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：python -c "from desktop_control import g
+[2026-03-28 10:17:12] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:17:15] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:17:18] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:17:21] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:17:24] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:17:27] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:17:30] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:17:33] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:17:36] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:17:39] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:17:42] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:17:45] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 10:17:47] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：停止監控
+[2026-03-28 10:17:47] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：停止監控
+[2026-03-28 10:18:27] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "import Lobster_Core, inspect; src = inspect.getso
+[2026-03-28 10:18:27] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import Lobster_Core, inspect; src = inspect.getsource(Lobster_Core.LobsterCore.process_input); print(src[:200])"
+[2026-03-28 10:18:28] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:18:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] 終端指令執行：python -c "import Lobster_Core, inspect;
+[2026-03-28 10:19:05] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "import Lobster_Core, inspect; src = inspect.getso
+[2026-03-28 10:19:05] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import Lobster_Core, inspect; src = inspect.getsource(Lobster_Core.LobsterCore.process_input); print('桌面控制' in src)"
+[2026-03-28 10:19:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:19:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] 終端指令執行：python -c "import Lobster_Core, inspect;
+[2026-03-28 10:20:31] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:20:31] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 10:20:31] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 10:20:59] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：畫面監控
+[2026-03-28 10:21:25] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：停止監控
+[2026-03-28 10:21:25] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：停止監控
+[2026-03-28 13:06:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：畫面監控
+[2026-03-28 13:07:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：截圖
+[2026-03-28 13:07:30] [32mINFO[0m [Agent.desktop_control] desktop_control.py:187 - [桌面控制] 截圖完成：screenshot_20260328_130729.png (1920x1080)
+[2026-03-28 13:07:30] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：截圖
+[2026-03-28 13:08:20] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "
+import sys
+sys.path.insert(0, r'C:\Users\ACER\Ap
+[2026-03-28 13:08:20] [32mINFO[0m [Agent.desktop_control] desktop_control.py:445 - [桌面控制] 畫面監控啟動
+[2026-03-28 13:08:20] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：python -c "
+import sys
+sys.path.insert(0
+[2026-03-28 13:08:23] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:08:26] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:08:29] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:08:32] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:08:35] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:08:38] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:08:39] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：監控停止
+[2026-03-28 13:08:41] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 13:08:41] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 13:08:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 推論（qwen2:7b-instruct-q4_0）：監控停止
+[2026-03-28 13:08:41] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:08:44] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:08:48] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:08:51] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:08:54] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:08:57] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:09:00] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:09:03] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:09:06] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:09:09] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:09:12] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:09:15] [32mINFO[0m [Agent.desktop_control] desktop_control.py:454 - [桌面控制] 畫面內容變化偵測到
+[2026-03-28 13:11:49] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 13:11:49] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 13:11:49] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 13:12:26] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：監控
+[2026-03-28 13:12:28] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 13:12:28] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 13:12:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 推論（qwen2:7b-instruct-q4_0）：監控
+[2026-03-28 13:13:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 13:13:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 13:13:12] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 13:13:21] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：畫面監控
+[2026-03-28 13:14:25] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：截圖
+[2026-03-28 13:14:25] [32mINFO[0m [Agent.desktop_control] desktop_control.py:200 - [桌面控制] 截圖完成：screenshot_20260328_131425.png (1920x1080)
+[2026-03-28 13:14:25] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:235 - [process_input] 桌面控制：截圖
+[2026-03-28 13:14:30] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：畫面監控
+[2026-03-28 13:16:04] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "import Lobster_Core, inspect; src = inspect.getso
+[2026-03-28 13:16:04] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import Lobster_Core, inspect; src = inspect.getsource(Lobster_Core.LobsterCore.process_input); print('_desktop_kw' in src)"
+[2026-03-28 13:16:04] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 13:16:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] 終端指令執行：python -c "import Lobster_Core, inspect;
+[2026-03-28 13:17:54] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 13:17:55] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 13:17:55] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 13:18:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：畫面監控
+[2026-03-28 13:18:48] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：dir Lobster_Core.py
+[2026-03-28 13:18:48] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：dir Lobster_Core.py
+[2026-03-28 13:18:48] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] 終端指令執行：dir Lobster_Core.py
+[2026-03-28 13:19:31] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：copy /Y "%USERPROFILE%\Downloads\Lobster_Core.py" "C:\Users\
+[2026-03-28 13:19:31] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：copy /Y "%USERPROFILE%\Downloads\Lobster_Core.py" "C:\Users\ACER\OneDrive\桌面\AI-Agent\Lobster_Core.py"
+[2026-03-28 13:19:31] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] 終端指令執行：copy /Y "%USERPROFILE%\Downloads\Lobster
+[2026-03-28 13:29:43] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 13:29:43] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-28 13:29:43] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 13:30:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：查看AI agent 資料夾
+[2026-03-28 13:30:44] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 13:30:44] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 13:30:44] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 推論（qwen2:7b-instruct-q4_0）：查看AI agent 資料夾
+[2026-03-28 13:33:21] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：查看AI agent 資料夾 → 答：你的指令已經執行成功。現在，你在「桌面」資料夾中的「AI-Agent」子目錄下...
+[2026-03-28 13:33:21] [32mINFO[0m [Agent.memory_curator] memory_curator.py:121 - [記憶自動學習] 已儲存（重要性 6）：問：查看AI agent 資料夾 → 答：你的指令已經執行成功。現在，你在「桌面」資料夾中的「AI-Agent」子目錄下...
+[2026-03-28 13:39:34] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：你剛才查看資料夾的方式不對，應該直接執行指令不要等 Ollama
+[2026-03-28 13:39:34] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 推論（qwen2:7b-instruct-q4_0）：你剛才查看資料夾的方式不對，應該直接執行指令不要等 Ollama
+[2026-03-28 13:41:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-28 13:41:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-28 13:41:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 13:41:21] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：查看AI agent 資料夾
+[2026-03-28 13:41:48] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：你剛才做錯了，查看資料夾應該直接執行不要等 Ollama
+[2026-03-28 13:41:50] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 13:41:50] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 13:41:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 推論（qwen2:7b-instruct-q4_0）：你剛才做錯了，查看資料夾應該直接執行不要等 Ollama
+[2026-03-28 13:42:42] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-28 13:44:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-28 13:44:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-28 13:44:51] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 13:45:18] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：查看AI agent 資料夾
+[2026-03-28 13:45:40] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：你剛才做錯了，查看資料夾應該直接執行不要等 Ollama
+[2026-03-28 13:45:40] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-28 13:45:40] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：使用者糾正：你剛才做錯了，查看資料夾應該直接執行不要等 Ollama...
+[2026-03-28 13:45:59] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：查看AI agent 資料夾
+[2026-03-28 13:46:49] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 13:49:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 13:49:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 13:49:03] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 13:49:10] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：查看AI agent 資料夾
+[2026-03-28 13:49:40] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "import Lobster_Core, inspect; src = inspect.getso
+[2026-03-28 13:49:40] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import Lobster_Core, inspect; src = inspect.getsource(Lobster_Core.LobsterCore.process_input); print('裡面有什麼' in src)"
+[2026-03-28 13:49:41] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 13:49:42] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:289 - [process_input] 終端指令執行：python -c "import Lobster_Core, inspect;
+[2026-03-28 13:50:12] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python patch_fm_keywords.py
+[2026-03-28 13:50:12] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python patch_fm_keywords.py
+[2026-03-28 13:50:12] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:289 - [process_input] 終端指令執行：python patch_fm_keywords.py
+[2026-03-28 13:50:41] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 13:50:41] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 13:50:41] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 13:50:51] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：查看AI agent 資料夾
+[2026-03-28 13:51:27] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "import Lobster_Core, inspect; src = inspect.getso
+[2026-03-28 13:51:27] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import Lobster_Core, inspect; src = inspect.getsource(Lobster_Core.LobsterCore.process_input); print('裡面有什麼' in src)"
+[2026-03-28 13:51:27] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 13:51:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:291 - [process_input] 終端指令執行：python -c "import Lobster_Core, inspect;
+[2026-03-28 13:52:03] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "from file_manager import get_fm; print(get_fm().h
+[2026-03-28 13:52:03] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "from file_manager import get_fm; print(get_fm().handle('查看AI agent 資料夾'))"
+[2026-03-28 13:52:03] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:291 - [process_input] 終端指令執行：python -c "from file_manager import get_
+[2026-03-28 13:53:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "from file_manager import get_fm; print(get_fm().h
+[2026-03-28 13:53:35] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "from file_manager import get_fm; print(get_fm().handle('查看AI agent 資料夾'))"
+[2026-03-28 13:53:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:291 - [process_input] 終端指令執行：python -c "from file_manager import get_
+[2026-03-28 13:54:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 13:54:21] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 13:54:21] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 13:54:40] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：查看AI agent 資料夾
+[2026-03-28 13:54:51] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "from file_manager import get_fm; print(get_fm().h
+[2026-03-28 13:54:51] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "from file_manager import get_fm; print(get_fm().handle('查看AI agent 資料夾'))"
+[2026-03-28 13:54:51] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:291 - [process_input] 終端指令執行：python -c "from file_manager import get_
+[2026-03-28 13:55:25] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "from file_manager import get_fm; r = get_fm().han
+[2026-03-28 13:55:25] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "from file_manager import get_fm; r = get_fm().handle('查看AI agent 資料夾'); print('OK' if r else 'None')"
+[2026-03-28 13:55:25] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:291 - [process_input] 終端指令執行：python -c "from file_manager import get_
+[2026-03-28 13:56:06] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 13:56:06] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 13:56:06] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 13:56:15] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：查看AI agent 資料夾
+[2026-03-28 13:57:04] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "
+import Lobster_Core, inspect
+src = inspect.getso
+[2026-03-28 13:57:04] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "
+import Lobster_Core, inspect
+src = inspect.getsource(Lobster_Core.LobsterCore.process_input)
+lines = src.split('\n')
+for i, l in enumerate(lines[:30]):
+    print(i, l)
+"
+[2026-03-28 13:57:04] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:291 - [process_input] 終端指令執行：python -c "
+import Lobster_Core, inspect
+[2026-03-28 13:58:48] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 13:58:48] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 13:58:48] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 13:58:55] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python check_order.py
+[2026-03-28 13:58:55] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python check_order.py
+[2026-03-28 13:58:55] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 13:58:56] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:291 - [process_input] 終端指令執行：python check_order.py
+[2026-03-28 13:59:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "import Lobster_Core, inspect; src = inspect.getso
+[2026-03-28 13:59:29] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import Lobster_Core, inspect; src = inspect.getsource(Lobster_Core.LobsterCore.process_input); print(src[src.find('_fm_kw'):src.find('_fm_kw')+500])"
+[2026-03-28 13:59:30] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 13:59:30] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:291 - [process_input] 終端指令執行：python -c "import Lobster_Core, inspect;
+[2026-03-28 14:00:37] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python patch_fix_encoding.py
+[2026-03-28 14:00:37] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python patch_fix_encoding.py
+[2026-03-28 14:00:38] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:291 - [process_input] 終端指令執行：python patch_fix_encoding.py
+[2026-03-28 14:01:27] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python patch_simple.py
+[2026-03-28 14:01:27] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python patch_simple.py
+[2026-03-28 14:01:27] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:291 - [process_input] 終端指令執行：python patch_simple.py
+[2026-03-28 14:02:01] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:02:01] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:02:01] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 14:02:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：查看AI agent 資料夾
+[2026-03-28 14:02:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "from file_manager import get_fm; r = get_fm().han
+[2026-03-28 14:02:35] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "from file_manager import get_fm; r = get_fm().handle('\u67e5\u770b\u8cc7\u6599\u593e'); print('OK' if r else 'None')"
+[2026-03-28 14:02:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:291 - [process_input] 終端指令執行：python -c "from file_manager import get_
+[2026-03-28 14:03:13] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "import json,pathlib; m=json.loads(pathlib.Path('r
+[2026-03-28 14:03:13] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import json,pathlib; m=json.loads(pathlib.Path('reflex_memory.json').read_text(encoding='utf-8')) if pathlib.Path('reflex_memory.json').exists() else {}; [print(k[:30]) for k in list(m.keys())[:10]]"
+[2026-03-28 14:03:13] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:291 - [process_input] 終端指令執行：python -c "import json,pathlib; m=json.l
+[2026-03-28 14:03:45] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "
+import json,pathlib
+f=pathlib.Path('reflex_memor
+[2026-03-28 14:03:45] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "
+import json,pathlib
+f=pathlib.Path('reflex_memory.json')
+m=json.loads(f.read_text(encoding='utf-8'))
+keys=[k for k in m.keys() if 'agent' in k.lower() or '\u8cc7\u6599\u593e' in k]
+for k in keys:
+    del m[k]
+    print('deleted:',k[:30])
+f.write_text(json.dumps(m,ensure_ascii=False),encoding='utf-8')
+print('done')
+"
+[2026-03-28 14:03:45] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:291 - [process_input] 終端指令執行：python -c "
+import json,pathlib
+f=pathli
+[2026-03-28 14:04:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:04:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:04:05] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 14:04:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：查看AI agent 資料夾
+[2026-03-28 14:04:59] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python -c "import Lobster_Core; lc=Lobster_Core.LobsterCore(
+[2026-03-28 14:04:59] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import Lobster_Core; lc=Lobster_Core.LobsterCore(); from reflex_engine import ReflexEngine; re=ReflexEngine(); print(repr(lc.process_input('\u67e5\u770b\u8cc7\u6599\u593e', re, None)[:50]))"
+[2026-03-28 14:04:59] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:05:00] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：查看資料夾
+[2026-03-28 14:05:00] [33mWARNING[0m [Agent.Lobster_Core] Lobster_Core.py:339 - [process_input] router 失敗（跳過）：'NoneType' object has no attribute 'route'
+[2026-03-28 14:05:01] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:291 - [process_input] 終端指令執行：python -c "import Lobster_Core; lc=Lobst
+[2026-03-28 14:05:52] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:05:52] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:05:52] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 14:05:57] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] 收到：python patch_add_fm_import.py
+[2026-03-28 14:05:57] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python patch_add_fm_import.py
+[2026-03-28 14:05:58] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:291 - [process_input] 終端指令執行：python patch_add_fm_import.py
+[2026-03-28 14:07:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:07:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:07:05] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 14:07:11] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：查看AI agent 資料夾
+[2026-03-28 14:07:45] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：python -c "import json,pathlib; f=pathlib.Path('reflex_memor
+[2026-03-28 14:07:45] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import json,pathlib; f=pathlib.Path('reflex_memory.json'); m=json.loads(f.read_text(encoding='utf-8')) if f.exists() else {}; keys=list(m.keys()); [print(k[:40]) for k in keys]; print(len(keys),'total')"
+[2026-03-28 14:07:45] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:297 - [process_input] 終端指令執行：python -c "import json,pathlib; f=pathli
+[2026-03-28 14:08:27] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：python -c "import json,pathlib; f=pathlib.Path('reflex_memor
+[2026-03-28 14:08:27] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import json,pathlib; f=pathlib.Path('reflex_memory.json'); f.write_text('{}',encoding='utf-8'); print('cleared')"
+[2026-03-28 14:08:27] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:297 - [process_input] 終端指令執行：python -c "import json,pathlib; f=pathli
+[2026-03-28 14:08:58] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:08:58] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:08:58] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 14:09:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：查看AI agent 資料夾
+[2026-03-28 14:11:36] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：python patch_fm_path.py
+[2026-03-28 14:11:36] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python patch_fm_path.py
+[2026-03-28 14:11:36] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:297 - [process_input] 終端指令執行：python patch_fm_path.py
+[2026-03-28 14:12:02] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:12:02] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:12:02] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 14:12:12] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：查看AI-Agent資料夾
+[2026-03-28 14:13:07] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：建立資料夾 測試
+[2026-03-28 14:17:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：python patch_fm_final.py
+[2026-03-28 14:17:08] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python patch_fm_final.py
+[2026-03-28 14:17:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:297 - [process_input] 終端指令執行：python patch_fm_final.py
+[2026-03-28 14:17:19] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:17:19] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:17:19] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 14:17:37] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：建立資料夾 測試
+[2026-03-28 14:17:37] [32mINFO[0m [Agent.file_manager] file_manager.py:162 - [FileManager] 建立資料夾：C:\Users\ACER\OneDrive\桌面\測試
+[2026-03-28 14:20:44] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：python claude_teach.py
+[2026-03-28 14:20:44] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python claude_teach.py
+[2026-03-28 14:20:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 31 筆記憶
+[2026-03-28 14:20:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：【主題】handle 方法的判斷順序
+【方法】在 handle 方法裡，建立/刪除/重命名等「操作型」指令要放在「查看型...
+[2026-03-28 14:20:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：【主題】關鍵字匹配的常見陷阱
+【方法】判斷指令類型時，先判斷更具體的關鍵字，再判斷更廣泛的關鍵字。例如先判斷「建立資料夾...
+[2026-03-28 14:20:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：【主題】Lobster_Core 的 process_input 攔截順序
+【方法】在 process_input 裡，...
+[2026-03-28 14:20:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：【主題】中文關鍵字的編碼問題
+【方法】在 Python 程式碼裡寫中文關鍵字時，用 unicode escape 格式（...
+[2026-03-28 14:20:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：【主題】patch 腳本的設計原則
+【方法】修改現有程式碼時，先備份原始檔案，再修改，最後用 ast.parse 驗證語...
+[2026-03-28 14:20:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：【主題】反射記憶的影響
+【方法】當立的回答被存入反射記憶後，相同問題會直接用記憶回答，不走其他攔截器。如果反射記憶的答案...
+[2026-03-28 14:20:45] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:297 - [process_input] 終端指令執行：python claude_teach.py
+[2026-03-28 14:21:19] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：你知道為什麼 handle 方法要先判斷建立再判斷查看嗎？
+[2026-03-28 14:21:21] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 14:21:21] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 14:21:21] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b（任務：reasoning，分數：10）
+[2026-03-28 14:21:21] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:143 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b
+[2026-03-28 14:21:21] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:145 - [_think] 推論（deepseek-r1:1.5b）：你知道為什麼 handle 方法要先判斷建立再判斷查看嗎？
+[2026-03-28 14:23:22] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：你知道為什麼 handle 方法要先判斷建立再判斷查看嗎？ → 答：在 Python 中，如果我们直接尝试执行一些操...
+[2026-03-28 14:23:22] [32mINFO[0m [Agent.memory_curator] memory_curator.py:121 - [記憶自動學習] 已儲存（重要性 5）：問：你知道為什麼 handle 方法要先判斷建立再判斷查看嗎？ → 答：在 Python 中，如果我们直接尝试执行一些操...
+[2026-03-28 14:24:14] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：python -c "from long_term_memory import LongTermMemory; m=Lo
+[2026-03-28 14:24:14] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "from long_term_memory import LongTermMemory; m=LongTermMemory(); results=m.search('handle 判斷順序'); print(len(results), results[0]['content'][:80] if results else 'empty')"
+[2026-03-28 14:24:14] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 32 筆記憶
+[2026-03-28 14:24:14] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「handle 判斷順序」，找到 5 筆
+[2026-03-28 14:24:14] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:297 - [process_input] 終端指令執行：python -c "from long_term_memory import 
+[2026-03-28 14:24:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：python -c "from long_term_memory import LongTermMemory; m=Lo
+[2026-03-28 14:24:50] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "from long_term_memory import LongTermMemory; m=LongTermMemory(); print(len(m._memories))"
+[2026-03-28 14:24:50] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 32 筆記憶
+[2026-03-28 14:24:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:297 - [process_input] 終端指令執行：python -c "from long_term_memory import 
+[2026-03-28 14:26:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：python claude_teach.py
+[2026-03-28 14:26:29] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python claude_teach.py
+[2026-03-28 14:26:29] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 32 筆記憶
+[2026-03-28 14:26:29] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：[Topic]handle方法的判斷順序
+[Method]在handle方法裡，建立/刪除/重命名等操作型指令要放在查看...
+[2026-03-28 14:26:29] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：[Topic]關鍵字匹配的陷阱
+[Method]先判斷更具體的關鍵字，再判斷更廣泛的關鍵字
+[Reason]廣泛的關鍵字...
+[2026-03-28 14:26:29] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：[Topic]process_input淫戒器順序
+[Method]淫戒器優先順序：糾正學習>桌面控制>檔案管理>自我診...
+[2026-03-28 14:26:29] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：[Topic]反射記憶的影響
+[Method]如果立一直用舊答案回答，先清除 reflex_memory.json 才能...
+[2026-03-28 14:26:29] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：[Topic]Windows編碼問題
+[Method]Python檔案要用 utf-8 儲存，在檔案開頭加 sys.st...
+[2026-03-28 14:26:29] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：[Topic]patch腳本設計
+[Method]修改程式碼時，先備份，再修改，再用 ast.parse 驗證，錯誤就自...
+[2026-03-28 14:26:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:297 - [process_input] 終端指令執行：python claude_teach.py
+[2026-03-28 14:27:34] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：你知道 handle 方法的判斷順序是什麼嗎？為什麼要這樣設計？
+[2026-03-28 14:27:34] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:145 - [_think] 推論（deepseek-r1:1.5b）：你知道 handle 方法的判斷順序是什麼嗎？為什麼要這樣設計？
+[2026-03-28 14:28:01] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 38 筆記憶
+[2026-03-28 14:28:01] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 38 筆記憶
+[2026-03-28 14:28:01] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 14:28:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：你知道 handle 方法的判斷順序是什麼嗎？為什麼要這樣設計？
+[2026-03-28 14:28:19] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 14:28:19] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 14:28:19] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b（任務：reasoning，分數：10）
+[2026-03-28 14:28:19] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:143 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b
+[2026-03-28 14:28:19] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:145 - [_think] 推論（deepseek-r1:1.5b）：你知道 handle 方法的判斷順序是什麼嗎？為什麼要這樣設計？
+[2026-03-28 14:29:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：你知道 handle 方法的判斷順序是什麼嗎？為什麼要這樣設計？ → 答：要执行 `handle` 函数的功能，我们...
+[2026-03-28 14:29:45] [32mINFO[0m [Agent.memory_curator] memory_curator.py:121 - [記憶自動學習] 已儲存（重要性 5）：問：你知道 handle 方法的判斷順序是什麼嗎？為什麼要這樣設計？ → 答：要执行 `handle` 函数的功能，我们...
+[2026-03-28 14:31:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：python -c "from long_term_memory import LongTermMemory; m=Lo
+[2026-03-28 14:31:08] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "from long_term_memory import LongTermMemory; m=LongTermMemory(); r=m.search('handle'); print(r[0]['content'][:100] if r else 'no result')"
+[2026-03-28 14:31:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 39 筆記憶
+[2026-03-28 14:31:08] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「handle」，找到 5 筆
+[2026-03-28 14:31:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:297 - [process_input] 終端指令執行：python -c "from long_term_memory import 
+[2026-03-28 14:31:43] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：🦞 ``` [14:31:08] [32mINFO[0m [Agent.long_term_memory] OШtα
+[2026-03-28 14:31:43] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] deepseek-r1:1.5b → qwen2:7b-instruct-q4_0（任務：general，分數：9）
+[2026-03-28 14:31:43] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:143 - [_think] 切換模型：deepseek-r1:1.5b → qwen2:7b-instruct-q4_0
+[2026-03-28 14:31:43] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:145 - [_think] 推論（qwen2:7b-instruct-q4_0）：🦞 ``` [14:31:08] [32mINFO[0m [Agent.lo
+[2026-03-28 14:34:47] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（180s）
+[2026-03-28 14:37:50] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第2次] Ollama 逾時（180s）
+[2026-03-28 14:52:14] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 39 筆記憶
+[2026-03-28 14:52:15] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 39 筆記憶
+[2026-03-28 14:52:15] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 14:56:57] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 39 筆記憶
+[2026-03-28 14:56:57] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 39 筆記憶
+[2026-03-28 14:56:57] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 14:58:00] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 39 筆記憶
+[2026-03-28 14:58:00] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 39 筆記憶
+[2026-03-28 14:58:00] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 14:58:16] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 39 筆記憶
+[2026-03-28 14:58:16] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 39 筆記憶
+[2026-03-28 14:58:16] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 14:59:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 39 筆記憶
+[2026-03-28 14:59:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 39 筆記憶
+[2026-03-28 14:59:08] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:00:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 39 筆記憶
+[2026-03-28 15:00:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 39 筆記憶
+[2026-03-28 15:00:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:01:24] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：你知道 handle 方法的判斷順序是什麼嗎？為什麼要這樣設計？
+[2026-03-28 15:01:27] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 15:01:27] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 15:01:27] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b（任務：reasoning，分數：10）
+[2026-03-28 15:01:27] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:143 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b
+[2026-03-28 15:01:27] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:145 - [_think] 推論（deepseek-r1:1.5b）：你知道 handle 方法的判斷順序是什麼嗎？為什麼要這樣設計？
+[2026-03-28 15:03:29] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：你知道 handle 方法的判斷順序是什麼嗎？為什麼要這樣設計？ → 答：在 Python 中，当我们尝试执行某些操...
+[2026-03-28 15:03:29] [32mINFO[0m [Agent.memory_curator] memory_curator.py:121 - [記憶自動學習] 已儲存（重要性 5）：問：你知道 handle 方法的判斷順序是什麼嗎？為什麼要這樣設計？ → 答：在 Python 中，当我们尝试执行某些操...
+[2026-03-28 15:04:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：python patch_prompt_engine.py
+[2026-03-28 15:04:41] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python patch_prompt_engine.py
+[2026-03-28 15:04:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:297 - [process_input] 終端指令執行：python patch_prompt_engine.py
+[2026-03-28 15:11:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：python patch_mode_routing.py
+[2026-03-28 15:11:16] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python patch_mode_routing.py
+[2026-03-28 15:11:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:297 - [process_input] 終端指令執行：python patch_mode_routing.py
+[2026-03-28 15:12:55] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：截圖
+[2026-03-28 15:12:55] [32mINFO[0m [Agent.desktop_control] desktop_control.py:200 - [桌面控制] 截圖完成：screenshot_20260328_151255.png (1920x1080)
+[2026-03-28 15:12:55] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:275 - [process_input] 桌面控制：截圖
+[2026-03-28 15:13:10] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:196 - [process_input] 收到：Python 的 list 用 append 新增元素
+[2026-03-28 15:13:10] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：Python 的 list 用 append 新增元素
+[2026-03-28 15:13:10] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:297 - [process_input] 終端指令執行：Python 的 list 用 append 新增元素
+[2026-03-28 15:18:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:18:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:18:03] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:18:24] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:18:24] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:18:24] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:20:38] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:20:38] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:20:38] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:21:44] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:21:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:21:45] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:22:00] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [dev] 收到：Python 的 list 用 append 新增元素
+[2026-03-28 15:22:00] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：Python 的 list 用 append 新增元素
+[2026-03-28 15:23:13] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [dev] 收到：python -c "import Lobster_Core, inspect; src = inspect.getso
+[2026-03-28 15:23:13] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：python -c "import Lobster_Core, inspect; src = inspect.getso
+[2026-03-28 15:25:38] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（120s）
+[2026-03-28 15:27:41] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第2次] Ollama 逾時（120s）
+[2026-03-28 15:28:59] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:29:55] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:29:56] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:29:56] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:30:35] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:30:36] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:30:36] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:31:36] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:31:37] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:31:37] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:32:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:32:21] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:32:21] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:32:57] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:32:58] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:32:58] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:34:23] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:34:23] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:34:23] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:34:38] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [dev] 收到：Python 的 list 用 append 新增元素
+[2026-03-28 15:34:38] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：Python 的 list 用 append 新增元素
+[2026-03-28 15:36:56] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [dev] 收到：python patch_dev_mode.py
+[2026-03-28 15:36:56] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：python patch_dev_mode.py
+[2026-03-28 15:38:01] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:38:01] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:38:01] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:38:18] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [chat] 收到：Python 的 list 用 append 新增元素
+[2026-03-28 15:38:18] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：Python 的 list 用 append 新增元素
+[2026-03-28 15:38:18] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:302 - [process_input] 終端指令執行：Python 的 list 用 append 新增元素
+[2026-03-28 15:39:05] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [chat] 收到：python -c "import Lobster_Core, inspect; src = inspect.getso
+[2026-03-28 15:39:05] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import Lobster_Core, inspect; src = inspect.getsource(Lobster_Core.LobsterCore.process_input); print('_is_dev_mode' in src)"
+[2026-03-28 15:39:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:39:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:302 - [process_input] 終端指令執行：python -c "import Lobster_Core, inspect;
+[2026-03-28 15:40:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:40:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:40:13] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:40:26] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [chat] 收到：Python 的 list 用 append 新增元素
+[2026-03-28 15:40:26] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：Python 的 list 用 append 新增元素
+[2026-03-28 15:40:26] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:302 - [process_input] 終端指令執行：Python 的 list 用 append 新增元素
+[2026-03-28 15:40:30] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [dev] 收到：Python 的 list 用 append 新增元素
+[2026-03-28 15:40:30] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：Python 的 list 用 append 新增元素
+[2026-03-28 15:44:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [dev] 收到：python patch_fm_guard.py
+[2026-03-28 15:44:08] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：python patch_fm_guard.py
+[2026-03-28 15:46:12] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（120s）
+[2026-03-28 15:48:43] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [dev] 收到：python patch_intent_confirm.py
+[2026-03-28 15:48:43] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：python patch_intent_confirm.py
+[2026-03-28 15:48:59] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:49:00] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:49:00] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:49:13] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [chat] 收到：Python 的 list 用 append 新增元素
+[2026-03-28 15:49:13] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：Python 的 list 用 append 新增元素
+[2026-03-28 15:49:14] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:311 - [process_input] 終端指令執行：Python 的 list 用 append 新增元素
+[2026-03-28 15:49:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [dev] 收到：Python 的 list 用 append 新增元素
+[2026-03-28 15:49:17] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：Python 的 list 用 append 新增元素
+[2026-03-28 15:50:48] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [dev] 收到：python patch_strict_intercept.py
+[2026-03-28 15:50:48] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：python patch_strict_intercept.py
+[2026-03-28 15:51:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:51:52] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 15:51:52] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 15:52:10] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [dev] 收到：Python 的 list 用 append 新增元素
+[2026-03-28 15:52:10] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：Python 的 list 用 append 新增元素
+[2026-03-28 15:54:09] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [chat] 收到：Python 的 list 用 append 新增元素
+[2026-03-28 15:54:09] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：Python 的 list 用 append 新增元素
+[2026-03-28 15:54:09] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:326 - [process_input] 終端指令執行：Python 的 list 用 append 新增元素
+[2026-03-28 16:01:39] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [dev] 收到：python patch_five_modes.py
+[2026-03-28 16:01:39] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：python patch_five_modes.py
+[2026-03-28 16:02:24] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 16:02:24] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 16:02:24] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 16:06:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [chat] 收到：Python 的 list 用 append 新增元素
+[2026-03-28 16:06:06] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：Python 的 list 用 append 新增元素
+[2026-03-28 16:06:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:355 - [process_input] 終端指令執行：Python 的 list 用 append 新增元素
+[2026-03-28 16:07:43] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [chat] 收到：python check_order.py
+[2026-03-28 16:07:43] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python check_order.py
+[2026-03-28 16:07:43] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 16:07:44] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:355 - [process_input] 終端指令執行：python check_order.py
+[2026-03-28 16:10:04] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [chat] 收到：python patch_disable_chat_terminal.py
+[2026-03-28 16:10:04] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python patch_disable_chat_terminal.py
+[2026-03-28 16:10:04] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:355 - [process_input] 終端指令執行：python patch_disable_chat_terminal.py
+[2026-03-28 16:25:21] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 16:25:21] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 16:25:21] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 16:25:45] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [desktop] 收到：查看桌面資料夾
+[2026-03-28 16:25:49] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [desktop] 收到：查看桌面資料夾
+[2026-03-28 16:25:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [desktop] 收到：查看桌面資料夾
+[2026-03-28 16:25:51] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [desktop] 收到：列出視窗
+[2026-03-28 16:25:56] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [desktop] 收到：截圖
+[2026-03-28 16:25:56] [32mINFO[0m [Agent.desktop_control] desktop_control.py:200 - [桌面控制] 截圖完成：screenshot_20260328_162556.png (1920x1080)
+[2026-03-28 16:41:04] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 16:41:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 16:41:05] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 16:41:42] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [dev] 收到：Python 的 list 用 append 新增元素
+[2026-03-28 16:41:42] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：Python 的 list 用 append 新增元素
+[2026-03-28 16:44:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 16:44:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 16:44:12] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 16:44:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [dev] 收到：Python 的 list 用 append 新增元素
+[2026-03-28 16:44:35] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：Python 的 list 用 append 新增元素
+[2026-03-28 16:46:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 16:46:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 40 筆記憶
+[2026-03-28 16:46:20] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 16:47:31] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python 的 list 用 append 新增元素...
+[2026-03-28 16:49:17] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 41 筆記憶
+[2026-03-28 16:49:17] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 41 筆記憶
+[2026-03-28 16:49:17] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 17:02:38] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [terminal] 收到：cd C:\Users\ACER\OneDrive\桌面\AI-Agent
+py batch_teach.py
+[2026-03-28 17:02:38] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：cd C:\Users\ACER\OneDrive\桌面\AI-Agent
+py batch_teach.py
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 41 筆記憶
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「我的主人叫顏立桓，使用 Windows 11，Python 」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：我的主人叫顏立桓，使用 Windows 11，Python 3.11...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「專案路徑是 C:\Users\ACER\OneDrive\桌」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：專案路徑是 C:\Users\ACER\OneDrive\桌面\AI-Agent...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「使用 Ollama 本地模型，預設 qwen2，程式問題用 」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：使用 Ollama 本地模型，預設 qwen2，程式問題用 deepseek-r1...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改任何 .py 檔案前必須先用 backup_engine」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：修改任何 .py 檔案前必須先用 backup_engine 備份...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「所有程式碼檔案使用 UTF-8 編碼，不能有 BOM」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：所有程式碼檔案使用 UTF-8 編碼，不能有 BOM...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「self._log() 不能在子執行緒直接呼叫，要用 QTi」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：self._log() 不能在子執行緒直接呼叫，要用 QTimer.singleShot 回主執行緒...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「desktop_agent.py 有五個模式：對話、終端、自」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：desktop_agent.py 有五個模式：對話、終端、自主開發、教學、桌面...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「教學模式直接存記憶庫不走 Ollama，其他四個模式走 Ag」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：教學模式直接存記憶庫不走 Ollama，其他四個模式走 AgentWorker...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「Lobster_Core.py 是核心，負責接收輸入並呼叫各」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Lobster_Core.py 是核心，負責接收輸入並呼叫各模組處理...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「self_dev_engine.py 負責自主修改程式碼，修」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：self_dev_engine.py 負責自主修改程式碼，修改前要備份，改完要確認...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「intent_router.py 判斷使用者意圖，決定走哪個」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：intent_router.py 判斷使用者意圖，決定走哪個處理流程...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「reflex_engine.py 處理快速回應，不需要 AI」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：reflex_engine.py 處理快速回應，不需要 AI 模型的簡單問答...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「long_term_memory.py 管理記憶庫，支援搜尋」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：long_term_memory.py 管理記憶庫，支援搜尋、儲存、遺忘...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「memory_curator.py 負責記憶的整理和清理」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：memory_curator.py 負責記憶的整理和清理...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「cognition_state_manager.py 追蹤對」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：cognition_state_manager.py 追蹤對話上下文狀態...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「task_scheduler.py 管理排程任務，例如自動修」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：task_scheduler.py 管理排程任務，例如自動修復...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「desktop_control.py 使用 pyautogu」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：desktop_control.py 使用 pyautogui 控制滑鼠鍵盤...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「螢幕截圖用 mss 庫，文字辨識用 pytesseract」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：螢幕截圖用 mss 庫，文字辨識用 pytesseract...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「視窗管理用 pygetwindow，需要 win32gui 」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：視窗管理用 pygetwindow，需要 win32gui 輔助...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「危險指令（刪除、格式化）執行前必須先確認」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：危險指令（刪除、格式化）執行前必須先確認...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「Telegram Bot 在 desktop_agent.p」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Telegram Bot 在 desktop_agent.py 的 _start_telegram_bot 中啟動...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「Bot 設定在 bot_config.py，包含 TOKEN」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Bot 設定在 bot_config.py，包含 TOKEN 和 ALLOWED_CHAT_IDS...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「手機訊息透過 memory/mobile_queue.jso」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：手機訊息透過 memory/mobile_queue.json 同步到桌面視窗...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「Bot 指令：/status /cmd /open /ls 」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Bot 指令：/status /cmd /open /ls /read /dev /confirm /cancel /r...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「主人喜歡深色主題的 UI 介面」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：主人喜歡深色主題的 UI 介面...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「程式碼要有中文註解」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：程式碼要有中文註解...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「錯誤訊息要用中文顯示」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：錯誤訊息要用中文顯示...
+[2026-03-28 17:05:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「UI 字體用 Microsoft JhengHei UI」，找到 3 筆
+[2026-03-28 17:05:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：UI 字體用 Microsoft JhengHei UI...
+[2026-03-28 17:07:52] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 69 筆記憶
+[2026-03-28 17:07:52] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 69 筆記憶
+[2026-03-28 17:07:52] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 17:08:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [chat] 收到：你知道我的專案路徑在哪嗎？
+[2026-03-28 17:08:06] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 69 筆記憶
+[2026-03-28 17:08:06] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「你知道我的專案路徑在哪嗎？」，找到 3 筆
+[2026-03-28 17:08:08] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 17:08:08] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 17:08:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 推論（qwen2:7b-instruct-q4_0）：你知道我的專案路徑在哪嗎？
+[2026-03-28 17:11:12] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（180s）
+[2026-03-28 17:11:53] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：你知道我的專案路徑在哪嗎？ → 答：你的專案路徑在「C:\Users\ACER\OneDrive\桌面\AI-Age...
+[2026-03-28 17:11:53] [32mINFO[0m [Agent.memory_curator] memory_curator.py:121 - [記憶自動學習] 已儲存（重要性 7）：問：你知道我的專案路徑在哪嗎？ → 答：你的專案路徑在「C:\Users\ACER\OneDrive\桌面\AI-Age...
+[2026-03-28 17:13:00] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：回答問題時要簡潔，不要加多餘的假設和建議，直接回答重點就好...
+[2026-03-28 17:13:13] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [chat] 收到：修改程式碼前要注意什麼？
+[2026-03-28 17:13:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 17:13:13] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 3 筆
+[2026-03-28 17:13:13] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b（任務：coding，分數：9）
+[2026-03-28 17:13:13] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:137 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b
+[2026-03-28 17:13:13] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 推論（deepseek-r1:1.5b）：修改程式碼前要注意什麼？
+[2026-03-28 17:16:59] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [chat] 收到：搜尋：修改程式碼
+[2026-03-28 17:16:59] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 17:16:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「搜尋：修改程式碼」，找到 3 筆
+[2026-03-28 17:16:59] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 推論（deepseek-r1:1.5b）：搜尋：修改程式碼
+[2026-03-28 17:18:22] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第1次] Ollama 回應為空
+[2026-03-28 20:41:41] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 20:41:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 20:41:45] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 20:46:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 20:46:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 20:46:13] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 20:46:26] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [chat] 收到：修改程式碼前要注意什麼？
+[2026-03-28 20:46:26] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 20:46:26] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 5 筆
+[2026-03-28 20:46:28] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 20:46:28] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 20:46:28] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b（任務：coding，分數：9）
+[2026-03-28 20:46:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:137 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b
+[2026-03-28 20:46:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 推論（deepseek-r1:1.5b）：修改程式碼前要注意什麼？
+[2026-03-28 20:50:01] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 20:50:01] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 20:50:01] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 20:50:21] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:190 - [process_input] [chat] 收到：修改程式碼前要注意什麼？
+[2026-03-28 20:50:21] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 20:50:21] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 5 筆
+[2026-03-28 20:50:23] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 20:50:23] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 20:50:23] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 推論（qwen2:7b-instruct-q4_0）：修改程式碼前要注意什麼？
+[2026-03-28 20:53:27] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（180s）
+[2026-03-28 20:58:41] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 20:58:41] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 20:58:41] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 20:59:04] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:191 - [process_input] [chat] 收到：修改程式碼前要注意什麼？
+[2026-03-28 20:59:04] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 20:59:04] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 5 筆
+[2026-03-28 20:59:06] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 20:59:06] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 20:59:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:140 - [_think] 推論（qwen2:7b-instruct-q4_0）：修改程式碼前要注意什麼？
+[2026-03-28 21:02:10] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（180s）
+[2026-03-28 22:04:10] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:04:10] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:04:10] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 22:04:21] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:191 - [process_input] [terminal] 收到：py -c "from prompt_engine import PromptEngine; from episodic
+[2026-03-28 22:04:21] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：py -c "from prompt_engine import PromptEngine; from episodic_memory import EpisodicMemory; pe=PromptEngine(); ep=EpisodicMemory(); print('=== SYSTEM ==='); print(pe.SYSTEM[:200]); print(); print('=== PROMPT ==='); print(pe.build_prompt('修改程式碼前要注意什麼？', ep)[:500])"
+[2026-03-28 22:04:22] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:04:22] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 5 筆
+[2026-03-28 22:05:27] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:05:27] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 5 筆
+[2026-03-28 22:06:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:06:03] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「備份」，找到 3 筆
+[2026-03-28 22:06:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:06:45] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「backup_engine」，找到 3 筆
+[2026-03-28 22:07:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:10:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:10:12] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 3 筆
+[2026-03-28 22:10:12] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼」，找到 2 筆
+[2026-03-28 22:10:53] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:11:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:11:51] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 3 筆
+[2026-03-28 22:11:51] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「程式碼」，找到 2 筆
+[2026-03-28 22:11:51] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改」，找到 2 筆
+[2026-03-28 22:12:48] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:12:48] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:12:48] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 22:12:56] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:191 - [process_input] [chat] 收到：修改程式碼前要注意什麼？
+[2026-03-28 22:12:56] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:12:56] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 3 筆
+[2026-03-28 22:12:56] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「程式碼」，找到 2 筆
+[2026-03-28 22:12:56] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改」，找到 2 筆
+[2026-03-28 22:12:58] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 22:12:58] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 22:12:58] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:140 - [_think] 推論（qwen2:7b-instruct-q4_0）：修改程式碼前要注意什麼？
+[2026-03-28 22:15:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:15:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:15:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 22:19:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:19:05] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 3 筆
+[2026-03-28 22:19:05] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「程式碼」，找到 2 筆
+[2026-03-28 22:19:05] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改」，找到 2 筆
+[2026-03-28 22:21:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:21:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:21:03] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 22:21:38] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:21:38] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 3 筆
+[2026-03-28 22:21:38] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「程式碼」，找到 2 筆
+[2026-03-28 22:21:38] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改」，找到 2 筆
+[2026-03-28 22:22:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:22:14] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:22:14] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 22:22:20] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:191 - [process_input] [chat] 收到：修改程式碼前要注意什麼？
+[2026-03-28 22:22:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:22:20] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 3 筆
+[2026-03-28 22:22:20] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「程式碼」，找到 2 筆
+[2026-03-28 22:22:20] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改」，找到 2 筆
+[2026-03-28 22:22:22] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 22:22:22] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 22:22:22] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:140 - [_think] 推論（qwen2:7b-instruct-q4_0）：修改程式碼前要注意什麼？
+[2026-03-28 22:25:26] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（180s）
+[2026-03-28 22:28:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:28:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:29:39] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:29:39] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:29:39] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「測試」，找到 3 筆
+[2026-03-28 22:29:39] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「測試」，找到 2 筆
+[2026-03-28 22:30:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:33:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:33:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:33:05] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 22:33:15] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:191 - [process_input] [chat] 收到：修改程式碼前要注意什麼？
+[2026-03-28 22:33:15] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:33:15] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 3 筆
+[2026-03-28 22:33:15] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「程式碼」，找到 2 筆
+[2026-03-28 22:33:15] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改」，找到 2 筆
+[2026-03-28 22:33:17] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 22:33:17] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 22:33:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:140 - [_think] 推論（qwen2:7b-instruct-q4_0）：修改程式碼前要注意什麼？
+[2026-03-28 22:36:21] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（180s）
+[2026-03-28 22:39:28] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:39:29] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:39:29] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 3 筆
+[2026-03-28 22:39:29] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「程式碼」，找到 2 筆
+[2026-03-28 22:39:29] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改」，找到 2 筆
+[2026-03-28 22:40:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:41:02] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:41:50] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:41:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:41:51] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 22:42:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:191 - [process_input] [chat] 收到：你現在回覆我時，是怎樣的流程才產生的
+[2026-03-28 22:42:28] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:42:28] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「你現在回覆我時，是怎樣的流程才產生的」，找到 3 筆
+[2026-03-28 22:42:28] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「你現在」，找到 2 筆
+[2026-03-28 22:42:28] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「現在回」，找到 2 筆
+[2026-03-28 22:42:28] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「在回覆」，找到 2 筆
+[2026-03-28 22:42:28] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「回覆我」，找到 2 筆
+[2026-03-28 22:42:28] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「覆我時」，找到 2 筆
+[2026-03-28 22:42:30] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 22:42:30] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 22:42:30] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:140 - [_think] 推論（qwen2:7b-instruct-q4_0）：你現在回覆我時，是怎樣的流程才產生的
+[2026-03-28 22:45:35] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（180s）
+[2026-03-28 22:47:24] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：你現在回覆我時，是怎樣的流程才產生的 → 答：我的回答流程如下：
+
+1. 通過已知知識檢查是否有相關信息。
+2. 若...
+[2026-03-28 22:47:24] [32mINFO[0m [Agent.memory_curator] memory_curator.py:121 - [記憶自動學習] 已儲存（重要性 6）：問：你現在回覆我時，是怎樣的流程才產生的 → 答：我的回答流程如下：
+
+1. 通過已知知識檢查是否有相關信息。
+2. 若...
+[2026-03-28 22:48:00] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:191 - [process_input] [chat] 收到：修改程式碼前要注意什麼？
+[2026-03-28 22:48:00] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 3 筆
+[2026-03-28 22:48:00] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「程式碼」，找到 2 筆
+[2026-03-28 22:48:00] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改」，找到 2 筆
+[2026-03-28 22:48:00] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:140 - [_think] 推論（qwen2:7b-instruct-q4_0）：修改程式碼前要注意什麼？
+[2026-03-28 22:49:10] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:49:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:50:32] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 70 筆記憶
+[2026-03-28 22:51:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 22:51:06] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 22:51:06] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 22:51:14] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:191 - [process_input] [chat] 收到：修改程式碼前要注意什麼？
+[2026-03-28 22:51:14] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 22:51:14] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 3 筆
+[2026-03-28 22:51:14] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「程式碼」，找到 2 筆
+[2026-03-28 22:51:14] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改」，找到 2 筆
+[2026-03-28 22:51:16] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 22:51:16] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 22:51:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:140 - [_think] 推論（qwen2:7b-instruct-q4_0）：修改程式碼前要注意什麼？
+[2026-03-28 22:54:20] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（180s）
+[2026-03-28 22:57:24] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第2次] Ollama 逾時（180s）
+[2026-03-28 22:59:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:00:49] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:01:32] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:01:32] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:01:32] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 3 筆
+[2026-03-28 23:01:32] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「程式碼」，找到 2 筆
+[2026-03-28 23:01:32] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改」，找到 2 筆
+[2026-03-28 23:03:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:03:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:03:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 3 筆
+[2026-03-28 23:03:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「程式碼」，找到 2 筆
+[2026-03-28 23:03:18] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改」，找到 2 筆
+[2026-03-28 23:11:56] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:11:56] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:11:56] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 23:12:03] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:191 - [process_input] [chat] 收到：你知道我叫什麼名字嗎？
+[2026-03-28 23:12:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:12:03] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「你知道我叫什麼名字嗎？」，找到 3 筆
+[2026-03-28 23:12:03] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「你知道」，找到 2 筆
+[2026-03-28 23:12:03] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「知道我」，找到 2 筆
+[2026-03-28 23:12:03] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「道我叫」，找到 2 筆
+[2026-03-28 23:12:03] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「我叫什」，找到 2 筆
+[2026-03-28 23:12:03] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「叫什麼」，找到 2 筆
+[2026-03-28 23:12:05] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 23:12:05] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 23:12:05] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:140 - [_think] 推論（qwen2:7b-instruct-q4_0）：你知道我叫什麼名字嗎？
+[2026-03-28 23:15:10] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:128 - [第1次] Ollama 逾時（180s）
+[2026-03-28 23:17:00] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：你知道我叫什麼名字嗎？ → 答：我是根據您的指示設置的AI助手，並沒有存儲或獲取您的個人資訊，因此無法告訴您自己的名...
+[2026-03-28 23:17:00] [32mINFO[0m [Agent.memory_curator] memory_curator.py:121 - [記憶自動學習] 已儲存（重要性 8）：問：你知道我叫什麼名字嗎？ → 答：我是根據您的指示設置的AI助手，並沒有存儲或獲取您的個人資訊，因此無法告訴您自己的名...
+[2026-03-28 23:20:19] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 59 筆記憶
+[2026-03-28 23:20:19] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「你知道我叫什麼名字嗎？」，找到 3 筆
+[2026-03-28 23:20:19] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「名字」，找到 2 筆
+[2026-03-28 23:20:19] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「叫什麼」，找到 2 筆
+[2026-03-28 23:21:43] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 59 筆記憶
+[2026-03-28 23:22:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 59 筆記憶
+[2026-03-28 23:24:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:24:05] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「你知道我叫什麼名字嗎？」，找到 3 筆
+[2026-03-28 23:24:05] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「名字」，找到 2 筆
+[2026-03-28 23:24:05] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「叫什麼」，找到 2 筆
+[2026-03-28 23:24:05] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「主人」，找到 2 筆
+[2026-03-28 23:24:05] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「叫」，找到 2 筆
+[2026-03-28 23:26:02] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:26:02] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「名字」，找到 2 筆
+[2026-03-28 23:26:02] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「叫什麼」，找到 2 筆
+[2026-03-28 23:26:02] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「主人」，找到 2 筆
+[2026-03-28 23:26:02] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「叫」，找到 2 筆
+[2026-03-28 23:27:00] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:27:00] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「你知道我叫什麼名字嗎？」，找到 3 筆
+[2026-03-28 23:27:00] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「名字」，找到 2 筆
+[2026-03-28 23:27:00] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「叫什麼」，找到 2 筆
+[2026-03-28 23:27:00] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「主人」，找到 2 筆
+[2026-03-28 23:27:00] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「叫」，找到 2 筆
+[2026-03-28 23:27:48] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:27:48] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:27:48] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 23:27:57] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:192 - [process_input] [chat] 收到：你知道我叫什麼名字嗎？
+[2026-03-28 23:27:57] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:27:57] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「你知道我叫什麼名字嗎？」，找到 3 筆
+[2026-03-28 23:27:57] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「名字」，找到 2 筆
+[2026-03-28 23:27:57] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「叫什麼」，找到 2 筆
+[2026-03-28 23:27:57] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「主人」，找到 2 筆
+[2026-03-28 23:27:57] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「叫」，找到 2 筆
+[2026-03-28 23:27:59] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 23:27:59] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 23:27:59] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:140 - [_think] 推論（qwen2:7b-instruct-q4_0）：你知道我叫什麼名字嗎？
+[2026-03-28 23:31:03] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:128 - [第1次] Ollama 逾時（180s）
+[2026-03-28 23:34:00] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:192 - [process_input] [chat] 收到：搜尋：主人
+[2026-03-28 23:34:00] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「搜尋：主人」，找到 3 筆
+[2026-03-28 23:34:00] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「搜尋」，找到 2 筆
+[2026-03-28 23:34:00] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「主人」，找到 2 筆
+[2026-03-28 23:34:00] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:140 - [_think] 推論（qwen2:7b-instruct-q4_0）：搜尋：主人
+[2026-03-28 23:35:36] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:41:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:41:12] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「你知道我叫什麼名字嗎？」，找到 3 筆
+[2026-03-28 23:41:12] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「名字」，找到 2 筆
+[2026-03-28 23:41:12] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「叫什麼」，找到 2 筆
+[2026-03-28 23:41:12] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「主人」，找到 2 筆
+[2026-03-28 23:41:12] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「叫」，找到 2 筆
+[2026-03-28 23:41:35] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:41:35] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:41:35] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-28 23:41:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:192 - [process_input] [chat] 收到：你知道我叫什麼名字嗎？
+[2026-03-28 23:41:41] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:41:41] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「你知道我叫什麼名字嗎？」，找到 3 筆
+[2026-03-28 23:41:41] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「名字」，找到 2 筆
+[2026-03-28 23:41:41] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「叫什麼」，找到 2 筆
+[2026-03-28 23:41:41] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「主人」，找到 2 筆
+[2026-03-28 23:41:41] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「叫」，找到 2 筆
+[2026-03-28 23:41:43] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-28 23:41:43] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-28 23:41:43] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:140 - [_think] 推論（qwen2:7b-instruct-q4_0）：你知道我叫什麼名字嗎？
+[2026-03-28 23:45:34] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:192 - [process_input] [chat] 收到：我的專案路徑在哪？
+[2026-03-28 23:45:34] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「我的專案路徑在哪？」，找到 3 筆
+[2026-03-28 23:45:34] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「路徑」，找到 2 筆
+[2026-03-28 23:45:34] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「專案」，找到 2 筆
+[2026-03-28 23:45:34] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「資料夾」，找到 2 筆
+[2026-03-28 23:45:34] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:140 - [_think] 推論（qwen2:7b-instruct-q4_0）：我的專案路徑在哪？
+[2026-03-28 23:46:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:192 - [process_input] [chat] 收到：修改程式碼前要注意什麼？
+[2026-03-28 23:46:28] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改程式碼前要注意什麼？」，找到 3 筆
+[2026-03-28 23:46:28] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「程式碼」，找到 2 筆
+[2026-03-28 23:46:28] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「修改」，找到 2 筆
+[2026-03-28 23:46:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:140 - [_think] 推論（qwen2:7b-instruct-q4_0）：修改程式碼前要注意什麼？
+[2026-03-28 23:47:56] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:192 - [process_input] [chat] 收到：什麼是量子電腦？
+[2026-03-28 23:47:56] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「什麼是量子電腦？」，找到 3 筆
+[2026-03-28 23:47:56] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「電腦」，找到 2 筆
+[2026-03-28 23:47:56] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:140 - [_think] 推論（qwen2:7b-instruct-q4_0）：什麼是量子電腦？
+[2026-03-28 23:52:39] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:192 - [process_input] [terminal] 收到：py batch_teach_debug_fixes.py
+[2026-03-28 23:52:39] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：py batch_teach_debug_fixes.py
+[2026-03-28 23:52:39] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 58 筆記憶
+[2026-03-28 23:52:39] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「desktop_agent.py 的 _run_worker」，找到 3 筆
+[2026-03-28 23:52:39] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：desktop_agent.py 的 _run_worker 方法原本不存在，導致確認/取消按鈕點了會 crash。修復...
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:192 - [process_input] [terminal] 收到：py batch_teach_debug_fixes.py
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：py batch_teach_debug_fixes.py
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 59 筆記憶
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「desktop_agent.py 的 _run_worker」，找到 3 筆
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「語音輸入 voice_input 不能用 input_box」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：語音輸入 voice_input 不能用 input_box.setText 再呼叫 send_text，因為 send...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「_poll_mobile_queue 裡面不能建立新的 QT」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：_poll_mobile_queue 裡面不能建立新的 QTimer，每次 timer 觸發都會建一個新的，造成記憶體洩...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「_refresh_quick_actions 必須真的替換按」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：_refresh_quick_actions 必須真的替換按鈕（removeWidget + deleteLater +...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「模式按鈕不要用 setCheckable(True)，che」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：模式按鈕不要用 setCheckable(True)，checkable 按鈕在 PyQt6 會有 toggle 問題。...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「確認/取消按鈕（_on_confirm/_on_cancel」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：確認/取消按鈕（_on_confirm/_on_cancel）應固定用 mode='chat' 送給 AgentWork...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「PyQt6 規則：只有主執行緒能操作 UI 元件。Teleg」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：PyQt6 規則：只有主執行緒能操作 UI 元件。Telegram Bot 的 _run() 在 daemon thre...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「_update_log_status 裡的 requests」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：_update_log_status 裡的 requests.get(timeout=2) 會阻塞主執行緒 2 秒。修復...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「qwen2:7b-instruct-q4_0 用 Ollam」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：qwen2:7b-instruct-q4_0 用 Ollama 的 chat API 會卡住超時（180秒），必須用 g...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「解決 qwen2 無視 system prompt 的方法：」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：解決 qwen2 無視 system prompt 的方法：把系統指令直接嵌入 prompt 裡面，格式為 [系統指令]...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「ollama_guard.py 的 generate API」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：ollama_guard.py 的 generate API 原本 num_predict 只有 256，太短了。改成 ...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「deepseek-r1:1.5b 只有 1.5B 參數，不管」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：deepseek-r1:1.5b 只有 1.5B 參數，不管設計用途是什麼，實際回答品質都不如 7B 模型。model_...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「model_selector 加入 MIN_MODEL_SI」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：model_selector 加入 MIN_MODEL_SIZE = 4，低於 4B 的模型不會被自動選擇。使用者是繁體...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「long_term_memory.py 的 search()」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：long_term_memory.py 的 search() 用空格分詞，但中文沒有空格，所以搜尋中文關鍵字幾乎都搜不到...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「中文分詞要用 known_terms 匹配已知詞彙（程式碼、」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：中文分詞要用 known_terms 匹配已知詞彙（程式碼、備份、修改、名字、主人等），不能只靠空格或標點拆詞。沒匹配到...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「語義擴展很重要：使用者問「名字」「叫什麼」時，要自動也搜「主」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：語義擴展很重要：使用者問「名字」「叫什麼」時，要自動也搜「主人」「叫」。用 keyword_map 字典做映射...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「記憶搜尋結果的排序要用「相關度」而不是只看「重要性」。相關度」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：記憶搜尋結果的排序要用「相關度」而不是只看「重要性」。相關度 = 關鍵字命中數 × 10 + 重要性。這樣命中兩個關鍵字...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「系統 prompt 要明確寫「一律使用繁體中文回答，絕對不要」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：系統 prompt 要明確寫「一律使用繁體中文回答，絕對不要用簡體中文」，不然 qwen2 預設會用簡體。還要寫「回答不...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「prompt 裡的已知知識區塊要寫「你必須優先根據這些內容回」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：prompt 裡的已知知識區塊要寫「你必須優先根據這些內容回答，這是主人教你的」，這樣模型才會優先看記憶庫而不是自己亂編...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「記憶庫沒搜到相關知識時，prompt 要告訴模型「請用你自己」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：記憶庫沒搜到相關知識時，prompt 要告訴模型「請用你自己的知識回答，開頭加上（根據我的理解）」，讓使用者知道這不是來...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「memory_curator 的 maybe_learn 會」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：memory_curator 的 maybe_learn 會自動把每次問答存入長期記憶庫，導致簡體垃圾回答污染搜尋結果。...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「cognition_state_manager 的 runt」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：cognition_state_manager 的 runtime_state.json 會存 16 輪對話歷史（get...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「過濾記憶搜尋結果時，要跳過「問：... → 答：...」格式」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：過濾記憶搜尋結果時，要跳過「問：... → 答：...」格式的問答記錄，只保留純知識...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「on_cmd 的 Telegram 指令裡，result.s」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：on_cmd 的 Telegram 指令裡，result.stdout 是 bytes 型別，不能和 str '（無輸出...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「_last_mobile_count 必須在 _start_」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：_last_mobile_count 必須在 _start_timers() 之前初始化，不然 timer 可能在變數存...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「PowerShell 的引號處理和 CMD 不同，複雜的 P」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：PowerShell 的引號處理和 CMD 不同，複雜的 Python 單行指令在 PowerShell 容易出錯。解法...
+[2026-03-28 23:55:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「切換模式時在對話框顯示提示泡泡（例如「📚 已切換到教學模式」」，找到 3 筆
+[2026-03-28 23:55:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：切換模式時在對話框顯示提示泡泡（例如「📚 已切換到教學模式」），讓使用者清楚知道目前在哪個模式，避免在錯誤模式下輸入...
+[2026-03-28 23:56:59] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:192 - [process_input] [terminal] 收到：py batch_teach_debug_fixes.py
+[2026-03-28 23:56:59] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：py batch_teach_debug_fixes.py
+[2026-03-28 23:56:59] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 85 筆記憶
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「desktop_agent.py 的 _run_worker」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「語音輸入 voice_input 不能用 input_box」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「_poll_mobile_queue 裡面不能建立新的 QT」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「_refresh_quick_actions 必須真的替換按」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「模式按鈕不要用 setCheckable(True)，che」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「確認/取消按鈕（_on_confirm/_on_cancel」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:70 - 記憶已存在，更新存取次數：確認/取消按鈕（_on_confirm/_on_cancel）應固定用 mode...
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「PyQt6 規則：只有主執行緒能操作 UI 元件。Teleg」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「_update_log_status 裡的 requests」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「qwen2:7b-instruct-q4_0 用 Ollam」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「解決 qwen2 無視 system prompt 的方法：」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「ollama_guard.py 的 generate API」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「deepseek-r1:1.5b 只有 1.5B 參數，不管」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「model_selector 加入 MIN_MODEL_SI」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「long_term_memory.py 的 search()」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「中文分詞要用 known_terms 匹配已知詞彙（程式碼、」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「語義擴展很重要：使用者問「名字」「叫什麼」時，要自動也搜「主」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:70 - 記憶已存在，更新存取次數：語義擴展很重要：使用者問「名字」「叫什麼」時，要自動也搜「主人」「叫」。用 ke...
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「記憶搜尋結果的排序要用「相關度」而不是只看「重要性」。相關度」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:70 - 記憶已存在，更新存取次數：記憶搜尋結果的排序要用「相關度」而不是只看「重要性」。相關度 = 關鍵字命中數 ...
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「系統 prompt 要明確寫「一律使用繁體中文回答，絕對不要」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「prompt 裡的已知知識區塊要寫「你必須優先根據這些內容回」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「記憶庫沒搜到相關知識時，prompt 要告訴模型「請用你自己」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「memory_curator 的 maybe_learn 會」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「cognition_state_manager 的 runt」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「過濾記憶搜尋結果時，要跳過「問：... → 答：...」格式」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「on_cmd 的 Telegram 指令裡，result.s」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「_last_mobile_count 必須在 _start_」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「PowerShell 的引號處理和 CMD 不同，複雜的 P」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「切換模式時在對話框顯示提示泡泡（例如「📚 已切換到教學模式」」，找到 3 筆
+[2026-03-28 23:56:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「send_text 在每次送出時記錄 log（模式=xxx，」，找到 3 筆
+[2026-03-28 23:56:59] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：send_text 在每次送出時記錄 log（模式=xxx，輸入=xxx），方便除錯時確認輸入有沒有走對路徑...

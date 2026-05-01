@@ -1,0 +1,265 @@
+{
+  "name": "管道模式器官",
+  "filename": "管道模式器官.py",
+  "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\管道模式器官.py",
+  "description": "**工程需求（≤200字）**",
+  "functions": [
+    {
+      "name": "add_node",
+      "description": "Add a Skill node to the pipeline.\n1. Check if the node already exists in the set of nodes.\n2. Add the node to the set of nodes.\n3. Initialize adjacency entries for both outgoing and incoming edges.",
+      "inputs": [
+        "self",
+        "skill"
+      ]
+    },
+    {
+      "name": "remove_node",
+      "description": "Remove a Skill node and all associated edges.\n1. Check if the node exists in the set of nodes.\n2. Remove outgoing edges by iterating over list copies to avoid runtime modification issues.\n3. Remove incoming edges similarly.\n4. Delete adjacency entries for the node from both `_adj` and `_rev_adj`.\n5. Remove the node from the set of nodes.",
+      "inputs": [
+        "self",
+        "skill"
+      ]
+    },
+    {
+      "name": "add_edge",
+      "description": "Add a directed edge from src to dst, ensuring the graph remains acyclic.\n1. Check if both nodes are in the set of nodes.\n2. Raise ValueError if the edge already exists.\n3. Raise ValueError if adding this edge would create a cycle using `_has_path` method.",
+      "inputs": [
+        "self",
+        "src",
+        "dst"
+      ]
+    },
+    {
+      "name": "load_skill",
+      "description": "",
+      "inputs": [
+        "self",
+        "skill_name"
+      ]
+    },
+    {
+      "name": "parse_json_config",
+      "description": "",
+      "inputs": [
+        "path"
+      ]
+    },
+    {
+      "name": "main",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "cli",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "create_app",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "execute",
+      "description": "Execute the skill logic.\n\nParameters\n----------\ninput : Any\n    Input data for the skill. Must not be None.\n\nReturns\n-------\nAny\n    Result of the skill execution.",
+      "inputs": [
+        "self",
+        "input"
+      ]
+    },
+    {
+      "name": "add_node",
+      "description": "",
+      "inputs": [
+        "self",
+        "skill",
+        "config"
+      ]
+    },
+    {
+      "name": "remove_node",
+      "description": "",
+      "inputs": [
+        "self",
+        "skill"
+      ]
+    },
+    {
+      "name": "add_edge",
+      "description": "",
+      "inputs": [
+        "self",
+        "src",
+        "dst"
+      ]
+    },
+    {
+      "name": "remove_edge",
+      "description": "",
+      "inputs": [
+        "self",
+        "src",
+        "dst"
+      ]
+    },
+    {
+      "name": "run",
+      "description": "",
+      "inputs": [
+        "self",
+        "initial_inputs"
+      ]
+    },
+    {
+      "name": "run",
+      "description": "",
+      "inputs": [
+        "self",
+        "data"
+      ]
+    },
+    {
+      "name": "run",
+      "description": "",
+      "inputs": [
+        "self",
+        "data"
+      ]
+    },
+    {
+      "name": "run",
+      "description": "",
+      "inputs": [
+        "self",
+        "data"
+      ]
+    },
+    {
+      "name": "add_skill",
+      "description": "",
+      "inputs": [
+        "self",
+        "name",
+        "constructor",
+        "position"
+      ]
+    },
+    {
+      "name": "remove_skill",
+      "description": "",
+      "inputs": [
+        "self",
+        "name"
+      ]
+    },
+    {
+      "name": "reorder_skill",
+      "description": "",
+      "inputs": [
+        "self",
+        "name",
+        "new_position"
+      ]
+    },
+    {
+      "name": "run",
+      "description": "",
+      "inputs": [
+        "self",
+        "data"
+      ]
+    },
+    {
+      "name": "list_skills",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "add",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "remove",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "reorder",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "run",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "list_skills",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "setUp",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_run",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_add_duplicate",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_remove",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_reorder",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_invalid_position",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_cli_add_and_list",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "execute",
+      "description": "Execute the skill logic.",
+      "inputs": [
+        "self",
+        "inputs"
+      ]
+    }
+  ],
+  "example": "python 管道模式器官.py -c -i name",
+  "has_main": true,
+  "needs_args": true
+}

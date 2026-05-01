@@ -1,0 +1,62 @@
+[
+  {
+    "time": "2026-03-26T10:44:38",
+    "requirement": "幫我做一個待辦清單程式，有 PyQt6 介面，可以新增刪除，用 SQLite 儲存",
+    "project_name": "TodoListApp",
+    "success": [
+      "main.py"
+    ],
+    "failed": [
+      "database.py"
+    ],
+    "elapsed": 328
+  },
+  {
+    "time": "2026-03-26T20:30:25",
+    "requirement": "幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重後計算 BMI 並顯示結果和健康狀態",
+    "project_name": "BmiCalculatorPyQt",
+    "success": [
+      "ui_bmicalculator.ui"
+    ],
+    "failed": [
+      "main.py",
+      "database.py",
+      "utils.py"
+    ],
+    "elapsed": 667
+  },
+  {
+    "time": "2026-03-26T21:21:46",
+    "requirement": "幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重後計算 BMI 並顯示結果和健康狀態",
+    "project_name": "BmiCalculator",
+    "success": [
+      "main.py",
+      "config.py",
+      "ui_mainwindow.ui",
+      "ui_bmicalculator_form.ui"
+    ],
+    "failed": [
+      "utils.py",
+      "bmi_calculator.py",
+      "health_status.py"
+    ],
+    "elapsed": 869
+  },
+  {
+    "time": "2026-03-29T23:32:14",
+    "requirement": "我希望開發一款能讓Ai觀看YouTube 的軟體",
+    "project_name": "YouTubeViewAI",
+    "success": [
+      "logger.py"
+    ],
+    "failed": [
+      "main.py",
+      "youtube_client.py",
+      "ai_analyzer.py",
+      "data_handler.py",
+      "database.py",
+      "configurator.py"
+    ],
+    "elapsed": 943
+  }
+]

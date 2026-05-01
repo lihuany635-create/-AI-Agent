@@ -1,0 +1,27 @@
+{
+    "module": "__main__",
+    "organs": [
+        {
+            "name": "Adder",
+            "description": "Adds two integers and returns the sum.",
+            "inputs": {
+                "a": "int",
+                "b": "int"
+            },
+            "outputs": {
+                "result": "int"
+            }
+        },
+        {
+            "name": "Multiplier",
+            "description": "Multiplies two integers.",
+            "inputs": {
+                "x": "int",
+                "y": "int"
+            },
+            "outputs": {
+                "product": "int"
+            }
+        }
+    ]
+}

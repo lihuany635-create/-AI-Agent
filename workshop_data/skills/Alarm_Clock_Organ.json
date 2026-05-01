@@ -1,0 +1,10 @@
+{
+  "name": "Alarm Clock Organ",
+  "filename": "Alarm_Clock_Organ.py",
+  "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\Alarm_Clock_Organ.py",
+  "description": "Allow ISO formatted string for convenience",
+  "functions": [],
+  "example": "python Alarm_Clock_Organ.py",
+  "has_main": true,
+  "needs_args": false
+}

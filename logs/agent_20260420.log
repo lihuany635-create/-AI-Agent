@@ -1,0 +1,168 @@
+[2026-04-20 00:04:03] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-20 00:04:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-20 00:04:03] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 00:04:03] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 00:04:08] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-20 00:04:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-20 00:04:08] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 00:04:08] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 00:04:12] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 00:04:12] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 00:04:12] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:15:09] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-20 17:15:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-20 17:15:09] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 17:15:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 17:15:17] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 17:15:17] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 17:15:17] [32mINFO[0m [Agent.desktop] desktop_agent.py:1101 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:15:52] [32mINFO[0m [Agent.dev_brain] dev_brain.py:122 - [DevBrain] PrintNotifier 已設定（測試模式）
+[2026-04-20 17:15:52] [32mINFO[0m [Agent.dev_brain] dev_brain.py:124 - [DevBrain] dev_tool 接入完成，AI可用：True
+[2026-04-20 17:20:10] [32mINFO[0m [Agent.desktop] desktop_agent.py:1101 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:20:14] [32mINFO[0m [Agent.desktop] desktop_agent.py:1101 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:20:33] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-20 17:20:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-20 17:20:33] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 17:20:33] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 17:20:37] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 17:20:37] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 17:20:37] [32mINFO[0m [Agent.desktop] desktop_agent.py:1101 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:20:42] [32mINFO[0m [Agent.webhook_server] webhook_server.py:322 - [Webhook] 等待 ngrok... (1/10)
+[2026-04-20 17:21:12] [32mINFO[0m [Agent.dev_brain] dev_brain.py:122 - [DevBrain] PrintNotifier 已設定（測試模式）
+[2026-04-20 17:21:12] [32mINFO[0m [Agent.dev_brain] dev_brain.py:124 - [DevBrain] dev_tool 接入完成，AI可用：True
+[2026-04-20 17:22:01] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-20 17:22:01] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-20 17:22:01] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 17:22:01] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 17:22:05] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 17:22:05] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 17:22:05] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:22:40] [32mINFO[0m [Agent.dev_brain] dev_brain.py:122 - [DevBrain] PrintNotifier 已設定（測試模式）
+[2026-04-20 17:22:40] [32mINFO[0m [Agent.dev_brain] dev_brain.py:124 - [DevBrain] dev_tool 接入完成，AI可用：True
+[2026-04-20 17:24:30] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-20 17:24:30] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-20 17:24:30] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 17:24:30] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 17:24:34] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 17:24:34] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 17:24:34] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:25:10] [32mINFO[0m [Agent.dev_brain] dev_brain.py:122 - [DevBrain] PrintNotifier 已設定（測試模式）
+[2026-04-20 17:25:10] [32mINFO[0m [Agent.dev_brain] dev_brain.py:124 - [DevBrain] dev_tool 接入完成，AI可用：True
+[2026-04-20 17:26:48] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-20 17:26:48] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-20 17:26:48] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 17:26:48] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 17:26:52] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 17:26:52] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 17:26:52] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:27:27] [32mINFO[0m [Agent.dev_brain] dev_brain.py:122 - [DevBrain] PrintNotifier 已設定（測試模式）
+[2026-04-20 17:27:27] [32mINFO[0m [Agent.dev_brain] dev_brain.py:124 - [DevBrain] dev_tool 接入完成，AI可用：True
+[2026-04-20 17:31:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:31:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:36:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:36:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:41:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:41:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:46:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:46:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:51:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:51:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:56:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 17:56:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:01:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:01:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:06:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:06:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:11:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:11:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:16:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:16:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:21:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:21:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:26:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:26:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:31:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:31:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:36:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:36:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:41:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:41:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:46:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:46:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:51:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:51:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:56:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 18:56:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:01:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:01:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:06:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:06:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:11:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:11:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:16:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:16:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:21:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:21:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:26:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:26:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:31:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:31:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:36:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:36:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:41:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:41:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:46:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:46:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:51:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:51:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:56:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 19:56:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:01:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:01:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:06:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:06:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:11:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:11:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:16:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:16:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:21:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:21:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:26:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:26:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:31:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:31:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:36:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:36:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:41:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:41:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:46:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:46:49] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:54:16] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-20 20:54:16] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-20 20:54:16] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 20:54:16] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 20:54:20] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 20:54:20] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 20:54:20] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 20:54:24] [32mINFO[0m [Agent.webhook_server] webhook_server.py:307 - [Webhook] 設定結果：{'ok': True, 'result': True, 'description': 'Webhook is already set'}
+[2026-04-20 21:07:05] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-20 21:07:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-20 21:07:05] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 21:07:05] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 21:08:02] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-20 21:08:02] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-20 21:08:02] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 21:08:02] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 21:08:06] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 21:08:06] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 21:08:06] [32mINFO[0m [Agent.desktop] desktop_agent.py:1107 - [UI] Ollama 狀態更新：在線
+[2026-04-20 21:08:10] [32mINFO[0m [Agent.webhook_server] webhook_server.py:307 - [Webhook] 設定結果：{'ok': True, 'result': True, 'description': 'Webhook is already set'}
+[2026-04-20 21:16:37] [32mINFO[0m [Agent.webhook_server] webhook_server.py:307 - [Webhook] 設定結果：{'ok': True, 'result': True, 'description': 'Webhook is already set'}
+[2026-04-20 22:30:16] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-20 22:30:16] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-20 22:30:16] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 22:30:16] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 22:30:20] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-20 22:30:20] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-20 22:30:20] [32mINFO[0m [Agent.desktop] desktop_agent.py:1080 - [UI] Ollama 狀態更新：在線
+[2026-04-20 22:30:21] [32mINFO[0m [Agent.desktop] desktop_agent.py:1080 - [UI] Ollama 狀態更新：在線

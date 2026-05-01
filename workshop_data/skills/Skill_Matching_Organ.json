@@ -1,0 +1,101 @@
+{
+  "name": "Skill Matching Organ",
+  "filename": "Skill_Matching_Organ.py",
+  "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\Skill_Matching_Organ.py",
+  "description": "提供「技能匹配」服務，根據使用者輸入的需求文字與技能清單，計算相似度並在必要時使用 GPT‑OSS 20B 進行推理，輸出最適合的技能名稱、相似度分數與備註。",
+  "functions": [
+    {
+      "name": "match_skill",
+      "description": "",
+      "inputs": [
+        "request"
+      ]
+    },
+    {
+      "name": "get_embedding",
+      "description": "Retrieve a 768‑dimensional embedding for the given text.\n\nParameters\n----------\ntext : str\n    The input text to embed.\n\nReturns\n-------\nlist[float]\n    A list of 768 floating‑point numbers representing the embedding.",
+      "inputs": [
+        "text"
+      ]
+    },
+    {
+      "name": "cosine_similarity",
+      "description": "Compute cosine similarity between two vectors.",
+      "inputs": [
+        "vec1",
+        "vec2"
+      ]
+    },
+    {
+      "name": "compute_similarity",
+      "description": "Compute cosine similarity between a description embedding and each skill embedding.\nReturns a list of (skill_name, similarity) tuples sorted by descending similarity.",
+      "inputs": [
+        "description_embedding",
+        "skill_embeddings",
+        "skill_names"
+      ]
+    },
+    {
+      "name": "main",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "get_logger",
+      "description": "Return a LoggerContext instance for the given request input.",
+      "inputs": [
+        "request_input"
+      ]
+    },
+    {
+      "name": "handle_request",
+      "description": "Example request handler that uses the logging context.",
+      "inputs": [
+        "request_input"
+      ]
+    },
+    {
+      "name": "sync_get_embedding",
+      "description": "Sync wrapper around the cached sync function.",
+      "inputs": [
+        "text"
+      ]
+    },
+    {
+      "name": "async_similarity",
+      "description": "Compute similarities asynchronously.",
+      "inputs": [
+        "desc",
+        "skills"
+      ]
+    },
+    {
+      "name": "batch_process",
+      "description": "Process batches in parallel (multiprocessing) if requested.",
+      "inputs": [
+        "descs",
+        "skill_sets",
+        "max_workers"
+      ]
+    },
+    {
+      "name": "skills_must_not_be_empty",
+      "description": "",
+      "inputs": [
+        "cls",
+        "v"
+      ]
+    },
+    {
+      "name": "send_to_bridge",
+      "description": "",
+      "inputs": [
+        "self",
+        "payload"
+      ]
+    }
+  ],
+  "example": "python Skill_Matching_Organ.py",
+  "has_main": true,
+  "needs_args": false
+}

@@ -1,0 +1,1087 @@
+[2026-04-01 10:12:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 10:12:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 10:12:51] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 10:34:16] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 10:34:16] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 10:34:16] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 10:34:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:259 - [process_input] [chat] 收到：你知道我叫什麼名字嗎
+[2026-04-01 10:34:35] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 10:34:37] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-04-01 10:34:37] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-04-01 10:34:37] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：你知道我叫什麼名字嗎
+[2026-04-01 10:34:39] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:100 - [Ollama] node: local (http://localhost:11434)
+[2026-04-01 10:38:13] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:259 - [process_input] [chat] 收到：什麼是 Python
+[2026-04-01 10:38:13] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：什麼是 Python
+[2026-04-01 10:38:17] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:100 - [Ollama] node: remote (http://100.91.121.85:11434)
+[2026-04-01 10:43:07] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:259 - [process_input] [chat] 收到：修改程式碼前要做什麼
+[2026-04-01 10:43:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：修改程式碼前要做什麼
+[2026-04-01 10:43:10] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:100 - [Ollama] node: local (http://localhost:11434)
+[2026-04-01 10:47:14] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:259 - [process_input] [chat] 收到：你知道我叫什麼名字嗎
+[2026-04-01 10:47:14] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 快取命中：你知道我叫什麼名字嗎
+[2026-04-01 10:47:42] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:259 - [process_input] [chat] 收到：你知道什麼式數學嗎
+[2026-04-01 10:47:42] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：你知道什麼式數學嗎
+[2026-04-01 10:47:45] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:100 - [Ollama] node: local (http://localhost:11434)
+[2026-04-01 10:49:52] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 10:49:52] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 10:49:52] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 10:50:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:259 - [process_input] [chat] 收到：修改程式碼前要做什麼
+[2026-04-01 10:50:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 快取命中：修改程式碼前要做什麼
+[2026-04-01 10:50:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:259 - [process_input] [chat] 收到：你會的數學程度在哪
+[2026-04-01 10:50:28] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 10:50:30] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-04-01 10:50:30] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-04-01 10:50:30] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：你會的數學程度在哪
+[2026-04-01 10:50:32] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:113 - [Ollama] node: local (http://localhost:11434)
+[2026-04-01 12:14:29] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 12:14:29] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 12:14:29] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 12:15:07] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:259 - [process_input] [chat] 收到：你好
+[2026-04-01 12:15:46] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:259 - [process_input] [chat] 收到：你會英文嗎
+[2026-04-01 12:15:46] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 12:15:48] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-04-01 12:15:48] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-04-01 12:15:48] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：你會英文嗎
+[2026-04-01 12:15:49] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 11ms
+[2026-04-01 12:15:49] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:231 - [Ollama] mode: race (latency=11ms)
+[2026-04-01 12:15:51] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:303 - [Ollama] race: ['local', 'remote']
+[2026-04-01 12:17:17] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:335 - [Ollama] winner: remote
+[2026-04-01 12:17:27] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 12:17:27] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 12:17:27] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 12:17:38] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:259 - [process_input] [chat] 收到：英文在哪一個程度
+[2026-04-01 12:17:38] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 12:17:40] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-04-01 12:17:40] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-04-01 12:17:40] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：英文在哪一個程度
+[2026-04-01 12:17:41] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 8ms
+[2026-04-01 12:17:45] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:118 - [Ollama] remote rpc-server: already running
+[2026-04-01 12:17:47] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:146 - [Ollama] llama-server started (pid=35452), waiting for ready...
+[2026-04-01 12:21:08] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:159 - [Ollama] llama-server failed to start in 120s
+[2026-04-01 12:21:08] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:231 - [Ollama] mode: race (latency=8ms)
+[2026-04-01 12:21:10] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:303 - [Ollama] race: ['local', 'remote']
+[2026-04-01 12:22:04] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:335 - [Ollama] winner: local
+[2026-04-01 12:28:31] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 12:28:31] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 12:28:31] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 12:39:07] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 12:39:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 12:39:08] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 12:39:40] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:259 - [process_input] [chat] 收到：數學跟英文比起來哪一個比較好學
+[2026-04-01 12:39:40] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 12:39:40] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-04-01 12:39:40] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-04-01 12:39:40] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：數學跟英文比起來哪一個比較好學
+[2026-04-01 12:39:41] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 10ms
+[2026-04-01 12:39:45] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 12:39:45] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=10ms)
+[2026-04-01 12:39:46] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 12:41:57] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 12:47:55] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:259 - [process_input] [chat] 收到：什麼是 Python
+[2026-04-01 12:47:55] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:139 - [_think] 快取命中：什麼是 Python
+[2026-04-01 12:48:22] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:259 - [process_input] [chat] 收到：你喜歡我怎麼跟你對話
+[2026-04-01 12:48:22] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：你喜歡我怎麼跟你對話
+[2026-04-01 12:48:23] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 11ms
+[2026-04-01 12:48:28] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 12:48:28] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=11ms)
+[2026-04-01 12:48:28] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 12:50:11] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 12:50:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 12:50:46] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 12:50:46] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 12:51:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [chat] 收到：你喜歡怎樣的功能
+[2026-04-01 12:51:06] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 12:51:06] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-04-01 12:51:06] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-04-01 12:51:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：你喜歡怎樣的功能
+[2026-04-01 12:51:07] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 13ms
+[2026-04-01 12:51:11] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 12:51:11] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=13ms)
+[2026-04-01 12:51:11] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 12:52:52] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 15:13:32] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 15:13:32] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 15:13:32] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 15:13:51] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [chat] 收到：你好
+[2026-04-01 15:30:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 15:30:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 15:30:47] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 15:30:56] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [chat] 收到：新增 hello_test.py，印出「你好世界」然後計算 1 到 100 的總和
+[2026-04-01 15:30:56] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:463 - [process_input] 自主開發指令
+[2026-04-01 15:30:56] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：新增 hello_test.py，印出「你好世界」然後計算 1 到 100 的總和
+[2026-04-01 15:30:57] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 69ms
+[2026-04-01 15:30:57] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=69ms)
+[2026-04-01 15:30:57] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 15:31:19] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 15:31:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 15:31:20] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 15:31:34] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [dev] 收到：新增 hello_test.py，印出「你好世界」然後計算 1 到 100 的總和
+[2026-04-01 15:31:34] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：新增 hello_test.py，印出「你好世界」然後計算 1 到 100 的總和
+[2026-04-01 15:31:35] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 9ms
+[2026-04-01 15:31:39] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 15:31:39] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=9ms)
+[2026-04-01 15:31:39] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 15:32:27] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: remote
+[2026-04-01 15:32:27] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:303 - [SelfDev] attempt 1: syntax error: 第 16 行：invalid character '「' (U+300C)
+[2026-04-01 15:32:28] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 79ms
+[2026-04-01 15:32:28] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=79ms)
+[2026-04-01 15:32:28] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 15:33:31] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: remote
+[2026-04-01 15:36:11] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [chat] 收到：確認
+[2026-04-01 15:36:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 15:36:11] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-04-01 15:36:11] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-04-01 15:36:11] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：確認
+[2026-04-01 15:36:12] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 16ms
+[2026-04-01 15:36:12] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=16ms)
+[2026-04-01 15:36:12] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 15:37:28] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 15:45:10] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 15:45:10] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 15:45:10] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 15:45:21] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [chat] 收到：新增 hello_test.py，印出「你好世界」然後計算 1 到 100 的總和
+[2026-04-01 15:45:21] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:463 - [process_input] 自主開發指令
+[2026-04-01 15:45:21] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：新增 hello_test.py，印出「你好世界」然後計算 1 到 100 的總和
+[2026-04-01 15:45:22] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 72ms
+[2026-04-01 15:45:22] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=72ms)
+[2026-04-01 15:45:22] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 15:45:43] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 15:45:43] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 15:45:43] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 15:45:56] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [dev] 收到：新增 hello_test.py，印出「你好世界」然後計算 1 到 100 的總和
+[2026-04-01 15:45:56] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：新增 hello_test.py，印出「你好世界」然後計算 1 到 100 的總和
+[2026-04-01 15:45:57] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 5ms
+[2026-04-01 15:46:01] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 15:46:01] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=5ms)
+[2026-04-01 15:46:01] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 15:47:45] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 15:47:55] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [chat] 收到：確認
+[2026-04-01 15:47:55] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 15:47:55] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-04-01 15:47:55] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-04-01 15:47:55] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：確認
+[2026-04-01 15:47:56] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 5ms
+[2026-04-01 15:48:00] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 15:48:00] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=5ms)
+[2026-04-01 15:48:00] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 15:48:56] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 15:54:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 15:54:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 15:54:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 15:55:40] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [dev] 收到：幫我製作立ai可以看youtube的媒介
+[2026-04-01 15:55:40] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：幫我製作立ai可以看youtube的媒介
+[2026-04-01 15:55:41] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 24ms
+[2026-04-01 15:55:41] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=24ms)
+[2026-04-01 15:55:41] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 15:56:01] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: remote
+[2026-04-01 15:56:25] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [dev] 收到：新增 youtube_ai_media_creator.py
+[2026-04-01 15:56:25] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：新增 youtube_ai_media_creator.py
+[2026-04-01 15:56:26] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 9ms
+[2026-04-01 15:56:30] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 15:56:30] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=9ms)
+[2026-04-01 15:56:30] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 15:58:30] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 15:58:30] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:311 - [SelfDev] attempt 1: syntax error: 第 1 行：invalid syntax. Perhaps you forgot a comma?
+[2026-04-01 15:58:30] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 15:58:30] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: HTTPConnectionPool(host='100.91.121.85', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 15:58:31] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 7ms
+[2026-04-01 15:58:36] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 15:58:36] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=7ms)
+[2026-04-01 15:58:36] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 15:58:51] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 15:59:01] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [chat] 收到：確認
+[2026-04-01 15:59:01] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-04-01 15:59:01] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-04-01 15:59:01] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-04-01 15:59:01] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：確認
+[2026-04-01 15:59:02] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 8ms
+[2026-04-01 15:59:06] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 15:59:06] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=8ms)
+[2026-04-01 15:59:06] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 16:00:16] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 16:23:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：yt-dlp 可以用來下載 YouTube 字幕，指令範例：yt-dlp --write-auto-sub --sub-...
+[2026-04-01 16:23:48] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：youtube_handler.py 負責接收 YouTube 連結、呼叫 yt-dlp 抓字幕、回傳純文字給 Lobs...
+[2026-04-01 16:24:43] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [dev] 收到：新增 youtube_handler.py，功能：接收一個 YouTube URL，用 subprocess 呼叫 yt
+[2026-04-01 16:24:43] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：新增 youtube_handler.py，功能：接收一個 YouTube URL，用 subprocess 呼叫 yt
+[2026-04-01 16:24:44] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 17ms
+[2026-04-01 16:24:44] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=17ms)
+[2026-04-01 16:24:44] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 16:26:44] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 16:26:44] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 16:26:44] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: HTTPConnectionPool(host='100.91.121.85', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 16:26:44] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:311 - [SelfDev] attempt 1: syntax error: 第 1 行：invalid syntax. Perhaps you forgot a comma?
+[2026-04-01 16:26:45] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 19ms
+[2026-04-01 16:26:45] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=19ms)
+[2026-04-01 16:26:45] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 16:27:05] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: remote
+[2026-04-01 16:27:23] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [chat] 收到：確認
+[2026-04-01 16:27:23] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：確認
+[2026-04-01 16:27:24] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 5ms
+[2026-04-01 16:27:28] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 16:27:28] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=5ms)
+[2026-04-01 16:27:28] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 16:28:32] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 16:44:39] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 16:44:40] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 16:44:40] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 16:44:56] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [dev] 收到：幫我做一個測試用的 hello_world.py，印出你好世界
+[2026-04-01 16:44:56] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:76 - [SelfDev] 收到需求：幫我做一個測試用的 hello_world.py，印出你好世界
+[2026-04-01 16:44:56] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:103 - [SelfDev] 規劃專案步驟：幫我做一個測試用的 hello_world.py，印出你好世界
+[2026-04-01 16:44:57] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 44ms
+[2026-04-01 16:44:57] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=44ms)
+[2026-04-01 16:44:57] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 16:46:25] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: remote
+[2026-04-01 16:46:25] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:129 - [SelfDev] 步驟規劃解析失敗：Expecting value: line 1 column 1 (char 0)，改用單步流程
+[2026-04-01 16:47:10] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:237 - [SelfDev] 生成步驟 1/1：hello_world.py
+[2026-04-01 16:47:11] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 7ms
+[2026-04-01 16:47:15] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 16:47:15] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=7ms)
+[2026-04-01 16:47:15] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 16:48:02] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: remote
+[2026-04-01 16:48:02] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:294 - [SelfDev] 已寫入：hello_world.py
+[2026-04-01 16:52:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 16:52:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 16:52:11] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 16:52:22] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [dev] 收到：幫我做一個可以看youtube的媒介
+[2026-04-01 16:52:22] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:76 - [SelfDev] 收到需求：幫我做一個可以看youtube的媒介
+[2026-04-01 16:52:22] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:114 - [SelfDev] 規劃專案步驟（模板版）：幫我做一個可以看youtube的媒介
+[2026-04-01 16:52:46] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:319 - [SelfDev] 生成步驟 1/3：youtube_handler.py
+[2026-04-01 16:52:47] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 14ms
+[2026-04-01 16:52:52] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 16:52:52] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=14ms)
+[2026-04-01 16:52:52] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 16:54:52] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 16:54:52] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:595 - [SelfDev] attempt 1: syntax error: 第 1 行：invalid syntax. Perhaps you forgot a comma?
+[2026-04-01 16:54:52] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: HTTPConnectionPool(host='100.91.121.85', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 16:54:52] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 16:54:53] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 14ms
+[2026-04-01 16:54:57] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 16:54:57] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=14ms)
+[2026-04-01 16:54:57] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 16:55:16] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: remote
+[2026-04-01 16:55:20] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:376 - [SelfDev] 已寫入：youtube_handler.py
+[2026-04-01 16:55:30] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:319 - [SelfDev] 生成步驟 2/3：Lobster_Core.py
+[2026-04-01 16:55:31] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 7ms
+[2026-04-01 16:55:35] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 16:55:35] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=7ms)
+[2026-04-01 16:55:35] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 16:57:35] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 16:57:35] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 16:57:35] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: HTTPConnectionPool(host='100.91.121.85', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 16:57:35] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:595 - [SelfDev] attempt 1: syntax error: 第 1 行：invalid syntax
+[2026-04-01 16:57:36] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 17ms
+[2026-04-01 16:57:36] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=17ms)
+[2026-04-01 16:57:36] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 16:59:36] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 16:59:36] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: HTTPConnectionPool(host='100.91.121.85', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 16:59:36] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 16:59:36] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:595 - [SelfDev] attempt 2: syntax error: 第 1 行：invalid syntax
+[2026-04-01 16:59:38] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 12ms
+[2026-04-01 16:59:42] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 16:59:42] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=12ms)
+[2026-04-01 16:59:42] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 17:01:42] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 17:01:42] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 17:01:42] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:595 - [SelfDev] attempt 3: syntax error: 第 1 行：invalid syntax
+[2026-04-01 17:01:42] [31mERROR[0m [Agent.self_dev_engine] self_dev_engine.py:604 - [SelfDev] 3 次重試都失敗
+[2026-04-01 17:01:42] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: HTTPConnectionPool(host='100.91.121.85', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 17:08:54] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 17:08:54] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 17:08:54] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 17:09:02] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [dev] 收到：幫我做一個可以看youtube的媒介
+[2026-04-01 17:09:02] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:76 - [SelfDev] 收到需求：幫我做一個可以看youtube的媒介
+[2026-04-01 17:09:02] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:114 - [SelfDev] 規劃專案步驟（模板版）：幫我做一個可以看youtube的媒介
+[2026-04-01 17:09:06] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:322 - [SelfDev] 生成步驟 1/3：youtube_handler.py
+[2026-04-01 17:09:07] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 11ms
+[2026-04-01 17:09:11] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 17:09:11] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=11ms)
+[2026-04-01 17:09:11] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 17:11:11] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 17:11:11] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:664 - [SelfDev] attempt 1: syntax error: 第 1 行：invalid syntax. Perhaps you forgot a comma?
+[2026-04-01 17:11:11] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: HTTPConnectionPool(host='100.91.121.85', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 17:11:11] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 17:11:12] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 6ms
+[2026-04-01 17:11:16] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 17:11:16] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=6ms)
+[2026-04-01 17:11:16] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 17:11:39] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: remote
+[2026-04-01 17:11:58] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:445 - [SelfDev] 已寫入：youtube_handler.py
+[2026-04-01 17:12:04] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:322 - [SelfDev] 生成步驟 2/3：Lobster_Core.py
+[2026-04-01 17:12:05] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 65ms
+[2026-04-01 17:12:05] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=65ms)
+[2026-04-01 17:12:05] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 17:14:00] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 17:14:05] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: HTTPConnectionPool(host='100.91.121.85', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 17:14:29] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:713 - [SelfDev] 備份：Lobster_Core.py.20260401_171429.bak
+[2026-04-01 17:14:29] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:445 - [SelfDev] 已寫入：Lobster_Core.py
+[2026-04-01 17:14:30] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 17:14:40] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:322 - [SelfDev] 生成步驟 3/3：desktop_agent.py
+[2026-04-01 17:14:41] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 10ms
+[2026-04-01 17:14:45] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 17:14:45] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=10ms)
+[2026-04-01 17:14:45] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 17:16:45] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 17:16:45] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: HTTPConnectionPool(host='100.91.121.85', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 17:16:45] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 17:21:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 17:21:06] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 17:21:06] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 17:21:20] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [chat] 收到：幫我做一個可以看youtube的媒介
+[2026-04-01 17:21:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 17:21:20] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-04-01 17:21:20] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-04-01 17:21:20] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：幫我做一個可以看youtube的媒介
+[2026-04-01 17:21:21] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 10ms
+[2026-04-01 17:21:26] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 17:21:26] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=10ms)
+[2026-04-01 17:21:26] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 17:30:23] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 17:30:23] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 17:30:23] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 17:32:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [chat] 收到：直接學習
+[2026-04-01 17:32:28] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 17:32:28] [32mINFO[0m [Agent.model_selector] model_selector.py:130 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-04-01 17:32:28] [32mINFO[0m [Agent.model_selector] model_selector.py:131 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-04-01 17:32:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:158 - [_think] 推論（qwen2:7b-instruct-q4_0）：直接學習
+[2026-04-01 17:32:29] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 11ms
+[2026-04-01 17:32:33] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 17:32:33] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=11ms)
+[2026-04-01 17:32:33] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 17:35:02] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [dev] 收到：幫我做一個可以看youtube的媒介
+[2026-04-01 17:35:02] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:76 - [SelfDev] 收到需求：幫我做一個可以看youtube的媒介
+[2026-04-01 17:35:02] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:114 - [SelfDev] 規劃專案步驟（模板版）：幫我做一個可以看youtube的媒介
+[2026-04-01 17:35:04] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:325 - [SelfDev] 生成步驟 1/3：youtube_handler.py
+[2026-04-01 17:35:05] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 8ms
+[2026-04-01 17:35:09] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 17:35:09] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=8ms)
+[2026-04-01 17:35:09] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 17:36:34] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 17:36:35] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 17:36:35] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 17:37:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 17:37:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 17:37:51] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 17:38:44] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [dev] 收到：幫我做一個可以看youtube的媒介
+[2026-04-01 17:38:44] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:76 - [SelfDev] 收到需求：幫我做一個可以看youtube的媒介
+[2026-04-01 17:38:44] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:114 - [SelfDev] 規劃專案步驟（模板版）：幫我做一個可以看youtube的媒介
+[2026-04-01 17:38:45] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:325 - [SelfDev] 生成步驟 1/3：youtube_handler.py
+[2026-04-01 17:38:47] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 73ms
+[2026-04-01 17:38:47] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=73ms)
+[2026-04-01 17:38:47] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 17:40:47] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 17:40:47] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: HTTPConnectionPool(host='100.91.121.85', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 17:40:47] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:667 - [SelfDev] attempt 1: syntax error: 第 1 行：invalid syntax. Perhaps you forgot a comma?
+[2026-04-01 17:40:47] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 17:40:48] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 6ms
+[2026-04-01 17:40:52] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 17:40:52] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=6ms)
+[2026-04-01 17:40:52] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 17:41:14] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 17:42:08] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:448 - [SelfDev] 已寫入：youtube_handler.py
+[2026-04-01 17:42:21] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:325 - [SelfDev] 生成步驟 2/3：Lobster_Core.py
+[2026-04-01 17:42:22] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 8ms
+[2026-04-01 17:42:26] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 17:42:26] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=8ms)
+[2026-04-01 17:42:26] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 17:44:26] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 17:44:26] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: HTTPConnectionPool(host='100.91.121.85', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 17:44:26] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 19:29:59] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 19:29:59] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 19:29:59] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 19:30:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [dev] 收到：幫我做一個可以看youtube的媒介
+[2026-04-01 19:30:17] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:76 - [SelfDev] 收到需求：幫我做一個可以看youtube的媒介
+[2026-04-01 19:30:17] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:114 - [SelfDev] 規劃專案步驟（模板版）：幫我做一個可以看youtube的媒介
+[2026-04-01 19:30:20] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:327 - [SelfDev] 生成步驟 1/3：youtube_handler.py
+[2026-04-01 19:30:21] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 71ms
+[2026-04-01 19:30:21] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=71ms)
+[2026-04-01 19:30:21] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 19:32:21] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 19:32:21] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:669 - [SelfDev] attempt 1: syntax error: 第 1 行：invalid syntax. Perhaps you forgot a comma?
+[2026-04-01 19:32:21] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: HTTPConnectionPool(host='100.91.121.85', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 19:32:21] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 19:32:22] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 6ms
+[2026-04-01 19:32:26] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 19:32:26] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=6ms)
+[2026-04-01 19:32:26] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 19:32:41] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 19:32:42] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:669 - [SelfDev] attempt 2: syntax error: 第 2 行：expected 'else' after 'if' expression
+[2026-04-01 19:32:46] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 19:32:46] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=6ms)
+[2026-04-01 19:32:46] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 19:33:09] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 19:34:08] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:450 - [SelfDev] 已寫入：youtube_handler.py
+[2026-04-01 19:34:17] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:327 - [SelfDev] 生成步驟 2/3：youtube_bridge.py
+[2026-04-01 19:34:18] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 15ms
+[2026-04-01 19:34:22] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 19:34:22] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=15ms)
+[2026-04-01 19:34:22] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 19:36:22] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 19:36:22] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 19:36:22] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: HTTPConnectionPool(host='100.91.121.85', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 19:36:22] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:669 - [SelfDev] attempt 1: syntax error: 第 1 行：invalid syntax. Perhaps you forgot a comma?
+[2026-04-01 19:36:23] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 19ms
+[2026-04-01 19:36:23] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=19ms)
+[2026-04-01 19:36:23] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 19:36:47] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: remote
+[2026-04-01 19:37:07] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:450 - [SelfDev] 已寫入：youtube_bridge.py
+[2026-04-01 19:37:16] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:327 - [SelfDev] 生成步驟 3/3：youtube_telegram.py
+[2026-04-01 19:37:17] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 10ms
+[2026-04-01 19:37:21] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 19:37:21] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=10ms)
+[2026-04-01 19:37:21] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 19:39:21] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 19:39:21] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:669 - [SelfDev] attempt 1: syntax error: 第 1 行：invalid syntax. Perhaps you forgot a comma?
+[2026-04-01 19:39:21] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: HTTPConnectionPool(host='100.91.121.85', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 19:39:21] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 19:39:22] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 9ms
+[2026-04-01 19:39:27] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 19:39:27] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=9ms)
+[2026-04-01 19:39:27] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 19:39:50] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 19:40:05] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:450 - [SelfDev] 已寫入：youtube_telegram.py
+[2026-04-01 19:41:24] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [terminal] 收到：pip install yt-dlp
+[2026-04-01 19:41:24] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：pip install yt-dlp
+[2026-04-01 20:58:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 20:58:48] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 20:58:48] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 20:58:59] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [dev] 收到：幫我做一個類似 word 的文字編輯軟體
+[2026-04-01 20:58:59] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:76 - [SelfDev] 收到需求：幫我做一個類似 word 的文字編輯軟體
+[2026-04-01 20:58:59] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:115 - [SelfDev] 規劃專案步驟（模板版）：幫我做一個類似 word 的文字編輯軟體
+[2026-04-01 20:59:06] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:346 - [SelfDev] 生成步驟 1/3：word_editor.py
+[2026-04-01 20:59:08] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 99ms
+[2026-04-01 20:59:08] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=99ms)
+[2026-04-01 20:59:08] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 20:59:08] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: 404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-01 21:01:08] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 21:01:08] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 21:01:08] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:688 - [SelfDev] attempt 1: syntax error: 第 1 行：invalid syntax. Perhaps you forgot a comma?
+[2026-04-01 21:01:09] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 62ms
+[2026-04-01 21:01:09] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=62ms)
+[2026-04-01 21:01:09] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 21:01:09] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: 404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-01 21:02:53] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 21:02:53] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:688 - [SelfDev] attempt 2: syntax error: 第 3 行：invalid syntax
+[2026-04-01 21:02:54] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 53ms
+[2026-04-01 21:02:54] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=53ms)
+[2026-04-01 21:02:54] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 21:02:54] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: 404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-01 21:04:30] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 21:05:35] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:469 - [SelfDev] 已寫入：word_editor.py
+[2026-04-01 21:05:40] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:346 - [SelfDev] 生成步驟 2/3：word_toolbar.py
+[2026-04-01 21:05:41] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 13ms
+[2026-04-01 21:05:45] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 21:05:45] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=13ms)
+[2026-04-01 21:05:45] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 21:05:45] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: 404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-01 21:07:45] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 21:07:45] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:688 - [SelfDev] attempt 1: syntax error: 第 1 行：invalid syntax. Perhaps you forgot a comma?
+[2026-04-01 21:07:45] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 21:07:46] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 11ms
+[2026-04-01 21:07:50] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 21:07:50] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=11ms)
+[2026-04-01 21:07:50] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 21:07:50] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: 404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-01 21:09:02] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 21:09:02] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:688 - [SelfDev] attempt 2: syntax error: 第 3 行：invalid syntax
+[2026-04-01 21:09:04] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 38ms
+[2026-04-01 21:09:04] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=38ms)
+[2026-04-01 21:09:04] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 21:09:04] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: 404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-01 21:10:10] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 21:10:23] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:469 - [SelfDev] 已寫入：word_toolbar.py
+[2026-04-01 21:10:27] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:346 - [SelfDev] 生成步驟 3/3：word_file.py
+[2026-04-01 21:10:28] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 46ms
+[2026-04-01 21:10:28] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=46ms)
+[2026-04-01 21:10:28] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 21:10:29] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: 404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-01 21:12:28] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 21:12:28] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=120)
+[2026-04-01 21:12:28] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:688 - [SelfDev] attempt 1: syntax error: 第 1 行：invalid syntax. Perhaps you forgot a comma?
+[2026-04-01 21:12:30] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 8ms
+[2026-04-01 21:12:34] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 21:12:34] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=8ms)
+[2026-04-01 21:12:34] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 21:12:34] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: 404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-01 21:13:55] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 21:13:55] [33mWARNING[0m [Agent.self_dev_engine] self_dev_engine.py:688 - [SelfDev] attempt 2: syntax error: 第 3 行：invalid syntax
+[2026-04-01 21:13:56] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 7ms
+[2026-04-01 21:14:00] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 21:14:00] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=7ms)
+[2026-04-01 21:14:01] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 21:14:01] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: 404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-01 21:14:53] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:336 - [Ollama] winner: local
+[2026-04-01 21:14:58] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:469 - [SelfDev] 已寫入：word_file.py
+[2026-04-01 21:17:39] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [terminal] 收到：python word_editor.py
+[2026-04-01 21:17:39] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python word_editor.py
+[2026-04-01 21:21:09] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [terminal] 收到：type word_editor.py
+[2026-04-01 21:21:09] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：type word_editor.py
+[2026-04-01 21:24:45] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [terminal] 收到：dir word_editor.py word_toolbar.py word_file.py
+[2026-04-01 21:24:45] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：dir word_editor.py word_toolbar.py word_file.py
+[2026-04-01 21:31:52] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:257 - [process_input] [terminal] 收到：mkdir projects\word_editor && move projects\word_editor.py p
+[2026-04-01 21:31:52] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：mkdir projects\word_editor && move projects\word_editor.py projects\word_editor\ && move projects\word_toolbar.py projects\word_editor\ && move projects\word_file.py projects\word_editor\
+[2026-04-01 21:32:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 21:32:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 21:32:12] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 21:32:21] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:271 - [process_input] [terminal] 收到：mkdir projects\word_editor && move projects\word_editor.py p
+[2026-04-01 21:32:21] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：mkdir projects\word_editor && move projects\word_editor.py projects\word_editor\ && move projects\word_toolbar.py projects\word_editor\ && move projects\word_file.py projects\word_editor\
+[2026-04-01 21:32:43] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:271 - [process_input] [terminal] 收到：move word_editor.py projects\word_editor\
+[2026-04-01 21:32:43] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：move word_editor.py projects\word_editor\
+[2026-04-01 21:32:48] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:271 - [process_input] [terminal] 收到：move word_toolbar.py projects\word_editor\
+[2026-04-01 21:32:48] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：move word_toolbar.py projects\word_editor\
+[2026-04-01 21:32:53] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:271 - [process_input] [terminal] 收到：move word_file.py projects\word_editor\
+[2026-04-01 21:32:53] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：move word_file.py projects\word_editor\
+[2026-04-01 21:53:01] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:271 - [process_input] [terminal] 收到：pip install pyperclip
+[2026-04-01 21:53:01] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：pip install pyperclip
+[2026-04-01 21:54:39] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 21:54:39] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 21:54:39] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 21:54:39] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 21:55:05] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python claude_desktop_bridge.py
+[2026-04-01 21:55:05] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python claude_desktop_bridge.py
+[2026-04-01 21:55:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 22:08:29] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:88 - [ClaudeBridge] 開始問 Claude：python claude_desktop_bridge.py
+[2026-04-01 22:08:30] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:157 - [ClaudeBridge] 切換到已開啟的 Claude 視窗
+[2026-04-01 22:08:36] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:215 - [ClaudeBridge] 已輸入問題並送出
+[2026-04-01 22:08:36] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:232 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 22:08:54] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 225 筆記憶
+[2026-04-01 22:09:28] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:110 - [ClaudeBridge] 取得回答（194 字）
+[2026-04-01 22:09:28] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：python claude_desktop_bridge.py
+答：© Done
+換上這個檔案後,在對話模式直接說 ...
+[2026-04-01 22:09:28] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：© Done
+換上這個檔案後,在對話模式直接說 :
+問 Claude: Python 的 list 和 tuple 有什...
+[2026-04-01 22:09:28] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:347 - [ClaudeBridge] 已存入記憶庫（1 段）
+[2026-04-01 22:09:46] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:09:46] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:09:46] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:09:46] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 22:10:16] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 22:10:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:11:14] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 22:11:14] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:11:22] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:11:22] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:11:22] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:11:22] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 22:11:52] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 22:11:52] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:11:52] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:12:15] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：pip install pytesseract Pillow
+[2026-04-01 22:12:15] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：pip install pytesseract Pillow
+[2026-04-01 22:13:24] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：where tesseract
+[2026-04-01 22:13:24] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：where tesseract
+[2026-04-01 22:18:20] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：where tesseract
+[2026-04-01 22:18:20] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：where tesseract
+[2026-04-01 22:18:29] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:18:29] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:18:29] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:18:29] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 22:18:36] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：where tesseract
+[2026-04-01 22:18:36] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：where tesseract
+[2026-04-01 22:20:24] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python -c "import pytesseract; pytesseract.pytesseract.tesse
+[2026-04-01 22:20:24] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import pytesseract; pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'; print(pytesseract.get_tesseract_version())"
+[2026-04-01 22:21:25] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 22:21:25] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:21:25] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:22:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:22:19] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:22:19] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:22:19] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 22:22:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：claude_desktop_bridge.py
+[2026-04-01 22:22:35] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:22:35] [32mINFO[0m [Agent.model_selector] model_selector.py:140 - 模型選擇器啟動，可用模型：['qwen2.5:14b', 'qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-04-01 22:22:35] [32mINFO[0m [Agent.model_selector] model_selector.py:141 - 預設模型：qwen2.5:14b
+[2026-04-01 22:22:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:176 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → qwen2.5:14b
+[2026-04-01 22:22:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:178 - [_think] 推論（qwen2.5:14b）：claude_desktop_bridge.py
+[2026-04-01 22:22:36] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 7ms
+[2026-04-01 22:22:40] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 22:22:40] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=7ms)
+[2026-04-01 22:22:40] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 22:22:40] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: 404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-01 22:23:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python claude_desktop_bridge.py
+[2026-04-01 22:23:16] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python claude_desktop_bridge.py
+[2026-04-01 22:23:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:24:47] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:90 - [ClaudeBridge] 開始問 Claude：py desktop_agent.py
+[2026-04-01 22:24:48] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:159 - [ClaudeBridge] 切換到已開啟的 Claude 視窗
+[2026-04-01 22:24:54] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:217 - [ClaudeBridge] 已輸入問題並送出
+[2026-04-01 22:24:54] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:234 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 22:25:07] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:25:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:25:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 227 筆記憶
+[2026-04-01 22:25:08] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 22:25:17] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 22:25:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:25:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:25:38] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:250 - [ClaudeBridge] 回答穩定（24秒）
+[2026-04-01 22:25:38] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:112 - [ClaudeBridge] 取得回答（506 字）
+[2026-04-01 22:25:38] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：py desktop_agent.py
+答：339 continue
+Li: ¢ 222% pytesseract ...
+[2026-04-01 22:25:38] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：339 continue
+Li: ¢ 222% pytesseract Ail Pillow aad if len(pa...
+[2026-04-01 22:25:38] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:349 - [ClaudeBridge] 已存入記憶庫（1 段）
+[2026-04-01 22:26:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:26:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:26:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:26:47] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 22:27:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：findstr "OCR 載入失敗" claude_desktop_bridge.py
+[2026-04-01 22:27:41] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:27:41] [32mINFO[0m [Agent.model_selector] model_selector.py:140 - 模型選擇器啟動，可用模型：['qwen2.5:14b', 'qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-04-01 22:27:41] [32mINFO[0m [Agent.model_selector] model_selector.py:141 - 預設模型：qwen2.5:14b
+[2026-04-01 22:27:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:176 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → qwen2.5:14b
+[2026-04-01 22:27:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:178 - [_think] 推論（qwen2.5:14b）：findstr "OCR 載入失敗" claude_desktop_bridge
+[2026-04-01 22:27:42] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 5ms
+[2026-04-01 22:27:46] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 22:27:46] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=5ms)
+[2026-04-01 22:27:46] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 22:27:46] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: 404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-01 22:29:56] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python -c "print(open('claude_desktop_bridge.py').read().__c
+[2026-04-01 22:29:56] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "print(open('claude_desktop_bridge.py').read().__contains__('OCR 載入失敗'))"
+[2026-04-01 22:30:23] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python -c "print('OCR' in open('claude_desktop_bridge.py', e
+[2026-04-01 22:30:23] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "print('OCR' in open('claude_desktop_bridge.py', encoding='utf-8').read())"
+[2026-04-01 22:30:46] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=180)
+[2026-04-01 22:30:53] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python -c "import sys; sys.path.insert(0, '.'); from claude_
+[2026-04-01 22:30:53] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import sys; sys.path.insert(0, '.'); from claude_desktop_bridge import _HAS_OCR; print('OCR:', _HAS_OCR)"
+[2026-04-01 22:30:57] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:32:16] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:32:17] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:32:17] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:32:17] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 22:32:30] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 22:32:30] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:32:30] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:33:45] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 22:33:45] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:33:45] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:35:30] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:35:31] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:35:31] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:35:31] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 22:35:40] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 22:35:40] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:35:40] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:35:40] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:98 - [ClaudeBridge] OCR 載入失敗：cannot import name '_imaging' from 'PIL' (C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\PIL\__init__.py)
+[2026-04-01 22:35:40] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:98 - [ClaudeBridge] OCR 載入失敗：cannot import name '_imaging' from 'PIL' (C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\PIL\__init__.py)
+[2026-04-01 22:37:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:37:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:37:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:37:11] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 22:37:28] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 22:37:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:37:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:37:28] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:101 - [ClaudeBridge] OCR 載入失敗：cannot import name '_imaging' from 'PIL' (C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\PIL\__init__.py)
+[2026-04-01 22:37:28] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:101 - [ClaudeBridge] OCR 載入失敗：cannot import name '_imaging' from 'PIL' (C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\PIL\__init__.py)
+[2026-04-01 22:37:55] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：pip uninstall Pillow -y && pip install Pillow
+[2026-04-01 22:37:55] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：pip uninstall Pillow -y && pip install Pillow
+[2026-04-01 22:38:32] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:38:32] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:38:32] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:38:32] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 22:38:39] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 22:38:39] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:38:39] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:38:39] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:101 - [ClaudeBridge] OCR 載入失敗：cannot import name '_imaging' from 'PIL' (C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\PIL\__init__.py)
+[2026-04-01 22:38:39] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:101 - [ClaudeBridge] OCR 載入失敗：cannot import name '_imaging' from 'PIL' (C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\PIL\__init__.py)
+[2026-04-01 22:39:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python -c "import PIL; print(PIL.__file__)"
+[2026-04-01 22:39:06] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import PIL; print(PIL.__file__)"
+[2026-04-01 22:39:31] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python -c "from PIL import Image; print(Image.__version__)"
+[2026-04-01 22:39:31] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "from PIL import Image; print(Image.__version__)"
+[2026-04-01 22:39:58] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python -c "from PIL import ImageGrab; print('OK')"
+[2026-04-01 22:39:58] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "from PIL import ImageGrab; print('OK')"
+[2026-04-01 22:40:20] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python -c "import sys; sys.path.insert(0, r'C:\Users\ACER\Ap
+[2026-04-01 22:40:20] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import sys; sys.path.insert(0, r'C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages'); from PIL import ImageGrab, Image; import pytesseract; pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'; print('全部OK')"
+[2026-04-01 22:41:41] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:41:41] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:41:41] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:41:41] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 22:41:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 22:41:47] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:41:47] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:41:47] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:107 - [ClaudeBridge] OCR 載入失敗：cannot import name '_imaging' from 'PIL' (C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\PIL\__init__.py)
+[2026-04-01 22:41:47] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:107 - [ClaudeBridge] OCR 載入失敗：cannot import name '_imaging' from 'PIL' (C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\PIL\__init__.py)
+[2026-04-01 22:42:30] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python -c "import sys; print(sys.executable)"
+[2026-04-01 22:42:30] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import sys; print(sys.executable)"
+[2026-04-01 22:43:59] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:43:59] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:43:59] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:43:59] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 22:44:06] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 22:44:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:44:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:44:06] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:100 - [ClaudeBridge] OCR 載入失敗：cannot import name '_imaging' from 'PIL' (C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\PIL\__init__.py)
+[2026-04-01 22:44:06] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:100 - [ClaudeBridge] OCR 載入失敗：cannot import name '_imaging' from 'PIL' (C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\PIL\__init__.py)
+[2026-04-01 22:45:41] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:45:41] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:45:41] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 229 筆記憶
+[2026-04-01 22:45:41] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 22:45:50] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 22:45:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:45:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:45:50] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:96 - [ClaudeBridge] OCR 就緒（直接呼叫模式）
+[2026-04-01 22:45:50] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:121 - [ClaudeBridge] 開始問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 22:45:51] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:190 - [ClaudeBridge] 切換到已開啟的 Claude 視窗
+[2026-04-01 22:45:56] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:248 - [ClaudeBridge] 已輸入問題並送出
+[2026-04-01 22:45:56] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:265 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 22:47:33] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：1+1等於幾」，找到 5 筆
+[2026-04-01 22:47:33] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：1+1等於幾
+[2026-04-01 22:47:33] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：1+1等於幾
+[2026-04-01 22:47:33] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:121 - [ClaudeBridge] 開始問 Claude：1+1等於幾
+[2026-04-01 22:47:34] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:190 - [ClaudeBridge] 切換到已開啟的 Claude 視窗
+[2026-04-01 22:47:39] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:248 - [ClaudeBridge] 已輸入問題並送出
+[2026-04-01 22:47:39] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:265 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 22:48:10] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:143 - [ClaudeBridge] 取得回答（226 字）
+[2026-04-01 22:48:10] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：1+1等於幾
+答：Artifacts
+RauUawn
+ta)
+> RAVE | REANTET ALOU MPH C...
+[2026-04-01 22:48:10] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Artifacts
+RauUawn
+ta)
+> RAVE | REANTET ALOU MPH Claude : 141...
+[2026-04-01 22:48:10] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:388 - [ClaudeBridge] 已存入記憶庫（1 段）
+[2026-04-01 22:48:55] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python -c "import subprocess; r = subprocess.run([r'C:\Progr
+[2026-04-01 22:48:55] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import subprocess; r = subprocess.run([r'C:\Program Files\Tesseract-OCR\tesseract.exe', '--list-langs'], capture_output=True, text=True); print(r.stdout)"
+[2026-04-01 22:49:53] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：curl -L -o "C:\Program Files\Tesseract-OCR\tessdata\chi_tra.
+[2026-04-01 22:49:53] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：curl -L -o "C:\Program Files\Tesseract-OCR\tessdata\chi_tra.traineddata" https://github.com/tesseract-ocr/tessdata/raw/main/chi_tra.traineddata
+[2026-04-01 22:50:36] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：curl -L -o chi_tra.traineddata https://github.com/tesseract-
+[2026-04-01 22:50:36] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：curl -L -o chi_tra.traineddata https://github.com/tesseract-ocr/tessdata/raw/main/chi_tra.traineddata
+[2026-04-01 22:51:38] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：move chi_tra.traineddata "C:\Program Files\Tesseract-OCR\tes
+[2026-04-01 22:51:38] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：move chi_tra.traineddata "C:\Program Files\Tesseract-OCR\tessdata\"
+[2026-04-01 22:52:05] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：powershell -Command "Move-Item chi_tra.traineddata 'C:\Progr
+[2026-04-01 22:52:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 231 筆記憶
+[2026-04-01 22:52:05] [32mINFO[0m [Agent.model_selector] model_selector.py:140 - 模型選擇器啟動，可用模型：['qwen2.5:14b', 'qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-04-01 22:52:05] [32mINFO[0m [Agent.model_selector] model_selector.py:141 - 預設模型：qwen2.5:14b
+[2026-04-01 22:52:05] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:176 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → qwen2.5:14b
+[2026-04-01 22:52:05] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:178 - [_think] 推論（qwen2.5:14b）：powershell -Command "Move-Item chi_tra.t
+[2026-04-01 22:52:06] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:68 - [Ollama] latency to remote: 7ms
+[2026-04-01 22:52:10] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:178 - [Ollama] llama-server not running, use race mode
+[2026-04-01 22:52:10] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:232 - [Ollama] mode: race (latency=7ms)
+[2026-04-01 22:52:10] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:304 - [Ollama] race: ['local', 'remote']
+[2026-04-01 22:52:10] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [remote] race failed: 404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-01 22:55:10] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:339 - [Ollama] race: all timed out
+[2026-04-01 22:55:10] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:323 - [local] race failed: HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=180)
+[2026-04-01 22:55:10] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:193 - [_think] 回答品質低，轉問 Claude...
+[2026-04-01 22:55:10] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:121 - [ClaudeBridge] 開始問 Claude：powershell -Command "Move-Item chi_tra.traineddata
+[2026-04-01 22:55:11] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:190 - [ClaudeBridge] 切換到已開啟的 Claude 視窗
+[2026-04-01 22:55:17] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:248 - [ClaudeBridge] 已輸入問題並送出
+[2026-04-01 22:55:17] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:265 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 22:57:07] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 231 筆記憶
+[2026-04-01 22:57:07] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 231 筆記憶
+[2026-04-01 22:57:07] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 231 筆記憶
+[2026-04-01 22:57:07] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 22:57:19] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：1+1等於幾」，找到 5 筆
+[2026-04-01 22:57:19] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：1+1等於幾
+[2026-04-01 22:57:19] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：1+1等於幾
+[2026-04-01 22:57:19] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:96 - [ClaudeBridge] OCR 就緒（直接呼叫模式）
+[2026-04-01 22:57:19] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:121 - [ClaudeBridge] 開始問 Claude：1+1等於幾
+[2026-04-01 22:57:20] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:190 - [ClaudeBridge] 切換到已開啟的 Claude 視窗
+[2026-04-01 22:57:25] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:248 - [ClaudeBridge] 已輸入問題並送出
+[2026-04-01 22:57:25] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:265 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 22:58:33] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:143 - [ClaudeBridge] 取得回答（970 字）
+[2026-04-01 22:58:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：1+1等於幾
+答：G
+EeNOne Devel  \AI-Agent>
+oe import name
+init__....
+[2026-04-01 22:58:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：G
+EeNOne Devel  \AI-Agent>
+oe import name
+init__.py)
+-long_t...
+[2026-04-01 22:58:33] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:388 - [ClaudeBridge] 已存入記憶庫（1 段）
+[2026-04-01 22:59:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：pip install numpy
+[2026-04-01 22:59:06] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：pip install numpy
+[2026-04-01 23:00:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 233 筆記憶
+[2026-04-01 23:00:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 233 筆記憶
+[2026-04-01 23:00:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 233 筆記憶
+[2026-04-01 23:00:13] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 23:00:20] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：1+1等於幾」，找到 5 筆
+[2026-04-01 23:00:20] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：1+1等於幾
+[2026-04-01 23:00:20] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：1+1等於幾
+[2026-04-01 23:00:20] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:96 - [ClaudeBridge] OCR 就緒（直接呼叫模式）
+[2026-04-01 23:00:20] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:121 - [ClaudeBridge] 開始問 Claude：1+1等於幾
+[2026-04-01 23:00:20] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:200 - [ClaudeBridge] 切換到已開啟的 Claude 視窗
+[2026-04-01 23:00:26] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:258 - [ClaudeBridge] 已輸入問題並送出
+[2026-04-01 23:00:28] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:275 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 23:01:33] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:153 - [ClaudeBridge] 取得回答（109 字）
+[2026-04-01 23:01:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：1+1等於幾
+答：BRL PRR ER Artifacts
+PY
+Youtube telegram
+PY
+Word ...
+[2026-04-01 23:01:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：BRL PRR ER Artifacts
+PY
+Youtube telegram
+PY
+Word editor
+PY
+P...
+[2026-04-01 23:01:33] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:398 - [ClaudeBridge] 已存入記憶庫（1 段）
+[2026-04-01 23:02:23] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python -c "import pygetwindow as gw; [print(w.title) for w i
+[2026-04-01 23:02:23] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import pygetwindow as gw; [print(w.title) for w in gw.getAllWindows() if w.title]"
+[2026-04-01 23:03:55] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 235 筆記憶
+[2026-04-01 23:03:55] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 235 筆記憶
+[2026-04-01 23:03:55] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 235 筆記憶
+[2026-04-01 23:03:55] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 23:04:08] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：1+1等於幾」，找到 5 筆
+[2026-04-01 23:04:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：1+1等於幾
+[2026-04-01 23:04:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：1+1等於幾
+[2026-04-01 23:04:09] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:96 - [ClaudeBridge] OCR 就緒（直接呼叫模式）
+[2026-04-01 23:04:09] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:121 - [ClaudeBridge] 開始問 Claude：1+1等於幾
+[2026-04-01 23:04:10] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:218 - [ClaudeBridge] 切換到視窗：Claude - 個人 - Microsoft​ Edge
+[2026-04-01 23:04:15] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:276 - [ClaudeBridge] 已輸入問題並送出
+[2026-04-01 23:04:17] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:293 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 23:04:33] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:309 - [ClaudeBridge] 回答穩定（12秒）
+[2026-04-01 23:04:33] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:160 - [ClaudeBridge] 取得回答（160 字）
+[2026-04-01 23:04:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：1+1等於幾
+答：MRT SC
+AU ALNRERE > TEM AMERA ¢
+PREIBU Al SHARIR ...
+[2026-04-01 23:04:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：MRT SC
+AU ALNRERE > TEM AMERA ¢
+PREIBU Al SHARIR ©
+56920
+*
+A...
+[2026-04-01 23:04:33] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:416 - [ClaudeBridge] 已存入記憶庫（1 段）
+[2026-04-01 23:06:42] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：pip install pywin32
+[2026-04-01 23:06:42] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：pip install pywin32
+[2026-04-01 23:08:54] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 237 筆記憶
+[2026-04-01 23:08:54] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 237 筆記憶
+[2026-04-01 23:08:54] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 237 筆記憶
+[2026-04-01 23:08:54] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 23:09:03] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：1+1等於幾」，找到 5 筆
+[2026-04-01 23:09:03] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：1+1等於幾
+[2026-04-01 23:09:03] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：1+1等於幾
+[2026-04-01 23:09:03] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:96 - [ClaudeBridge] OCR 就緒（直接呼叫模式）
+[2026-04-01 23:09:03] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:121 - [ClaudeBridge] 開始問 Claude：1+1等於幾
+[2026-04-01 23:09:03] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:206 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:09:03] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:222 - [ClaudeBridge] 開啟新的 Edge 視窗到 claude.ai
+[2026-04-01 23:09:08] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:206 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:09:13] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:262 - [ClaudeBridge] 已輸入問題並送出
+[2026-04-01 23:09:14] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:206 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:09:14] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:279 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 23:10:13] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:295 - [ClaudeBridge] 回答穩定（34秒）
+[2026-04-01 23:10:13] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:145 - [ClaudeBridge] 取得回答（1368 字）
+[2026-04-01 23:10:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：1+1等於幾
+答：Agent.long_term_memory] f= #f i BAH: CMA 237 S28
+...
+[2026-04-01 23:10:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Agent.long_term_memory] f= #f i BAH: CMA 237 S28
+cannot impo...
+[2026-04-01 23:10:13] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:402 - [ClaudeBridge] 已存入記憶庫（1 段）
+[2026-04-01 23:11:34] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 239 筆記憶
+[2026-04-01 23:11:35] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 239 筆記憶
+[2026-04-01 23:11:35] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 239 筆記憶
+[2026-04-01 23:11:35] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 23:11:53] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：1+1等於幾」，找到 5 筆
+[2026-04-01 23:11:53] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：1+1等於幾
+[2026-04-01 23:11:53] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：1+1等於幾
+[2026-04-01 23:11:53] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:96 - [ClaudeBridge] OCR 就緒（直接呼叫模式）
+[2026-04-01 23:11:53] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:121 - [ClaudeBridge] 開始問 Claude：1+1等於幾
+[2026-04-01 23:11:53] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:211 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:11:53] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:227 - [ClaudeBridge] 開啟新的 Edge 視窗到 claude.ai
+[2026-04-01 23:11:58] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:211 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:12:04] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:267 - [ClaudeBridge] 已輸入問題並送出
+[2026-04-01 23:12:06] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:211 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:12:07] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:284 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 23:12:25] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:300 - [ClaudeBridge] 回答穩定（12秒）
+[2026-04-01 23:12:25] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:146 - [ClaudeBridge] 取得回答（86 字）
+[2026-04-01 23:12:25] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：1+1等於幾
+答：%* Good evening, 2K
+How can | help you today?
+Con...
+[2026-04-01 23:12:25] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：%* Good evening, 2K
+How can | help you today?
+Connect your t...
+[2026-04-01 23:12:25] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:407 - [ClaudeBridge] 已存入記憶庫（1 段）
+[2026-04-01 23:15:45] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python -c "import pyautogui; print(pyautogui.size())"
+[2026-04-01 23:15:45] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import pyautogui; print(pyautogui.size())"
+[2026-04-01 23:17:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 241 筆記憶
+[2026-04-01 23:17:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 241 筆記憶
+[2026-04-01 23:17:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 241 筆記憶
+[2026-04-01 23:17:12] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 23:17:20] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：1+1等於幾」，找到 5 筆
+[2026-04-01 23:17:20] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：1+1等於幾
+[2026-04-01 23:17:20] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：1+1等於幾
+[2026-04-01 23:17:20] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:96 - [ClaudeBridge] OCR 就緒（直接呼叫模式）
+[2026-04-01 23:17:20] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:121 - [ClaudeBridge] 開始問 Claude：1+1等於幾
+[2026-04-01 23:17:20] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:211 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:17:31] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:295 - [ClaudeBridge] 已輸入問題並送出
+[2026-04-01 23:17:33] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:211 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:17:34] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:312 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 23:17:44] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:328 - [ClaudeBridge] 回答穩定（8秒）
+[2026-04-01 23:17:44] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:146 - [ClaudeBridge] 取得回答（89 字）
+[2026-04-01 23:17:44] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：1+1等於幾
+答：%* Good evening, 7K
+How can | help you today?
+onn...
+[2026-04-01 23:17:44] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：%* Good evening, 7K
+How can | help you today?
+onnect your to...
+[2026-04-01 23:17:44] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:435 - [ClaudeBridge] 已存入記憶庫（1 段）
+[2026-04-01 23:19:11] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [desktop] 收到：截圖
+[2026-04-01 23:19:11] [32mINFO[0m [Agent.desktop_control] desktop_control.py:264 - [桌面控制] 截圖完成：screenshot_20260401_231911.png (1920x1080)
+[2026-04-01 23:23:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 243 筆記憶
+[2026-04-01 23:23:48] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 243 筆記憶
+[2026-04-01 23:23:48] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 243 筆記憶
+[2026-04-01 23:23:48] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 23:23:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：1+1等於幾」，找到 5 筆
+[2026-04-01 23:23:59] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：1+1等於幾
+[2026-04-01 23:23:59] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：1+1等於幾
+[2026-04-01 23:23:59] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:96 - [ClaudeBridge] OCR 就緒（直接呼叫模式）
+[2026-04-01 23:23:59] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:121 - [ClaudeBridge] 開始問 Claude：1+1等於幾
+[2026-04-01 23:23:59] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:211 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:24:13] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:304 - [ClaudeBridge] 已輸入問題並送出：1+1等於幾
+[2026-04-01 23:25:15] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python -c "import sys; sys.path.insert(0, r'C:\Users\ACER\Ap
+[2026-04-01 23:25:15] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import sys; sys.path.insert(0, r'C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages'); import win32gui; print('OK')"
+[2026-04-01 23:27:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 243 筆記憶
+[2026-04-01 23:27:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 243 筆記憶
+[2026-04-01 23:27:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 243 筆記憶
+[2026-04-01 23:27:11] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 23:27:27] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：1+1等於幾」，找到 5 筆
+[2026-04-01 23:27:27] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：1+1等於幾
+[2026-04-01 23:27:27] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：1+1等於幾
+[2026-04-01 23:27:27] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:101 - [ClaudeBridge] OCR 就緒（直接呼叫模式）
+[2026-04-01 23:27:27] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:126 - [ClaudeBridge] 開始問 Claude：1+1等於幾
+[2026-04-01 23:27:27] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:216 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:27:46] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:322 - [ClaudeBridge] 已送出：1+1等於幾
+[2026-04-01 23:27:48] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:216 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:27:50] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:339 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 23:29:05] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:151 - [ClaudeBridge] 取得回答（744 字）
+[2026-04-01 23:29:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：1+1等於幾
+答：453 if len(para) > 300:
+HERR] Lat Be EER ¢ 454 pa...
+[2026-04-01 23:29:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：453 if len(para) > 300:
+HERR] Lat Be EER ¢ 454 para = para[:...
+[2026-04-01 23:29:05] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:462 - [ClaudeBridge] 已存入記憶庫（1 段）
+[2026-04-01 23:30:11] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [desktop] 收到：滑鼠位置
+[2026-04-01 23:31:31] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 245 筆記憶
+[2026-04-01 23:31:31] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 245 筆記憶
+[2026-04-01 23:31:31] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 245 筆記憶
+[2026-04-01 23:31:31] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 23:31:39] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：1+1等於幾」，找到 5 筆
+[2026-04-01 23:31:39] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：1+1等於幾
+[2026-04-01 23:31:39] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：1+1等於幾
+[2026-04-01 23:31:39] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:101 - [ClaudeBridge] OCR 就緒（直接呼叫模式）
+[2026-04-01 23:31:39] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:126 - [ClaudeBridge] 開始問 Claude：1+1等於幾
+[2026-04-01 23:31:39] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:217 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:31:49] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:306 - [ClaudeBridge] 輸入框確認（1144,560）
+[2026-04-01 23:31:50] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:323 - [ClaudeBridge] 已送出：1+1等於幾
+[2026-04-01 23:31:52] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:217 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:31:54] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:340 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 23:32:01] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:356 - [ClaudeBridge] 回答穩定（6秒）
+[2026-04-01 23:32:01] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:151 - [ClaudeBridge] 取得回答（16 字）
+[2026-04-01 23:32:01] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：1+1等於幾
+答：{IU} 11 SRE
+2600...
+[2026-04-01 23:32:01] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:463 - [ClaudeBridge] 已存入記憶庫（1 段）
+[2026-04-01 23:33:40] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 246 筆記憶
+[2026-04-01 23:33:40] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 246 筆記憶
+[2026-04-01 23:33:40] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 246 筆記憶
+[2026-04-01 23:33:40] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 23:33:50] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：1+1等於幾」，找到 5 筆
+[2026-04-01 23:33:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：1+1等於幾
+[2026-04-01 23:33:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：1+1等於幾
+[2026-04-01 23:33:50] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:101 - [ClaudeBridge] OCR 就緒（直接呼叫模式）
+[2026-04-01 23:33:50] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:126 - [ClaudeBridge] 開始問 Claude：1+1等於幾
+[2026-04-01 23:33:50] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:217 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:34:01] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:306 - [ClaudeBridge] 輸入框確認（1144,560）
+[2026-04-01 23:34:01] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:323 - [ClaudeBridge] 已送出：1+1等於幾
+[2026-04-01 23:34:03] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:217 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:34:05] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:340 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 23:34:15] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:356 - [ClaudeBridge] 回答穩定（9秒）
+[2026-04-01 23:34:15] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:151 - [ClaudeBridge] 取得回答（13 字）
+[2026-04-01 23:34:15] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：1+1等於幾
+答：{IU} 11S
+2600...
+[2026-04-01 23:34:15] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:463 - [ClaudeBridge] 已存入記憶庫（1 段）
+[2026-04-01 23:38:50] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 247 筆記憶
+[2026-04-01 23:38:50] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 247 筆記憶
+[2026-04-01 23:38:50] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 247 筆記憶
+[2026-04-01 23:38:50] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 23:39:02] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：1+1等於幾」，找到 5 筆
+[2026-04-01 23:39:02] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：1+1等於幾
+[2026-04-01 23:39:02] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：1+1等於幾
+[2026-04-01 23:39:02] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:101 - [ClaudeBridge] OCR 就緒（直接呼叫模式）
+[2026-04-01 23:39:02] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:126 - [ClaudeBridge] 開始問 Claude：1+1等於幾
+[2026-04-01 23:39:07] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:265 - [ClaudeBridge] _open_claude 備用模式：No module named 'win32gui'
+[2026-04-01 23:39:13] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:300 - [ClaudeBridge] 輸入框確認（1144,560）
+[2026-04-01 23:39:13] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:317 - [ClaudeBridge] 已送出：1+1等於幾
+[2026-04-01 23:39:15] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:217 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:39:17] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:334 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 23:39:20] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:217 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:39:25] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:217 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:39:31] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:217 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:39:33] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:350 - [ClaudeBridge] 回答穩定（9秒）
+[2026-04-01 23:39:33] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:151 - [ClaudeBridge] 取得回答（87 字）
+[2026-04-01 23:39:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：1+1等於幾
+答：{立} 1+1等於幾
+晚上11:39
+2
+Claude is AI and can make mi...
+[2026-04-01 23:39:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：{立} 1+1等於幾
+晚上11:39
+2
+Claude is AI and can make mistakes. Ple...
+[2026-04-01 23:39:33] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:485 - [ClaudeBridge] 已存入記憶庫（1 段）
+[2026-04-01 23:44:19] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：搜尋：claude_bridge...
+[2026-04-01 23:45:18] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python clean_claude_bridge_memory.py
+[2026-04-01 23:45:18] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python clean_claude_bridge_memory.py
+[2026-04-01 23:45:37] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 234 筆記憶
+[2026-04-01 23:45:37] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 234 筆記憶
+[2026-04-01 23:45:37] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 234 筆記憶
+[2026-04-01 23:45:37] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 23:45:49] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 23:45:49] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 23:45:49] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 23:45:49] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:101 - [ClaudeBridge] OCR 就緒（直接呼叫模式）
+[2026-04-01 23:45:49] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:126 - [ClaudeBridge] 開始問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 23:45:54] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:265 - [ClaudeBridge] 備用模式：No module named 'win32gui'
+[2026-04-01 23:46:00] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:300 - [ClaudeBridge] 輸入框確認（1144,560）
+[2026-04-01 23:46:01] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:317 - [ClaudeBridge] 已送出：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 23:46:03] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:217 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:46:04] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:334 - [ClaudeBridge] 等待 Claude 回答...
+[2026-04-01 23:46:07] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:217 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:46:13] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:217 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:46:18] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:217 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:46:23] [33mWARNING[0m [Agent.claude_bridge] claude_desktop_bridge.py:217 - [ClaudeBridge] win32gui 切換失敗：No module named 'win32gui'
+[2026-04-01 23:46:26] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:350 - [ClaudeBridge] 回答穩定（12秒）
+[2026-04-01 23:46:26] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:151 - [ClaudeBridge] 取得回答（782 字）
+[2026-04-01 23:46:26] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：Python 的 list 和 tuple 有什麼差別？
+答：晚上11:46
+List vs Tuple
+兩者都是有...
+[2026-04-01 23:46:26] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：晚上11:46
+List vs Tuple
+兩者都是有序的序列，主要差別在於可變性：
+特性	List []	Tuple ...
+[2026-04-01 23:46:26] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:517 - [ClaudeBridge] 已存入記憶庫（1 段）
+[2026-04-01 23:49:57] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 236 筆記憶
+[2026-04-01 23:49:58] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 236 筆記憶
+[2026-04-01 23:49:58] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 236 筆記憶
+[2026-04-01 23:49:58] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 23:50:15] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 23:50:15] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 23:50:15] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 23:50:15] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:109 - [ClaudeBridge] OCR 就緒（直接呼叫模式）
+[2026-04-01 23:50:15] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:134 - [ClaudeBridge] 開始問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 23:52:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 236 筆記憶
+[2026-04-01 23:52:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 236 筆記憶
+[2026-04-01 23:52:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 236 筆記憶
+[2026-04-01 23:52:08] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 23:52:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [desktop] 收到：滑鼠座標
+[2026-04-01 23:52:54] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [desktop] 收到：滑鼠位置
+[2026-04-01 23:57:22] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 236 筆記憶
+[2026-04-01 23:57:22] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 236 筆記憶
+[2026-04-01 23:57:22] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 236 筆記憶
+[2026-04-01 23:57:22] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-01 23:57:43] DEBUG    [Agent.long_term_memory] long_term_memory.py:116 - 搜尋「問 Claude：Python 的 list 和 tuple 有什麼差別？」，找到 5 筆
+[2026-04-01 23:57:43] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [chat] 收到：問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 23:57:43] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:374 - [process_input] 主動問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 23:57:43] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:110 - [ClaudeBridge] OCR 就緒（直接呼叫模式）
+[2026-04-01 23:57:43] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:135 - [ClaudeBridge] 開始問 Claude：Python 的 list 和 tuple 有什麼差別？
+[2026-04-01 23:57:50] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:269 - [ClaudeBridge] 方案二：開新 Edge 視窗
+[2026-04-01 23:57:55] [32mINFO[0m [Agent.claude_bridge] claude_desktop_bridge.py:315 - [ClaudeBridge] 輸入框確認（1144,560）

@@ -1,0 +1,48 @@
+[2026-03-24 23:04:59] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-03-24 23:04:59] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-24 23:23:37] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-03-24 23:23:37] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-24 23:23:49] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:147 - 任務已提交：[17b257ff] 自動修復：.（6 個步驟）
+[2026-03-24 23:23:49] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:203 - 開始執行任務：[17b257ff] 自動修復：.
+[2026-03-24 23:23:49] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:212 -   步驟 [scan] 由 project_scanner 執行中...
+[2026-03-24 23:23:49] [33mWARNING[0m [Agent.task_scheduler] task_scheduler.py:117 - 模組 project_scanner 執行失敗：module 'project_scanner' has no attribute 'ProjectScanner'，改用 Lobster_Core
+[2026-03-24 23:24:03] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:147 - 任務已提交：[238bb37d] 自動修復：.（6 個步驟）
+[2026-03-24 23:24:10] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:147 - 任務已提交：[fbf14840] 自動修復：.（6 個步驟）
+[2026-03-24 23:24:51] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:220 -   步驟 [scan] 完成：[LLM ERROR] HTTPConnectionPool(host='localhost', port=11434)
+[2026-03-24 23:24:51] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:212 -   步驟 [detect] 由 error_detector 執行中...
+[2026-03-24 23:24:51] [33mWARNING[0m [Agent.task_scheduler] task_scheduler.py:117 - 模組 error_detector 執行失敗：'ErrorDetector' object has no attribute 'detect'，改用 Lobster_Core
+[2026-03-24 23:25:53] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:220 -   步驟 [detect] 完成：[LLM ERROR] HTTPConnectionPool(host='localhost', port=11434)
+[2026-03-24 23:25:53] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:212 -   步驟 [plan] 由 repair_planner 執行中...
+[2026-03-24 23:26:56] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:220 -   步驟 [plan] 完成：[LLM ERROR] HTTPConnectionPool(host='localhost', port=11434)
+[2026-03-24 23:26:56] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:212 -   步驟 [repair] 由 repair_engine 執行中...
+[2026-03-24 23:26:56] [33mWARNING[0m [Agent.task_scheduler] task_scheduler.py:117 - 模組 repair_engine 執行失敗：RepairEngine.repair() missing 2 required positional arguments: 'error_info' and 'supervisor'，改用 Lobster_Core
+[2026-03-24 23:27:58] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:220 -   步驟 [repair] 完成：[LLM ERROR] HTTPConnectionPool(host='localhost', port=11434)
+[2026-03-24 23:27:58] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:212 -   步驟 [validate] 由 repair_validator 執行中...
+[2026-03-24 23:28:41] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:220 -   步驟 [validate] 完成：過去經驗：你可以做些甚麼 → 我主要提供以下功能：
+
+1. 文本交流：回答问题、提供信息和讨论各种主题。
+2. 知识查询
+[2026-03-24 23:28:41] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:212 -   步驟 [learn] 由 bug_learning_engine 執行中...
+[2026-03-24 23:29:43] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:220 -   步驟 [learn] 完成：[LLM ERROR] HTTPConnectionPool(host='localhost', port=11434)
+[2026-03-24 23:29:43] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:245 - 任務完成：[17b257ff] 自動修復：.
+[2026-03-24 23:29:43] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:203 - 開始執行任務：[238bb37d] 自動修復：.
+[2026-03-24 23:29:43] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:212 -   步驟 [scan] 由 project_scanner 執行中...
+[2026-03-24 23:29:43] [33mWARNING[0m [Agent.task_scheduler] task_scheduler.py:117 - 模組 project_scanner 執行失敗：module 'project_scanner' has no attribute 'ProjectScanner'，改用 Lobster_Core
+[2026-03-24 23:30:11] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:220 -   步驟 [scan] 完成：掃描結果如下：
+
+- **立**：您的專屬AI助手，擁有以下能力：
+  - 統一文檔、問題解答和技術指導。
+  - 助力
+[2026-03-24 23:30:11] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:212 -   步驟 [detect] 由 error_detector 執行中...
+[2026-03-24 23:30:11] [33mWARNING[0m [Agent.task_scheduler] task_scheduler.py:117 - 模組 error_detector 執行失敗：'ErrorDetector' object has no attribute 'detect'，改用 Lobster_Core
+[2026-03-24 23:31:02] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-03-24 23:31:02] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-24 23:32:06] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：有關於回家...
+[2026-03-24 23:32:19] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:147 - 任務已提交：[4d892f1c] 自動修復：.（6 個步驟）
+[2026-03-24 23:32:19] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:203 - 開始執行任務：[4d892f1c] 自動修復：.
+[2026-03-24 23:32:19] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:212 -   步驟 [scan] 由 project_scanner 執行中...
+[2026-03-24 23:32:19] [33mWARNING[0m [Agent.task_scheduler] task_scheduler.py:117 - 模組 project_scanner 執行失敗：module 'project_scanner' has no attribute 'ProjectScanner'，改用 Lobster_Core
+[2026-03-24 23:32:25] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 1 筆記憶
+[2026-03-24 23:32:25] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-24 23:36:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 1 筆記憶
+[2026-03-24 23:36:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動

@@ -1,0 +1,7 @@
+# bot_config.py — Telegram Bot 設定檔
+
+TELEGRAM_TOKEN = "8659848303:AAFVOzNMDvcwg24uGCU_lzTvgjNlEUeVWx0"
+
+ALLOWED_CHAT_IDS = [8443859030]
+
+BOT_NAME = "立 AI"

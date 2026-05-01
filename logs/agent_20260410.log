@@ -1,0 +1,63 @@
+[2026-04-10 00:00:35] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-10 00:00:35] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-10 00:00:35] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-10 00:00:35] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-10 00:00:36] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-10 00:00:36] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-10 00:00:37] [32mINFO[0m [Agent.desktop] desktop_agent.py:2204 - [UI] Ollama 狀態更新：在線
+[2026-04-10 00:00:41] [32mINFO[0m [Agent.dev_brain] dev_brain.py:118 - [DevBrain] TelegramNotifier 已設定
+[2026-04-10 00:00:41] [32mINFO[0m [Agent.dev_brain] dev_brain.py:124 - [DevBrain] dev_tool 接入完成，AI可用：True
+[2026-04-10 00:01:01] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-10 00:01:01] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-10 00:01:01] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-10 00:01:01] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-10 00:01:02] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-10 00:01:02] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-10 00:01:03] [32mINFO[0m [Agent.desktop] desktop_agent.py:2204 - [UI] Ollama 狀態更新：在線
+[2026-04-10 00:01:07] [32mINFO[0m [Agent.dev_brain] dev_brain.py:118 - [DevBrain] TelegramNotifier 已設定
+[2026-04-10 00:01:07] [32mINFO[0m [Agent.dev_brain] dev_brain.py:124 - [DevBrain] dev_tool 接入完成，AI可用：True
+[2026-04-10 00:04:11] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-10 00:04:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-10 00:04:11] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-10 00:04:11] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-10 00:04:12] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-10 00:04:12] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-10 00:04:13] [32mINFO[0m [Agent.desktop] desktop_agent.py:2204 - [UI] Ollama 狀態更新：在線
+[2026-04-10 00:04:15] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-10 00:04:15] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-10 00:04:15] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-10 00:04:15] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-10 00:04:16] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-10 00:04:16] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-10 00:04:17] [32mINFO[0m [Agent.desktop] desktop_agent.py:2204 - [UI] Ollama 狀態更新：在線
+[2026-04-10 00:04:21] [32mINFO[0m [Agent.dev_brain] dev_brain.py:118 - [DevBrain] TelegramNotifier 已設定
+[2026-04-10 00:04:21] [32mINFO[0m [Agent.dev_brain] dev_brain.py:124 - [DevBrain] dev_tool 接入完成，AI可用：True
+[2026-04-10 00:07:13] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-10 00:07:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-10 00:07:13] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-10 00:07:13] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-10 00:07:14] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-10 00:07:14] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-10 00:07:15] [32mINFO[0m [Agent.desktop] desktop_agent.py:2204 - [UI] Ollama 狀態更新：在線
+[2026-04-10 00:07:19] [32mINFO[0m [Agent.dev_brain] dev_brain.py:118 - [DevBrain] TelegramNotifier 已設定
+[2026-04-10 00:07:19] [32mINFO[0m [Agent.dev_brain] dev_brain.py:124 - [DevBrain] dev_tool 接入完成，AI可用：True
+[2026-04-10 00:08:59] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-10 00:08:59] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-10 00:08:59] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-10 00:08:59] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-10 00:08:59] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-10 00:08:59] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-10 00:09:00] [32mINFO[0m [Agent.desktop] desktop_agent.py:2204 - [UI] Ollama 狀態更新：在線
+[2026-04-10 00:09:04] [32mINFO[0m [Agent.dev_brain] dev_brain.py:118 - [DevBrain] TelegramNotifier 已設定
+[2026-04-10 00:09:04] [32mINFO[0m [Agent.dev_brain] dev_brain.py:124 - [DevBrain] dev_tool 接入完成，AI可用：True
+[2026-04-10 00:11:03] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-10 00:11:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-10 00:11:03] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-10 00:11:03] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-10 00:11:03] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-10 00:11:03] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-10 00:11:04] [32mINFO[0m [Agent.desktop] desktop_agent.py:2204 - [UI] Ollama 狀態更新：在線
+[2026-04-10 00:11:08] [32mINFO[0m [Agent.dev_brain] dev_brain.py:118 - [DevBrain] TelegramNotifier 已設定
+[2026-04-10 00:11:08] [32mINFO[0m [Agent.dev_brain] dev_brain.py:124 - [DevBrain] dev_tool 接入完成，AI可用：True
+[2026-04-10 00:16:03] [32mINFO[0m [Agent.desktop] desktop_agent.py:2204 - [UI] Ollama 狀態更新：在線
+[2026-04-10 00:16:03] [32mINFO[0m [Agent.desktop] desktop_agent.py:2204 - [UI] Ollama 狀態更新：在線

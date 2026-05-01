@@ -1,0 +1,2 @@
+[2026-04-02 00:01:19] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:293 - [process_input] [terminal] 收到：python -c "import sys; sys.path.insert(0, r'C:\Users\ACER\Ap
+[2026-04-02 00:01:19] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python -c "import sys; sys.path.insert(0, r'C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages'); import win32gui; print(win32gui.__file__)"

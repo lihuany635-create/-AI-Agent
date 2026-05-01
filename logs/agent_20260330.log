@@ -1,0 +1,3 @@
+[2026-03-30 22:53:42] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-03-30 22:53:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 223 筆記憶
+[2026-03-30 22:53:47] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動

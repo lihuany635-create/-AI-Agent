@@ -1,0 +1,434 @@
+# Lobster_Core.py — 最終完整版
+# v5 修復：process_input 流程確保問題一定到達 _think()
+#         cognitive_intent_engine 不再卡住主流程
+
+import requests
+from cognition_state_manager import get_persona
+
+try:
+    from ollama_guard import safe_infer, is_online, start_background_monitor
+    _USE_GUARD = True
+except ImportError:
+    _USE_GUARD = False
+
+try:
+    from agent_logger import get_logger
+    logger = get_logger("Lobster_Core")
+except ImportError:
+    import logging
+    logger = logging.getLogger("Lobster_Core")
+
+from os_controller import OSController
+from reflex_memory import ReflexMemory
+from episodic_memory import EpisodicMemory
+from prompt_engine import PromptEngine
+from learning_engine import LearningEngine
+from terminal_editor import TerminalEditor
+from error_detector import ErrorDetector
+try:
+    from memory_curator import maybe_learn
+    _USE_CURATOR = True
+except ImportError:
+    _USE_CURATOR = False
+
+try:
+    from self_dev_engine import get_engine as get_dev_engine
+    _USE_DEV = True
+except ImportError:
+    _USE_DEV = False
+
+try:
+    from terminal_engine import get_terminal
+    _USE_TERMINAL = True
+except ImportError:
+    _USE_TERMINAL = False
+
+try:
+    from autonomous_dev import get_auto_dev
+    _USE_AUTO_DEV = True
+except ImportError:
+    _USE_AUTO_DEV = False
+
+try:
+    from self_healer import get_healer
+    _USE_HEALER = True
+except ImportError:
+    _USE_HEALER = False
+
+try:
+    from model_selector import get_selector
+    _USE_SELECTOR = True
+except ImportError:
+    _USE_SELECTOR = False
+
+try:
+    import sys as _sys_dc
+    _PKG_DC = r"C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages"
+    if _PKG_DC not in _sys_dc.path:
+        _sys_dc.path.insert(0, _PKG_DC)
+    from desktop_control import get_control
+    _USE_DESKTOP = True
+except Exception as _e:
+    _USE_DESKTOP = False
+from repair_engine import RepairEngine
+from reasoning_supervisor import ReasoningSupervisor
+from repair_trigger import RepairTrigger
+from repair_loop_controller import RepairLoopController
+
+
+class LobsterCore:
+
+    def __init__(self, model="qwen2:7b-instruct-q4_0"):
+        self.model = model
+        self.url   = "http://localhost:11434/api/generate"
+        self.os            = OSController(workspace=".")
+        self.reflex_memory = ReflexMemory()
+        self.episodic      = EpisodicMemory()
+        self.prompt_engine = PromptEngine()
+        self.learning      = LearningEngine()
+        self.editor        = TerminalEditor()
+        self.detector      = ErrorDetector()
+        self.engine        = RepairEngine()
+        self.supervisor    = ReasoningSupervisor()
+        self.trigger       = RepairTrigger(self.engine, self.supervisor)
+        self.loop          = RepairLoopController(self.detector, self.trigger)
+
+    # ── 身份 ──────────────────────────────────────────────────────────────────
+
+    def _build_identity(self) -> str:
+        try:
+            return self.prompt_engine.build_system()
+        except Exception:
+            persona = get_persona()
+            return (
+                f"你是「{persona.get('name','立')}」，本地 AI 系統核心。"
+                "永遠使用繁體中文回覆，語氣自然像朋友，簡潔有重點。"
+            )
+
+    # ── 底層推論 ──────────────────────────────────────────────────────────────
+
+    def _infer(self, prompt: str, system: str = "") -> str:
+        if _USE_GUARD:
+            return safe_infer(
+                prompt=prompt,
+                model=self.model,
+                system=system or self._build_identity(),
+                timeout=180,
+                max_retries=3,
+            )
+        try:
+            r = requests.post(self.url, json={
+                "model": self.model, "prompt": prompt,
+                "system": system or self._build_identity(), "stream": False,
+            }, timeout=180)
+            r.raise_for_status()
+            return r.json().get("response", "")
+        except Exception as e:
+            return "[LLM ERROR] " + str(e)
+
+    def _think(self, text: str) -> str:
+        """所有一般問題最終都走到這裡"""
+        system = self._build_identity()
+        prompt = self.prompt_engine.build_prompt(text, self.episodic)
+        # 自動選擇最適合的模型
+        if _USE_SELECTOR:
+            selected = get_selector().select(text)
+            if selected != self.model:
+                logger.info(f"[_think] 切換模型：{self.model} → {selected}")
+                self.model = selected
+        logger.info(f"[_think] 推論（{self.model}）：{text[:40]}")
+        result = self._infer(prompt, system)
+        if result and "[LLM ERROR]" not in result:
+            score = self.learning.evaluate(text, result)
+            if score > 0:
+                self.reflex_memory.learn(text, result)
+            self.episodic.store(text, result)
+            # 自動判斷是否值得存入長期記憶
+            if _USE_CURATOR:
+                maybe_learn(text, result)
+            # 推送結果到手機
+            self._push_to_phone(text, result)
+        return result
+
+    def _push_to_phone(self, question: str, answer: str):
+        """把 AI 回覆推送到手機 Telegram"""
+        try:
+            import sys
+            _pkg = r"C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages"
+            if _pkg not in sys.path:
+                sys.path.insert(0, _pkg)
+            import bot_config, telebot, threading
+            if len(answer) < 30:
+                return
+            def _send():
+                try:
+                    bot = telebot.TeleBot(bot_config.TELEGRAM_TOKEN, parse_mode=None)
+                    q = question[:80].encode("utf-8", errors="ignore").decode("utf-8")
+                    a = answer[:500].encode("utf-8", errors="ignore").decode("utf-8")
+                    msg = "立 AI 回覆\n\n問：" + q + "\n\n答：" + a
+                    if len(answer) > 500:
+                        msg += "\n...（完整回覆請看電腦）"
+                    for cid in bot_config.ALLOWED_CHAT_IDS:
+                        bot.send_message(cid, msg)
+                except Exception as e:
+                    logger.error(f"[推送] 失敗：{e}")
+            threading.Thread(target=_send, daemon=True).start()
+        except Exception as e:
+            logger.error(f"[推送] 外層錯誤：{e}")
+
+    # ── 主入口（修復版）──────────────────────────────────────────────────────
+
+    def process_input(self, text: str, reflex, router) -> str:
+        """
+        修復重點：router.route() 原本會呼叫 cognitive_intent_engine
+        → cognitive_intent_engine 對 Ollama 發 request 等 60 秒
+        → _think() 完全沒機會被呼叫
+        → 使用者看到沒有回應
+
+        現在：router 失敗時直接 try/except 跳過，確保 _think() 一定被執行
+        """
+        logger.info(f"[process_input] 收到：{text[:60]}")
+
+        # -1. 糾正學習攔截
+        _correct_kw = ["你剛才", "你做錯", "你錯了", "應該要", "不對，", "不是這樣", "你應該", "記住，下次"]
+        if any(k in text for k in _correct_kw):
+            try:
+                from long_term_memory import LongTermMemory
+                LongTermMemory().store(
+                    f"使用者糾正：{text}",
+                    tags=["correction", "feedback"],
+                    importance=9,
+                    source="user_correction"
+                )
+            except Exception:
+                pass
+            return f"好的，我記住了。下次會改正。"
+
+            # 檔案管理攔截
+            _fm_kw = [
+                "列出檔案", "查看資料夾", "資料夾內容", "查看資料",
+                "資料夾", "目錄內容", "裡面有什麼", "有哪些檔案",
+                "建立資料夾", "新增資料夾", "建立目錄",
+                "刪除資料夾", "刪除檔案", "刪除目錄",
+                "重命名", "改名", "rename",
+                "複製檔案", "複製資料夾", "移動檔案", "搬移",
+                "搜尋檔案", "找檔案", "尋找檔案",
+                "開啟檔案", "打開檔案",
+                "壓縮", "解壓縮", "zip", "unzip",
+                "檔案資訊", "檔案大小", "檔案日期",
+                "切換目錄", "進入資料夾", "目前位置", "pwd",
+            ]
+            if _USE_FM and any(k in text for k in _fm_kw):
+                result = get_fm().handle(text)
+                if result is not None:
+                    return result
+
+        # 1. 反射記憶快取
+        mem = self.reflex_memory.get(text)
+        if mem:
+            return mem
+
+        # 2. 快速反射規則（問候、身份）
+        r = reflex.analyze(text)
+        if r:
+            return r
+
+        # 3. 自我診斷指令攔截
+        if _USE_HEALER:
+            t = text.strip()
+            if any(k in t for k in ["自我診斷", "掃描自己", "健康檢查", "自動修復自己"]):
+                import threading
+                def _heal():
+                    def _push(msg):
+                        self._push_to_phone("自我診斷", msg)
+                    get_healer().scan_and_heal(notify_fn=_push)
+                threading.Thread(target=_heal, daemon=True).start()
+                return "開始自我診斷，完成後通知你。"
+            if any(k in t for k in ["診斷報告", "上次診斷", "健康報告"]):
+                return get_healer().get_last_report()
+
+        # 4. 模型相關指令攔截
+        if _USE_SELECTOR:
+            t = text.strip()
+            # 查詢目前模型
+            if any(k in t for k in ["目前模型", "用什麼模型", "哪個模型", "模型狀態"]):
+                return get_selector().status()
+            # 手動切換模型（必須包含「模型」二字）
+            import re
+            if "模型" in t and ("切換" in t or "換成" in t):
+                _m = re.search(r"[\w.:]{3,}", t.replace("切換模型","").replace("切換","").strip())
+                if _m:
+                    model_name = _m.group(0)
+                    result = get_selector().force_switch(model_name)
+                    self.model = get_selector().current()
+                    return result
+        # 4. 桌面控制攔截
+        if _USE_DESKTOP:
+            result = get_control().handle(text)
+            if result is not None:
+                logger.info(f"[process_input] 桌面控制：{text[:40]}")
+                return result
+
+        # 5. 終端指令攔截（排除 Telegram Bot 指令）
+        if _USE_TERMINAL:
+            terminal = get_terminal()
+            t = text.strip()
+            # Telegram 指令格式（/cmd, /help 等）跳過終端攔截
+            if t.startswith("/") and len(t.split()[0]) <= 10:
+                pass
+            else:
+                # 確認/取消待執行指令
+                if t in ["確認", "好", "執行", "yes", "ok", "是"] and terminal.has_pending():
+                    return terminal.confirm()
+                if t in ["取消", "不", "算了", "no", "cancel"] and terminal.has_pending():
+                    return terminal.cancel()
+                # 查看指令歷史
+                if t in ["指令歷史", "terminal history", "歷史"]:
+                    return terminal.get_history()
+                # 嘗試當作終端指令處理
+                result = terminal.handle(text)
+                if result is not None:
+                    logger.info(f"[process_input] 終端指令執行：{text[:40]}")
+                    return result
+
+        # 4. 自主開發任務攔截（完整應用程式，需明確提到程式/系統/app）
+        if _USE_AUTO_DEV:
+            auto_keywords = ["幫我做", "幫我建", "幫我開發", "建立一個", "開發一個", "做一個"]
+            app_keywords  = ["程式", "應用程式", "app", "系統", "工具", "軟體", "視窗", "介面", "網站"]
+            is_app_request = any(kw in text for kw in auto_keywords) and any(ak in text for ak in app_keywords)
+            if is_app_request and len(text) > 8:
+                logger.info("[process_input] 自主開發任務")
+                dev = get_auto_dev()
+                # 背景執行，立即回覆「開始了」
+                import threading
+                def _run():
+                    result = dev.build(text, on_progress=None)
+                    # 存入記憶
+                    try:
+                        from memory_curator import learn_explicitly
+                        learn_explicitly(f"自主開發完成：{text[:50]}", tags=["autodev"], importance=7)
+                    except Exception:
+                        pass
+                t = threading.Thread(target=_run, daemon=True)
+                t.start()
+                msg = "好的！我開始自主開發了，完成後會通知你。需求：" + text + "。完成後檔案會在 projects/ 資料夾，手機也會收到通知。"
+                return msg
+        # 5. 自主開發指令攔截（優先於一般任務路由）
+        if _USE_DEV:
+            eng = get_dev_engine()
+            t = text.strip()
+            # 使用者確認
+            if t in ["確認", "好", "執行", "yes", "ok", "是", "對"] and eng.has_pending():
+                logger.info("[process_input] 使用者確認開發行動")
+                return eng.confirm()
+            # 使用者取消
+            if t in ["取消", "不", "算了", "no", "cancel", "不要"] and eng.has_pending():
+                logger.info("[process_input] 使用者取消開發行動")
+                return eng.cancel()
+            # 新的開發需求
+            if self._is_dev_request(text):
+                logger.info("[process_input] 自主開發指令")
+                return eng.handle(text)
+
+        # 4. 任務路由（加上保護，失敗不阻塞）
+        try:
+            task = router.route(text)
+            if task:
+                return self.execute_task(task)
+        except Exception as e:
+            logger.warning(f"[process_input] router 失敗（跳過）：{e}")
+
+        # 5. LLM 推論 — 一定會到這裡
+        if _USE_FM:
+            _c = ["列出檔案","查看資料夾","資料夾","資料","檔案","建立資料夾","刪除檔案","重命名","搜尋檔案","開啟檔案","壓縮","解壓縮","檔案資訊","目前位置"]
+            if any(k in text for k in _c):
+                _r = get_fm().handle(text)
+                if _r is not None:
+                    return _r
+        return self._think(text)
+
+    def _is_dev_request(self, text: str) -> bool:
+        """判斷是否為自主開發指令"""
+        import re
+        dev_keywords = ["修改", "新增", "幫我改", "幫我加", "幫我在", "改一下",
+                        "加上", "加入", "建立", "新建", "寫一個", "生成"]
+        has_py = bool(re.search(r"\w+\.py", text))
+        has_kw = any(kw in text for kw in dev_keywords)
+        # 還原指令
+        if text.strip().startswith("還原") and ".py" in text:
+            return True
+        # 開發歷史查詢
+        if any(k in text for k in ["開發記錄", "改了什麼", "修改歷史"]):
+            return True
+        return has_py and has_kw
+
+    def execute_task(self, task) -> str:
+        if isinstance(task, dict) and "action" in task:
+            return self.act(task["action"])
+        if isinstance(task, str):
+            return self._think(task)
+        return "（未知任務格式）"
+
+    def act(self, action: str) -> str:
+        if action.startswith("RUN_PYTHON:"):
+            file   = action.split(":", 1)[1].strip()
+            result = self.os.safe_run(["python", file])
+            error  = self.detector.detect_file_error(file)
+            if error:
+                return f"CRASH → AUTO REPAIR → {self.loop.run(file)}"
+            return str(result)
+        return f"（未知指令：{action}）"
+
+    def run(self, prompt: str) -> str:
+        if _USE_DEV:
+            eng = get_dev_engine()
+            t = prompt.strip()
+            if t in ["確認", "好", "執行", "yes", "ok", "是", "對"] and eng.has_pending():
+                return eng.confirm()
+            if t in ["取消", "不", "算了", "no", "cancel", "不要"] and eng.has_pending():
+                return eng.cancel()
+            if self._is_dev_request(prompt):
+                return eng.handle(prompt)
+        # 開發歷史查詢
+        if _USE_DEV and any(k in prompt for k in ["開發記錄", "改了什麼", "修改歷史"]):
+            return get_dev_engine().get_history()
+        # 還原指令
+        if _USE_DEV and prompt.strip().startswith("還原") and ".py" in prompt:
+            import re
+            m = re.search(r"([\w一-鿿]+\.py)", prompt)
+            if m:
+                return get_dev_engine().restore(m.group(1))
+        return self._think(prompt)
+
+    # ── 五個專用推論方法 ──────────────────────────────────────────────────────
+
+    def reason(self, prompt: str) -> str:
+        return self._infer(prompt, f"{self._build_identity()}\n只輸出 JSON，不輸出任何多餘文字。")
+
+    def reflect(self, prompt: str) -> str:
+        return self._infer(prompt, f"{self._build_identity()}\n進行系統自我反思，輸出 JSON 格式分析。")
+
+    def plan(self, prompt: str) -> str:
+        return self._infer(prompt, f"{self._build_identity()}\n資深 Python 架構師，輸出 JSON 格式修復計畫。")
+
+    def judge(self, prompt: str, context: str = "") -> str:
+        full = f"{context}\n\n{prompt}" if context else prompt
+        return self._infer(full, f"{self._build_identity()}\n只回答 PASS 或 FAIL，不輸出其他任何內容。")
+
+    def repair(self, code: str, prompt: str) -> str:
+        return self._infer(
+            f"{prompt}\n\n原始程式碼：\n{code}",
+            f"{self._build_identity()}\n只輸出完整修復後程式碼，不輸出任何解釋或 markdown。"
+        )
+
+
+# ── 模組層級單例 ──────────────────────────────────────────────────────────────
+CORE = LobsterCore()
+
+
+def boot():
+    print("🦞 Lobster Self-Healing Core Ready")
+    print(f"   模型：{CORE.model}  端點：{CORE.url}")
+    if _USE_GUARD:
+        start_background_monitor(interval=30)
+        print(f"   Ollama：{'在線' if is_online(force=True) else '離線（離線模式）'}")

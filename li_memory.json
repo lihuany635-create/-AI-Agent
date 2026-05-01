@@ -1,0 +1,51 @@
+{
+  "history": [
+    {
+      "role": "user",
+      "content": "用向量相似度或讓 gpt-oss:20b 判斷「哪個器官最適合這個需求」",
+      "time": "23:14"
+    },
+    {
+      "role": "assistant",
+      "content": "要用向量相似度或 GPT‑OSS‑20B 判斷「哪個器官最適合這個需求」，可以按下列步驟進行：\n\n1. **定義需求語料**  \n   把「需求」寫成一句完整的描述，例如：「需要承受高血壓、抗血栓、長期抗炎」等。把這句話存成文字向量。\n\n2. **收集器官描述**  \n   為每個器官（心臟、肝臟、",
+      "time": "23:14"
+    },
+    {
+      "role": "assistant",
+      "content": "早安，今天看起來你在處理醫療相關的問題",
+      "time": "03:31"
+    },
+    {
+      "role": "assistant",
+      "content": "早安，今天看起來心情不錯，還好嗎？",
+      "time": "03:46"
+    },
+    {
+      "role": "assistant",
+      "content": "堅持下去，一",
+      "time": "08:33"
+    },
+    {
+      "role": "assistant",
+      "content": "早安！今天心情如何？",
+      "time": "09:22"
+    },
+    {
+      "role": "assistant",
+      "content": "別擔心，一切都會順利的。",
+      "time": "10:13"
+    },
+    {
+      "role": "assistant",
+      "content": "加油，你一定能做到的。",
+      "time": "13:28"
+    },
+    {
+      "role": "assistant",
+      "content": "堅持下去，結果會更好。",
+      "time": "17:35"
+    }
+  ],
+  "notes": [],
+  "last_active": "2026-04-28 17:35:59"
+}

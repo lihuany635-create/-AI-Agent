@@ -1,0 +1,29 @@
+以下是 `ui_bmicalculator.ui` 的程式碼範例.這個檔案將定義 PyQt6 中的使用者介面元素.我們會使用一個簡單的例子,包含三個輸入欄位和兩個按鈕:輸入體重、輸入身高、計算BMI並顯示結果.
+
+```python
+# ui_bmicalculator.ui 文件
+
+from PyQt6.QtWidgets import QWidget, QVBoxLayout, QHBoxLayout, QLineEdit, QPushButton, QLabel
+
+class BmiCalculatorUI(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        self.init_ui()
+
+    def init_ui(self):
+        # 創建一個垂直佈局
+        layout = QVBoxLayout()
+        
+        # 顯示說明的標籤
+        self.bmi_label = QLabel("請輸入體重和身高來計算BMI:")
+        layout.addWidget(self.bmi_label)
+        
+        # 輸入欄位 - 輸入體重
+        weight_input = QLineEdit()
+        weight_input.setPlaceholderText("請輸入體重(公斤)")
+        layout.addWidget(weight_input)
+
+        # 輸入欄位 - 輸入身高
+        height_input = QLineEdit()
+        height_input.setPlaceholderText("請輸入身高(公

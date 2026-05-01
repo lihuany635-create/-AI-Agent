@@ -1,0 +1,6 @@
+2026-05-01 13:02:08 ERROR: An unexpected error occurred
+Traceback (most recent call last):
+  File "C:\Users\ACER\OneDrive\орн▒\AI-Agent\workshop_data\tmp_1271520f.py", line 61, in main
+    1 / 0
+    ~~^~~
+ZeroDivisionError: division by zero

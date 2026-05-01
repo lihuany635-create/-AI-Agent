@@ -1,0 +1,418 @@
+# file_manager.py — 檔案管理引擎
+# 功能：建立/刪除/重命名資料夾、複製/移動檔案、搜尋、壓縮、開啟
+
+import os
+import shutil
+import pathlib
+import datetime
+import zipfile
+import subprocess
+import re
+from typing import Optional
+
+try:
+    from agent_logger import get_logger
+    logger = get_logger("file_manager")
+except ImportError:
+    import logging
+    logger = logging.getLogger("file_manager")
+
+# 預設工作目錄（桌面）
+DEFAULT_DIR = pathlib.Path.home() / "OneDrive" / "桌面"
+if not DEFAULT_DIR.exists():
+    DEFAULT_DIR = pathlib.Path.home() / "Desktop"
+if not DEFAULT_DIR.exists():
+    DEFAULT_DIR = pathlib.Path.cwd()
+
+# 目前工作目錄
+_current_dir = DEFAULT_DIR
+
+
+class FileManager:
+
+    def __init__(self):
+        self.cwd = DEFAULT_DIR
+        self._clipboard = None      # {"action": "copy"/"cut", "paths": [...]}
+
+    # ── 主入口 ────────────────────────────────────────────────────────────────
+
+    def handle(self, text: str) -> Optional[str]:
+        t = text.strip()
+
+        # 查看資料夾內容（寬鬆匹配：只要有「資料夾」就觸發）
+        if any(k in t for k in ["列出檔案", "查看資料夾", "資料夾內容", "ls ", "列出目錄",
+                                  "裡面有什麼", "有哪些檔案", "資料夾", "目錄內容"]):
+            # 嘗試從文字中提取路徑或資料夾名稱
+            path = self._extract_path(t)
+            if path is None:
+                # 嘗試提取資料夾名稱
+                import re
+                m = re.search(r"(?:查看|列出|看看|進入)\s*(.+?)\s*(?:資料夾|目錄|內容|裡面)?$", t)
+                if m:
+                    name = m.group(1).strip()
+                    candidate = self._resolve(name)
+                    if candidate.exists() and candidate.is_dir():
+                        path = candidate
+                    else:
+                        # 在桌面搜尋
+                        import pathlib as pl
+                        desktop = pl.Path.home() / "OneDrive" / "桌面"
+                        for d in desktop.iterdir():
+                            if name.lower() in d.name.lower() and d.is_dir():
+                                path = d
+                                break
+            return self.list_dir(path or self.cwd)
+
+        # 建立資料夾
+        if any(k in t for k in ["建立資料夾", "新增資料夾", "建資料夾", "mkdir"]):
+            name = self._extract_name(t, ["建立資料夾", "新增資料夾", "建資料夾", "mkdir"])
+            if name:
+                return self.make_dir(name)
+            return "請指定資料夾名稱，例如：建立資料夾 測試"
+
+        # 刪除
+        if any(k in t for k in ["刪除資料夾", "刪除檔案", "刪除"]) and not "不要刪除" in t:
+            name = self._extract_name(t, ["刪除資料夾", "刪除檔案", "刪除"])
+            if name:
+                return self.delete(name)
+            return "請指定要刪除的名稱"
+
+        # 重命名
+        if any(k in t for k in ["重命名", "改名", "rename"]):
+            return self.rename_from_text(t)
+
+        # 複製
+        if any(k in t for k in ["複製檔案", "複製資料夾", "複製"]):
+            return self.copy_from_text(t)
+
+        # 移動/剪下貼上
+        if any(k in t for k in ["移動檔案", "移動", "剪下", "搬移"]):
+            return self.move_from_text(t)
+
+        # 搜尋
+        if any(k in t for k in ["搜尋檔案", "找檔案", "尋找", "搜尋"]):
+            keyword = self._extract_name(t, ["搜尋檔案", "找檔案", "尋找", "搜尋"])
+            if keyword:
+                return self.search(keyword)
+            return "請指定搜尋關鍵字，例如：搜尋檔案 report"
+
+        # 開啟檔案
+        if any(k in t for k in ["開啟檔案", "打開檔案", "開啟"]):
+            name = self._extract_name(t, ["開啟檔案", "打開檔案", "開啟"])
+            if name:
+                return self.open_file(name)
+            return "請指定要開啟的檔案名稱"
+
+        # 壓縮
+        if any(k in t for k in ["壓縮", "zip", "ZIP"]):
+            return self.zip_from_text(t)
+
+        # 解壓縮
+        if any(k in t for k in ["解壓縮", "unzip", "解壓"]):
+            name = self._extract_name(t, ["解壓縮", "unzip", "解壓"])
+            if name:
+                return self.unzip(name)
+            return "請指定要解壓縮的檔案"
+
+        # 檔案資訊
+        if any(k in t for k in ["檔案資訊", "檔案大小", "檔案日期", "檔案詳情"]):
+            name = self._extract_name(t, ["檔案資訊", "檔案大小", "檔案日期", "檔案詳情"])
+            if name:
+                return self.file_info(name)
+
+        # 切換目錄
+        if any(k in t for k in ["切換目錄", "進入資料夾", "cd "]):
+            name = self._extract_name(t, ["切換目錄", "進入資料夾", "cd"])
+            if name:
+                return self.change_dir(name)
+
+        # 目前位置
+        if any(k in t for k in ["目前位置", "目前目錄", "現在在哪", "pwd"]):
+            return f"目前位置：{self.cwd}"
+
+        return None
+
+    # ── 列出目錄 ──────────────────────────────────────────────────────────────
+
+    def list_dir(self, path=None) -> str:
+        path = pathlib.Path(path or self.cwd)
+        if not path.exists():
+            return f"❌ 路徑不存在：{path}"
+        try:
+            items = sorted(path.iterdir(), key=lambda x: (x.is_file(), x.name.lower()))
+            if not items:
+                return f"📁 {path} （空資料夾）"
+
+            lines = [f"📁 {path}（{len(items)} 個項目）\n"]
+            dirs  = [i for i in items if i.is_dir()]
+            files = [i for i in items if i.is_file()]
+
+            for d in dirs[:20]:
+                lines.append(f"  📂 {d.name}/")
+            for f in files[:30]:
+                size = self._fmt_size(f.stat().st_size)
+                lines.append(f"  📄 {f.name} ({size})")
+
+            if len(items) > 50:
+                lines.append(f"  ...（共 {len(items)} 個，只顯示前 50 個）")
+
+            return "\n".join(lines)
+        except PermissionError:
+            return f"❌ 沒有權限存取：{path}"
+        except Exception as e:
+            return f"❌ 列出失敗：{e}"
+
+    # ── 建立資料夾 ────────────────────────────────────────────────────────────
+
+    def make_dir(self, name: str) -> str:
+        path = self._resolve(name)
+        try:
+            path.mkdir(parents=True, exist_ok=True)
+            logger.info(f"[FileManager] 建立資料夾：{path}")
+            return f"✅ 已建立資料夾：{path}"
+        except Exception as e:
+            return f"❌ 建立失敗：{e}"
+
+    # ── 刪除 ──────────────────────────────────────────────────────────────────
+
+    def delete(self, name: str) -> str:
+        path = self._resolve(name)
+        if not path.exists():
+            return f"❌ 找不到：{name}"
+        try:
+            if path.is_dir():
+                shutil.rmtree(path)
+                return f"✅ 已刪除資料夾：{path.name}"
+            else:
+                path.unlink()
+                return f"✅ 已刪除檔案：{path.name}"
+        except Exception as e:
+            return f"❌ 刪除失敗：{e}"
+
+    # ── 重命名 ────────────────────────────────────────────────────────────────
+
+    def rename_from_text(self, text: str) -> str:
+        m = re.search(r"(?:重命名|改名|rename)\s+(.+?)\s+(?:為|成|to)\s+(.+)", text)
+        if not m:
+            return "格式：重命名 舊名稱 為 新名稱"
+        old_name, new_name = m.group(1).strip(), m.group(2).strip()
+        return self.rename(old_name, new_name)
+
+    def rename(self, old: str, new: str) -> str:
+        old_path = self._resolve(old)
+        new_path = old_path.parent / new
+        if not old_path.exists():
+            return f"❌ 找不到：{old}"
+        try:
+            old_path.rename(new_path)
+            return f"✅ 已重命名：{old} → {new}"
+        except Exception as e:
+            return f"❌ 重命名失敗：{e}"
+
+    # ── 複製 ──────────────────────────────────────────────────────────────────
+
+    def copy_from_text(self, text: str) -> str:
+        m = re.search(r"複製\s+(.+?)\s+(?:到|至)\s+(.+)", text)
+        if m:
+            return self.copy(m.group(1).strip(), m.group(2).strip())
+        # 只有來源，複製到目前目錄
+        name = self._extract_name(text, ["複製檔案", "複製資料夾", "複製"])
+        if name:
+            src = self._resolve(name)
+            dst = self.cwd / f"{src.stem}_複製{src.suffix}"
+            return self.copy(str(src), str(dst))
+        return "格式：複製 來源 到 目標"
+
+    def copy(self, src: str, dst: str) -> str:
+        src_path = self._resolve(src)
+        dst_path = self._resolve(dst)
+        if not src_path.exists():
+            return f"❌ 找不到來源：{src}"
+        try:
+            if src_path.is_dir():
+                shutil.copytree(src_path, dst_path)
+            else:
+                shutil.copy2(src_path, dst_path)
+            return f"✅ 已複製：{src_path.name} → {dst_path}"
+        except Exception as e:
+            return f"❌ 複製失敗：{e}"
+
+    # ── 移動 ──────────────────────────────────────────────────────────────────
+
+    def move_from_text(self, text: str) -> str:
+        m = re.search(r"(?:移動|搬移)\s+(.+?)\s+(?:到|至)\s+(.+)", text)
+        if m:
+            return self.move(m.group(1).strip(), m.group(2).strip())
+        return "格式：移動 來源 到 目標"
+
+    def move(self, src: str, dst: str) -> str:
+        src_path = self._resolve(src)
+        dst_path = self._resolve(dst)
+        if not src_path.exists():
+            return f"❌ 找不到來源：{src}"
+        try:
+            shutil.move(str(src_path), str(dst_path))
+            return f"✅ 已移動：{src_path.name} → {dst_path}"
+        except Exception as e:
+            return f"❌ 移動失敗：{e}"
+
+    # ── 搜尋 ──────────────────────────────────────────────────────────────────
+
+    def search(self, keyword: str, path=None, max_results: int = 20) -> str:
+        search_path = pathlib.Path(path or self.cwd)
+        results = []
+        try:
+            for item in search_path.rglob(f"*{keyword}*"):
+                results.append(item)
+                if len(results) >= max_results:
+                    break
+        except Exception:
+            pass
+
+        if not results:
+            return f"找不到包含「{keyword}」的檔案"
+
+        lines = [f"搜尋「{keyword}」，找到 {len(results)} 個：\n"]
+        for r in results:
+            icon = "📂" if r.is_dir() else "📄"
+            lines.append(f"  {icon} {r}")
+        return "\n".join(lines)
+
+    # ── 開啟檔案 ──────────────────────────────────────────────────────────────
+
+    def open_file(self, name: str) -> str:
+        path = self._resolve(name)
+        if not path.exists():
+            # 嘗試搜尋
+            results = list(self.cwd.rglob(f"*{name}*"))
+            if results:
+                path = results[0]
+            else:
+                return f"❌ 找不到：{name}"
+        try:
+            os.startfile(str(path))
+            return f"✅ 已開啟：{path.name}"
+        except Exception as e:
+            return f"❌ 開啟失敗：{e}"
+
+    # ── 壓縮 ──────────────────────────────────────────────────────────────────
+
+    def zip_from_text(self, text: str) -> str:
+        name = self._extract_name(text, ["壓縮", "zip", "ZIP"])
+        if name:
+            return self.compress(name)
+        return "格式：壓縮 資料夾名稱"
+
+    def compress(self, name: str, output: str = None) -> str:
+        src = self._resolve(name)
+        if not src.exists():
+            return f"❌ 找不到：{name}"
+        out = pathlib.Path(output or str(src) + ".zip")
+        try:
+            with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as zf:
+                if src.is_dir():
+                    for f in src.rglob("*"):
+                        zf.write(f, f.relative_to(src.parent))
+                else:
+                    zf.write(src, src.name)
+            size = self._fmt_size(out.stat().st_size)
+            return f"✅ 已壓縮：{out.name}（{size}）"
+        except Exception as e:
+            return f"❌ 壓縮失敗：{e}"
+
+    # ── 解壓縮 ────────────────────────────────────────────────────────────────
+
+    def unzip(self, name: str, output: str = None) -> str:
+        src = self._resolve(name)
+        if not src.exists():
+            return f"❌ 找不到：{name}"
+        out = pathlib.Path(output or src.parent / src.stem)
+        try:
+            with zipfile.ZipFile(src, "r") as zf:
+                zf.extractall(out)
+            return f"✅ 已解壓縮到：{out}"
+        except Exception as e:
+            return f"❌ 解壓縮失敗：{e}"
+
+    # ── 檔案資訊 ──────────────────────────────────────────────────────────────
+
+    def file_info(self, name: str) -> str:
+        path = self._resolve(name)
+        if not path.exists():
+            return f"❌ 找不到：{name}"
+        try:
+            stat = path.stat()
+            size = self._fmt_size(stat.st_size)
+            mtime = datetime.datetime.fromtimestamp(stat.st_mtime).strftime("%Y-%m-%d %H:%M:%S")
+            ctime = datetime.datetime.fromtimestamp(stat.st_ctime).strftime("%Y-%m-%d %H:%M:%S")
+            kind = "資料夾" if path.is_dir() else "檔案"
+            lines = [
+                f"📄 {path.name}",
+                f"類型：{kind}",
+                f"大小：{size}",
+                f"修改時間：{mtime}",
+                f"建立時間：{ctime}",
+                f"完整路徑：{path}",
+            ]
+            if path.is_dir():
+                count = sum(1 for _ in path.iterdir())
+                lines.append(f"項目數：{count}")
+            return "\n".join(lines)
+        except Exception as e:
+            return f"❌ 取得資訊失敗：{e}"
+
+    # ── 切換目錄 ──────────────────────────────────────────────────────────────
+
+    def change_dir(self, name: str) -> str:
+        if name == "..":
+            new = self.cwd.parent
+        else:
+            new = self._resolve(name)
+        if not new.exists() or not new.is_dir():
+            return f"❌ 找不到資料夾：{name}"
+        self.cwd = new
+        return f"📁 已切換到：{self.cwd}\n\n{self.list_dir()}"
+
+    # ── 輔助方法 ──────────────────────────────────────────────────────────────
+
+    def _resolve(self, name: str) -> pathlib.Path:
+        p = pathlib.Path(name)
+        if p.is_absolute():
+            return p
+        return self.cwd / name
+
+    def _extract_path(self, text: str) -> Optional[pathlib.Path]:
+        m = re.search(r"[A-Za-z]:\\[^\s]+", text)
+        if m:
+            return pathlib.Path(m.group(0))
+        return None
+
+    def _extract_name(self, text: str, remove_keywords: list) -> Optional[str]:
+        t = text
+        for kw in remove_keywords:
+            t = t.replace(kw, "")
+        t = t.strip().strip("「」\"'")
+        return t if t else None
+
+    def _fmt_size(self, size: int) -> str:
+        for unit in ["B", "KB", "MB", "GB"]:
+            if size < 1024:
+                return f"{size:.1f} {unit}"
+            size /= 1024
+        return f"{size:.1f} TB"
+
+
+# ── 模組層級單例 ──────────────────────────────────────────────────────────────
+_fm: Optional[FileManager] = None
+
+def get_fm() -> FileManager:
+    global _fm
+    if _fm is None:
+        _fm = FileManager()
+    return _fm
+
+
+if __name__ == "__main__":
+    fm = FileManager()
+    print(fm.list_dir())
+    print(fm.file_info("desktop_agent.py"))

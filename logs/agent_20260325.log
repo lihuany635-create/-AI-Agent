@@ -1,0 +1,117 @@
+[2026-03-25 19:22:35] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 1 筆記憶
+[2026-03-25 19:22:35] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-25 19:28:48] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 1 筆記憶
+[2026-03-25 19:28:48] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-25 19:44:34] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 1 筆記憶
+[2026-03-25 19:44:34] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-25 19:51:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 1 筆記憶
+[2026-03-25 19:51:08] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-25 19:56:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 1 筆記憶
+[2026-03-25 19:56:12] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-25 19:56:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:108 - [process_input] 收到：你好
+[2026-03-25 19:56:30] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:108 - [process_input] 收到：你可以做什麼
+[2026-03-25 19:56:54] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:108 - [process_input] 收到：我希望你幫我修理程式
+[2026-03-25 19:56:54] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:88 - [_think] 推論：我希望你幫我修理程式
+[2026-03-25 19:57:58] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-25 20:13:37] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 1 筆記憶
+[2026-03-25 20:13:37] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 1 筆記憶
+[2026-03-25 20:13:37] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-25 20:13:44] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:129 - 已刪除記憶 ID：0b794997
+[2026-03-25 20:13:49] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：你好
+[2026-03-25 20:14:03] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：你可以幫我做些甚麼
+[2026-03-25 20:14:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：請你幫我新增程式
+[2026-03-25 20:14:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:99 - [_think] 推論：請你幫我新增程式
+[2026-03-25 20:15:39] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-25 20:16:02] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：請你幫我新增程式 → 答：好的，你需要新增的程式是什麼類型？具體功能或目標是什麼？請提供詳細描述或者程式碼片段，這樣...
+[2026-03-25 20:16:02] [32mINFO[0m [Agent.memory_curator] memory_curator.py:121 - [記憶自動學習] 已儲存（重要性 6）：問：請你幫我新增程式 → 答：好的，你需要新增的程式是什麼類型？具體功能或目標是什麼？請提供詳細描述或者程式碼片段，這樣...
+[2026-03-25 20:16:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：我希望能新增一個專案，在這個系統核心的介面上
+[2026-03-25 20:16:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:99 - [_think] 推論：我希望能新增一個專案，在這個系統核心的介面上
+[2026-03-25 20:17:40] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-25 20:18:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：我希望能新增一個專案，在這個系統核心的介面上 → 答：你可以開始新的專案，我會提供幫助來設計和實現你的功能。首先，請...
+[2026-03-25 20:18:12] [32mINFO[0m [Agent.memory_curator] memory_curator.py:121 - [記憶自動學習] 已儲存（重要性 6）：問：我希望能新增一個專案，在這個系統核心的介面上 → 答：你可以開始新的專案，我會提供幫助來設計和實現你的功能。首先，請...
+[2026-03-25 20:20:03] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：單純的專案覽，只是它可以像是新增資料夾那樣建立不同的對話視窗
+[2026-03-25 20:20:03] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:99 - [_think] 推論：單純的專案覽，只是它可以像是新增資料夾那樣建立不同的對話視窗
+[2026-03-25 20:21:07] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-25 20:22:12] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第2次] Ollama 逾時（60s）
+[2026-03-25 20:23:18] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第3次] Ollama 逾時（60s）
+[2026-03-25 21:02:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 3 筆記憶
+[2026-03-25 21:02:20] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:48 - Lobster Core 載入成功
+[2026-03-25 21:02:20] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:286 - Telegram Bot 啟動中...
+[2026-03-25 21:02:21] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:276 - [Bot] 推送成功 → 8443859030
+[2026-03-25 21:02:58] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:215 - [Bot] 收到訊息：你好
+[2026-03-25 21:02:59] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：你好
+[2026-03-25 21:03:22] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:215 - [Bot] 收到訊息：你可以幫我做些什麼
+[2026-03-25 21:03:23] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：你可以幫我做些什麼
+[2026-03-25 21:03:46] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:215 - [Bot] 收到訊息：可以幫我製作一個程式嗎
+[2026-03-25 21:03:46] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：可以幫我製作一個程式嗎
+[2026-03-25 21:03:46] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:99 - [_think] 推論：可以幫我製作一個程式嗎
+[2026-03-25 21:04:50] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-25 21:05:32] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：可以幫我製作一個程式嗎 → 答：當然可以！請告訴我你需要這個程式的具體功能或目標是什麼？如果有可能，還請提供一些細節...
+[2026-03-25 21:05:32] [32mINFO[0m [Agent.memory_curator] memory_curator.py:121 - [記憶自動學習] 已儲存（重要性 6）：問：可以幫我製作一個程式嗎 → 答：當然可以！請告訴我你需要這個程式的具體功能或目標是什麼？如果有可能，還請提供一些細節...
+[2026-03-25 21:21:44] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:414 - Telegram Bot 啟動中...
+[2026-03-25 21:21:46] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:405 - [Bot] 推送成功 → 8443859030
+[2026-03-25 21:21:47] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:328 - [Bot] 收到訊息：你好
+[2026-03-25 21:21:47] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:328 - [Bot] 收到訊息：你好
+[2026-03-25 21:21:49] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-25 21:21:49] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:50 - 首次收到訊息，正在啟動 AI 核心...
+[2026-03-25 21:21:50] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:328 - [Bot] 收到訊息：你好
+[2026-03-25 21:21:51] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:75 - Ollama 已在線
+[2026-03-25 21:21:51] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:61 - AI 核心載入完成
+[2026-03-25 21:21:51] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：你好
+[2026-03-25 21:24:14] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-25 21:24:14] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-25 21:24:14] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-25 21:26:53] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-25 21:26:53] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-25 21:26:53] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-25 21:27:14] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:129 - 已刪除記憶 ID：0b794997
+[2026-03-25 21:30:40] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 3 筆記憶
+[2026-03-25 21:30:40] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 3 筆記憶
+[2026-03-25 21:30:40] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-25 21:31:13] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：python telegram_bot.py
+[2026-03-25 21:31:13] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:99 - [_think] 推論：python telegram_bot.py
+[2026-03-25 21:32:17] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-25 21:33:21] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第2次] Ollama 逾時（60s）
+[2026-03-25 21:34:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 3 筆記憶
+[2026-03-25 21:34:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 3 筆記憶
+[2026-03-25 21:34:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-25 21:36:10] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:421 - Telegram Bot 啟動中...
+[2026-03-25 21:36:11] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:412 - [Bot] 推送成功 → 8443859030
+[2026-03-25 21:36:12] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:328 - [Bot] 收到訊息：你好
+[2026-03-25 21:36:12] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:328 - [Bot] 收到訊息：你好
+[2026-03-25 21:36:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 3 筆記憶
+[2026-03-25 21:36:14] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:50 - 首次收到訊息，正在啟動 AI 核心...
+[2026-03-25 21:36:14] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 3 筆記憶
+[2026-03-25 21:36:14] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-25 21:36:14] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:328 - [Bot] 收到訊息：你好
+[2026-03-25 21:36:16] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:328 - [Bot] 收到訊息：你好
+[2026-03-25 21:36:16] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:75 - Ollama 已在線
+[2026-03-25 21:36:16] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:61 - AI 核心載入完成
+[2026-03-25 21:36:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：你好
+[2026-03-25 21:36:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：你好
+[2026-03-25 21:56:27] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:328 - [Bot] 收到訊息：可以幫我幫我新建app嗎
+[2026-03-25 21:56:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：可以幫我幫我新建app嗎
+[2026-03-25 21:56:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:99 - [_think] 推論：可以幫我幫我新建app嗎
+[2026-03-25 21:57:32] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-25 21:58:21] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 3 筆記憶
+[2026-03-25 21:58:21] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 3 筆記憶
+[2026-03-25 21:58:21] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-25 21:58:44] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：你好
+[2026-03-25 21:59:07] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：可以幫我製作軟體嗎
+[2026-03-25 21:59:07] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:99 - [_think] 推論：可以幫我製作軟體嗎
+[2026-03-25 22:00:10] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：可以幫我製作軟體嗎 → 答：當然可以。你需要這個軟體實現什麼功能？請詳細描述你的需求或是具體目標。如果有程式碼片段、...
+[2026-03-25 22:00:10] [32mINFO[0m [Agent.memory_curator] memory_curator.py:121 - [記憶自動學習] 已儲存（重要性 6）：問：可以幫我製作軟體嗎 → 答：當然可以。你需要這個軟體實現什麼功能？請詳細描述你的需求或是具體目標。如果有程式碼片段、...
+[2026-03-25 22:00:51] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：我想製作一個類似word的軟體
+[2026-03-25 22:00:51] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:99 - [_think] 推論：我想製作一個類似word的軟體
+[2026-03-25 22:01:56] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-25 22:03:00] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第2次] Ollama 逾時（60s）
+[2026-03-25 22:04:06] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第3次] Ollama 逾時（60s）
+[2026-03-25 22:05:18] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：可以幫我製作類似word的軟體
+[2026-03-25 22:05:18] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:99 - [_think] 推論：可以幫我製作類似word的軟體
+[2026-03-25 22:06:22] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-25 22:07:26] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第2次] Ollama 逾時（60s）
+[2026-03-25 22:09:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：我希望你直接製作
+[2026-03-25 22:09:08] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:99 - [_think] 推論：我希望你直接製作
+[2026-03-25 22:10:12] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-25 22:11:16] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第2次] Ollama 逾時（60s）
+[2026-03-25 22:12:23] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第3次] Ollama 逾時（60s）

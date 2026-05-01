@@ -1,0 +1,14 @@
+{
+  "history": [
+    {
+      "error": "RUNTIME_ERROR",
+      "strategy": "_repair_import_runtime",
+      "success": true
+    },
+    {
+      "error": "SYNTAX_ERROR",
+      "strategy": "ALL",
+      "success": false
+    }
+  ]
+}

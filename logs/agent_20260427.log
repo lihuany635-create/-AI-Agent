@@ -1,0 +1,77 @@
+[2026-04-27 09:57:12] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 09:57:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 10:40:44] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 10:40:44] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 11:35:25] DEBUG    [Agent.lobster.core] Lobster_Core.py:70 - [Lazy] PromptEngine 初始化
+[2026-04-27 11:35:25] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:206 - [Ollama] 單節點推論：local
+[2026-04-27 11:37:56] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:206 - [Ollama] 單節點推論：remote
+[2026-04-27 11:37:56] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:112 - [remote] 推論失敗：404 Client Error: Not Found for url: http://100.91.121.85:11434/api/chat
+[2026-04-27 11:37:57] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:206 - [Ollama] 單節點推論：local
+[2026-04-27 11:39:21] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:206 - [Ollama] 單節點推論：local
+[2026-04-27 11:40:53] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 11:40:53] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 12:56:42] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 12:56:42] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 14:12:06] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 14:12:06] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 14:50:53] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 14:50:53] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 14:50:53] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:255 - TaskScheduler 啟動
+[2026-04-27 14:51:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:264 - 任務已提交：[c8eb9ef6] 自動修復：.（6 個步驟）
+[2026-04-27 14:51:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:320 - 開始執行任務：[c8eb9ef6] 自動修復：.
+[2026-04-27 14:51:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:332 -   步驟 [scan] 由 project_scanner 執行中...
+[2026-04-27 14:51:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:340 -   步驟 [scan] 完成：掃描完成：50 個 .py 檔案
+[2026-04-27 14:51:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:332 -   步驟 [detect] 由 error_detector 執行中...
+[2026-04-27 14:51:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:340 -   步驟 [detect] 完成：發現錯誤：agent_basic.py → RUNTIME_ERROR line 6
+[2026-04-27 14:51:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:332 -   步驟 [plan] 由 repair_planner 執行中...
+[2026-04-27 14:52:00] [33mWARNING[0m [Agent.task_scheduler] task_scheduler.py:119 -   repair_planner 回傳無效路徑 ''，改用 error_detector 的結果
+[2026-04-27 14:52:00] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:340 -   步驟 [plan] 完成：{'repair': False, 'file': '', 'reason': '沒有任何檔案可供檢查，無需修復。', 
+[2026-04-27 14:52:00] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:332 -   步驟 [repair] 由 repair_engine 執行中...
+[2026-04-27 14:52:00] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:340 -   步驟 [repair] 完成：沒有需要修復的檔案
+[2026-04-27 14:52:00] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:332 -   步驟 [validate] 由 repair_validator 執行中...
+[2026-04-27 14:52:00] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:340 -   步驟 [validate] 完成：略過驗證（無修復記錄）
+[2026-04-27 14:52:00] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:332 -   步驟 [learn] 由 bug_learning_engine 執行中...
+[2026-04-27 14:52:00] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:340 -   步驟 [learn] 完成：已學習此次修復經驗
+[2026-04-27 14:52:00] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:371 - 任務完成：[c8eb9ef6] 自動修復：.
+[2026-04-27 15:15:16] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 15:15:16] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 15:25:04] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 15:25:04] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 15:47:07] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 15:47:07] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 15:50:03] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 15:50:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 17:18:23] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 17:18:23] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 17:58:45] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 17:58:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 19:43:50] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 19:43:50] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 19:43:50] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:255 - TaskScheduler 啟動
+[2026-04-27 19:53:40] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 19:53:40] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 19:53:40] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:255 - TaskScheduler 啟動
+[2026-04-27 20:05:11] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 20:05:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 20:05:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 20:15:26] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 20:15:26] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 21:53:42] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 21:53:42] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 21:53:43] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:255 - TaskScheduler 啟動
+[2026-04-27 22:12:45] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 22:12:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 22:20:39] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 22:20:39] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 22:26:42] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 22:26:42] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 22:29:55] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 22:29:55] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 22:32:36] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 22:32:36] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 22:33:59] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 22:33:59] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 22:35:49] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 22:35:49] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-27 23:11:16] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-27 23:11:16] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶

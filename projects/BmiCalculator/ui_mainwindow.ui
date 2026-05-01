@@ -1,0 +1,20 @@
+以下是一些完整的PyQt6界面代码:
+
+```python
+# === ui_mainwindow.ui ===
+
+from tkinter import ttk, Frame, messagebox
+from sqlite3 import sqlitefunc
+import datetime
+
+root = Frame(root)
+root.pack()
+
+# 主窗口标题
+label = ttk.Label(root, text="BMI计算器", font=('Arial', 12, 'bold'), 
+                  bg='#000', relief='smooth')
+label.pack(pady=5)
+
+# 输入框部分
+height_label = ttk.Label(root, text="身高 (cm)", font=('Arial', 12),
+                        bg='#000

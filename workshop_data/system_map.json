@@ -1,0 +1,4709 @@
+{
+  "base_dir": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent",
+  "files": {
+    "agent_basic.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "start",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "BasicAgent",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "start",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "agent_logger.py": {
+      "description": "agent_logger.py - 統一日誌系統",
+      "functions": [
+        {
+          "name": "get_logger",
+          "args": [
+            "module_name"
+          ],
+          "description": "快速取得 logger 的捷徑函式"
+        }
+      ],
+      "classes": [
+        {
+          "name": "ColorFormatter",
+          "description": "終端機彩色輸出",
+          "methods": [
+            {
+              "name": "format",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "AgentLogger",
+          "description": "集中管理所有模組的 logger",
+          "methods": [
+            {
+              "name": "get",
+              "description": "取得指定模組的 logger"
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "LOG_DIR",
+        "CONSOLE_FORMAT",
+        "FILE_FORMAT",
+        "DATE_FORMAT",
+        "COLORS"
+      ]
+    },
+    "agent_runtime_guard.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "start_runtime_guard",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "start",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "agent_scanner掃描.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "scan_python_files",
+          "args": [
+            "root"
+          ],
+          "description": ""
+        },
+        {
+          "name": "parse_imports",
+          "args": [
+            "file"
+          ],
+          "description": ""
+        },
+        {
+          "name": "build_dependency_graph",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "create_report_folder",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "save_word_report",
+          "args": [
+            "graph",
+            "folder",
+            "timestamp"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "ROOT",
+        "REPORT_ROOT"
+      ]
+    },
+    "ai_bridge.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "send_to_bridge",
+          "args": [
+            "text"
+          ],
+          "description": ""
+        },
+        {
+          "name": "handle_message",
+          "args": [
+            "text",
+            "from_name"
+          ],
+          "description": ""
+        },
+        {
+          "name": "poll_loop",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "start",
+          "args": [
+            "block"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "MY_TOKEN",
+        "BRIDGE_CHAT",
+        "MY_NAME",
+        "POLL_INTERVAL"
+      ]
+    },
+    "ai_bridge_A.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "send_to_bridge",
+          "args": [
+            "text"
+          ],
+          "description": ""
+        },
+        {
+          "name": "infer",
+          "args": [
+            "prompt"
+          ],
+          "description": ""
+        },
+        {
+          "name": "start_chat",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "reply_to",
+          "args": [
+            "text"
+          ],
+          "description": ""
+        },
+        {
+          "name": "handle_message",
+          "args": [
+            "text",
+            "from_name",
+            "is_bot",
+            "sender_name"
+          ],
+          "description": ""
+        },
+        {
+          "name": "chat_timer",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "poll_loop",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "start",
+          "args": [
+            "block"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "MY_TOKEN",
+        "BRIDGE_CHAT",
+        "MY_NAME",
+        "OTHER_NAME",
+        "POLL_INTERVAL",
+        "CHAT_INTERVAL",
+        "MAX_ROUNDS",
+        "MIN_ROUNDS"
+      ]
+    },
+    "ai_chat_memory.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "store",
+          "args": [
+            "speaker",
+            "text"
+          ],
+          "description": "儲存一條對話記錄"
+        },
+        {
+          "name": "search",
+          "args": [
+            "query",
+            "top_k"
+          ],
+          "description": "搜尋相關記憶（簡單關鍵字匹配）"
+        },
+        {
+          "name": "get_recent",
+          "args": [
+            "n"
+          ],
+          "description": "取得最近 n 條對話"
+        },
+        {
+          "name": "build_memory_prompt",
+          "args": [
+            "query"
+          ],
+          "description": "建立記憶 prompt，帶入相關記憶和最近對話"
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "MEMORY_FILE",
+        "MAX_MEMORIES",
+        "SEARCH_TOP_K"
+      ]
+    },
+    "analyze_module.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "analyze",
+          "args": [
+            "filepath"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "auto_restart.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "start_agent",
+          "args": [],
+          "description": "啟動立 AI"
+        },
+        {
+          "name": "stop_agent",
+          "args": [],
+          "description": "停止立 AI"
+        },
+        {
+          "name": "schedule_restart",
+          "args": [
+            "reason"
+          ],
+          "description": "延遲重啟（避免短時間多次觸發）"
+        },
+        {
+          "name": "main",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "AgentRestartHandler",
+          "description": "檔案系統事件處理器",
+          "methods": [
+            {
+              "name": "on_modified",
+              "description": ""
+            },
+            {
+              "name": "on_created",
+              "description": ""
+            },
+            {
+              "name": "on_deleted",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "WATCH_DIR",
+        "MAIN_SCRIPT",
+        "PYTHON_CMD",
+        "PAUSE_FLAG",
+        "IGNORE_PATHS",
+        "CORE_FILES",
+        "RESTART_DELAY"
+      ]
+    },
+    "auto_test_engine.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "run_auto_tests",
+          "args": [
+            "project_state",
+            "repair_plan"
+          ],
+          "description": "自動修復實驗系統"
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "autonomous_dev.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "get_auto_dev",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "AutonomousDev",
+          "description": "自主開發引擎",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "build",
+              "description": "完整自主開發流程"
+            },
+            {
+              "name": "get_status",
+              "description": ""
+            },
+            {
+              "name": "get_log",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "OUTPUT_DIR",
+        "REPORT_FILE"
+      ]
+    },
+    "backup_engine.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "validate_ast",
+          "args": [
+            "file_path"
+          ],
+          "description": ""
+        },
+        {
+          "name": "backup_file",
+          "args": [
+            "file_path"
+          ],
+          "description": ""
+        },
+        {
+          "name": "restore_file",
+          "args": [
+            "file_path"
+          ],
+          "description": ""
+        },
+        {
+          "name": "rollback",
+          "args": [
+            "project_state"
+          ],
+          "description": "未來：可擴充整體系統回滾"
+        },
+        {
+          "name": "list_backups",
+          "args": [
+            "file_path"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "BASE_DIR",
+        "VAULT_DIR"
+      ]
+    },
+    "batch_teach.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "main",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "_PKG",
+        "KNOWLEDGE"
+      ]
+    },
+    "batch_teach_debug_fixes.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "main",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "_PKG",
+        "KNOWLEDGE"
+      ]
+    },
+    "batch_teach_software_dev.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "main",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "KNOWLEDGE"
+      ]
+    },
+    "bug_learning_engine.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "load_bug_db",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "save_bug_db",
+          "args": [
+            "data"
+          ],
+          "description": ""
+        },
+        {
+          "name": "learn_bug",
+          "args": [
+            "project_state",
+            "diagnosis",
+            "repair_plan",
+            "result"
+          ],
+          "description": "演化學習核心"
+        },
+        {
+          "name": "suggest_fix",
+          "args": [
+            "project_state"
+          ],
+          "description": "根據過去經驗建議策略"
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "BASE_DIR",
+        "DB_FILE"
+      ]
+    },
+    "chatgpt_bridge.py": {
+      "description": "ChatGPT Bridge (Claude-style control, ChatGPT backend)",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ChatGPTBridgeV2",
+          "description": "",
+          "methods": [
+            {
+              "name": "ask",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "CHATGPT_URL",
+        "EDGE_EXE",
+        "WAIT_PAGE_LOAD",
+        "WAIT_RESPONSE",
+        "CHECK_INTERVAL",
+        "MIN_WAIT",
+        "INPUT_POS"
+      ]
+    },
+    "chatgpt_desktop_bridge.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "get_bridge",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "ChatGPTDesktopBridge",
+          "description": "透過桌面自動化讓立 AI 與 ChatGPT 對話並學習",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "stop_chat",
+              "description": "外部呼叫此方法以停止 chat_loop 對話循環"
+            },
+            {
+              "name": "chat_loop",
+              "description": "與 ChatGPT 進行多輪對話學習"
+            },
+            {
+              "name": "ask",
+              "description": ""
+            },
+            {
+              "name": "learn_correction",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "_PKG_311",
+        "_PKG_311_W32",
+        "_PKG_314",
+        "_PKG_314_W32",
+        "CHATGPT_URL",
+        "WAIT_PAGE_LOAD",
+        "WAIT_RESPONSE",
+        "CHECK_INTERVAL",
+        "MIN_WAIT",
+        "STABLE_NEEDED"
+      ]
+    },
+    "chatgpt_knowledge.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "get_knowledge",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "ChatGPTKnowledge",
+          "description": "ChatGPT 知識庫管理（資料夾 + 個別文字檔）",
+          "methods": [
+            {
+              "name": "classify",
+              "description": ""
+            },
+            {
+              "name": "store",
+              "description": ""
+            },
+            {
+              "name": "search",
+              "description": ""
+            },
+            {
+              "name": "get_stats",
+              "description": ""
+            },
+            {
+              "name": "get_by_category",
+              "description": ""
+            },
+            {
+              "name": "get_all_categories",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "KNOWLEDGE_DIR",
+        "CATEGORIES"
+      ]
+    },
+    "claude_desktop_bridge.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "get_bridge",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "ClaudeDesktopBridge",
+          "description": "透過桌面自動化讓立 AI 與 Claude 對話並學習",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "chat_loop",
+              "description": "與 Claude 進行多輪對話學習"
+            },
+            {
+              "name": "ask",
+              "description": "主流程："
+            },
+            {
+              "name": "learn_correction",
+              "description": "使用者糾正：用正確答案覆蓋記憶庫裡的錯誤回答"
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "_PKG_311",
+        "_PKG_311_W32",
+        "_PKG_314",
+        "_PKG_314_W32",
+        "CLAUDE_TITLE_KW",
+        "EDGE_EXE",
+        "CLAUDE_URL",
+        "WAIT_PAGE_LOAD",
+        "WAIT_RESPONSE",
+        "WAIT_CHECK_INTERVAL"
+      ]
+    },
+    "claude_knowledge.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "get_knowledge",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "ClaudeKnowledge",
+          "description": "Claude 知識庫管理（資料夾 + 個別文字檔）",
+          "methods": [
+            {
+              "name": "classify",
+              "description": "自動分類：根據問題和回答的關鍵字判斷分類"
+            },
+            {
+              "name": "store",
+              "description": "存入一筆知識："
+            },
+            {
+              "name": "search",
+              "description": "搜尋所有分類資料夾內的 .txt 檔"
+            },
+            {
+              "name": "get_stats",
+              "description": "取得知識庫統計（各分類資料夾的檔案數）"
+            },
+            {
+              "name": "get_by_category",
+              "description": "取得某分類最新的 N 筆知識"
+            },
+            {
+              "name": "get_all_categories",
+              "description": "取得所有有資料的分類名稱"
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "KNOWLEDGE_DIR",
+        "CATEGORIES"
+      ]
+    },
+    "clean_claude_bridge_memory.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "clean",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "MEMORY_FILE"
+      ]
+    },
+    "code_editor.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "read_file",
+          "args": [
+            "path"
+          ],
+          "description": ""
+        },
+        {
+          "name": "apply_fix",
+          "args": [
+            "project_state",
+            "repair_plan",
+            "test_result"
+          ],
+          "description": "系統行為層：實際執行修復"
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "code_graph_engine.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "build_code_graph",
+          "args": [
+            "project_state"
+          ],
+          "description": "建立系統認知知識圖"
+        },
+        {
+          "name": "load_code_graph",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "BASE_DIR",
+        "GRAPH_DIR",
+        "GRAPH_FILE"
+      ]
+    },
+    "cognition_state_manager.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "get_persona",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "load_memory",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "save_memory",
+          "args": [
+            "mem"
+          ],
+          "description": ""
+        },
+        {
+          "name": "update_context",
+          "args": [
+            "user",
+            "ai"
+          ],
+          "description": "儲存一輪對話到記憶"
+        },
+        {
+          "name": "get_current_context",
+          "args": [],
+          "description": "取得格式化的對話歷史（供 prompt_engine 使用）"
+        },
+        {
+          "name": "get_recent_summary",
+          "args": [
+            "n"
+          ],
+          "description": "取得最近 n 輪的簡短摘要"
+        },
+        {
+          "name": "clear_context",
+          "args": [],
+          "description": "清除對話歷史（debug 用）"
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "BASE_DIR",
+        "STATE_FILE",
+        "PERSONA_FILE",
+        "MAX_HISTORY"
+      ]
+    },
+    "cognitive_intent_engine.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "CognitiveIntentEngine",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "infer",
+              "description": "判斷輸入是否對應某個已學技能"
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "cognitive_pipeline.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "CognitivePipeline",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "process",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "config.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "verify_key",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "start_agent",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "main",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "REQUIRED_KEY",
+        "SYSTEM_KEY"
+      ]
+    },
+    "desktop_agent.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "AgentWorker",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "run",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "VoiceWorker",
+          "description": "",
+          "methods": [
+            {
+              "name": "run",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "LobsterDesktop",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "send_text",
+              "description": ""
+            },
+            {
+              "name": "voice_input",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "_PKG",
+        "STYLE"
+      ]
+    },
+    "desktop_control.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "get_control",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "DesktopControl",
+          "description": "桌面控制引擎",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "handle",
+              "description": "解析自然語言桌面控制指令"
+            },
+            {
+              "name": "screenshot",
+              "description": ""
+            },
+            {
+              "name": "ocr_screen",
+              "description": ""
+            },
+            {
+              "name": "ocr_find_text",
+              "description": "在畫面上找到指定文字的位置，回傳 (x, y) 或 None"
+            },
+            {
+              "name": "click",
+              "description": ""
+            },
+            {
+              "name": "click_text",
+              "description": "在畫面上找到文字並點擊"
+            },
+            {
+              "name": "move_mouse",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "_PKG",
+        "_HAS_PIL",
+        "SCREENSHOT_DIR"
+      ]
+    },
+    "desktop_pet.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "BubbleLabel",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "show_text",
+              "description": ""
+            },
+            {
+              "name": "paintEvent",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "PetWidget",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "paintEvent",
+              "description": ""
+            },
+            {
+              "name": "mousePressEvent",
+              "description": ""
+            },
+            {
+              "name": "mouseReleaseEvent",
+              "description": ""
+            },
+            {
+              "name": "mouseMoveEvent",
+              "description": ""
+            },
+            {
+              "name": "mouseDoubleClickEvent",
+              "description": ""
+            },
+            {
+              "name": "contextMenuEvent",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "_PKG",
+        "IMG_NAME",
+        "PET_W",
+        "SPEED",
+        "PHRASES",
+        "SLEEP_PHRASES",
+        "STATE_WALK",
+        "STATE_IDLE",
+        "STATE_SLEEP",
+        "STATE_FOLLOW"
+      ]
+    },
+    "desktop_pet_3d.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "VRMLoader",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "Renderer",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "render",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "Bubble",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "show_text",
+              "description": ""
+            },
+            {
+              "name": "paintEvent",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "PetWindow",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "paintEvent",
+              "description": ""
+            },
+            {
+              "name": "mousePressEvent",
+              "description": ""
+            },
+            {
+              "name": "mouseReleaseEvent",
+              "description": ""
+            },
+            {
+              "name": "mouseMoveEvent",
+              "description": ""
+            },
+            {
+              "name": "mouseDoubleClickEvent",
+              "description": ""
+            },
+            {
+              "name": "contextMenuEvent",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "_PKG",
+        "VRM_FILE",
+        "SPEED",
+        "PHRASES",
+        "SLEEP_PHRASES",
+        "STATE_WALK",
+        "STATE_IDLE",
+        "STATE_SLEEP",
+        "STATE_FOLLOW",
+        "STATE_REACT"
+      ]
+    },
+    "dev_brain.py": {
+      "description": "dev_brain.py — 立AI大腦接入層",
+      "functions": [
+        {
+          "name": "setup_dev_tool",
+          "args": [
+            "lobster_core",
+            "bot",
+            "allowed_ids",
+            "output_dir"
+          ],
+          "description": "一次完成接入：設定大腦 + 通知器 + 回傳 tool 實例。"
+        }
+      ],
+      "classes": [
+        {
+          "name": "LobsterBrain",
+          "description": "立AI大腦接入實作。",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "is_available",
+              "description": ""
+            },
+            {
+              "name": "ask",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "dev_templates.py": {
+      "description": "dev_templates.py — 自主開發流程模板",
+      "functions": [
+        {
+          "name": "get_pipeline",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "SpecTemplate",
+          "description": "第一輪 Claude 規格討論的輸出模板。",
+          "methods": [
+            {
+              "name": "from_claude_response",
+              "description": ""
+            },
+            {
+              "name": "to_prompt",
+              "description": "序列化成下一個 Claude 呼叫的 context"
+            }
+          ]
+        },
+        {
+          "name": "GroupTemplate",
+          "description": "分組規劃模板，從 SpecTemplate 的 groups_json 解析",
+          "methods": []
+        },
+        {
+          "name": "PlanTemplate",
+          "description": "整個開發計畫模板，包含所有分組和步驟。",
+          "methods": [
+            {
+              "name": "from_spec_and_steps",
+              "description": ""
+            },
+            {
+              "name": "to_prompt",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "GenRequestTemplate",
+          "description": "向 Claude 請求生成程式碼時的輸入模板。",
+          "methods": [
+            {
+              "name": "to_prompt",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "TestResultTemplate",
+          "description": "測試結果模板，作為修正循環的輸入",
+          "methods": [
+            {
+              "name": "from_test_output",
+              "description": ""
+            },
+            {
+              "name": "to_prompt",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "FixRequestTemplate",
+          "description": "修正循環的輸入模板。",
+          "methods": [
+            {
+              "name": "to_prompt",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "StepResultTemplate",
+          "description": "每個步驟完成後的記錄，作為學習總結和下一步的 context",
+          "methods": [
+            {
+              "name": "to_prompt",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ProjectSummaryTemplate",
+          "description": "整個專案完成後的總結，存入知識庫並推送",
+          "methods": [
+            {
+              "name": "to_prompt",
+              "description": ""
+            },
+            {
+              "name": "to_knowledge_entry",
+              "description": "存入 claude_knowledge 的格式"
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "dev_tool.py": {
+      "description": "dev_tool.py — 通用自主開發外包工具",
+      "functions": [
+        {
+          "name": "set_brain",
+          "args": [
+            "brain"
+          ],
+          "description": "接入AI大腦"
+        },
+        {
+          "name": "get_tool",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "BrainInterface",
+          "description": "AI推論介面預留層。",
+          "methods": [
+            {
+              "name": "ask",
+              "description": ""
+            },
+            {
+              "name": "is_available",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "Notifier",
+          "description": "通知介面預留層",
+          "methods": [
+            {
+              "name": "send",
+              "description": "送出通知"
+            },
+            {
+              "name": "send_stage",
+              "description": "送出階段通知（純文字，無按鈕）"
+            }
+          ]
+        },
+        {
+          "name": "TelegramNotifier",
+          "description": "Telegram 推送實作",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "send",
+              "description": ""
+            },
+            {
+              "name": "send_stage",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "PrintNotifier",
+          "description": "終端機輸出（測試用）",
+          "methods": [
+            {
+              "name": "send",
+              "description": ""
+            },
+            {
+              "name": "send_stage",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "DevState",
+          "description": "開發流程狀態，持久化到檔案",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "load",
+              "description": ""
+            },
+            {
+              "name": "save",
+              "description": ""
+            },
+            {
+              "name": "reset",
+              "description": ""
+            },
+            {
+              "name": "mark_group_done",
+              "description": ""
+            },
+            {
+              "name": "remaining_groups",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "SpecTemplate",
+          "description": "規格討論結果模板",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "context_for_step2",
+              "description": "傳給第二輪的 context（因為開新分頁）"
+            }
+          ]
+        },
+        {
+          "name": "StepTemplate",
+          "description": "步驟執行模板",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "to_gen_prompt",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "TestResultTemplate",
+          "description": "測試結果模板",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "to_fix_prompt",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "WORKSPACE",
+        "BACKUP_DIR",
+        "STATE_FILE",
+        "TEMP_DIR",
+        "PROJECTS_DIR"
+      ]
+    },
+    "diagnose.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "test",
+          "args": [
+            "label",
+            "fn"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "dual_ai_chat.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ClaudeWorker",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "stop",
+              "description": ""
+            },
+            {
+              "name": "run",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ChatGPTWorker",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "stop",
+              "description": ""
+            },
+            {
+              "name": "run",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "DualAIChatWindow",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "_PKG",
+        "STYLE"
+      ]
+    },
+    "encoding_guard.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "run_guard",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "EncodingGuard",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "scan_file",
+              "description": ""
+            },
+            {
+              "name": "scan",
+              "description": ""
+            },
+            {
+              "name": "clean_file",
+              "description": ""
+            },
+            {
+              "name": "clean",
+              "description": ""
+            },
+            {
+              "name": "report",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "BOM"
+      ]
+    },
+    "episodic_memory.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "EpisodicMemory",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "store",
+              "description": ""
+            },
+            {
+              "name": "search_recent",
+              "description": ""
+            },
+            {
+              "name": "search_keyword",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "EPISODIC_DB"
+      ]
+    },
+    "error_detector.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ErrorDetector",
+          "description": "",
+          "methods": [
+            {
+              "name": "detect_file_error",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "_UNSAFE_PREFIXES"
+      ]
+    },
+    "error_memory.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "load_error_memory",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "save_error_memory",
+          "args": [
+            "memory"
+          ],
+          "description": ""
+        },
+        {
+          "name": "record_error",
+          "args": [
+            "project_state",
+            "diagnosis",
+            "repair_plan",
+            "result"
+          ],
+          "description": "記錄完整錯誤經驗"
+        },
+        {
+          "name": "find_similar_error",
+          "args": [
+            "project_state"
+          ],
+          "description": "找類似錯誤（基礎版）"
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "ERROR_PATH"
+      ]
+    },
+    "execution_cognition_engine.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "clean_json",
+          "args": [
+            "text"
+          ],
+          "description": ""
+        },
+        {
+          "name": "save_cognition",
+          "args": [
+            "data"
+          ],
+          "description": ""
+        },
+        {
+          "name": "analyze_trace",
+          "args": [
+            "trace"
+          ],
+          "description": "系統意識流分析"
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "BASE_DIR",
+        "COG_DIR",
+        "COG_FILE"
+      ]
+    },
+    "file_manager.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "get_fm",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "FileManager",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "handle",
+              "description": ""
+            },
+            {
+              "name": "list_dir",
+              "description": ""
+            },
+            {
+              "name": "make_dir",
+              "description": ""
+            },
+            {
+              "name": "delete",
+              "description": ""
+            },
+            {
+              "name": "rename_from_text",
+              "description": ""
+            },
+            {
+              "name": "rename",
+              "description": ""
+            },
+            {
+              "name": "copy_from_text",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "DEFAULT_DIR"
+      ]
+    },
+    "fix_bom.py": {
+      "description": "fix_bom.py - 自動修復所有 BOM 字元錯誤",
+      "functions": [
+        {
+          "name": "fix_bom",
+          "args": [
+            "filepath"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "BOM_FILES"
+      ]
+    },
+    "floating_ball.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "AskWorker",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "run",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "AskDialog",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "show_near",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "MiniOrb",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "set_vis",
+              "description": ""
+            },
+            {
+              "name": "paintEvent",
+              "description": ""
+            },
+            {
+              "name": "enterEvent",
+              "description": ""
+            },
+            {
+              "name": "leaveEvent",
+              "description": ""
+            },
+            {
+              "name": "mousePressEvent",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "FloatingBall",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "paintEvent",
+              "description": ""
+            },
+            {
+              "name": "mousePressEvent",
+              "description": ""
+            },
+            {
+              "name": "mouseMoveEvent",
+              "description": ""
+            },
+            {
+              "name": "mouseReleaseEvent",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "_PKG",
+        "BASE_DIR",
+        "BALL_SIZE",
+        "ORBT_R",
+        "MINI_SIZE",
+        "ACTIONS",
+        "VMAGIC_PATH",
+        "SUB_ACTIONS",
+        "OLLAMA_URL",
+        "OLLAMA_MODEL"
+      ]
+    },
+    "get_chat_id.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "get_id",
+          "args": [
+            "message"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "hello_world.py": {
+      "description": "此程式碼用於印出\"你好世界\"這句訊息.",
+      "functions": [
+        {
+          "name": "main",
+          "args": [],
+          "description": "主要函式,執行主要邏輯並確保程式能獨立運行或作為模組使用."
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "intent_router.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "IntentRouter",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "route",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "_PC_KEYWORDS"
+      ]
+    },
+    "knowledge_store.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "init_db",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "get_store",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "KnowledgeStore",
+          "description": "",
+          "methods": [
+            {
+              "name": "add_text",
+              "description": "新增文字筆記，AI 自動分類"
+            },
+            {
+              "name": "add_image",
+              "description": "上傳圖片，OCR 擷取文字，AI 自動分類"
+            },
+            {
+              "name": "add_video",
+              "description": "上傳影片，擷取關鍵畫面並 OCR"
+            },
+            {
+              "name": "search",
+              "description": "搜尋知識庫"
+            },
+            {
+              "name": "get",
+              "description": ""
+            },
+            {
+              "name": "update",
+              "description": ""
+            },
+            {
+              "name": "delete",
+              "description": ""
+            },
+            {
+              "name": "get_categories",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "BASE_DIR",
+        "DB_PATH",
+        "FILES_DIR",
+        "THUMBS_DIR",
+        "OLLAMA_URL",
+        "OLLAMA_MODEL",
+        "CATEGORIES",
+        "VISION_MODEL"
+      ]
+    },
+    "knowledge_ui.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "index",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_stats",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_categories",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_tags",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_search",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_entry",
+          "args": [
+            "entry_id"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_delete",
+          "args": [
+            "entry_id"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_update",
+          "args": [
+            "entry_id"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_thumb",
+          "args": [
+            "entry_id"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_file",
+          "args": [
+            "entry_id"
+          ],
+          "description": "回傳原始圖片（高畫質）"
+        },
+        {
+          "name": "api_add_text",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_add_image",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_add_video",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_groups",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_create_group",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "_CODE_DB",
+        "_LEARN_DIR",
+        "CODE_CATEGORIES",
+        "PRIORITY_LABELS",
+        "UPLOAD_EXTS",
+        "HTML",
+        "_LEARN_MODELS",
+        "_CHAT_MODELS",
+        "_VISION_MODELS",
+        "TOOLS_DESC"
+      ]
+    },
+    "learning_engine.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "LearningEngine",
+          "description": "",
+          "methods": [
+            {
+              "name": "evaluate",
+              "description": "最基礎學習評估"
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "li_ai_bridge.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "start_api",
+          "args": [
+            "port"
+          ],
+          "description": ""
+        },
+        {
+          "name": "start",
+          "args": [
+            "block"
+          ],
+          "description": "啟動立 AI 橋接。"
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "BRIDGE_CHAT",
+        "MY_NAME",
+        "OTHER_NAME",
+        "OTHER_TAG",
+        "MY_TAG",
+        "POLL_INTERVAL",
+        "CHAT_INTERVAL",
+        "MAX_ROUNDS",
+        "MIN_ROUNDS",
+        "REPLY_MODEL"
+      ]
+    },
+    "liai_api.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "APIHandler",
+          "description": "",
+          "methods": [
+            {
+              "name": "do_POST",
+              "description": ""
+            },
+            {
+              "name": "do_OPTIONS",
+              "description": ""
+            },
+            {
+              "name": "log_message",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "REPLY_MODEL",
+        "PORT"
+      ]
+    },
+    "Lobster_Core.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "boot",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "LobsterCore",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "os",
+              "description": ""
+            },
+            {
+              "name": "reflex_memory",
+              "description": ""
+            },
+            {
+              "name": "episodic",
+              "description": ""
+            },
+            {
+              "name": "prompt_engine",
+              "description": ""
+            },
+            {
+              "name": "learning",
+              "description": ""
+            },
+            {
+              "name": "editor",
+              "description": ""
+            },
+            {
+              "name": "detector",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "CORE"
+      ]
+    },
+    "lobster_workflow.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "save_flow",
+          "args": [
+            "flow_id",
+            "data"
+          ],
+          "description": ""
+        },
+        {
+          "name": "load_flow",
+          "args": [
+            "flow_id"
+          ],
+          "description": ""
+        },
+        {
+          "name": "list_flows",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "get_models",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "ollama_chat",
+          "args": [
+            "model",
+            "prompt",
+            "system"
+          ],
+          "description": ""
+        },
+        {
+          "name": "backup_file",
+          "args": [
+            "filepath"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_list_files",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_read_file",
+          "args": [
+            "filename"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_write_file",
+          "args": [
+            "filename",
+            "body"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_get_config",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_set_config",
+          "args": [
+            "body"
+          ],
+          "description": ""
+        },
+        {
+          "name": "ws_run",
+          "args": [
+            "ws"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_models",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_list_flows",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_save_flow",
+          "args": [
+            "flow_id",
+            "body"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "FlowExecutor",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "send",
+              "description": ""
+            },
+            {
+              "name": "execute",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "_PKG",
+        "LOBSTER_DIR",
+        "BACKUP_DIR",
+        "FLOW_DIR"
+      ]
+    },
+    "local_inference_engine.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "infer",
+          "args": [
+            "prompt",
+            "model",
+            "system",
+            "timeout"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "OLLAMA_URL"
+      ]
+    },
+    "local_model_manager.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "initialize_local_models",
+          "args": [],
+          "description": "確認本地模型服務是否可用"
+        },
+        {
+          "name": "preload",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "OLLAMA_BASE"
+      ]
+    },
+    "local_vector_store.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "get_store",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "LocalVectorStore",
+          "description": "本地輕量向量記憶庫",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "add",
+              "description": "新增一筆文件"
+            },
+            {
+              "name": "search",
+              "description": "搜尋最相似的文件"
+            },
+            {
+              "name": "delete",
+              "description": ""
+            },
+            {
+              "name": "clear_namespace",
+              "description": ""
+            },
+            {
+              "name": "count",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "STORE_DIR",
+        "STORE_FILE"
+      ]
+    },
+    "long_term_memory.py": {
+      "description": "long_term_memory.py - 長期記憶持久化系統",
+      "functions": [
+        {
+          "name": "get_memory",
+          "args": [],
+          "description": "取得全域唯一的 LongTermMemory 實例（避免重複載入 JSON）"
+        }
+      ],
+      "classes": [
+        {
+          "name": "LongTermMemory",
+          "description": "長期記憶系統",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "store",
+              "description": "儲存一筆記憶，回傳記憶 ID（只允許手動來源）"
+            },
+            {
+              "name": "search",
+              "description": "關鍵字搜尋記憶，回傳最相關的 top_k 筆"
+            },
+            {
+              "name": "get_by_tag",
+              "description": "取得某標籤下所有記憶"
+            },
+            {
+              "name": "forget",
+              "description": "刪除指定記憶"
+            },
+            {
+              "name": "prune",
+              "description": "清理低重要性、少存取的舊記憶，保持在 max_memories 以內"
+            },
+            {
+              "name": "summary",
+              "description": "回傳記憶庫概況"
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "MEMORY_DIR",
+        "MEMORY_FILE"
+      ]
+    },
+    "master_run.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "run",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "memory_curator.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "maybe_learn",
+          "args": [
+            "user_input",
+            "ai_response"
+          ],
+          "description": "判斷是否重要，重要則自動存入長期記憶"
+        },
+        {
+          "name": "learn_explicitly",
+          "args": [
+            "content",
+            "tags",
+            "importance"
+          ],
+          "description": "手動強制存入（給桌面 UI 的「＋新增」按鈕用）"
+        },
+        {
+          "name": "forget",
+          "args": [
+            "memory_id"
+          ],
+          "description": "刪除指定記憶（給桌面 UI 的刪除按鈕用）"
+        },
+        {
+          "name": "get_all",
+          "args": [
+            "query",
+            "top_k"
+          ],
+          "description": "取得所有記憶（給桌面 UI 顯示用）"
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "USER_IMPORTANT_KEYWORDS",
+        "AI_CONTENT_KEYWORDS",
+        "SKIP_PATTERNS"
+      ]
+    },
+    "memory_engine.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "load_task_memory",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "save_task_memory",
+          "args": [
+            "memory"
+          ],
+          "description": ""
+        },
+        {
+          "name": "record_task",
+          "args": [
+            "project_state",
+            "decision",
+            "result"
+          ],
+          "description": "記錄 AI 行為經驗"
+        },
+        {
+          "name": "summarize_memory",
+          "args": [],
+          "description": "AI 技能演化"
+        },
+        {
+          "name": "save_skill",
+          "args": [
+            "skill"
+          ],
+          "description": ""
+        },
+        {
+          "name": "load_skills",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "BASE_DIR",
+        "MEMORY_DIR",
+        "TASK_FILE",
+        "SKILL_FILE"
+      ]
+    },
+    "model_selector.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "get_selector",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "ModelSelector",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "detect_task_type",
+              "description": "偵測任務類型"
+            },
+            {
+              "name": "select",
+              "description": "強制使用 gemma4:latest"
+            },
+            {
+              "name": "force_switch",
+              "description": "手動強制切換模型（不受大小限制）"
+            },
+            {
+              "name": "current",
+              "description": ""
+            },
+            {
+              "name": "status",
+              "description": "回傳目前模型狀態"
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "MODEL_PROFILES",
+        "MIN_MODEL_SIZE",
+        "TASK_KEYWORDS"
+      ]
+    },
+    "ollama_guard.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "is_online",
+          "args": [
+            "force"
+          ],
+          "description": ""
+        },
+        {
+          "name": "safe_infer",
+          "args": [
+            "prompt",
+            "model",
+            "system",
+            "timeout",
+            "max_retries",
+            "fallback",
+            "discuss"
+          ],
+          "description": "主推論函式。"
+        },
+        {
+          "name": "get_available_models",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "get_nodes_status",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "start_background_monitor",
+          "args": [
+            "interval"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "LOCAL_BASE",
+        "REMOTE_BASE",
+        "REMOTE_IP",
+        "LOCAL_MODEL",
+        "REMOTE_MODEL",
+        "NODES",
+        "CHAT_MODELS",
+        "DISCUSS_MAX_ROUNDS",
+        "DISCUSS_CONSENSUS_SIM"
+      ]
+    },
+    "organ_skill_system.py": {
+      "description": "organ_skill_system.py — 器官技能描述系統",
+      "functions": [
+        {
+          "name": "generate_skill_json",
+          "args": [
+            "organ_path"
+          ],
+          "description": "分析 .py 器官，產生技能描述 dict。"
+        },
+        {
+          "name": "scan_and_generate",
+          "args": [
+            "assembled_dir",
+            "skills_dir",
+            "use_ai"
+          ],
+          "description": "掃描 assembled/ 資料夾，為每個 .py 產生對應的 .json 技能描述。"
+        },
+        {
+          "name": "select_organ",
+          "args": [
+            "query",
+            "registry"
+          ],
+          "description": "根據使用者需求，選擇最合適的器官。"
+        },
+        {
+          "name": "execute_organ",
+          "args": [
+            "skill",
+            "args",
+            "timeout"
+          ],
+          "description": "執行器官，回傳 {success, output, error}。"
+        },
+        {
+          "name": "get_registry",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "refresh_registry",
+          "args": [],
+          "description": "重新掃描並載入。"
+        }
+      ],
+      "classes": [
+        {
+          "name": "OrganRegistry",
+          "description": "載入並索引所有器官技能描述。",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "reload",
+              "description": "重新載入所有技能描述。"
+            },
+            {
+              "name": "all",
+              "description": ""
+            },
+            {
+              "name": "find_by_name",
+              "description": ""
+            },
+            {
+              "name": "find_by_keyword",
+              "description": ""
+            },
+            {
+              "name": "summary",
+              "description": "給立AI 看的技能清單摘要。"
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "ASSEMBLED_DIR",
+        "SKILLS_DIR"
+      ]
+    },
+    "os_controller.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "OSController",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "safe_run",
+              "description": ""
+            },
+            {
+              "name": "read_file",
+              "description": ""
+            },
+            {
+              "name": "write_file",
+              "description": ""
+            },
+            {
+              "name": "list_dir",
+              "description": ""
+            },
+            {
+              "name": "open_folder",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "pc_api.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "mouse_click",
+          "args": [
+            "req"
+          ],
+          "description": ""
+        },
+        {
+          "name": "mouse_move",
+          "args": [
+            "req"
+          ],
+          "description": ""
+        },
+        {
+          "name": "mouse_scroll",
+          "args": [
+            "req"
+          ],
+          "description": ""
+        },
+        {
+          "name": "mouse_position",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "keyboard_type",
+          "args": [
+            "req"
+          ],
+          "description": ""
+        },
+        {
+          "name": "keyboard_hotkey",
+          "args": [
+            "req"
+          ],
+          "description": ""
+        },
+        {
+          "name": "keyboard_press",
+          "args": [
+            "key"
+          ],
+          "description": ""
+        },
+        {
+          "name": "screen_capture",
+          "args": [
+            "scale"
+          ],
+          "description": "截圖並回傳 base64 圖片"
+        },
+        {
+          "name": "screen_size",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "screen_ask",
+          "args": [
+            "req"
+          ],
+          "description": "截圖後讓 llava:7b 回答問題"
+        },
+        {
+          "name": "system_run",
+          "args": [
+            "req"
+          ],
+          "description": "執行系統指令"
+        },
+        {
+          "name": "system_open",
+          "args": [
+            "req"
+          ],
+          "description": "開啟檔案或資料夾"
+        },
+        {
+          "name": "get_clipboard",
+          "args": [],
+          "description": "讀取剪貼簿"
+        },
+        {
+          "name": "set_clipboard",
+          "args": [
+            "text"
+          ],
+          "description": "寫入剪貼簿"
+        },
+        {
+          "name": "root",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "ClickRequest",
+          "description": "",
+          "methods": []
+        },
+        {
+          "name": "TypeRequest",
+          "description": "",
+          "methods": []
+        },
+        {
+          "name": "HotkeyRequest",
+          "description": "",
+          "methods": []
+        },
+        {
+          "name": "MoveRequest",
+          "description": "",
+          "methods": []
+        },
+        {
+          "name": "ScrollRequest",
+          "description": "",
+          "methods": []
+        },
+        {
+          "name": "RunRequest",
+          "description": "",
+          "methods": []
+        },
+        {
+          "name": "OpenRequest",
+          "description": "",
+          "methods": []
+        },
+        {
+          "name": "VisionRequest",
+          "description": "",
+          "methods": []
+        }
+      ],
+      "constants": []
+    },
+    "pc_api_client.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "click",
+          "args": [
+            "x",
+            "y",
+            "button",
+            "clicks"
+          ],
+          "description": ""
+        },
+        {
+          "name": "move",
+          "args": [
+            "x",
+            "y"
+          ],
+          "description": ""
+        },
+        {
+          "name": "scroll",
+          "args": [
+            "x",
+            "y",
+            "amount"
+          ],
+          "description": ""
+        },
+        {
+          "name": "get_mouse_position",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "type_text",
+          "args": [
+            "text"
+          ],
+          "description": ""
+        },
+        {
+          "name": "hotkey",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "capture_screen",
+          "args": [
+            "scale"
+          ],
+          "description": ""
+        },
+        {
+          "name": "ask_screen",
+          "args": [
+            "question"
+          ],
+          "description": ""
+        },
+        {
+          "name": "get_screen_size",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "run_command",
+          "args": [
+            "command",
+            "wait"
+          ],
+          "description": ""
+        },
+        {
+          "name": "open_file",
+          "args": [
+            "path"
+          ],
+          "description": ""
+        },
+        {
+          "name": "get_clipboard",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "set_clipboard",
+          "args": [
+            "text"
+          ],
+          "description": ""
+        },
+        {
+          "name": "is_available",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "smart_execute",
+          "args": [
+            "text"
+          ],
+          "description": "用自然語言指令控制電腦。"
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "PC_API_BASE",
+        "OLLAMA_BASE",
+        "TIMEOUT",
+        "_INTENT_PROMPT"
+      ]
+    },
+    "phase_runner.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "take_screenshot",
+          "args": [
+            "label"
+          ],
+          "description": "截圖並存到固定路徑，回傳檔案路徑"
+        },
+        {
+          "name": "ai_judge_screenshot",
+          "args": [
+            "fpath",
+            "question"
+          ],
+          "description": "讓立AI讀取截圖並判斷畫面狀態。"
+        },
+        {
+          "name": "run_phases_from_ui",
+          "args": [
+            "ui_ref",
+            "phases"
+          ],
+          "description": "desktop_agent.py 呼叫這個函式即可啟動 PhaseRunner。"
+        }
+      ],
+      "classes": [
+        {
+          "name": "PhaseRunner",
+          "description": "執行多個階段，每個階段跑一段時間後自動截圖，",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": "ui_ref    : LobsterDesktop 實例（有 _log / _agent_msg_no_ask 可用）"
+            },
+            {
+              "name": "add_phase",
+              "description": "新增一個階段。"
+            },
+            {
+              "name": "start",
+              "description": "在背景執行緒啟動所有階段"
+            },
+            {
+              "name": "stop",
+              "description": "請求停止（當前階段跑完才停）"
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "SCREENSHOT_DIR"
+      ]
+    },
+    "problem_detector.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "clean_json",
+          "args": [
+            "text"
+          ],
+          "description": ""
+        },
+        {
+          "name": "detect_problem",
+          "args": [
+            "project_state",
+            "error_msg"
+          ],
+          "description": "系統級診斷引擎"
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "project_scanner.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "file_hash",
+          "args": [
+            "path"
+          ],
+          "description": ""
+        },
+        {
+          "name": "load_hashes",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "save_hashes",
+          "args": [
+            "hashes"
+          ],
+          "description": ""
+        },
+        {
+          "name": "scan_project",
+          "args": [
+            "path"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "HASH_FILE"
+      ]
+    },
+    "prompt_engine.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "PromptEngine",
+          "description": "",
+          "methods": [
+            {
+              "name": "build_prompt",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "reasoning_supervisor.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ReasoningSupervisor",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "approve_repair",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "reflex_engine.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ReflexEngine",
+          "description": "反射引擎：處理常見問句，不需要經過 LLM，速度極快",
+          "methods": [
+            {
+              "name": "analyze",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "reflex_memory.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "ReflexMemory",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "get",
+              "description": ""
+            },
+            {
+              "name": "learn",
+              "description": ""
+            },
+            {
+              "name": "punish",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "REFLEX_FILE"
+      ]
+    },
+    "repair_engine.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "RepairEngine",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "repair",
+              "description": "修復入口：先備份，修復失敗自動還原。"
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "repair_loop_controller.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "RepairLoopController",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "run",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "repair_memory.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "RepairMemory",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "record",
+              "description": ""
+            },
+            {
+              "name": "get_strategy_priority",
+              "description": ""
+            },
+            {
+              "name": "classify_failure",
+              "description": ""
+            },
+            {
+              "name": "get_quality_trend",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "repair_planner.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "clean_json_string",
+          "args": [
+            "text"
+          ],
+          "description": ""
+        },
+        {
+          "name": "plan_repair",
+          "args": [
+            "project_state"
+          ],
+          "description": "AI 修復策略決策器"
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "OLLAMA_URL",
+        "MODEL"
+      ]
+    },
+    "repair_strategy_engine.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "get_strategy_engine",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "RepairStrategyEngine",
+          "description": "動態修復策略選擇器",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "get_strategies",
+              "description": "取得針對此錯誤類型的策略清單（已按成功率排序）"
+            },
+            {
+              "name": "pick_best",
+              "description": "取得最佳策略（第一個）"
+            },
+            {
+              "name": "blacklist",
+              "description": "將某策略加入黑名單（此次修復循環不再使用）"
+            },
+            {
+              "name": "clear_blacklist",
+              "description": "清除某檔案的黑名單（修復成功後呼叫）"
+            },
+            {
+              "name": "record_result",
+              "description": "記錄策略執行結果，更新 RepairMemory"
+            },
+            {
+              "name": "classify_error_difficulty",
+              "description": "評估此錯誤的修復難度"
+            },
+            {
+              "name": "get_all_strategies",
+              "description": "回傳所有內建策略（供除錯用）"
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "BUILTIN_STRATEGIES"
+      ]
+    },
+    "repair_trigger.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "RepairTrigger",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "trigger",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "repair_validator.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "RepairValidator",
+          "description": "",
+          "methods": [
+            {
+              "name": "validate",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "safe_editor.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "validate_ast",
+          "args": [
+            "code"
+          ],
+          "description": ""
+        },
+        {
+          "name": "atomic_write",
+          "args": [
+            "file_path",
+            "content",
+            "encoding"
+          ],
+          "description": ""
+        },
+        {
+          "name": "backup_file",
+          "args": [
+            "file_path"
+          ],
+          "description": ""
+        },
+        {
+          "name": "safe_apply_patch",
+          "args": [
+            "file_path",
+            "new_code",
+            "risk"
+          ],
+          "description": "AI 修復免疫層"
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "BASE_DIR",
+        "BACKUP_DIR"
+      ]
+    },
+    "screenshot_copy_strategy.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "take_screenshot",
+          "args": [
+            "save"
+          ],
+          "description": ""
+        },
+        {
+          "name": "delete_screenshots",
+          "args": [
+            "paths"
+          ],
+          "description": ""
+        },
+        {
+          "name": "confirm_screen_stable",
+          "args": [
+            "count",
+            "interval"
+          ],
+          "description": "每隔 interval 秒截圖一次，共 count 次。"
+        },
+        {
+          "name": "has_artifact",
+          "args": [
+            "img_before",
+            "img_after"
+          ],
+          "description": "比較兩張截圖的右側區域差異，判斷 artifact 側邊欄是否出現。"
+        },
+        {
+          "name": "is_sidebar_expanded",
+          "args": [
+            "img",
+            "img_after"
+          ],
+          "description": "保留舊名稱相容"
+        },
+        {
+          "name": "copy_with_ctrl_a",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "copy_with_mouse_position",
+          "args": [
+            "img"
+          ],
+          "description": ""
+        },
+        {
+          "name": "smart_copy_after_model_selected",
+          "args": [
+            "save_screenshot"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "SCREENSHOT_SAVE_DIR",
+        "CONTENT_CLICK_X_RATIO",
+        "CONTENT_CLICK_Y_RATIO",
+        "ARTIFACT_DETECT_X_START",
+        "ARTIFACT_COLOR_LOWER",
+        "ARTIFACT_COLOR_UPPER",
+        "ARTIFACT_DARK_RATIO_THRESH",
+        "SCREENSHOT_CONFIRM_COUNT",
+        "SCREENSHOT_CONFIRM_INTERVAL",
+        "SCREENSHOT_PRE_DELAY"
+      ]
+    },
+    "self_dev_engine.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "get_engine",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "SelfDevEngine",
+          "description": "自主開發引擎（逐步確認版）",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "handle",
+              "description": ""
+            },
+            {
+              "name": "confirm",
+              "description": ""
+            },
+            {
+              "name": "cancel",
+              "description": ""
+            },
+            {
+              "name": "has_pending",
+              "description": ""
+            },
+            {
+              "name": "restore",
+              "description": ""
+            },
+            {
+              "name": "get_history",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "WORKSPACE",
+        "PROJECTS_DIR",
+        "BACKUP_DIR",
+        "REPORT_FILE",
+        "CORE_FILES"
+      ]
+    },
+    "semantic_judge.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "judge_semantic",
+          "args": [
+            "project_state"
+          ],
+          "description": "語意判斷中樞"
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "skill_learning_engine.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "SkillLearningEngine",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "learn",
+              "description": ""
+            },
+            {
+              "name": "match",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "syntax_classifier.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "SyntaxClassifier",
+          "description": "",
+          "methods": [
+            {
+              "name": "classify",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "syntax_rewriter.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "SyntaxRewriter",
+          "description": "",
+          "methods": [
+            {
+              "name": "fix_missing_colon",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "system_health_guard.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "run_health_guard",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "SystemHealthGuard",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "check_bom",
+              "description": ""
+            },
+            {
+              "name": "check_parse",
+              "description": ""
+            },
+            {
+              "name": "check_empty",
+              "description": ""
+            },
+            {
+              "name": "scan",
+              "description": ""
+            },
+            {
+              "name": "clean_bom",
+              "description": ""
+            },
+            {
+              "name": "generate_report",
+              "description": ""
+            },
+            {
+              "name": "run",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "BOM"
+      ]
+    },
+    "task_capability_registry.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "TaskCapabilityRegistry",
+          "description": "AI 已學會的任務技能庫",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "open_ai_agent_folder",
+              "description": ""
+            },
+            {
+              "name": "run_tests",
+              "description": ""
+            },
+            {
+              "name": "list_workspace",
+              "description": ""
+            },
+            {
+              "name": "execute",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "task_scheduler.py": {
+      "description": "task_scheduler.py - 多模組協作任務排程系統",
+      "functions": [
+        {
+          "name": "create_auto_repair_task",
+          "args": [
+            "target_file"
+          ],
+          "description": "建立「自動掃描並修復專案」任務"
+        },
+        {
+          "name": "create_code_review_task",
+          "args": [
+            "file_path"
+          ],
+          "description": "建立「程式碼審查」任務"
+        }
+      ],
+      "classes": [
+        {
+          "name": "TaskStatus",
+          "description": "",
+          "methods": []
+        },
+        {
+          "name": "Step",
+          "description": "",
+          "methods": []
+        },
+        {
+          "name": "Task",
+          "description": "",
+          "methods": [
+            {
+              "name": "progress",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ModuleRunner",
+          "description": "嘗試呼叫對應模組執行步驟，找不到模組就用 Lobster_Core 代勞",
+          "methods": [
+            {
+              "name": "register",
+              "description": ""
+            },
+            {
+              "name": "run",
+              "description": "context 是任務共享狀態，各步驟可以讀取前步驟的結果。"
+            }
+          ]
+        },
+        {
+          "name": "TaskScheduler",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "submit",
+              "description": "加入任務佇列，回傳任務 ID"
+            },
+            {
+              "name": "cancel",
+              "description": ""
+            },
+            {
+              "name": "pause",
+              "description": ""
+            },
+            {
+              "name": "resume",
+              "description": ""
+            },
+            {
+              "name": "status",
+              "description": ""
+            },
+            {
+              "name": "list_tasks",
+              "description": ""
+            },
+            {
+              "name": "run_all",
+              "description": "執行佇列中所有任務"
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "teach_li.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "main",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "KNOWLEDGE"
+      ]
+    },
+    "telegram_bot.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "cmd_start",
+          "args": [
+            "message"
+          ],
+          "description": ""
+        },
+        {
+          "name": "cmd_help",
+          "args": [
+            "message"
+          ],
+          "description": ""
+        },
+        {
+          "name": "cmd_id",
+          "args": [
+            "message"
+          ],
+          "description": ""
+        },
+        {
+          "name": "cmd_status",
+          "args": [
+            "message"
+          ],
+          "description": ""
+        },
+        {
+          "name": "handle_message",
+          "args": [
+            "message"
+          ],
+          "description": ""
+        },
+        {
+          "name": "push",
+          "args": [
+            "message_text"
+          ],
+          "description": "從任何地方主動推送訊息到手機"
+        },
+        {
+          "name": "start_bot",
+          "args": [
+            "background"
+          ],
+          "description": "啟動 Bot（可背景執行，收到訊息才啟動 AI 核心）"
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "_DEFAULT_MODE",
+        "BRIDGE_CHAT"
+      ]
+    },
+    "terminal_editor.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "TerminalEditor",
+          "description": "",
+          "methods": [
+            {
+              "name": "open_file",
+              "description": ""
+            },
+            {
+              "name": "write_file",
+              "description": ""
+            },
+            {
+              "name": "replace_in_file",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": []
+    },
+    "terminal_engine.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "get_terminal",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "TerminalEngine",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "handle",
+              "description": "判斷請求是否為終端指令並執行"
+            },
+            {
+              "name": "confirm",
+              "description": "使用者確認後執行危險指令"
+            },
+            {
+              "name": "cancel",
+              "description": "取消待確認指令"
+            },
+            {
+              "name": "has_pending",
+              "description": ""
+            },
+            {
+              "name": "get_history",
+              "description": "取得指令歷史"
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "DANGEROUS_PATTERNS",
+        "SAFE_PREFIXES"
+      ]
+    },
+    "test_bridge.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "sep",
+          "args": [
+            "title"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "_PKG",
+        "PASS",
+        "FAIL",
+        "WARN"
+      ]
+    },
+    "test_desktop_control.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "test",
+          "args": [
+            "name",
+            "fn"
+          ],
+          "description": ""
+        },
+        {
+          "name": "do_screenshot",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "do_ocr",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "list_wins",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "get_active",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "test_module",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "vision_engine.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "capture_screen",
+          "args": [
+            "save",
+            "scale"
+          ],
+          "description": "截取目前螢幕，回傳 numpy array。"
+        },
+        {
+          "name": "ask_vision",
+          "args": [
+            "img_input",
+            "question",
+            "save"
+          ],
+          "description": "傳入圖片 + 問題，讓 llava:7b 回答。"
+        },
+        {
+          "name": "describe_screen",
+          "args": [],
+          "description": "截圖並描述目前畫面在做什麼"
+        },
+        {
+          "name": "find_element",
+          "args": [
+            "element_desc"
+          ],
+          "description": "截圖並找出指定 UI 元素的位置或狀態"
+        },
+        {
+          "name": "read_screen_text",
+          "args": [],
+          "description": "截圖並讀取畫面上的所有文字"
+        },
+        {
+          "name": "understand_error",
+          "args": [],
+          "description": "截圖並解讀畫面上的錯誤訊息"
+        },
+        {
+          "name": "ask_screen",
+          "args": [
+            "question"
+          ],
+          "description": "截圖並用自訂問題詢問畫面"
+        },
+        {
+          "name": "see",
+          "args": [
+            "question"
+          ],
+          "description": "最簡單的呼叫方式："
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "OLLAMA_BASE",
+        "VISION_MODEL",
+        "SCREENSHOT_DIR",
+        "TIMEOUT"
+      ]
+    },
+    "vision_tool.py": {
+      "description": "vision_tool.py — 視覺辨識系統外包開發工具",
+      "functions": [
+        {
+          "name": "set_brain",
+          "args": [
+            "brain"
+          ],
+          "description": "接入AI大腦"
+        },
+        {
+          "name": "get_tool",
+          "args": [],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "BrainInterface",
+          "description": "AI推論介面預留層。",
+          "methods": [
+            {
+              "name": "ask",
+              "description": "向AI提問，回傳回答。"
+            },
+            {
+              "name": "is_available",
+              "description": "確認AI是否可用"
+            }
+          ]
+        },
+        {
+          "name": "DevState",
+          "description": "開發流程狀態，持久化到檔案",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "load",
+              "description": ""
+            },
+            {
+              "name": "save",
+              "description": ""
+            },
+            {
+              "name": "reset",
+              "description": ""
+            },
+            {
+              "name": "mark_group_done",
+              "description": ""
+            },
+            {
+              "name": "remaining_groups",
+              "description": "回傳尚未完成的分組"
+            }
+          ]
+        },
+        {
+          "name": "SpecTemplate",
+          "description": "規格討論模板",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "to_next_prompt",
+              "description": "傳給第二輪的 context"
+            }
+          ]
+        },
+        {
+          "name": "StepTemplate",
+          "description": "步驟執行模板",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "to_gen_prompt",
+              "description": "生成程式碼的完整 prompt"
+            }
+          ]
+        },
+        {
+          "name": "TestResultTemplate",
+          "description": "測試結果模板",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "to_fix_prompt",
+              "description": "修正循環的 prompt"
+            }
+          ]
+        },
+        {
+          "name": "VisionDevTool",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "start",
+              "description": "開始開發：向AI討論規格，取得分組。"
+            },
+            {
+              "name": "plan_module",
+              "description": "使用者選了某個模組後，針對這個模組向AI規劃具體步驟。"
+            },
+            {
+              "name": "execute_step",
+              "description": "執行某個步驟："
+            },
+            {
+              "name": "fix_step",
+              "description": "修正循環：根據錯誤和建議重新生成。"
+            },
+            {
+              "name": "complete_module",
+              "description": "標記模組完成，回傳剩餘模組清單"
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "WORKSPACE",
+        "OUTPUT_DIR",
+        "BACKUP_DIR",
+        "STATE_FILE"
+      ]
+    },
+    "vrm_viewer.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "load_model",
+          "args": [
+            "vrm_path"
+          ],
+          "description": ""
+        },
+        {
+          "name": "build_pyrender_scene",
+          "args": [
+            "tm_scene"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [
+        {
+          "name": "VRMRenderer",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "set_camera",
+              "description": ""
+            },
+            {
+              "name": "render",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "Animator",
+          "description": "管理模型動畫，輸出 (translate_y, rotate_z, head_nod) 給渲染器用",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "update",
+              "description": ""
+            },
+            {
+              "name": "get_transform",
+              "description": "回傳 (ty, rz, rx_head, scale) 代表位移/旋轉量"
+            },
+            {
+              "name": "action_name",
+              "description": ""
+            }
+          ]
+        },
+        {
+          "name": "ViewerWindow",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "_PKG",
+        "VRM_FILE"
+      ]
+    },
+    "web_dashboard.py": {
+      "description": "web_dashboard.py - 網頁控制介面",
+      "functions": [
+        {
+          "name": "index",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_state",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_logs",
+          "args": [],
+          "description": "讀取最新日誌（最後 100 行）"
+        },
+        {
+          "name": "api_memory",
+          "args": [],
+          "description": "搜尋或列出記憶"
+        },
+        {
+          "name": "api_command",
+          "args": [],
+          "description": "接收前端指令，加入佇列並嘗試即時處理"
+        },
+        {
+          "name": "run_dashboard",
+          "args": [
+            "host",
+            "port",
+            "debug"
+          ],
+          "description": "啟動 Dashboard（可從 core_boot.py 呼叫）"
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "DASHBOARD_HTML"
+      ]
+    },
+    "webhook_server.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "from_yuanyuan",
+          "args": [
+            "request"
+          ],
+          "description": "圓圓直接 POST 過來，不走 Telegram"
+        },
+        {
+          "name": "chat_stop",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "chat_resume",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "webhook",
+          "args": [
+            "request"
+          ],
+          "description": ""
+        },
+        {
+          "name": "health",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "set_webhook",
+          "args": [
+            "ngrok_url"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "BRIDGE_CHAT",
+        "MY_NAME",
+        "OTHER_NAME",
+        "OTHER_TAG",
+        "MY_TAG",
+        "REPLY_MODEL"
+      ]
+    },
+    "workshop_ui.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "on_join",
+          "args": [
+            "data"
+          ],
+          "description": ""
+        },
+        {
+          "name": "index",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_review_callback",
+          "args": [],
+          "description": "審查Agent 審查完後回傳結果到這裡，自動更新工坊任務。"
+        },
+        {
+          "name": "api_models",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_list_projects",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_create_project",
+          "args": [],
+          "description": ""
+        },
+        {
+          "name": "api_get_project",
+          "args": [
+            "pid"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_delete_project",
+          "args": [
+            "pid"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_plan",
+          "args": [
+            "pid"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_run_project",
+          "args": [
+            "pid"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_resume_project",
+          "args": [
+            "pid"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_pause_project",
+          "args": [
+            "pid"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_rerun_project",
+          "args": [
+            "pid"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_approve_task",
+          "args": [
+            "tid"
+          ],
+          "description": ""
+        },
+        {
+          "name": "api_skip_task",
+          "args": [
+            "tid"
+          ],
+          "description": ""
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "WORKSHOP_DIR",
+        "PROJECTS_DIR",
+        "DB_PATH",
+        "OLLAMA_URL",
+        "PLANNER_MODELS",
+        "CODER_MODELS",
+        "REVIEWER_MODELS",
+        "REVIEW_ENABLED",
+        "REVIEWER_MODE",
+        "REVIEWER_URL"
+      ]
+    },
+    "youtube_bridge.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "extract_youtube_url",
+          "args": [
+            "text"
+          ],
+          "description": "從文字中擷取 YouTube URL，找不到回傳 None"
+        },
+        {
+          "name": "handle_youtube_input",
+          "args": [
+            "text",
+            "infer_fn"
+          ],
+          "description": "主入口："
+        }
+      ],
+      "classes": [],
+      "constants": [
+        "_YT_PATTERN"
+      ]
+    },
+    "youtube_handler.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "get_transcript",
+          "args": [
+            "url"
+          ],
+          "description": "從 YouTube URL 抓取字幕，回傳純文字。"
+        },
+        {
+          "name": "get_video_info",
+          "args": [
+            "url"
+          ],
+          "description": "取得影片基本資訊（標題、時長）"
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "youtube_telegram.py": {
+      "description": "",
+      "functions": [
+        {
+          "name": "handle_youtube_msg",
+          "args": [
+            "bot",
+            "message",
+            "lobster"
+          ],
+          "description": "在 Telegram Bot 的訊息處理器裡呼叫此函式。"
+        },
+        {
+          "name": "is_youtube_message",
+          "args": [
+            "text"
+          ],
+          "description": "快速判斷訊息是否含 YouTube 連結（不需要完整處理時使用）"
+        }
+      ],
+      "classes": [],
+      "constants": []
+    },
+    "yuanyuan_bubble.py": {
+      "description": "",
+      "functions": [],
+      "classes": [
+        {
+          "name": "BubbleWindow",
+          "description": "",
+          "methods": [
+            {
+              "name": "__init__",
+              "description": ""
+            },
+            {
+              "name": "paintEvent",
+              "description": "畫泡泡尾巴"
+            }
+          ]
+        }
+      ],
+      "constants": [
+        "_PKG",
+        "PHRASES",
+        "INTERVAL_MS"
+      ]
+    }
+  },
+  "assembled_organs": [
+    "器官技能描述系統.py",
+    "視覺辨識系統.py"
+  ],
+  "skill_descriptions": [
+    {
+      "name": "器官技能描述系統",
+      "description": "做一個器官技能描述系統：",
+      "filename": "器官技能描述系統.py"
+    },
+    {
+      "name": "視覺辨識系統",
+      "description": "我希望他能夠看到我電腦上的畫面",
+      "filename": "視覺辨識系統.py"
+    }
+  ]
+}

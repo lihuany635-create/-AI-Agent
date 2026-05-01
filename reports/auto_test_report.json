@@ -1,0 +1,23 @@
+{
+    "generated_at": "2026-04-27T13:06:17.234572Z",
+    "test_cases": [
+        {
+            "name": "test_case_1",
+            "status": "passed",
+            "execution_time": 0.123,
+            "error_message": null
+        },
+        {
+            "name": "test_case_2",
+            "status": "failed",
+            "execution_time": 0.456,
+            "error_message": "AssertionError: expected 1 but got 0"
+        },
+        {
+            "name": "test_case_3",
+            "status": "skipped",
+            "execution_time": 0.0,
+            "error_message": null
+        }
+    ]
+}

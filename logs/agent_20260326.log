@@ -1,0 +1,581 @@
+[2026-03-26 08:58:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 08:58:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 08:58:12] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 09:01:39] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:01:39] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:01:39] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 09:03:34] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:03:34] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:03:34] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 09:04:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:04:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:04:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 09:05:00] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:421 - Telegram Bot 啟動中...
+[2026-03-26 09:05:01] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:412 - [Bot] 推送成功 → 8443859030
+[2026-03-26 09:05:02] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:328 - [Bot] 收到訊息：你好
+[2026-03-26 09:05:02] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:328 - [Bot] 收到訊息：你好
+[2026-03-26 09:05:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:05:03] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:50 - 首次收到訊息，正在啟動 AI 核心...
+[2026-03-26 09:05:04] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:05:04] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 09:05:05] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:75 - Ollama 已在線
+[2026-03-26 09:05:05] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:61 - AI 核心載入完成
+[2026-03-26 09:05:05] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：你好
+[2026-03-26 09:10:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:10:18] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:10:18] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 09:11:46] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:11:46] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:11:46] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 09:12:45] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:433 - Telegram Bot 啟動中...
+[2026-03-26 09:12:46] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:424 - [Bot] 推送成功 → 8443859030
+[2026-03-26 09:12:47] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:328 - [Bot] 收到訊息：你好
+[2026-03-26 09:12:47] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:328 - [Bot] 收到訊息：你好
+[2026-03-26 09:12:48] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:12:48] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:50 - 首次收到訊息，正在啟動 AI 核心...
+[2026-03-26 09:12:50] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:75 - Ollama 已在線
+[2026-03-26 09:12:50] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:61 - AI 核心載入完成
+[2026-03-26 09:12:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:122 - [process_input] 收到：你好
+[2026-03-26 09:15:21] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:15:21] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:15:21] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 09:20:52] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:20:52] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:20:52] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 09:21:05] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：python telegram_bot.py
+[2026-03-26 09:21:05] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python telegram_bot.py
+[2026-03-26 09:21:06] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:433 - Telegram Bot 啟動中...
+[2026-03-26 09:21:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:155 - [process_input] 終端指令執行：python telegram_bot.py
+[2026-03-26 09:21:48] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:21:49] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:21:49] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 09:22:01] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：python telegram_bot.py
+[2026-03-26 09:22:01] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python telegram_bot.py
+[2026-03-26 09:22:02] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:436 - Telegram Bot 啟動中...
+[2026-03-26 09:22:03] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:427 - [Bot] 推送成功 → 8443859030
+[2026-03-26 09:22:04] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:331 - [Bot] 收到訊息：你好
+[2026-03-26 09:22:04] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:22:05] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:53 - 首次收到訊息，正在啟動 AI 核心...
+[2026-03-26 09:22:07] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:78 - Ollama 已在線
+[2026-03-26 09:22:07] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:64 - AI 核心載入完成
+[2026-03-26 09:22:07] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：你好
+[2026-03-26 09:25:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:25:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 4 筆記憶
+[2026-03-26 09:25:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 09:25:15] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:331 - [Bot] 收到訊息：你好
+[2026-03-26 09:25:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：你好
+[2026-03-26 09:33:30] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：記住：Python 變數不需要宣告型別。字串用引號、整數直接寫、浮點數有小數點、布林值是 True/False。例如：n
+[2026-03-26 09:33:30] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:105 - [_think] 推論：記住：Python 變數不需要宣告型別。字串用引號、整數直接寫、浮點數有小數點、
+[2026-03-26 09:34:18] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:331 - [Bot] 收到訊息：能跟我說今天的天氣嗎
+[2026-03-26 09:34:18] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：能跟我說今天的天氣嗎
+[2026-03-26 09:34:18] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:105 - [_think] 推論：能跟我說今天的天氣嗎
+[2026-03-26 09:34:34] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-26 09:35:22] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-26 09:35:38] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第2次] Ollama 逾時（60s）
+[2026-03-26 09:36:28] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：記住：Python 變數不需要宣告型別。字串用引號、整數直接寫、浮點數有小數點、布林值是 True/False。例如...
+[2026-03-26 09:36:28] [32mINFO[0m [Agent.memory_curator] memory_curator.py:121 - [記憶自動學習] 已儲存（重要性 9）：問：記住：Python 變數不需要宣告型別。字串用引號、整數直接寫、浮點數有小數點、布林值是 True/False。例如...
+[2026-03-26 09:38:11] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：python teach_li.py
+[2026-03-26 09:38:11] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python teach_li.py
+[2026-03-26 09:38:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 5 筆記憶
+[2026-03-26 09:38:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python 變數不需要宣告型別。字串用引號、整數直接寫、浮點數有小數點、布林值是 True/False。例如：name...
+[2026-03-26 09:38:11] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:155 - [process_input] 終端指令執行：python teach_li.py
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：python teach_li.py
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.terminal_engine] terminal_engine.py:70 - [Terminal] 指令：python teach_li.py
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 6 筆記憶
+[2026-03-26 09:38:45] DEBUG    [Agent.long_term_memory] long_term_memory.py:70 - 記憶已存在，更新存取次數：Python 變數不需要宣告型別。字串用引號、整數直接寫、浮點數有小數點、布林值...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python 條件判斷用 if/elif/else，縮排是語法的一部分不能省略。例如：if x > 0: print('...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python 有兩種迴圈。for 遍歷序列：for i in range(10): print(i)。while 條件重...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python 函式用 def 定義，可以有預設參數和回傳值。例如：def greet(name='世界'): retur...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python 串列 list 用中括號 [1,2,3]，字典 dict 用大括號 {'key': 'value'}。串列...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python 用 try/except 處理錯誤。例如：try: result = 10/x except ZeroDi...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python 用 class 定義類別，__init__ 是建構子，self 代表自己。例如：class Dog: de...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python 讀寫檔案用 open()，建議用 with 語法自動關閉。讀取：with open('file.txt',...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python 裝飾器 decorator 用 @ 符號，可以在不修改函式的情況下增加功能。例如：@timer 可以計算函...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python 串列生成式（list comprehension）可以簡化迴圈。例如：squares = [x**2 fo...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python lambda 是匿名函式，適合簡單的一次性函式。例如：add = lambda x, y: x + y。常...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python import 用來載入模組。標準庫：import os, sys, json, datetime, pat...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Ollama 是本地 AI 模型伺服器，API 端點是 http://localhost:11434。呼叫方式：requ...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Prompt Engineering 基本原則：1.角色設定（你是一個...）2.明確任務 3.輸出格式（輸出JSON）...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：JSON 在 Python 中的使用：import json。序列化：json.dumps(data, ensure_a...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python subprocess 用來執行系統指令。簡單執行：subprocess.run(['python', 's...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python pathlib 是現代化的路徑處理方式。建立路徑：p = Path('memory/data.json')...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python threading 用來執行多執行緒。背景執行：t = threading.Thread(target=f...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：編程最佳實踐：1.函式只做一件事 2.變數名稱要有意義 3.加上 type hint（def fn(x: int) ->...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：Python AST（抽象語法樹）可以分析程式碼結構。import ast; tree = ast.parse(code...
+[2026-03-26 09:38:45] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:155 - [process_input] 終端指令執行：python teach_li.py
+[2026-03-26 09:39:57] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：幫我寫一個 Python 函式，輸入一個串列，回傳最大值和最小值
+[2026-03-26 09:39:57] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:105 - [_think] 推論：幫我寫一個 Python 函式，輸入一個串列，回傳最大值和最小值
+[2026-03-26 09:41:01] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-26 09:42:05] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第2次] Ollama 逾時（60s）
+[2026-03-26 09:43:11] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第3次] Ollama 逾時（60s）
+[2026-03-26 09:43:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：ollama serve
+[2026-03-26 09:43:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:105 - [_think] 推論：ollama serve
+[2026-03-26 09:44:54] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-26 09:45:58] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第2次] Ollama 逾時（60s）
+[2026-03-26 09:47:04] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第3次] Ollama 逾時（60s）
+[2026-03-26 09:59:55] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：幫我寫一個 Python 函式，輸入一個串列，回傳最大值和最小值
+[2026-03-26 09:59:55] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:105 - [_think] 推論：幫我寫一個 Python 函式，輸入一個串列，回傳最大值和最小值
+[2026-03-26 10:00:59] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-26 10:02:04] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第2次] Ollama 逾時（60s）
+[2026-03-26 10:03:10] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第3次] Ollama 逾時（60s）
+[2026-03-26 10:05:52] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：幫我寫一個 Python 函式，輸入一個串列，回傳最大值和最小值
+[2026-03-26 10:05:52] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:105 - [_think] 推論：幫我寫一個 Python 函式，輸入一個串列，回傳最大值和最小值
+[2026-03-26 10:06:56] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-26 10:08:00] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第2次] Ollama 逾時（60s）
+[2026-03-26 10:09:06] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第3次] Ollama 逾時（60s）
+[2026-03-26 10:10:24] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 25 筆記憶
+[2026-03-26 10:10:24] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 25 筆記憶
+[2026-03-26 10:10:24] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 10:10:43] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：幫我寫一個 Python 函式，輸入一個串列，回傳最大值和最小值
+[2026-03-26 10:10:44] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:105 - [_think] 推論：幫我寫一個 Python 函式，輸入一個串列，回傳最大值和最小值
+[2026-03-26 10:11:48] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-26 10:12:51] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第2次] Ollama 逾時（60s）
+[2026-03-26 10:13:55] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第3次] Ollama 逾時（60s）
+[2026-03-26 10:16:12] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 25 筆記憶
+[2026-03-26 10:16:13] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 25 筆記憶
+[2026-03-26 10:16:13] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 10:16:30] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：幫我寫一個 Python 函式，輸入一個串列，回傳最大值和最小值
+[2026-03-26 10:16:30] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:105 - [_think] 推論：幫我寫一個 Python 函式，輸入一個串列，回傳最大值和最小值
+[2026-03-26 10:17:34] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-26 10:18:37] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第2次] Ollama 逾時（60s）
+[2026-03-26 10:19:41] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第3次] Ollama 逾時（60s）
+[2026-03-26 10:21:39] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 25 筆記憶
+[2026-03-26 10:22:43] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 25 筆記憶
+[2026-03-26 10:22:43] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 25 筆記憶
+[2026-03-26 10:22:43] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 10:23:00] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：幫我寫一個 Python 函式，輸入一個串列，回傳最大值和最小值
+[2026-03-26 10:23:00] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:105 - [_think] 推論：幫我寫一個 Python 函式，輸入一個串列，回傳最大值和最小值
+[2026-03-26 10:26:04] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（180s）
+[2026-03-26 10:32:14] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:128 - [process_input] 收到：幫我做一個待辦清單程式，有 PyQt6 介面，可以新增刪除，用 SQLite 儲存
+[2026-03-26 10:32:14] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:105 - [_think] 推論：幫我做一個待辦清單程式，有 PyQt6 介面，可以新增刪除，用 SQLite 儲
+[2026-03-26 10:35:18] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（180s）
+[2026-03-26 10:37:00] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：幫我做一個待辦清單程式，有 PyQt6 介面，可以新增刪除，用 SQLite 儲存 → 答：立：了解你的需求。以下是...
+[2026-03-26 10:37:00] [32mINFO[0m [Agent.memory_curator] memory_curator.py:121 - [記憶自動學習] 已儲存（重要性 6）：問：幫我做一個待辦清單程式，有 PyQt6 介面，可以新增刪除，用 SQLite 儲存 → 答：立：了解你的需求。以下是...
+[2026-03-26 10:38:38] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 26 筆記憶
+[2026-03-26 10:39:04] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 26 筆記憶
+[2026-03-26 10:39:04] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 26 筆記憶
+[2026-03-26 10:39:04] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 10:39:09] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:134 - [process_input] 收到：幫我做一個待辦清單程式，有 PyQt6 介面，可以新增刪除，用 SQLite 儲存
+[2026-03-26 10:39:09] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:168 - [process_input] 自主開發任務
+[2026-03-26 10:39:09] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📋 分析需求，規劃架構...
+[2026-03-26 10:39:52] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📁 專案名稱：TodoListApp
+[2026-03-26 10:39:52] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📄 計畫建立 2 個檔案：main.py, database.py
+[2026-03-26 10:39:52] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [1/2] 生成 main.py...
+[2026-03-26 10:41:22] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ✅ main.py 完成（40 行）
+[2026-03-26 10:41:22] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [2/2] 生成 database.py...
+[2026-03-26 10:42:40] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ⚠️ database.py 語法錯誤（invalid character '，' (U+FF0C) (<unknown>, line 1)），嘗試修復...
+[2026-03-26 10:43:44] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（60s）
+[2026-03-26 10:44:38] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ❌ database.py 修復失敗，跳過
+[2026-03-26 10:44:38] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 🧪 執行測試...
+[2026-03-26 10:44:38] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ✅ 基本語法檢查通過
+[2026-03-26 10:44:38] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📝 生成說明文件...
+[2026-03-26 10:44:38] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：自主開發完成：幫我做一個待辦清單程式，有 PyQt6 介面，可以新增刪除，用 SQLite 儲存...
+[2026-03-26 10:54:19] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 10:54:19] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 10:54:19] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 10:54:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:146 - [process_input] 收到：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數，並按照次數從高到低排序
+[2026-03-26 10:54:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:195 - [process_input] 自主開發任務
+[2026-03-26 10:54:29] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📋 分析需求，規劃架構...
+[2026-03-26 10:55:35] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 10:55:35] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 10:55:35] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 10:55:45] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:146 - [process_input] 收到：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數，並按照次數從高到低排序
+[2026-03-26 10:55:47] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-26 10:55:47] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-26 10:55:47] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → mistral:7b（任務：coding，分數：10）
+[2026-03-26 10:55:47] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:121 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → mistral:7b
+[2026-03-26 10:55:47] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（mistral:7b）：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數，並按照次數
+[2026-03-26 10:58:51] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（180s）
+[2026-03-26 11:01:54] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第2次] Ollama 逾時（180s）
+[2026-03-26 11:06:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:06:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:06:03] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 11:06:14] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:146 - [process_input] 收到：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數，並按照次數從高到低排序
+[2026-03-26 11:06:16] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-26 11:06:16] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-26 11:06:16] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → mistral:7b（任務：coding，分數：10）
+[2026-03-26 11:06:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:121 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → mistral:7b
+[2026-03-26 11:06:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（mistral:7b）：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數，並按照次數
+[2026-03-26 11:09:20] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第1次] Ollama 逾時（180s）
+[2026-03-26 11:12:23] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第2次] Ollama 逾時（180s）
+[2026-03-26 11:15:27] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:100 - [第3次] Ollama 逾時（180s）
+[2026-03-26 11:16:46] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:16:46] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:16:46] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 11:17:01] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:170 - [process_input] 收到：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數，並按照次數從高到低排序
+[2026-03-26 11:17:03] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-26 11:17:03] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-26 11:17:03] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b（任務：coding，分數：9）
+[2026-03-26 11:17:03] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:121 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b
+[2026-03-26 11:17:03] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（deepseek-r1:1.5b）：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數，並按照次數
+[2026-03-26 11:18:30] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:98 - [第1次] Ollama 回應為空
+[2026-03-26 11:18:51] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:98 - [第2次] Ollama 回應為空
+[2026-03-26 11:19:13] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:98 - [第3次] Ollama 回應為空
+[2026-03-26 11:23:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:23:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:23:20] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 11:23:37] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:170 - [process_input] 收到：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數，並按照次數從高到低排序
+[2026-03-26 11:23:39] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-26 11:23:39] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-26 11:23:39] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b（任務：coding，分數：9）
+[2026-03-26 11:23:39] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:121 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b
+[2026-03-26 11:23:39] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（deepseek-r1:1.5b）：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數，並按照次數
+[2026-03-26 11:23:41] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:114 - [第1次] 未知錯誤：name 'chat_url' is not defined
+[2026-03-26 11:23:42] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:114 - [第2次] 未知錯誤：name 'chat_url' is not defined
+[2026-03-26 11:23:43] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:114 - [第3次] 未知錯誤：name 'chat_url' is not defined
+[2026-03-26 11:24:30] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:24:30] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:24:30] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 11:24:39] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:170 - [process_input] 收到：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數，並按照次數從高到低排序
+[2026-03-26 11:24:41] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-26 11:24:41] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-26 11:24:41] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b（任務：coding，分數：9）
+[2026-03-26 11:24:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:121 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b
+[2026-03-26 11:24:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（deepseek-r1:1.5b）：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數，並按照次數
+[2026-03-26 11:24:43] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:114 - [第1次] 未知錯誤：name 'chat_url' is not defined
+[2026-03-26 11:24:44] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:114 - [第2次] 未知錯誤：name 'chat_url' is not defined
+[2026-03-26 11:24:45] [31mERROR[0m [Agent.ollama_guard] ollama_guard.py:114 - [第3次] 未知錯誤：name 'chat_url' is not defined
+[2026-03-26 11:26:24] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:26:24] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:26:24] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 11:26:33] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:170 - [process_input] 收到：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數，並按照次數從高到低排序
+[2026-03-26 11:26:35] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-26 11:26:35] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-26 11:26:35] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b（任務：coding，分數：9）
+[2026-03-26 11:26:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:121 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b
+[2026-03-26 11:26:35] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（deepseek-r1:1.5b）：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數，並按照次數
+[2026-03-26 11:33:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:33:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:33:33] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 11:33:43] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:170 - [process_input] 收到：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數，並按照次數從高到低排序
+[2026-03-26 11:33:45] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-26 11:33:45] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-26 11:33:45] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b（任務：coding，分數：9）
+[2026-03-26 11:33:45] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:121 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b
+[2026-03-26 11:33:45] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（deepseek-r1:1.5b）：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數，並按照次數
+[2026-03-26 11:35:07] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第1次] Ollama 回應為空
+[2026-03-26 11:37:33] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:170 - [process_input] 收到：你好
+[2026-03-26 11:38:04] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:38:04] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:38:04] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 11:39:15] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:39:24] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:39:24] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:39:24] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 11:39:28] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:170 - [process_input] 收到：你好阿
+[2026-03-26 11:40:22] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:170 - [process_input] 收到：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數
+[2026-03-26 11:40:24] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-26 11:40:24] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-26 11:40:24] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b（任務：coding，分數：9）
+[2026-03-26 11:40:24] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:121 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b
+[2026-03-26 11:40:24] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（deepseek-r1:1.5b）：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數
+[2026-03-26 11:41:38] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第1次] Ollama 回應為空
+[2026-03-26 11:42:17] [31mERROR[0m [Agent.Lobster_Core] Lobster_Core.py:157 - [推送] 外層錯誤：No module named 'telebot'
+[2026-03-26 11:43:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:43:11] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:43:11] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 11:43:27] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:170 - [process_input] 收到：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數
+[2026-03-26 11:43:29] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-26 11:43:29] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-26 11:43:29] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b（任務：coding，分數：9）
+[2026-03-26 11:43:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:121 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b
+[2026-03-26 11:43:29] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（deepseek-r1:1.5b）：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數
+[2026-03-26 11:44:45] [31mERROR[0m [Agent.Lobster_Core] Lobster_Core.py:157 - [推送] 外層錯誤：No module named 'telebot'
+[2026-03-26 11:46:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:46:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:46:51] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 11:48:49] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:48:49] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:48:49] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 11:50:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:50:20] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:50:20] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 11:50:38] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數
+[2026-03-26 11:50:40] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-26 11:50:40] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-26 11:50:40] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b（任務：coding，分數：9）
+[2026-03-26 11:50:40] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:121 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b
+[2026-03-26 11:50:40] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（deepseek-r1:1.5b）：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數
+[2026-03-26 11:52:07] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第1次] Ollama 回應為空
+[2026-03-26 11:53:00] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：很棒
+[2026-03-26 11:53:00] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] deepseek-r1:1.5b → qwen2:7b-instruct-q4_0（任務：general，分數：9）
+[2026-03-26 11:53:00] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:121 - [_think] 切換模型：deepseek-r1:1.5b → qwen2:7b-instruct-q4_0
+[2026-03-26 11:53:00] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（qwen2:7b-instruct-q4_0）：很棒
+[2026-03-26 11:55:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:55:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 11:55:33] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 11:55:44] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：你好
+[2026-03-26 11:56:39] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數
+[2026-03-26 11:56:41] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-26 11:56:41] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-26 11:56:41] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b（任務：coding，分數：9）
+[2026-03-26 11:56:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:121 - [_think] 切換模型：qwen2:7b-instruct-q4_0 → deepseek-r1:1.5b
+[2026-03-26 11:56:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（deepseek-r1:1.5b）：幫我寫一個 Python 函式，輸入一段文字，回傳每個單字出現的次數
+[2026-03-26 11:58:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：你很棒
+[2026-03-26 11:58:50] [32mINFO[0m [Agent.model_selector] model_selector.py:169 - [模型切換] deepseek-r1:1.5b → qwen2:7b-instruct-q4_0（任務：general，分數：9）
+[2026-03-26 11:58:50] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（qwen2:7b-instruct-q4_0）：你很棒
+[2026-03-26 11:59:13] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：謝謝
+[2026-03-26 12:00:02] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：可以講個故事給我嗎
+[2026-03-26 12:00:02] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（qwen2:7b-instruct-q4_0）：可以講個故事給我嗎
+[2026-03-26 12:39:10] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：你會製作軟體嗎？
+[2026-03-26 12:39:10] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（qwen2:7b-instruct-q4_0）：你會製作軟體嗎？
+[2026-03-26 12:42:14] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（180s）
+[2026-03-26 13:23:05] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：你是誰
+[2026-03-26 13:31:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：新增 self_healer.py，功能：1.掃描所有.py檔案檢查BOM和語法錯誤 2.自動修復BOM 3.用AI修復
+[2026-03-26 13:31:41] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:255 - [process_input] 自主開發指令
+[2026-03-26 13:31:41] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：新增 self_healer.py，功能：1.掃描所有.py檔案檢查BOM和語法錯誤 2.自動修復BOM 3.用AI修復
+[2026-03-26 13:34:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：新增 self_healer.py，只需要三個函式：1. check_bom(file) 檢查並移除BOM字元 2. c
+[2026-03-26 13:34:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:255 - [process_input] 自主開發指令
+[2026-03-26 13:34:06] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：新增 self_healer.py，只需要三個函式：1. check_bom(file) 檢查並移除BOM字元 2. c
+[2026-03-26 13:36:04] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：新增 self_healer.py，只有一個函式 scan():
+用 os.walk 遍歷當前資料夾所有 .py 檔案
+
+[2026-03-26 13:36:04] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:255 - [process_input] 自主開發指令
+[2026-03-26 13:36:04] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：新增 self_healer.py，只有一個函式 scan():
+用 os.walk 遍歷當前資料夾所有 .py 檔案
+
+[2026-03-26 13:38:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：新增 test_heal.py，只有一行：print("self healer ok")
+[2026-03-26 13:38:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:255 - [process_input] 自主開發指令
+[2026-03-26 13:38:17] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：新增 test_heal.py，只有一行：print("self healer ok")
+[2026-03-26 13:55:05] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：你好
+[2026-03-26 18:28:44] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 18:28:44] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 27 筆記憶
+[2026-03-26 18:28:44] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 18:29:42] [32mINFO[0m [Agent.self_dev_engine] self_dev_engine.py:58 - [SelfDev] 收到需求：新增 test_heal.py，只有一行：print("self healer ok")
+[2026-03-26 18:30:40] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：輸入
+[2026-03-26 18:30:42] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-26 18:30:42] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-26 18:30:42] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（qwen2:7b-instruct-q4_0）：輸入
+[2026-03-26 18:33:47] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（180s）
+[2026-03-26 18:33:48] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:436 - Telegram Bot 啟動中...
+[2026-03-26 18:33:49] [32mINFO[0m [Agent.telegram_bot] telegram_bot.py:427 - [Bot] 推送成功 → 8443859030
+[2026-03-26 18:36:38] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：／help
+[2026-03-26 18:36:38] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（qwen2:7b-instruct-q4_0）：／help
+[2026-03-26 18:39:42] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（180s）
+[2026-03-26 18:42:14] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：/sysinfo
+[2026-03-26 18:42:14] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（qwen2:7b-instruct-q4_0）：/sysinfo
+[2026-03-26 18:44:46] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：/cmd dir
+[2026-03-26 18:44:46] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（qwen2:7b-instruct-q4_0）：/cmd dir
+[2026-03-26 18:45:18] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（180s）
+[2026-03-26 18:46:30] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：/cmd dir → 答：在這個上下文中，你可能是在尋求一個具體的程式碼範例或者幫助來實現一個功能，但你的最後一句話...
+[2026-03-26 18:46:30] [32mINFO[0m [Agent.memory_curator] memory_curator.py:121 - [記憶自動學習] 已儲存（重要性 6）：問：/cmd dir → 答：在這個上下文中，你可能是在尋求一個具體的程式碼範例或者幫助來實現一個功能，但你的最後一句話...
+[2026-03-26 18:46:31] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：/read reflex_engine.py
+[2026-03-26 18:46:31] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（qwen2:7b-instruct-q4_0）：/read reflex_engine.py
+[2026-03-26 18:47:57] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：問：/sysinfo → 答：要查看系統資訊，我需要訪問您的設備並執行相應的操作。請確保您已授予必要的權限讓我檢查您的系...
+[2026-03-26 18:47:57] [32mINFO[0m [Agent.memory_curator] memory_curator.py:121 - [記憶自動學習] 已儲存（重要性 6）：問：/sysinfo → 答：要查看系統資訊，我需要訪問您的設備並執行相應的操作。請確保您已授予必要的權限讓我檢查您的系...
+[2026-03-26 18:47:58] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：/open notepad
+[2026-03-26 18:47:58] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:123 - [_think] 推論（qwen2:7b-instruct-q4_0）：/open notepad
+[2026-03-26 18:48:39] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 18:48:39] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 18:48:39] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 18:52:57] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:174 - [process_input] 收到：你好
+[2026-03-26 18:55:42] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 18:55:42] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 18:55:42] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 18:58:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 18:58:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 18:58:33] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 19:00:53] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:00:53] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:00:53] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 19:01:28] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:01:28] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:01:28] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 19:02:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:02:03] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:02:03] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 19:03:19] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:03:19] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:03:19] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 19:11:22] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:11:22] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:11:22] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 19:11:34] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:11:34] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:11:34] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 19:12:25] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:12:26] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:12:26] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 19:13:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:13:33] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:13:33] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 19:22:19] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:22:19] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:22:19] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 19:23:40] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:23:40] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:23:40] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 19:24:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:24:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:24:51] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 19:28:28] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:28:28] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:28:28] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 19:35:02] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:35:02] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:35:02] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 19:35:13] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:180 - [process_input] 收到：你好
+[2026-03-26 19:39:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:180 - [process_input] 收到：幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重後計算 BMI 並顯示結果和健康狀態
+[2026-03-26 19:39:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:249 - [process_input] 自主開發任務
+[2026-03-26 19:39:06] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📋 分析需求，規劃架構...
+[2026-03-26 19:40:09] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📁 專案名稱：BMI Calculator with PyQt6
+[2026-03-26 19:40:09] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📄 計畫建立 2 個檔案：main.py, database.py
+[2026-03-26 19:40:09] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [1/2] 生成 main.py...
+[2026-03-26 19:41:34] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ⚠️ main.py 語法錯誤（invalid character '，' (U+FF0C) (<unknown>, line 1)），嘗試修復...
+[2026-03-26 19:42:38] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（60s）
+[2026-03-26 19:43:41] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第2次] Ollama 逾時（60s）
+[2026-03-26 19:44:45] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第3次] Ollama 逾時（60s）
+[2026-03-26 19:44:45] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ❌ main.py 修復失敗，跳過
+[2026-03-26 19:44:45] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [2/2] 生成 database.py...
+[2026-03-26 19:46:31] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ⚠️ database.py 語法錯誤（invalid character '：' (U+FF1A) (<unknown>, line 1)），嘗試修復...
+[2026-03-26 19:46:58] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:180 - [process_input] 收到：幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重後計算 BMI 並顯示結果和健康狀態
+[2026-03-26 19:46:58] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:249 - [process_input] 自主開發任務
+[2026-03-26 19:46:58] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📋 分析需求，規劃架構...
+[2026-03-26 19:47:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:47:47] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 19:47:47] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 19:47:54] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:180 - [process_input] 收到：幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重後計算 BMI 並顯示結果和健康狀態
+[2026-03-26 19:47:54] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:249 - [process_input] 自主開發任務
+[2026-03-26 19:47:54] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📋 分析需求，規劃架構...
+[2026-03-26 19:49:14] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📁 專案名稱：BmiCalculatorApp
+[2026-03-26 19:49:14] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📄 計畫建立 6 個檔案：main.py, bmi_calculator.py, ui_mainwindow.py, database.py, utils.py, config.py
+[2026-03-26 19:49:14] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [1/6] 生成 main.py...
+[2026-03-26 19:50:37] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ⚠️ main.py 語法錯誤（invalid syntax (<unknown>, line 1)），嘗試修復...
+[2026-03-26 19:51:41] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（60s）
+[2026-03-26 19:52:44] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第2次] Ollama 逾時（60s）
+[2026-03-26 19:53:48] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第3次] Ollama 逾時（60s）
+[2026-03-26 19:53:48] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ❌ main.py 修復失敗，跳過
+[2026-03-26 19:53:48] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [2/6] 生成 bmi_calculator.py...
+[2026-03-26 19:55:14] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ✅ bmi_calculator.py 完成（26 行）
+[2026-03-26 19:55:14] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [3/6] 生成 ui_mainwindow.py...
+[2026-03-26 19:56:30] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ⚠️ ui_mainwindow.py 語法錯誤（invalid syntax (<unknown>, line 1)），嘗試修復...
+[2026-03-26 19:57:34] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（60s）
+[2026-03-26 19:58:37] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第2次] Ollama 逾時（60s）
+[2026-03-26 20:04:49] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 20:04:49] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 20:04:49] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 20:05:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:180 - [process_input] 收到：幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重後計算 BMI 並顯示結果和健康狀態
+[2026-03-26 20:05:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:249 - [process_input] 自主開發任務
+[2026-03-26 20:05:06] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📋 分析需求，規劃架構...
+[2026-03-26 20:06:32] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📁 專案名稱：BMI Calculator with PyQt6
+[2026-03-26 20:06:32] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📄 計畫建立 7 個檔案：main.py, ui_bmi_calculator.ui, bmi_calculator.py, database.py, utils.py, style_sheet.qss, settings.json
+[2026-03-26 20:06:32] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [1/7] 生成 main.py...
+[2026-03-26 20:07:57] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ⚠️ main.py 語法錯誤（invalid syntax (<unknown>, line 1)），嘗試修復...
+[2026-03-26 20:09:29] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ❌ main.py 修復失敗，跳過
+[2026-03-26 20:09:29] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [2/7] 生成 ui_bmi_calculator.ui...
+[2026-03-26 20:10:55] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ✅ ui_bmi_calculator.ui 完成（32 行）
+[2026-03-26 20:10:55] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [3/7] 生成 bmi_calculator.py...
+[2026-03-26 20:12:14] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ⚠️ bmi_calculator.py 語法錯誤（invalid syntax (<unknown>, line 1)），嘗試修復...
+[2026-03-26 20:13:40] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ✅ bmi_calculator.py 完成（37 行）
+[2026-03-26 20:13:40] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [4/7] 生成 database.py...
+[2026-03-26 20:15:05] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ⚠️ database.py 語法錯誤（invalid character '、' (U+3001) (<unknown>, line 1)），嘗試修復...
+[2026-03-26 20:16:38] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ❌ database.py 修復失敗，跳過
+[2026-03-26 20:16:38] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [5/7] 生成 utils.py...
+[2026-03-26 20:18:15] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ⚠️ utils.py 語法錯誤（invalid syntax (<unknown>, line 1)），嘗試修復...
+[2026-03-26 20:19:06] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 20:19:06] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 29 筆記憶
+[2026-03-26 20:19:06] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 20:19:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:180 - [process_input] 收到：幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重後計算 BMI 並顯示結果和健康狀態
+[2026-03-26 20:19:17] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:249 - [process_input] 自主開發任務
+[2026-03-26 20:19:17] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📋 分析需求，規劃架構...
+[2026-03-26 20:20:24] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📁 專案名稱：BmiCalculatorPyQt
+[2026-03-26 20:20:24] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📄 計畫建立 4 個檔案：main.py, database.py, ui_bmicalculator.ui, utils.py
+[2026-03-26 20:20:24] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [1/4] 生成 main.py...
+[2026-03-26 20:21:48] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ⚠️ main.py 語法錯誤（unterminated string literal (detected at line 35) (<unknown>, line 35)），嘗試修復...
+[2026-03-26 20:23:20] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ❌ main.py 修復失敗，跳過
+[2026-03-26 20:23:20] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [2/4] 生成 database.py...
+[2026-03-26 20:24:44] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ⚠️ database.py 語法錯誤（invalid syntax (<unknown>, line 1)），嘗試修復...
+[2026-03-26 20:26:08] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ❌ database.py 修復失敗，跳過
+[2026-03-26 20:26:08] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [3/4] 生成 ui_bmicalculator.ui...
+[2026-03-26 20:27:33] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ✅ ui_bmicalculator.ui 完成（29 行）
+[2026-03-26 20:27:33] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] ⚙️  [4/4] 生成 utils.py...
+[2026-03-26 20:28:51] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ⚠️ utils.py 語法錯誤（unterminated triple-quoted string literal (detected at line 34) (<unknown>, line 34)），嘗試修復...
+[2026-03-26 20:30:25] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ❌ utils.py 修復失敗，跳過
+[2026-03-26 20:30:25] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 🧪 執行測試...
+[2026-03-26 20:30:25] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev]   ✅ 基本語法檢查通過
+[2026-03-26 20:30:25] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:55 - [AutoDev] 📝 生成說明文件...
+[2026-03-26 20:30:26] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:85 - [記憶] 儲存：自主開發完成：幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重後計算 BMI 並顯示結果和健康狀...
+[2026-03-26 20:37:04] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:180 - [process_input] 收到：你好
+[2026-03-26 20:37:14] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:180 - [process_input] 收到：你叫什麼
+[2026-03-26 20:38:27] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:180 - [process_input] 收到：我要開啟功能表
+[2026-03-26 20:38:30] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-26 20:38:30] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-26 20:38:30] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:129 - [_think] 推論（qwen2:7b-instruct-q4_0）：我要開啟功能表
+[2026-03-26 20:39:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-26 20:39:51] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-26 20:39:51] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 20:40:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:180 - [process_input] 收到：幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重後計算 BMI 並顯示結果和健康狀態
+[2026-03-26 20:40:06] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:249 - [process_input] 自主開發任務
+[2026-03-26 20:40:06] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] 📋 分析需求，規劃架構...
+[2026-03-26 20:42:59] DEBUG    [Agent.long_term_memory] long_term_memory.py:70 - 記憶已存在，更新存取次數：自主開發完成：幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重...
+[2026-03-26 20:49:53] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-26 20:49:53] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-26 20:49:53] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 20:50:07] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:180 - [process_input] 收到：幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重後計算 BMI 並顯示結果和健康狀態
+[2026-03-26 20:50:07] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:249 - [process_input] 自主開發任務
+[2026-03-26 20:50:07] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] 📋 分析需求，規劃架構...
+[2026-03-26 20:51:30] DEBUG    [Agent.long_term_memory] long_term_memory.py:70 - 記憶已存在，更新存取次數：自主開發完成：幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重...
+[2026-03-26 20:57:30] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-26 20:57:30] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-26 20:57:30] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 20:57:44] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:180 - [process_input] 收到：幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重後計算 BMI 並顯示結果和健康狀態
+[2026-03-26 20:57:44] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:249 - [process_input] 自主開發任務
+[2026-03-26 20:57:44] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] ⏳ 確認 Ollama 狀態...
+[2026-03-26 20:57:49] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:191 - [AutoDev] Ollama 預熱完成
+[2026-03-26 20:57:49] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] 📋 分析需求，規劃架構...
+[2026-03-26 20:58:32] DEBUG    [Agent.long_term_memory] long_term_memory.py:70 - 記憶已存在，更新存取次數：自主開發完成：幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重...
+[2026-03-26 21:06:55] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-26 21:06:55] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-26 21:06:55] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 21:07:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:180 - [process_input] 收到：幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重後計算 BMI 並顯示結果和健康狀態
+[2026-03-26 21:07:16] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:249 - [process_input] 自主開發任務
+[2026-03-26 21:07:16] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] ⏳ 確認 Ollama 狀態...
+[2026-03-26 21:07:21] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:191 - [AutoDev] Ollama 預熱完成
+[2026-03-26 21:07:21] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] 📋 分析需求，規劃架構...
+[2026-03-26 21:08:59] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] 📁 專案名稱：BmiCalculator
+[2026-03-26 21:08:59] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] 📄 計畫建立 7 個檔案：main.py, utils.py, bmi_calculator.py, health_status.py, config.py, ui_mainwindow.ui, ui_bmicalculator_form.ui
+[2026-03-26 21:08:59] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] ⚙️  [1/7] 生成 main.py...
+[2026-03-26 21:09:39] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev]   ⚠️ main.py 語法錯誤（invalid syntax (<unknown>, line 1)），嘗試修復...
+[2026-03-26 21:10:23] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第1次] Ollama 回應為空
+[2026-03-26 21:10:44] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev]   ✅ main.py 完成（11 行）
+[2026-03-26 21:10:44] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] ⚙️  [2/7] 生成 utils.py...
+[2026-03-26 21:11:25] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第1次] Ollama 回應為空
+[2026-03-26 21:11:59] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第2次] Ollama 回應為空
+[2026-03-26 21:12:35] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第3次] Ollama 回應為空
+[2026-03-26 21:12:35] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev]   ⚠️ utils.py 語法錯誤（invalid syntax. Perhaps you forgot a comma? (<unknown>, line 1)），嘗試修復...
+[2026-03-26 21:13:02] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev]   ❌ utils.py 修復失敗，跳過
+[2026-03-26 21:13:02] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] ⚙️  [3/7] 生成 bmi_calculator.py...
+[2026-03-26 21:13:42] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第1次] Ollama 回應為空
+[2026-03-26 21:14:19] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第2次] Ollama 回應為空
+[2026-03-26 21:14:54] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第3次] Ollama 回應為空
+[2026-03-26 21:14:54] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev]   ⚠️ bmi_calculator.py 語法錯誤（invalid syntax. Perhaps you forgot a comma? (<unknown>, line 1)），嘗試修復...
+[2026-03-26 21:15:26] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev]   ❌ bmi_calculator.py 修復失敗，跳過
+[2026-03-26 21:15:26] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] ⚙️  [4/7] 生成 health_status.py...
+[2026-03-26 21:16:06] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第1次] Ollama 回應為空
+[2026-03-26 21:16:41] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第2次] Ollama 回應為空
+[2026-03-26 21:17:16] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第3次] Ollama 回應為空
+[2026-03-26 21:17:16] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev]   ⚠️ health_status.py 語法錯誤（invalid syntax. Perhaps you forgot a comma? (<unknown>, line 1)），嘗試修復...
+[2026-03-26 21:17:54] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev]   ❌ health_status.py 修復失敗，跳過
+[2026-03-26 21:17:54] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] ⚙️  [5/7] 生成 config.py...
+[2026-03-26 21:18:34] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev]   ⚠️ config.py 語法錯誤（unterminated string literal (detected at line 10) (<unknown>, line 10)），嘗試修復...
+[2026-03-26 21:19:15] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第1次] Ollama 回應為空
+[2026-03-26 21:19:51] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第2次] Ollama 回應為空
+[2026-03-26 21:20:26] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:121 - [第3次] Ollama 回應為空
+[2026-03-26 21:20:26] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev]   ✅ config.py 完成（1 行）
+[2026-03-26 21:20:26] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] ⚙️  [6/7] 生成 ui_mainwindow.ui...
+[2026-03-26 21:21:06] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev]   ✅ ui_mainwindow.ui 完成（20 行）
+[2026-03-26 21:21:06] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] ⚙️  [7/7] 生成 ui_bmicalculator_form.ui...
+[2026-03-26 21:21:46] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev]   ✅ ui_bmicalculator_form.ui 完成（7 行）
+[2026-03-26 21:21:46] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] 🧪 執行測試...
+[2026-03-26 21:21:46] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev]   ⚠️ config.py: Traceback (most recent call last):
+  File "<string>", line 1
+[2026-03-26 21:21:46] [32mINFO[0m [Agent.autonomous_dev] autonomous_dev.py:64 - [AutoDev] 📝 生成說明文件...
+[2026-03-26 21:21:47] DEBUG    [Agent.long_term_memory] long_term_memory.py:70 - 記憶已存在，更新存取次數：自主開發完成：幫我做一個 BMI 計算機程式，有 PyQt6 介面，輸入身高體重...
+[2026-03-26 21:41:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-26 21:41:09] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 30 筆記憶
+[2026-03-26 21:41:09] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-03-26 21:42:40] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:180 - [process_input] 收到：你可以將自己的視窗再生成兩個分別是輸入跟輸出的窗口嗎，替代對話的窗口
+[2026-03-26 21:42:42] [32mINFO[0m [Agent.model_selector] model_selector.py:114 - 模型選擇器啟動，可用模型：['qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest', 'gemma3:4b']
+[2026-03-26 21:42:42] [32mINFO[0m [Agent.model_selector] model_selector.py:115 - 預設模型：qwen2:7b-instruct-q4_0
+[2026-03-26 21:42:42] [32mINFO[0m [Agent.Lobster_Core] Lobster_Core.py:129 - [_think] 推論（qwen2:7b-instruct-q4_0）：你可以將自己的視窗再生成兩個分別是輸入跟輸出的窗口嗎，替代對話的窗口
+[2026-03-26 21:45:46] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:124 - [第1次] Ollama 逾時（180s）

@@ -1,0 +1,3502 @@
+﻿# desktop_agent.py — 立 AI 桌面控制台（完整升級版）
+# 修復：BOM 字元錯誤
+# 新增：狀態列、日誌頁、記憶庫頁、任務頁、對話泡泡、進度條
+# 依賴：pip install PyQt6 SpeechRecognition pyaudio
+# 使用：python desktop_agent.py
+
+import sys
+# 強制加入套件路徑
+_PKG = r"C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages"
+if _PKG not in sys.path:
+    sys.path.insert(0, _PKG)
+import threading
+import traceback
+import datetime
+import pathlib
+
+try:
+    import speech_recognition as sr
+    HAS_SR = True
+except ImportError:
+    HAS_SR = False
+
+from PyQt6.QtWidgets import (
+    QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
+    QTextEdit, QLineEdit, QPushButton, QLabel, QTabWidget,
+    QListWidget, QListWidgetItem, QProgressBar, QFrame, QSplitter
+)
+from PyQt6.QtCore import Qt, QThread, pyqtSignal, QTimer
+from PyQt6.QtGui import QFont, QTextCursor, QColor
+
+# ── Agent 模組（找不到就降級，不影響 UI 啟動）────────────────────────────────
+try:
+    from Lobster_Core import LobsterCore
+    _lobster = LobsterCore()
+except Exception as e:
+    print(f"[WARN] Lobster_Core 未載入：{e}")
+    _lobster = None
+
+try:
+    from cognition_state_manager import update_context
+except Exception:
+    def update_context(a, b): pass
+
+try:
+    from task_capability_registry import TaskCapabilityRegistry
+    _tasks = TaskCapabilityRegistry(_lobster.os) if _lobster else None
+except Exception:
+    _tasks = None
+
+try:
+    from intent_router import IntentRouter
+    _router = IntentRouter(_tasks) if _tasks else None
+except Exception:
+    _router = None
+
+try:
+    from reflex_engine import ReflexEngine
+    _reflex = ReflexEngine()
+except Exception:
+    _reflex = None
+
+try:
+    from long_term_memory import get_memory
+    _memory = get_memory()
+except Exception:
+    _memory = None
+
+try:
+    from memory_curator import forget as memory_forget, get_all as memory_get_all
+    _USE_CURATOR = True
+except Exception:
+    _USE_CURATOR = False
+
+try:
+    from task_scheduler import TaskScheduler, create_auto_repair_task
+    _scheduler = TaskScheduler()
+    _scheduler.run_all(block=False)
+except Exception:
+    _scheduler = None
+
+# ── 手機訊息共享檔案路徑 ────────────────────────────────────────────────────
+import pathlib as _pl, json as _json
+_MOBILE_MSG_FILE = _pl.Path("memory/mobile_messages.json")
+
+_USE_DEV = False  # self_dev_engine 已退役
+
+# ── 深色主題 ─────────────────────────────────────────────────────────────────
+STYLE = """
+QMainWindow, QWidget {
+    background-color: #0f1117; color: #e0e0e0;
+    font-family: 'Microsoft JhengHei UI', 'Segoe UI', sans-serif; font-size: 13px;
+}
+QTabWidget::pane { border: 1px solid #2a2d3a; border-radius: 8px; background: #1a1d27; }
+QTabBar::tab { background: #1a1d27; color: #888; padding: 7px 18px; border-radius: 6px 6px 0 0; margin-right: 2px; }
+QTabBar::tab:selected { background: #2563eb; color: #fff; }
+QTabBar::tab:hover:!selected { background: #252836; color: #ccc; }
+QTextEdit, QListWidget {
+    background: #111318; border: 1px solid #2a2d3a; border-radius: 8px;
+    color: #d0d0d0; padding: 6px; selection-background-color: #2563eb;
+}
+QLineEdit {
+    background: #111318; border: 1px solid #2a2d3a; border-radius: 8px;
+    color: #e0e0e0; padding: 8px 12px;
+}
+QLineEdit:focus { border: 1px solid #2563eb; }
+QPushButton { background: #2563eb; color: #fff; border: none; border-radius: 8px; padding: 8px 18px; }
+QPushButton:hover { background: #1d4ed8; }
+QPushButton:pressed { background: #1d4ed8; }
+QPushButton#btn_voice { background: #065f46; color: #6ee7b7; }
+QPushButton#btn_voice:hover { background: #047857; }
+QPushButton#btn_voice:pressed { background: #047857; }
+QPushButton#btn_accent { background: #1e3a5f; color: #93c5fd; }
+QPushButton#btn_accent:hover { background: #1d4ed8; }
+QPushButton#btn_accent:pressed { background: #1d4ed8; }
+QPushButton#btn_dim { background: #252836; color: #aaa; }
+QPushButton#btn_dim:hover { background: #2e3347; color: #fff; }
+QPushButton#btn_dim:pressed { background: #2e3347; color: #fff; }
+QProgressBar { background: #1a1d27; border: 1px solid #2a2d3a; border-radius: 5px; height: 8px; color: transparent; }
+QProgressBar::chunk { background: #2563eb; border-radius: 5px; }
+QScrollBar:vertical { background: #111318; width: 7px; border-radius: 4px; }
+QScrollBar::handle:vertical { background: #2a2d3a; border-radius: 4px; min-height: 20px; }
+QScrollBar::handle:vertical:hover { background: #3a3f52; }
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0; }
+QFrame#card { background: #1a1d27; border: 1px solid #2a2d3a; border-radius: 10px; }
+QSplitter::handle { background: #2a2d3a; }
+"""
+
+# ── Qt Log Handler（把 agent_logger 的輸出接到 UI 日誌）──────────────────────
+import logging as _logging
+
+class _QtLogHandler(_logging.Handler):
+    """把 Python logging 訊息轉送到 LobsterDesktop._log"""
+    def __init__(self):
+        super().__init__()
+        self._ui_ref = None  # 由 LobsterDesktop.__init__ 設定
+
+    def set_ui(self, ui):
+        self._ui_ref = ui
+
+    def emit(self, record):
+        if self._ui_ref is None:
+            return
+        try:
+            # 格式：[HH:MM:SS] LEVEL [模組] 訊息
+            ts  = _logging.Formatter(datefmt="%H:%M:%S").formatTime(record, "%H:%M:%S")
+            msg = record.getMessage()
+            lvl = record.levelname   # INFO / WARNING / ERROR ...
+            mod = record.name        # Agent.self_dev_engine ...
+            line = f"[{ts}] {lvl} [{mod}] {msg}"
+            # 安全跨執行緒：用 QTimer.singleShot 確保在主執行緒執行
+            from PyQt6.QtCore import QTimer
+            QTimer.singleShot(0, lambda l=line: self._ui_ref._log(l))
+        except Exception:
+            pass
+
+_qt_log_handler = _QtLogHandler()
+_qt_log_handler.setLevel(_logging.INFO)
+
+# 掛到 Agent root logger
+_logging.getLogger("Agent").addHandler(_qt_log_handler)
+
+# ── Workers ──────────────────────────────────────────────────────────────────
+class AgentWorker(QThread):
+    reply           = pyqtSignal(str)
+    log_line        = pyqtSignal(str)
+    status_sig      = pyqtSignal(str)
+    skip_memory_sig = pyqtSignal(bool)
+    claude_bar_sig  = pyqtSignal(bool)  # 顯示/隱藏 Claude 對話停止按鈕
+    claude_reply_sig = pyqtSignal(str)   # Claude 橋接回答（不問存入記憶）
+
+    def __init__(self, text, parent=None, mode="chat"):
+        super().__init__(parent)
+        self.text = text
+        self.mode = mode
+
+    def run(self):
+        # 確保套件路徑在任何執行緒都可用
+        import sys
+        _pkg = r"C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages"
+        if _pkg not in sys.path:
+            sys.path.insert(0, _pkg)
+        self.status_sig.emit("running")
+        self.log_line.emit(f"[{self._ts()}] [輸入] {self.text}")
+        try:
+            result = self._call()
+            if not result:
+                result = "（沒有回應）"
+            update_context(self.text, result)
+            # 判斷是否來自 Claude 橋接（由 lobster 設定旗標）
+            from_claude = getattr(_lobster, "_last_was_bridge", False)
+            if _lobster:
+                _lobster._last_was_bridge = False
+            self.reply.emit(result)
+            self.skip_memory_sig.emit(from_claude)
+            self.log_line.emit(f"[{self._ts()}] [回覆] {result[:120]}")
+            self.status_sig.emit("idle")
+        except Exception as e:
+            self.reply.emit(f"❌ {e}")
+            self.log_line.emit(f"[{self._ts()}] [錯誤] {e}")
+            self.status_sig.emit("error")
+
+    def _call(self):
+        mode = getattr(self, 'mode', 'chat')
+        if _lobster and _reflex and _router:
+            _lobster._ui_ref = self.parent()
+            _lobster._worker_ref = self  # 傳入 worker 讓背景執行緒可發 signal
+            return _lobster.process_input(self.text, _reflex, _router, mode=mode)
+        if _lobster:
+            return _lobster.run(self.text)
+        cmd = self.text.strip()
+        if _memory and cmd.startswith("記住："):
+            _memory.store(cmd[3:].strip(), tags=["manual"], importance=7)
+            return f"✓ 已記住：{cmd[3:].strip()}"
+        if _memory and cmd.startswith("搜尋："):
+            res = _memory.search(cmd[3:].strip())
+            return "\n".join(f"• {r['content'][:80]}" for r in res) if res else "找不到相關記憶"
+        return f"（Lobster_Core 未載入）收到：{cmd}"
+
+    def _ts(self): return datetime.datetime.now().strftime("%H:%M:%S")
+
+
+class VoiceWorker(QThread):
+    recognized = pyqtSignal(str)
+    status_sig = pyqtSignal(str)
+
+    def run(self):
+        if not HAS_SR:
+            self.recognized.emit(""); self.status_sig.emit("error"); return
+        r = sr.Recognizer()
+        try:
+            with sr.Microphone() as source:
+                self.status_sig.emit("listening")
+                r.adjust_for_ambient_noise(source, duration=0.5)
+                audio = r.listen(source, timeout=8, phrase_time_limit=15)
+            self.recognized.emit(r.recognize_google(audio, language="zh-TW"))
+        except Exception:
+            self.recognized.emit("")
+        finally:
+            self.status_sig.emit("idle")
+
+
+# ── 主視窗 ───────────────────────────────────────────────────────────────────
+class LobsterDesktop(QMainWindow):
+    # 跨執行緒安全的日誌 signal（子執行緒 emit，主執行緒 slot 寫入 UI）
+    _sig_log = pyqtSignal(str)
+
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("立 · AI 系統核心")
+        self.setGeometry(100, 80, 1050, 700)
+        self.setMinimumSize(800, 560)
+        self.setStyleSheet(STYLE)
+        self._worker = None
+        self._voice_worker = None
+        self._start_time = datetime.datetime.now()
+        self._mode = "chat"
+        self._last_mobile_count = 0       # 手機訊息計數
+        # 啟動時跳過已有的歷史訊息，只顯示新訊息
+        try:
+            if _MOBILE_MSG_FILE.exists():
+                _msgs = _json.loads(_MOBILE_MSG_FILE.read_text(encoding="utf-8"))
+                self._last_mobile_count = len(_msgs)
+        except Exception:
+            pass
+        self._last_user_input = ""        # 最後一次使用者輸入（糾正用）
+        self._last_ai_reply = ""          # 最後一次 AI 回覆（糾正用）
+        self._build_ui()
+        self._start_timers()
+        self._start_telegram_bot()
+        # 讓 dev_tool 能找到桌面視窗
+        try:
+            import desktop_agent as _da_self
+            _da_self._desktop_ui_ref = self
+        except Exception:
+            pass
+        # dev_tool 接入（啟動後延遲設定，等 LobsterCore 載入）
+        from PyQt6.QtCore import QTimer
+        QTimer.singleShot(5000, self._setup_dev_tool)          # 自動啟動 Telegram Bot
+        self._start_distributed()           # 自動啟動分散式推論
+        # 把自己註冊到 Qt log handler，讓 agent_logger 的輸出顯示在 UI
+        _qt_log_handler.set_ui(self)
+        # 連接 _sig_log signal 到 _log（讓背景執行緒可以安全更新 UI）
+        self._sig_log.connect(self._log)
+
+    def _start_distributed(self):
+        """啟動時自動執行 llama-server 分散式推論"""
+        import subprocess, threading, pathlib
+        bat = pathlib.Path(r"C:\Users\ACER\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup\start_distributed.bat")
+        if not bat.exists():
+            self._log(f"[{self._ts()}] [系統] 找不到 start_distributed.bat，跳過分散式推論")
+            return
+        def _run():
+            try:
+                subprocess.Popen(
+                    [str(bat)],
+                    shell=True,
+                    stdout=subprocess.DEVNULL,
+                    stderr=subprocess.DEVNULL,
+                    cwd=str(bat.parent)
+                )
+                from PyQt6.QtCore import QTimer
+                QTimer.singleShot(0, lambda: self._log(
+                    f"[{self._ts()}] [系統] 分散式推論已啟動（llama-server）"
+                ))
+            except Exception as e:
+                from PyQt6.QtCore import QTimer
+                QTimer.singleShot(0, lambda: self._log(
+                    f"[{self._ts()}] [系統] 分散式推論啟動失敗：{e}"
+                ))
+        threading.Thread(target=_run, daemon=True).start()
+
+    def _start_telegram_bot(self):
+        """直接在背景執行 Telegram Bot 邏輯"""
+        import threading
+        def _write_queue(user_text, ai_reply):
+            """寫入 queue 讓桌面顯示手機對話，同時寫入日誌"""
+            try:
+                import json, pathlib as pl, datetime
+                qf = pl.Path("memory/mobile_queue.json")
+                qf.parent.mkdir(exist_ok=True)
+                q = []
+                if qf.exists():
+                    try: q = json.loads(qf.read_text(encoding="utf-8"))
+                    except: q = []
+                ts = datetime.datetime.now().strftime("%H:%M:%S")
+                q.append({"time": ts, "user": user_text, "ai": ai_reply})
+                q = q[-20:]
+                qf.write_text(json.dumps(q, ensure_ascii=False), encoding="utf-8")
+                # 同時寫入日誌
+                from PyQt6.QtCore import QTimer
+                QTimer.singleShot(0, lambda: self._log(f"[{ts}] [手機] {user_text[:60]}"))
+                QTimer.singleShot(50, lambda: self._log(f"[{ts}] [回覆] {ai_reply[:100]}"))
+            except Exception:
+                pass
+
+        def _run():
+            try:
+                import sys, re, json, subprocess, pathlib as _pl, datetime as _dt
+                _pkg = r"C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages"
+                if _pkg not in sys.path:
+                    sys.path.insert(0, _pkg)
+                import bot_config
+                import telebot
+                import psutil
+                try:
+                    from dev_tool import get_tool as _get_eng
+                except Exception:
+                    _get_eng = None
+                import json, pathlib, datetime
+
+                bot = telebot.TeleBot(bot_config.TELEGRAM_TOKEN, parse_mode=None)
+                allowed = set(bot_config.ALLOWED_CHAT_IDS)
+                # 存到模組層級讓 dev_tool 能取得
+                import desktop_agent as _da_self
+                _da_self._bot_instance = bot
+
+                def is_ok(m):
+                    return not allowed or m.chat.id in allowed
+
+                def _mode_keyboard():
+                    """建立模式選擇的 inline keyboard（第一層）"""
+                    from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+                    kb = InlineKeyboardMarkup(row_width=2)
+                    kb.add(
+                        InlineKeyboardButton("💬 對話",    callback_data="mode_chat"),
+                        InlineKeyboardButton("⌨️ 終端",    callback_data="mode_terminal"),
+                        InlineKeyboardButton("🤖 自主開發", callback_data="mode_dev"),
+                        InlineKeyboardButton("📚 教學",    callback_data="mode_teach"),
+                        InlineKeyboardButton("🗄 資料庫",  callback_data="mode_database"),
+                        InlineKeyboardButton("🖥 桌面",    callback_data="mode_desktop"),
+                    )
+                    return kb
+
+                def _action_keyboard(mode_id: str):
+                    """建立各模式功能按鈕（第二層）"""
+                    from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+                    kb = InlineKeyboardMarkup(row_width=2)
+                    actions = {
+                        "chat": [
+                            ("🤖 問 Claude",   "act_ask_claude"),
+                            ("💬 問 ChatGPT",  "act_ask_chatgpt"),
+                        ],
+                        "terminal": [
+                            ("⚡ 查看能力",    "act_capabilities"),
+                            ("🔧 自動修復",    "act_repair"),
+                            ("🔍 分析模組",    "act_analyze"),
+                        ],
+                        "dev": [
+                            ("💻 開發歷史",    "act_dev_history"),
+                            ("🔧 自動修復",    "act_repair"),
+                            ("✅ 確認步驟",    "dev_confirm"),
+                            ("❌ 取消步驟",    "dev_cancel"),
+                        ],
+                        "teach": [
+                            ("➕ 新增知識",    "act_add_knowledge"),
+                            ("🤖 問 Claude",   "act_ask_claude"),
+                            ("💬 問 ChatGPT",  "act_ask_chatgpt"),
+                        ],
+                        "database": [
+                            ("🧠 查看記憶庫",  "act_memory"),
+                            ("🎓 Claude知識庫", "act_ck_stats"),
+                            ("💬 ChatGPT知識庫", "act_gpt_knowledge"),
+                            ("📖 模組說明",    "act_module_explain"),
+                        ],
+                        "desktop": [
+                            ("📸 截圖",        "act_screenshot"),
+                            ("🪟 列出視窗",    "act_list_windows"),
+                            ("📁 查看桌面",    "act_ls_desktop"),
+                            ("💻 系統資訊",    "act_sysinfo"),
+                        ],
+                    }
+                    btns = actions.get(mode_id, [])
+                    for label, cb in btns:
+                        kb.add(InlineKeyboardMarkup.button if False else
+                               InlineKeyboardButton(label, callback_data=cb))
+                    kb.add(InlineKeyboardButton("⬅️ 返回模式選單", callback_data="show_modes"))
+                    return kb
+
+                @bot.message_handler(commands=["start"])
+                def on_start(m):
+                    if not is_ok(m): return
+                    bot.send_message(m.chat.id,
+                        "立 AI 已連線！\n\n目前模式：對話模式\n請選擇模式或直接傳訊息：",
+                        reply_markup=_mode_keyboard()
+                    )
+
+                @bot.message_handler(commands=["status"])
+                def on_status(m):
+                    if not is_ok(m): return
+                    mem_count = len(_memory._memories) if _memory else 0
+                    ollama_ok = False
+                    try:
+                        import requests as rq
+                        ollama_ok = rq.get("http://localhost:11434/api/tags", timeout=3).status_code == 200
+                    except: pass
+                    bot.reply_to(m, f"🦞 系統狀態\nOllama：{'✅' if ollama_ok else '❌'}\n記憶：{mem_count} 筆")
+
+
+                @bot.message_handler(commands=["cmd"])
+                def on_cmd(m):
+                    if not is_ok(m): return
+                    parts = m.text.split(" ", 1)
+                    if len(parts) < 2:
+                        bot.reply_to(m, "用法：/cmd dir")
+                        return
+                    cmd = parts[1].strip()
+                    try:
+                        import subprocess
+                        result = subprocess.run(
+                            cmd, shell=True, capture_output=True,
+                            timeout=30,
+                            cwd=r"C:\Users\ACER\OneDrive\桌面\AI-Agent"
+                        )
+                        out_bytes = result.stdout or result.stderr or b""
+                        try:
+                            out_text = out_bytes.decode("cp950", errors="ignore")
+                        except Exception:
+                            out_text = out_bytes.decode("utf-8", errors="ignore")
+                        if not out_text.strip():
+                            out_text = "（無輸出）"
+                        out = out_text.strip()[:2000]
+                        reply = f"$ {cmd}\n\n{out}"
+                        bot.reply_to(m, reply)
+                        _write_queue(f"/cmd {cmd}", reply)
+                    except Exception as e:
+                        bot.reply_to(m, f"錯誤：{e}")
+
+                @bot.message_handler(commands=["open"])
+                def on_open(m):
+                    if not is_ok(m): return
+                    parts = m.text.split(" ", 1)
+                    if len(parts) < 2:
+                        bot.reply_to(m, "用法：/open notepad")
+                        return
+                    import subprocess
+                    subprocess.Popen(parts[1].strip(), shell=True)
+                    bot.reply_to(m, f"已開啟：{parts[1].strip()}")
+
+                @bot.message_handler(commands=["ls"])
+                def on_ls(m):
+                    if not is_ok(m): return
+                    import pathlib as pl
+                    files = sorted(pl.Path(".").glob("*.py"))
+                    lines2 = [f"{i+1}. {f.name}" for i, f in enumerate(files)]
+                    bot.reply_to(m, "Python 檔案：\n" + "\n".join(lines2))
+
+                @bot.message_handler(commands=["read"])
+                def on_read(m):
+                    if not is_ok(m): return
+                    parts = m.text.split(" ", 1)
+                    if len(parts) < 2:
+                        bot.reply_to(m, "用法：/read reflex_engine.py")
+                        return
+                    import pathlib as pl
+                    f = pl.Path(parts[1].strip())
+                    if not f.exists():
+                        bot.reply_to(m, f"找不到：{parts[1].strip()}")
+                        return
+                    content = f.read_text(encoding="utf-8", errors="ignore")
+                    if len(content) > 3800:
+                        content = content[:3800] + "\n...（已截斷）"
+                    bot.reply_to(m, content)
+
+                @bot.message_handler(commands=["sysinfo"])
+                def on_sysinfo(m):
+                    if not is_ok(m): return
+                    try:
+                        import psutil
+                        cpu  = psutil.cpu_percent(interval=1)
+                        mem  = psutil.virtual_memory()
+                        disk = psutil.disk_usage("/")
+                        bot.reply_to(m,
+                            f"CPU：{cpu}%\n"
+                            f"記憶體：{mem.used//1024//1024}MB/{mem.total//1024//1024}MB ({mem.percent}%)\n"
+                            f"磁碟：{disk.used//1024//1024//1024}GB/{disk.total//1024//1024//1024}GB ({disk.percent}%)"
+                        )
+                    except Exception as e:
+                        bot.reply_to(m, f"錯誤：{e}")
+
+                @bot.message_handler(commands=["restart"])
+                def on_restart(m):
+                    if not is_ok(m): return
+                    bot.reply_to(m, "重啟中...")
+                    import subprocess, sys, os
+                    subprocess.Popen([sys.executable, "desktop_agent.py"],
+                        cwd=r"C:\Users\ACER\OneDrive\桌面\AI-Agent")
+                    os._exit(0)
+
+                @bot.message_handler(commands=["dev"])
+                def on_dev(m):
+                    if not is_ok(m): return
+                    parts = m.text.split(" ", 1)
+                    if len(parts) < 2:
+                        bot.reply_to(m, "用法：/dev 修改 reflex_engine.py 讓問候更自然")
+                        return
+                    try:
+                        from dev_tool import get_tool
+                        _tool = get_tool()
+                        _tool.state.solo_context = ""
+                        threading.Thread(target=_tool.start, args=(text.strip(),), daemon=True).start()
+                        bot.reply_to(m, "🤖 開始規劃...")
+                        result = get_engine().handle(parts[1].strip())
+                        bot.reply_to(m, result)
+                    except Exception as e:
+                        bot.reply_to(m, f"錯誤：{e}")
+
+                @bot.message_handler(commands=["confirm"])
+                def on_confirm(m):
+                    if not is_ok(m): return
+                    try:
+                        from dev_tool import get_tool
+                        tool = get_tool()
+                        if not eng.has_pending():
+                            bot.reply_to(m, "沒有待確認的行動")
+                            return
+                        bot.reply_to(m, "執行中...")
+                        result = eng.confirm()
+                        bot.reply_to(m, result)
+                    except Exception as e:
+                        bot.reply_to(m, f"錯誤：{e}")
+
+                @bot.message_handler(commands=["cancel"])
+                def on_cancel(m):
+                    if not is_ok(m): return
+                    try:
+                        from dev_tool import get_tool
+                        get_tool().handle_callback("dt_stop")
+                        result = "❌ 已取消"
+                        bot.reply_to(m, result)
+                    except Exception as e:
+                        bot.reply_to(m, f"錯誤：{e}")
+
+                @bot.message_handler(commands=["restore"])
+                def on_restore(m):
+                    if not is_ok(m): return
+                    parts = m.text.split(" ", 1)
+                    if len(parts) < 2:
+                        bot.reply_to(m, "用法：/restore reflex_engine.py")
+                        return
+                    try:
+                        result = "❌ 還原功能已移至 dev_tool"  # from self_dev_engine import get_engine
+                        # result = get_engine().restore(parts[1].strip())
+                        bot.reply_to(m, result)
+                    except Exception as e:
+                        bot.reply_to(m, f"錯誤：{e}")
+
+                @bot.message_handler(commands=["history"])
+                def on_history(m):
+                    if not is_ok(m): return
+                    try:
+                        result = "（開發歷史功能移至 dev_tool）"
+                        bot.reply_to(m, f"開發歷史：\n{result}")
+                    except Exception as e:
+                        bot.reply_to(m, f"錯誤：{e}")
+
+                @bot.message_handler(commands=["help"])
+                def on_help(m):
+                    if not is_ok(m): return
+                    bot.reply_to(m,
+                        "指令清單：\n\n"
+                        "模式\n"
+                        "/mode - 查看目前模式\n"
+                        "/mode chat - 對話模式\n"
+                        "/mode terminal - 終端模式\n"
+                        "/mode dev - 自主開發模式\n"
+                        "/mode teach - 教學模式\n\n"
+                        "一般\n"
+                        "/status - 系統狀態\n"
+                        "/sysinfo - CPU 記憶體 磁碟\n\n"
+                        "電腦控制\n"
+                        "/cmd [指令] - 執行終端指令\n"
+                        "/open [程式] - 開啟程式\n"
+                        "/restart - 重啟 AI\n\n"
+                        "檔案\n"
+                        "/ls - 列出 .py 檔案\n"
+                        "/read [檔名] - 查看程式碼\n\n"
+                        "開發\n"
+                        "/dev [需求] - 修改程式碼\n"
+                        "/confirm - 確認修改\n"
+                        "/cancel - 取消\n"
+                        "/restore [檔名] - 還原備份\n"
+                        "/history - 開發歷史"
+                    )
+
+                # 手機模式追蹤
+                _bot_mode     = {"current": "chat"}
+                _bot_dev_mode = {}  # chat_id → "claude" / "solo"
+                _mode_names = {
+                    "chat": "對話模式",
+                    "terminal": "終端模式",
+                    "dev": "自主開發模式",
+                    "teach": "教學模式",
+                    "database": "資料庫模式",
+                    "desktop": "桌面模式",
+                }
+                _mode_icons = {
+                    "chat": "💬",
+                    "terminal": "⌨️",
+                    "dev": "🤖",
+                    "teach": "📚",
+                    "database": "🗄",
+                    "desktop": "🖥",
+                }
+
+                @bot.message_handler(commands=["mode"])
+                def on_mode(m):
+                    if not is_ok(m): return
+                    parts = m.text.split(" ", 1)
+                    if len(parts) >= 2:
+                        new_mode = parts[1].strip().lower()
+                        if new_mode in _mode_names:
+                            _bot_mode["current"] = new_mode
+                            name = _mode_names[new_mode]
+                            bot.reply_to(m, f"已切換到 {name}")
+                            _write_queue(f"/mode {new_mode}", f"手機切換到{name}")
+                            return
+                    # 顯示模式選擇按鈕
+                    cur = _mode_names.get(_bot_mode["current"], "")
+                    bot.send_message(m.chat.id,
+                        f"目前模式：{cur}\n請選擇：",
+                        reply_markup=_mode_keyboard()
+                    )
+
+                def _db_reply_keyboard():
+                    """資料庫模式的固定底部按鍵列"""
+                    from telebot.types import ReplyKeyboardMarkup, KeyboardButton
+                    kb = ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+                    kb.add(
+                        KeyboardButton("🧠 查看記憶庫"),
+                        KeyboardButton("🎓 Claude知識庫"),
+                        KeyboardButton("💬 ChatGPT知識庫"),
+                        KeyboardButton("📖 模組說明"),
+                        KeyboardButton("🔍 搜尋記憶"),
+                        KeyboardButton("📊 系統狀態"),
+                    )
+                    return kb
+
+                def _remove_reply_keyboard():
+                    """移除固定底部按鍵列"""
+                    from telebot.types import ReplyKeyboardRemove
+                    return ReplyKeyboardRemove()
+
+                @bot.callback_query_handler(func=lambda call: call.data.startswith("mode_"))
+                def on_mode_callback(call):
+                    mode_id = call.data.replace("mode_", "")
+                    if mode_id in _mode_names:
+                        prev_mode = _bot_mode["current"]
+                        _bot_mode["current"] = mode_id
+                        name = _mode_names.get(mode_id, mode_id)
+                        cid  = call.message.chat.id
+                        bot.answer_callback_query(call.id, f"已切換到 {name}")
+
+                        if mode_id == "dev":
+                            # 自主開發模式：直接顯示開發方式選擇
+                            from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+                            kb = InlineKeyboardMarkup(row_width=1)
+                            kb.add(
+                                InlineKeyboardButton("🤝 與 Claude 共同開發", callback_data="devmode_claude"),
+                                InlineKeyboardButton("🦾 立AI 自己開發",      callback_data="devmode_solo"),
+                            )
+                            try:
+                                bot.edit_message_text(
+                                    "🤖 自主開發模式\n\n請選擇開發方式：",
+                                    chat_id=cid, message_id=call.message.message_id,
+                                    reply_markup=kb
+                                )
+                            except Exception:
+                                bot.send_message(cid, "🤖 自主開發模式\n\n請選擇開發方式：", reply_markup=kb)
+                        else:
+                            try:
+                                bot.edit_message_text(
+                                    f"✅ 已切換到 {name}\n\n請選擇功能：",
+                                    chat_id=cid,
+                                    message_id=call.message.message_id,
+                                    reply_markup=_action_keyboard(mode_id)
+                                )
+                            except Exception:
+                                bot.send_message(cid, f"✅ 已切換到 {name}", reply_markup=_action_keyboard(mode_id))
+                            if mode_id == "database":
+                                bot.send_message(cid,
+                                    "📊 資料庫模式\n底部按鍵可直接查詢。",
+                                    reply_markup=_db_reply_keyboard()
+                                )
+                            elif prev_mode == "database":
+                                bot.send_message(cid, f"已切換到 {name}",
+                                    reply_markup=_remove_reply_keyboard()
+                                )
+                        _write_queue(f"/mode {mode_id}", f"手機切換到{name}")
+
+                @bot.callback_query_handler(func=lambda call: call.data == "show_modes")
+                def on_show_modes(call):
+                    bot.answer_callback_query(call.id, "")
+                    bot.edit_message_text(
+                        "請選擇模式：",
+                        chat_id=call.message.chat.id,
+                        message_id=call.message.message_id,
+                        reply_markup=_mode_keyboard()
+                    )
+
+                @bot.callback_query_handler(func=lambda call: call.data.startswith("act_"))
+                def on_act_callback(call):
+                    cid = call.message.chat.id
+                    act = call.data
+                    bot.answer_callback_query(call.id, "⏳ 執行中...")
+
+                    if act == "act_memory":
+                        try:
+                            items = sorted(_memory._memories,
+                                key=lambda m: m["accessed_at"], reverse=True)[:8]
+                            lines = ["🧠 最近記憶：\n"]
+                            for m in items:
+                                lines.append(f"★ {m['content'][:60]}")
+                            bot.send_message(cid, "\n".join(lines))
+                        except Exception as e:
+                            bot.send_message(cid, f"❌ {e}")
+
+                    elif act == "act_ask_claude":
+                        bot.send_message(cid, "請輸入要問 Claude 的問題：\n（直接傳訊息，會自動走橋接）")
+                        _bot_mode["pending"] = "ask_claude"
+
+                    elif act == "act_ask_chatgpt":
+                        bot.send_message(cid, "請輸入要問 ChatGPT 的問題：")
+                        _bot_mode["pending"] = "ask_chatgpt"
+
+                    elif act == "act_teach":
+                        bot.send_message(cid, "請輸入要教立 AI 的知識：\n格式：內容（直接傳訊息）")
+                        _bot_mode["pending"] = "teach"
+
+                    elif act == "act_ck_stats":
+                        try:
+                            from claude_knowledge import get_knowledge
+                            bot.send_message(cid, get_knowledge().get_stats())
+                        except Exception as e:
+                            bot.send_message(cid, f"❌ {e}")
+
+                    elif act == "act_logs":
+                        try:
+                            log_file = pathlib.Path("memory/agent.log")
+                            if log_file.exists():
+                                lines = log_file.read_text(encoding="utf-8",
+                                    errors="ignore").splitlines()
+                                recent = "\n".join(lines[-30:])
+                                bot.send_message(cid, recent[:4000])
+                            else:
+                                bot.send_message(cid, "找不到日誌檔案")
+                        except Exception as e:
+                            bot.send_message(cid, f"❌ {e}")
+
+                    elif act == "act_capabilities":
+                        bot.send_message(cid,
+                            "⚡ 立 AI 能力：\n\n"
+                            "💬 對話：自然語言對話、記憶學習\n"
+                            "⌨️ 終端：執行系統指令\n"
+                            "🤖 開發：自主生成程式碼\n"
+                            "📚 教學：存入記憶庫\n"
+                            "🖥 桌面：截圖、視窗控制\n"
+                            "🌐 YouTube：摘要字幕\n"
+                            "🤝 Claude/ChatGPT：橋接學習"
+                        )
+
+                    elif act == "act_repair":
+                        import threading
+                        def _repair():
+                            try:
+                                result = subprocess.run(
+                                    ["python", "-c",
+                                     "from repair_engine import RepairEngine; "
+                                     "r=RepairEngine(); print(r.run_diagnosis())"],
+                                    capture_output=True, text=True, timeout=30,
+                                    encoding="utf-8", errors="ignore", cwd=str(_pl.Path(__file__).parent)
+                                )
+                                bot.send_message(cid, result.stdout[:4000] or "完成")
+                            except Exception as e:
+                                bot.send_message(cid, f"❌ {e}")
+                        threading.Thread(target=_repair, daemon=True).start()
+
+                    elif act == "act_analyze":
+                        bot.send_message(cid, "請輸入要分析的檔名（如：telegram_bot.py）：")
+                        _bot_mode["pending"] = "analyze"
+
+                    elif act == "act_module_explain":
+                        bot.send_message(cid, "請輸入要查詢的檔名（如：desktop_agent.py）：")
+                        _bot_mode["pending"] = "module_explain"
+
+                    elif act == "act_dev_history":
+                        try:
+                            import json
+                            hf = pathlib.Path("memory/dev_history.json")
+                            if hf.exists():
+                                history = json.loads(hf.read_text(encoding="utf-8"))
+                                recent = history[-5:]
+                                lines = ["💻 最近開發歷史：\n"]
+                                for h in recent:
+                                    lines.append(f"✓ {h.get('file','?')} — {h.get('goal','?')[:40]}")
+                                bot.send_message(cid, "\n".join(lines))
+                            else:
+                                bot.send_message(cid, "尚無開發歷史")
+                        except Exception as e:
+                            bot.send_message(cid, f"❌ {e}")
+
+                    elif act == "act_screenshot":
+                        import threading
+                        def _ss():
+                            try:
+                                result = subprocess.run(
+                                    ["python", "-c",
+                                     "import pyautogui, datetime, pathlib; "
+                                     "p=pathlib.Path('memory/screenshots'); p.mkdir(exist_ok=True); "
+                                     "f=p/f'ss_{datetime.datetime.now().strftime(\"%H%M%S\")}.png'; "
+                                     "pyautogui.screenshot(str(f)); print('截圖：'+str(f))"],
+                                    capture_output=True, text=True, timeout=15,
+                                    encoding="utf-8", errors="ignore", cwd=str(_pl.Path(__file__).parent)
+                                )
+                                bot.send_message(cid, result.stdout or "截圖完成")
+                            except Exception as e:
+                                bot.send_message(cid, f"❌ {e}")
+                        threading.Thread(target=_ss, daemon=True).start()
+
+                    elif act == "act_list_windows":
+                        try:
+                            import pygetwindow as gw
+                            wins = [w.title for w in gw.getAllWindows() if w.title][:15]
+                            bot.send_message(cid, "🪟 目前視窗：\n" + "\n".join(wins))
+                        except Exception as e:
+                            bot.send_message(cid, f"❌ {e}")
+
+                    elif act == "act_ls_desktop":
+                        try:
+                            import os
+                            desktop = pathlib.Path.home() / "OneDrive" / "桌面"
+                            if not desktop.exists():
+                                desktop = pathlib.Path.home() / "Desktop"
+                            files = [f.name for f in desktop.iterdir()][:20]
+                            bot.send_message(cid, "📁 桌面：\n" + "\n".join(files))
+                        except Exception as e:
+                            bot.send_message(cid, f"❌ {e}")
+
+                    elif act == "act_sysinfo":
+                        try:
+                            import psutil
+                            cpu = psutil.cpu_percent(interval=1)
+                            mem = psutil.virtual_memory()
+                            disk = psutil.disk_usage("/")
+                            bot.send_message(cid,
+                                f"💻 系統資訊\n"
+                                f"CPU：{cpu}%\n"
+                                f"記憶體：{mem.percent}% ({mem.used//1024//1024}MB/{mem.total//1024//1024}MB)\n"
+                                f"磁碟：{disk.percent}%"
+                            )
+                        except Exception as e:
+                            bot.send_message(cid, f"❌ {e}")
+
+                # 記憶存入確認（手機）
+                _pending_mobile_mem = {}
+
+                @bot.callback_query_handler(func=lambda call: call.data.startswith("mem_"))
+                def on_mem_callback(call):
+                    cid = call.message.chat.id
+                    pm = _pending_mobile_mem.get(cid)
+                    if call.data == "mem_save" and pm:
+                        if _lobster:
+                            _lobster.episodic.store(pm["input"], pm["reply"])
+                            _lobster.reflex_memory.learn(pm["input"], pm["reply"])
+                        bot.answer_callback_query(call.id, "已存入記憶")
+                        bot.edit_message_text("已存入記憶",
+                            chat_id=cid, message_id=call.message.message_id)
+                        _pending_mobile_mem.pop(cid, None)
+                    elif call.data == "mem_skip":
+                        bot.answer_callback_query(call.id, "已跳過")
+                        bot.edit_message_text("已跳過",
+                            chat_id=cid, message_id=call.message.message_id)
+                        _pending_mobile_mem.pop(cid, None)
+
+                # 開發方式選擇（與Claude共同開發 / 立AI自己開發）
+                @bot.callback_query_handler(func=lambda call: call.data.startswith("devmode_"))
+                def on_devmode_callback(call):
+                    cid  = call.message.chat.id
+                    mode = call.data.replace("devmode_", "")
+                    _bot_dev_mode[cid] = mode
+                    try:
+                        bot.edit_message_reply_markup(cid, call.message.message_id, reply_markup=None)
+                    except Exception:
+                        pass
+                    if mode == "solo":
+                        bot.answer_callback_query(call.id, "🦾 立AI自己開發")
+                        bot.send_message(cid,
+                            "🦾 立AI自己開發模式\n\n"
+                            "立AI會從知識庫找經驗自己生成，不問 Claude。\n\n"
+                            "請直接輸入需求：")
+                    else:
+                        bot.answer_callback_query(call.id, "🤝 與Claude共同開發")
+                        bot.send_message(cid,
+                            "🤝 與 Claude 共同開發模式\n\n"
+                            "立AI會先與 Claude 討論規格，再逐步製作。\n\n"
+                            "請直接輸入需求：")
+
+                # dev_tool 的 callback（dt_ 前綴）
+                @bot.callback_query_handler(func=lambda call: call.data.startswith("dt_"))
+                def on_dt_callback(call):
+                    cid = call.message.chat.id
+                    if not is_ok(call.message): return
+                    bot.answer_callback_query(call.id, "⏳ 處理中...")
+                    try:
+                        from dev_tool import get_tool
+                        handled = get_tool().handle_callback(call.data)
+                        if not handled:
+                            bot.send_message(cid, f"❌ 未知指令：{call.data}")
+                    except Exception as e:
+                        bot.send_message(cid, f"❌ 執行失敗：{e}")
+                    try:
+                        bot.edit_message_reply_markup(
+                            cid, call.message.message_id, reply_markup=None
+                        )
+                    except Exception:
+                        pass
+
+                # 開發確認（手機按鈕）
+                @bot.callback_query_handler(func=lambda call: call.data in ["dev_confirm", "dev_cancel"] or call.data.startswith("dev_start_") or call.data.startswith("dev_model_") or call.data == "dev_back_models")
+                def on_dev_callback(call):
+                    cid = call.message.chat.id
+                    if not is_ok(call.message): return
+
+                    # 第一層：選模型 → 推送第二層步驟
+                    if call.data.startswith("dev_model_"):
+                        model_key = call.data.replace("dev_model_", "")
+                        bot.answer_callback_query(call.id, "載入步驟...")
+                        try:
+                            from dev_tool import get_tool
+                            get_tool().select_group(model_key)
+                        except Exception as e:
+                            bot.send_message(cid, f"❌ 載入步驟失敗：{e}")
+                        return
+
+                    # 返回第一層
+                    if call.data == "dev_back_models":
+                        bot.answer_callback_query(call.id, "返回模型選擇")
+                        try:
+                            from dev_tool import get_tool as _dt_ref
+                            get_tool()._push_mindmap()
+                            req = _model_step_map.get("request", "")
+                            steps = _model_step_map.get("steps", [])
+                            _push_mindmap_to_phone(req, "", steps)
+                        except Exception as e:
+                            bot.send_message(cid, f"❌ 返回失敗：{e}")
+                        return
+
+                    # 第二層：選步驟 → 確認開始製作
+                    if call.data.startswith("dev_start_"):
+                        try:
+                            step_idx = int(call.data.replace("dev_start_", ""))
+                            from dev_tool import get_tool as _dt
+                            if _dt().state.active:
+                                _plan_state["current_step"] = step_idx
+                                _plan_state["pending_write"] = {}
+                                step = _plan_state["steps"][step_idx]
+                                bot.answer_callback_query(call.id, f"步驟 {step_idx+1}")
+                                from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+                                kb = InlineKeyboardMarkup()
+                                kb.row(
+                                    InlineKeyboardButton("✅ 確認開始製作", callback_data="dev_confirm"),
+                                    InlineKeyboardButton("⬅️ 返回", callback_data="dev_back_models"),
+                                )
+                                bot.send_message(cid,
+                                    f"▶️ 步驟 {step_idx+1}：{step['title']}\n"
+                                    f"   📄 {step['file']}\n\n"
+                                    f"{step.get('desc','')[:150]}\n\n"
+                                    f"確認開始製作這個步驟？",
+                                    reply_markup=kb
+                                )
+                            else:
+                                bot.answer_callback_query(call.id, "沒有進行中的計畫")
+                        except Exception as e:
+                            bot.send_message(cid, f"❌ 跳步失敗：{e}")
+                        return
+
+
+                @bot.message_handler(func=lambda m: True)
+                def on_msg(m):
+                    if not is_ok(m): return
+                    text = m.text.strip()
+                    # 手動路由指令（確保在執行緒內也能正確執行）
+                    if text.startswith("/"):
+                        cmd = text.split()[0].lower()
+                        if cmd == "/cmd":        on_cmd(m)
+                        elif cmd == "/open":     on_open(m)
+                        elif cmd == "/ls":       on_ls(m)
+                        elif cmd == "/read":     on_read(m)
+                        elif cmd == "/sysinfo":  on_sysinfo(m)
+                        elif cmd == "/restart":  on_restart(m)
+                        elif cmd == "/dev":      on_dev(m)
+                        elif cmd == "/confirm":  on_confirm(m)
+                        elif cmd == "/cancel":   on_cancel(m)
+                        elif cmd == "/restore":  on_restore(m)
+                        elif cmd == "/history":  on_history(m)
+                        elif cmd == "/help":     on_help(m)
+                        elif cmd == "/status":   on_status(m)
+                        elif cmd == "/start":    on_start(m)
+                        elif cmd == "/mode":     on_mode(m)
+                        elif cmd == "/analyze":
+                            parts = m.text.split(" ", 1)
+                            fname = parts[1].strip() if len(parts) > 1 else ""
+                            if fname:
+                                import threading
+                                def _do_analyze():
+                                    try:
+                                        r = subprocess.run(
+                                            ["python", "analyze_module.py"] + fname.split(),
+                                            capture_output=True, text=True, timeout=15,
+                                            encoding="utf-8", errors="ignore",
+                                            cwd=str(_pl.Path(__file__).parent)
+                                        )
+                                        out = r.stdout or r.stderr or "（無輸出）"
+                                        bot.send_message(m.chat.id, out[:4000])
+                                    except Exception as e:
+                                        bot.send_message(m.chat.id, f"❌ {e}")
+                                threading.Thread(target=_do_analyze, daemon=True).start()
+                            else:
+                                bot.reply_to(m, "用法：/analyze 檔名.py")
+                        _write_queue(text, f"已執行 {cmd}")
+                        return
+
+                    # 處理 pending 狀態（功能按鈕後等待輸入）
+                    pending = _bot_mode.get("pending")
+                    if pending:
+                        _bot_mode.pop("pending", None)
+                        cid = m.chat.id
+                        if pending == "ask_claude":
+                            bot.send_message(cid, "⏳ 問 Claude 中...")
+                            import threading
+                            def _ask_c():
+                                try:
+                                    from claude_desktop_bridge import get_bridge
+                                    ans = get_bridge().ask(text, auto_learn=True)
+                                    bot.send_message(cid, ans[:4000])
+                                except Exception as e:
+                                    bot.send_message(cid, f"❌ {e}")
+                            threading.Thread(target=_ask_c, daemon=True).start()
+                            return
+                        elif pending == "ask_chatgpt":
+                            bot.send_message(cid, "⏳ 問 ChatGPT 中...")
+                            import threading
+                            def _ask_gpt():
+                                try:
+                                    from chatgpt_desktop_bridge import get_bridge
+                                    ans = get_bridge().ask(text, auto_learn=True)
+                                    bot.send_message(cid, ans[:4000])
+                                except Exception as e:
+                                    bot.send_message(cid, f"❌ {e}")
+                            threading.Thread(target=_ask_gpt, daemon=True).start()
+                            return
+                        elif pending == "teach":
+                            try:
+                                if _memory:
+                                    _memory.store(text, tags=["user_teach"], importance=8, source="mobile")
+                                    bot.send_message(cid, "✅ 已存入記憶庫")
+                            except Exception as e:
+                                bot.send_message(cid, f"❌ {e}")
+                            return
+                        elif pending == "analyze":
+                            import threading
+                            def _do_a():
+                                try:
+                                    r = subprocess.run(
+                                        ["python", "analyze_module.py"] + text.split(),
+                                        capture_output=True, text=True, timeout=15,
+                                        encoding="utf-8", errors="ignore",
+                                        cwd=str(_pl.Path(__file__).parent)
+                                    )
+                                    out = r.stdout or r.stderr or "（無輸出）"
+                                    bot.send_message(cid, out[:4000])
+                                except Exception as e:
+                                    bot.send_message(cid, f"❌ {e}")
+                            threading.Thread(target=_do_a, daemon=True).start()
+                            return
+
+                        elif pending == "module_explain":
+                            import threading, pathlib as _pl2
+                            fname = text.strip()
+                            if not fname.endswith(".py"):
+                                fname += ".py"
+                            def _do_explain():
+                                try:
+                                    fpath = _pl2.Path(fname)
+                                    if not fpath.exists():
+                                        bot.send_message(cid, f"找不到 {fname}")
+                                        return
+                                    head = "\n".join(fpath.read_text(encoding="utf-8", errors="ignore").splitlines()[:80])
+                                    prompt = (
+                                        f"以下是 Python 模組 {fname} 的前 80 行程式碼：\n\n{head}\n\n"
+                                        f"請用繁體中文，2-4 句說明這個模組的功能和用途，簡單清楚。"
+                                    )
+                                    from ollama_guard import safe_infer
+                                    result = safe_infer(prompt=prompt, model="qwen2.5:14b", timeout=60)
+                                    bot.send_message(cid, f"📖 {fname}\n\n{result[:3000]}")
+                                except Exception as e:
+                                    bot.send_message(cid, f"❌ {e}")
+                            bot.send_message(cid, f"正在分析 {fname}，請稍候...")
+                            threading.Thread(target=_do_explain, daemon=True).start()
+                            return
+
+                    # 自然語言切換模式（「換介面」「切換模式」「換模式」）
+                    switch_triggers = ["換介面", "切換模式", "換模式", "選模式", "切換介面"]
+                    if any(t in text for t in switch_triggers):
+                        cur = _mode_names.get(_bot_mode["current"], "")
+                        bot.send_message(m.chat.id,
+                            f"目前模式：{cur}\n請選擇：",
+                            reply_markup=_mode_keyboard()
+                        )
+                        return
+
+                    from PyQt6.QtCore import QTimer as _QT
+                    _ts_now = self._ts()
+                    _QT.singleShot(0, lambda _t=_ts_now, _txt=text[:50]: self._log(f"[{_t}] [手機] {_txt}"))
+                    bot.send_chat_action(m.chat.id, "typing")
+
+                    # YouTube 連結處理
+                    try:
+                        from youtube_telegram import handle_youtube_msg
+                        if handle_youtube_msg(bot, m, _lobster):
+                            _write_queue(text, "[YouTube摘要已回傳]")
+                            return
+                    except Exception:
+                        pass
+
+                    mode = _bot_mode["current"]
+
+                    # 教學模式：直接存記憶庫 + 讀取檔案
+                    if mode == "teach":
+                        import re as _re_mt
+                        file_match = _re_mt.search(r'(讀取|學習|read)\s+(.+\.\w+)', text)
+                        if file_match:
+                            # 讀取檔案學習
+                            filepath = file_match.group(2).strip()
+                            try:
+                                import pathlib as _pl_mt
+                                f = _pl_mt.Path(filepath)
+                                if not f.exists():
+                                    f = _pl_mt.Path("learn_inbox") / filepath
+                                if not f.exists():
+                                    bot.reply_to(m, f"找不到檔案：{filepath}")
+                                    return
+                                ext = f.suffix.lower()
+                                if ext == ".pdf":
+                                    try:
+                                        from pypdf import PdfReader
+                                        reader = PdfReader(str(f))
+                                        content = ""
+                                        for page in reader.pages[:10]:
+                                            pt = page.extract_text()
+                                            if pt: content += pt + "\n"
+                                    except ImportError:
+                                        bot.reply_to(m, "需要 pip install pypdf")
+                                        return
+                                else:
+                                    content = f.read_text(encoding="utf-8", errors="ignore")
+                                if not content.strip():
+                                    bot.reply_to(m, f"檔案內容為空：{f.name}")
+                                    return
+                                import re as _re_split
+                                paragraphs = _re_split.split(r'\n{2,}', content)
+                                count = 0
+                                for para in paragraphs:
+                                    para = para.strip()
+                                    if len(para) < 10: continue
+                                    if len(para) > 300:
+                                        for i in range(0, len(para), 250):
+                                            sub = para[i:i+250].strip()
+                                            if len(sub) >= 10 and _memory:
+                                                _memory.store(sub, tags=["file_learn", f.name], importance=6, source="mobile_teach")
+                                                count += 1
+                                    else:
+                                        if _memory:
+                                            _memory.store(para, tags=["file_learn", f.name], importance=6, source="mobile_teach")
+                                            count += 1
+                                bot.reply_to(m, f"已從 {f.name} 學習 {count} 段知識")
+                            except Exception as e:
+                                bot.reply_to(m, f"讀取失敗：{e}")
+                            return
+
+                        # 一般知識輸入
+                        if _memory:
+                            _memory.store(text, tags=["user_teach", "mobile"], importance=8, source="mobile_teach")
+                            bot.reply_to(m, f"已記住：{text[:60]}")
+                            _write_queue(f"[教學] {text}", "已記住")
+                        else:
+                            bot.reply_to(m, "記憶庫未載入")
+                        return
+
+                    # 資料庫模式：底部按鍵文字對應
+                    if mode == "database":
+                        db_map = {
+                            "🧠 查看記憶庫":    "act_memory",
+                            "🎓 Claude知識庫":  "act_ck_stats",
+                            "💬 ChatGPT知識庫": "act_gpt_knowledge",
+                            "📖 模組說明":      "act_module_explain",
+                            "📊 系統狀態":      "act_sysinfo",
+                        }
+                        if text in db_map:
+                            # 模擬 act_ callback
+                            class _FakeCall:
+                                data = db_map[text]
+                                class message:
+                                    chat = type('C', (), {'id': m.chat.id})()
+                            try:
+                                on_act_callback(_FakeCall())
+                            except Exception as e:
+                                bot.reply_to(m, f"❌ {e}")
+                            return
+                        if text == "🔍 搜尋記憶":
+                            bot.reply_to(m, "請輸入搜尋關鍵字：")
+                            _bot_mode["pending"] = "search_memory"
+                            return
+                        # 一般文字 → 搜尋記憶庫
+                        if _bot_mode.get("pending") == "search_memory" or not any(text.startswith(c) for c in ['/', '!']):
+                            _bot_mode.pop("pending", None)
+                            try:
+                                from claude_knowledge import get_knowledge
+                                results = get_knowledge().search(text, top_k=3)
+                                if results:
+                                    lines = [f"📚 找到 {len(results)} 筆："]
+                                    for r in results:
+                                        lines.append(f"\n• {r.get('question','')[:60]}\n  {r.get('answer','')[:100]}")
+                                    bot.reply_to(m, "\n".join(lines)[:4000])
+                                else:
+                                    if _memory:
+                                        mems = _memory.search(text, top_k=3)
+                                        if mems:
+                                            lines = [f"🧠 記憶庫找到 {len(mems)} 筆："]
+                                            for mem in mems:
+                                                lines.append(f"• {mem.get('content','')[:80]}")
+                                            bot.reply_to(m, "\n".join(lines))
+                                            return
+                                    bot.reply_to(m, f"找不到「{text[:30]}」的相關資料")
+                            except Exception as e:
+                                bot.reply_to(m, f"❌ 查詢失敗：{e}")
+                            return
+
+                    # 終端模式：直接執行指令
+                    if mode == "terminal":
+                        try:
+                            from terminal_engine import get_terminal
+                            result = get_terminal().handle(text)
+                            if result:
+                                bot.reply_to(m, result)
+                                _write_queue(f"[終端] {text}", result[:100])
+                                return
+                        except Exception:
+                            pass
+
+                    # 開發指令攔截
+                    import re as _re
+                    dev_keywords = ["修改", "新增", "幫我改", "幫我加", "建立", "寫一個", "開發"]
+                    app_keywords = ["程式", "應用程式", "系統", "工具", "軟體", "視窗", "介面"]
+                    has_py = bool(_re.search(r"\w+\.py", text))
+                    has_dev = any(kw in text for kw in dev_keywords)
+                    has_app = any(kw in text for kw in app_keywords)
+
+                    # 確認/取消
+                    if text.strip() in ["確認", "好", "執行", "yes", "ok"]:
+                        try:
+                            from dev_tool import get_tool
+                            if get_tool().state.active:
+                                bot.reply_to(m, "執行中...")
+                                result = get_engine().confirm()
+                                bot.reply_to(m, result)
+                                return
+                        except Exception:
+                            pass
+
+                    if text.strip() in ["取消", "不", "算了", "cancel"]:
+                        try:
+                            from dev_tool import get_tool
+                            if get_tool().state.active:
+                                result = get_engine().cancel()
+                                bot.reply_to(m, result)
+                                return
+                        except Exception:
+                            pass
+
+                    # 修改單一檔案
+                    if has_py and has_dev:
+                        try:
+                            from dev_tool import get_tool
+                            _tool = get_tool()
+                            _dev_md = _bot_dev_mode.get(m.chat.id, "claude")
+                            if _dev_md == "solo":
+                                try:
+                                    from claude_knowledge import get_knowledge
+                                    _rs = get_knowledge().search(text, top_k=5)
+                                    _tool.state.solo_context = ("\n".join(
+                                        [f"• {r.get('question','')[:60]}\n  {r.get('answer','')[:80]}" for r in _rs]
+                                    ) if _rs else "（無相關經驗）")
+                                except Exception:
+                                    _tool.state.solo_context = ""
+                            else:
+                                _tool.state.solo_context = ""
+                            threading.Thread(target=_tool.start, args=(text.strip(),), daemon=True).start()
+                            bot.reply_to(m, "🤖 開始規劃...")
+                            result = get_engine().handle(text)
+                            bot.reply_to(m, result)
+                            return
+                        except Exception as e:
+                            bot.reply_to(m, f"開發錯誤：{e}")
+                            return
+
+                    # 完整應用程式
+                    if has_dev and has_app:
+                        try:
+                            from autonomous_dev import get_auto_dev
+                            bot.reply_to(m, "開始自主開發，完成後通知你...")
+                            import threading
+                            def _dev():
+                                result = get_auto_dev().build(text)
+                                bot.send_message(m.chat.id, result)
+                            threading.Thread(target=_dev, daemon=True).start()
+                            return
+                        except Exception as e:
+                            bot.reply_to(m, f"錯誤：{e}")
+                            return
+
+                    # 傳給 AI（用已載入的全域 Lobster_Core，傳入手機的模式）
+                    try:
+                        if _lobster and _reflex and _router:
+                            reply = _lobster.process_input(text, _reflex, _router, mode=mode)
+                        elif _lobster:
+                            reply = _lobster.run(text)
+                        else:
+                            reply = "AI 核心未載入"
+                    except Exception as e:
+                        reply = f"AI 錯誤：{e}"
+
+                    if not reply:
+                        reply = "（沒有回應）"
+                    if len(reply) > 4000:
+                        reply = reply[:4000] + "...（已截斷）"
+
+                    bot.reply_to(m, reply)
+
+                    # 問要不要存入記憶（用 inline 按鈕）
+                    if mode == "chat" and "[LLM ERROR]" not in reply:
+                        # 檢查是否已學過
+                        already_known = False
+                        if _lobster:
+                            cached = _lobster.reflex_memory.get(text)
+                            if cached:
+                                already_known = True
+                            if not already_known:
+                                recent = _lobster.episodic.search_recent(20)
+                                for ep in recent:
+                                    if ep.get("input", "").strip() == text.strip():
+                                        already_known = True
+                                        break
+
+                        if not already_known:
+                            from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
+                            _pending_mobile_mem[m.chat.id] = {"input": text, "reply": reply}
+                            mem_kb = InlineKeyboardMarkup(row_width=2)
+                            mem_kb.add(
+                                InlineKeyboardButton("存入記憶", callback_data="mem_save"),
+                                InlineKeyboardButton("跳過", callback_data="mem_skip"),
+                            )
+                            bot.send_message(m.chat.id, "存入記憶庫？", reply_markup=mem_kb)
+
+                    # 寫入 queue 讓桌面顯示
+                    try:
+                        qf = pathlib.Path("memory/mobile_queue.json")
+                        qf.parent.mkdir(exist_ok=True)
+                        q = []
+                        if qf.exists():
+                            try: q = json.loads(qf.read_text(encoding="utf-8"))
+                            except: q = []
+                        q.append({"time": datetime.datetime.now().strftime("%H:%M:%S"), "user": text, "ai": reply})
+                        q = q[-20:]
+                        qf.write_text(json.dumps(q, ensure_ascii=False), encoding="utf-8")
+                    except: pass
+
+                # 推送上線通知（附帶模式選擇按鈕）
+                for cid in allowed:
+                    try:
+                        bot.send_message(cid,
+                            "立 AI 桌面已開啟！\n目前模式：對話模式\n\n直接傳訊息或選擇模式：",
+                            reply_markup=_mode_keyboard()
+                        )
+                    except: pass
+
+                from PyQt6.QtCore import QTimer as _QT2
+                _ts2 = self._ts()
+                _QT2.singleShot(0, lambda: self._log(f"[{_ts2}] [系統] Telegram Bot 已啟動"))
+                bot.infinity_polling(timeout=30, long_polling_timeout=20)
+
+            except ImportError as ie:
+                from PyQt6.QtCore import QTimer as _QT3
+                _ts3 = self._ts()
+                _msg3 = str(ie)
+                _QT3.singleShot(0, lambda: self._log(f"[{_ts3}] [系統] Bot 啟動失敗（{_msg3}），跳過"))
+            except Exception as e:
+                from PyQt6.QtCore import QTimer as _QT4
+                _ts4 = self._ts()
+                _msg4 = str(e)
+                _QT4.singleShot(0, lambda: self._log(f"[{_ts4}] [系統] Telegram Bot 錯誤：{_msg4}"))
+
+        t = threading.Thread(target=_run, daemon=True)
+        t.start()
+        self._log(f"[{self._ts()}] [系統] Telegram Bot 啟動中...")
+
+    def _build_ui(self):
+        root = QWidget(); self.setCentralWidget(root)
+        v = QVBoxLayout(root); v.setContentsMargins(8, 6, 8, 8); v.setSpacing(6)
+        v.addWidget(self._header())
+        v.addWidget(self._mode_bar())
+        sp = QSplitter(Qt.Orientation.Horizontal)
+        sp.addWidget(self._left_panel())
+        sp.addWidget(self._tabs())
+        sp.setSizes([260, 800]); sp.setHandleWidth(2)
+        v.addWidget(sp, 1)
+
+    def _mode_bar(self):
+        """模式切換列"""
+        bar = QWidget()
+        bar.setStyleSheet("background:#0d1117;border-radius:8px;")
+        h = QHBoxLayout(bar); h.setContentsMargins(8,6,8,6); h.setSpacing(6)
+
+        self._mode = "chat"  # 目前模式
+        self._mode_btns = {}
+
+        modes = [
+            ("chat",    "💬 對話",   "#7F77DD", "#EEEDFE"),
+            ("terminal","⌨️ 終端",   "#185FA5", "#E6F1FB"),
+            ("dev",     "🤖 自主開發","#0F6E56", "#E1F5EE"),
+            ("teach",   "📚 教學",   "#854F0B", "#FAEEDA"),
+            ("database","🗄 資料庫",  "#5B3A8A", "#EDE8F7"),
+            ("desktop", "🖥 桌面",   "#993C1D", "#FAECE7"),
+        ]
+
+        for mode_id, label, fg, bg in modes:
+            btn = QPushButton(label)
+            style_active  = f"background:{bg};color:{fg};border:none;border-radius:16px;padding:4px 14px;font-size:12px;font-weight:600;"
+            style_inactive = "background:transparent;color:#555;border:none;border-radius:16px;padding:4px 14px;font-size:12px;"
+            btn.setStyleSheet(style_active if mode_id == "chat" else style_inactive)
+            btn.clicked.connect(lambda checked=False, m=mode_id: self._switch_mode(m, []))
+            self._mode_btns[mode_id] = (btn, style_active, style_inactive)
+            h.addWidget(btn)
+
+        h.addStretch()
+        self._mode_label = QLabel("對話模式 — 直接問立任何問題")
+        self._mode_label.setStyleSheet("color:#444;font-size:11px;")
+        h.addWidget(self._mode_label)
+        return bar
+
+    def _switch_mode(self, mode_id: str, modes_list: list):
+        """切換模式"""
+        self._mode = mode_id
+        mode_names = {
+            "chat":     ("對話模式 — 直接問立任何問題", "輸入問題，按 Enter 傳送..."),
+            "terminal": ("終端模式 — 直接執行指令", "dir / python xxx.py / git status / ipconfig..."),
+            "dev":      ("自主開發模式 — 說需求，立自己完成", "例如：幫我做一個 BMI 計算機，有 PyQt6 介面"),
+            "teach":    ("教學模式 — 問Claude/ChatGPT、新增知識", "輸入知識或直接提問..."),
+            "database": ("資料庫模式 — 管理記憶與知識庫", "查詢、瀏覽所有知識庫..."),
+            "desktop":  ("桌面控制模式 — 直接執行桌面指令", "截圖 / 列出視窗 / 查看資料夾..."),
+        }
+        mode_icons = {"chat":"💬", "terminal":"⌨️", "dev":"🤖", "teach":"📚", "database":"🗄", "desktop":"🖥"}
+        desc, placeholder = mode_names.get(mode_id, ("", ""))
+        self._mode_label.setText(desc)
+        self.input_box.setPlaceholderText(placeholder)
+
+        # 更新按鈕樣式
+        for mid, (btn, active_style, inactive_style) in self._mode_btns.items():
+            btn.setStyleSheet(active_style if mid == mode_id else inactive_style)
+
+        # 更新左側快速操作
+        self._refresh_quick_actions(mode_id)
+
+        # 在對話框顯示模式切換提示
+        icon = mode_icons.get(mode_id, "")
+        self.chat_history.append(
+            f'<div style="text-align:center;margin:8px 0;">'
+            f'<span style="background:#1a1d27;color:#888;border-radius:12px;padding:4px 16px;font-size:11px;">'
+            f'{icon} 已切換到{desc.split("—")[0].strip()}</span></div>')
+        self.chat_history.moveCursor(QTextCursor.MoveOperation.End)
+
+        # 切換到對話頁
+        self.tabs.setCurrentIndex(0)
+
+    def _header(self):
+        f = QFrame(); f.setObjectName("card")
+        h = QHBoxLayout(f); h.setContentsMargins(14, 8, 14, 8)
+        t = QLabel("🦞  立 · AI 系統核心")
+        t.setStyleSheet("color:#7eb8f7;font-size:16px;font-weight:700;")
+        h.addWidget(t); h.addStretch()
+        self.lbl_status = QLabel("● idle")
+        self.lbl_status.setStyleSheet("color:#4ade80;font-weight:600;")
+        h.addWidget(self.lbl_status)
+        self.lbl_clock = QLabel("")
+        self.lbl_clock.setStyleSheet("color:#555;font-size:12px;margin-left:12px;")
+        h.addWidget(self.lbl_clock)
+        return f
+
+    def _left_panel(self):
+        w = QWidget()
+        v = QVBoxLayout(w); v.setContentsMargins(0, 0, 6, 0); v.setSpacing(8)
+        # 狀態卡
+        c = QFrame(); c.setObjectName("card")
+        cv = QVBoxLayout(c); cv.setContentsMargins(12, 10, 12, 10); cv.setSpacing(5)
+        cv.addWidget(self._sec("系統狀態"))
+        self.stat_mem    = self._stat_row("記憶筆數", "—")
+        self.stat_task   = self._stat_row("排程任務", "—")
+        self.stat_uptime = self._stat_row("運行時間", "0s")
+        for w2 in [self.stat_mem, self.stat_task, self.stat_uptime]: cv.addWidget(w2)
+        v.addWidget(c)
+        # ── AB 節點狀態卡 ──────────────────────────────────────────────
+        cn = QFrame(); cn.setObjectName("card")
+        cnv = QVBoxLayout(cn); cnv.setContentsMargins(12, 10, 12, 10); cnv.setSpacing(5)
+        cnv.addWidget(self._sec("AB 節點"))
+        self.stat_node_a    = self._stat_row("電腦 A", "—")
+        self.stat_node_b    = self._stat_row("電腦 B", "—")
+        self.stat_node_dist = self._stat_row("分散式", "—")
+        for w2 in [self.stat_node_a, self.stat_node_b, self.stat_node_dist]: cnv.addWidget(w2)
+        v.addWidget(cn)
+        # 快速操作
+        c2 = QFrame(); c2.setObjectName("card")
+        cv2 = QVBoxLayout(c2); cv2.setContentsMargins(12, 10, 12, 10); cv2.setSpacing(6)
+        cv2.addWidget(self._sec("快速操作"))
+        self._quick_action_layout = cv2
+        self._quick_action_btns = []
+        for lbl, fn in [
+            ("🔧 自動修復", self._quick_repair),
+            ("💻 開發歷史", self._show_dev_history),
+            ("📚 教立學習", self._show_learn_dialog),
+            ("⚡ 查看能力", self._show_capabilities),
+        ]:
+            b = QPushButton(lbl); b.setObjectName("btn_accent"); b.clicked.connect(fn)
+            cv2.addWidget(b)
+            self._quick_action_btns.append(b)
+        v.addWidget(c2); v.addStretch()
+        return w
+
+    def _tabs(self):
+        self.tabs = QTabWidget()
+        self.tabs.addTab(self._chat_tab(),   "💬  對話")
+        self.tabs.addTab(self._log_tab(),    "📋  日誌")
+        self.tabs.addTab(self._memory_tab(), "🧠  記憶庫")
+        return self.tabs
+
+    def _chat_tab(self):
+        w = QWidget(); v = QVBoxLayout(w); v.setContentsMargins(8,8,8,8); v.setSpacing(6)
+        self.chat_history = QTextEdit(); self.chat_history.setReadOnly(True)
+        self.chat_history.setFont(QFont("Microsoft JhengHei UI", 12))
+        self.chat_history.document().setDefaultFont(QFont("Microsoft JhengHei UI", 12))
+        v.addWidget(self.chat_history)
+        self.progress = QProgressBar(); self.progress.setRange(0,0); self.progress.setVisible(False)
+        v.addWidget(self.progress)
+        # ── 心智圖選擇列（規格討論完成後顯示）─────────────────────────────
+        self.mindmap_frame = QFrame()
+        self.mindmap_frame.setObjectName("card")
+        self.mindmap_frame.setStyleSheet("background:#0d1117;border-radius:8px;")
+        mmv = QVBoxLayout(self.mindmap_frame); mmv.setContentsMargins(10,8,10,8); mmv.setSpacing(6)
+
+        mm_header = QHBoxLayout()
+        self.lbl_mindmap_title = QLabel("🗺 選擇開發分組")
+        self.lbl_mindmap_title.setStyleSheet("color:#7eb8f7;font-size:12px;font-weight:600;")
+        self.btn_mindmap_all = QPushButton("▶ 照順序全做")
+        self.btn_mindmap_all.setStyleSheet("background:#1e3a5f;color:#93c5fd;border:none;border-radius:6px;padding:4px 10px;font-size:11px;")
+        self.btn_mindmap_all.clicked.connect(self._on_mindmap_confirm_all)
+        mm_header.addWidget(self.lbl_mindmap_title); mm_header.addStretch(); mm_header.addWidget(self.btn_mindmap_all)
+        mmv.addLayout(mm_header)
+
+        # 分組按鈕區（動態建立）
+        self.mindmap_group_row = QWidget()
+        self.mindmap_group_layout = QHBoxLayout(self.mindmap_group_row)
+        self.mindmap_group_layout.setContentsMargins(0,0,0,0); self.mindmap_group_layout.setSpacing(6)
+        mmv.addWidget(self.mindmap_group_row)
+
+        # 步驟按鈕區（選完分組後顯示）
+        self.mindmap_step_row = QWidget()
+        self.mindmap_step_layout = QHBoxLayout(self.mindmap_step_row)
+        self.mindmap_step_layout.setContentsMargins(0,0,0,0); self.mindmap_step_layout.setSpacing(6)
+        self.mindmap_step_row.setVisible(False)
+        mmv.addWidget(self.mindmap_step_row)
+
+        self.mindmap_frame.setVisible(False)
+        v.addWidget(self.mindmap_frame)
+
+        # 確認/取消列（有待確認行動時顯示）
+        self.confirm_row = QWidget()
+        crow = QHBoxLayout(self.confirm_row); crow.setContentsMargins(0,0,0,0); crow.setSpacing(6)
+        self.lbl_pending = QLabel("AI 有行動計畫等待確認")
+        self.lbl_pending.setStyleSheet("color:#fbbf24;font-size:12px;font-weight:600;")
+        self.btn_confirm = QPushButton("✅ 確認執行")
+        self.btn_confirm.setStyleSheet("background:#065f46;color:#6ee7b7;border-radius:8px;padding:6px 14px;")
+        self.btn_confirm.clicked.connect(self._on_confirm)
+        self.btn_cancel = QPushButton("❌ 取消")
+        self.btn_cancel.setObjectName("btn_dim"); self.btn_cancel.setFixedWidth(72)
+        self.btn_cancel.clicked.connect(self._on_cancel)
+        crow.addWidget(self.lbl_pending); crow.addStretch()
+        crow.addWidget(self.btn_confirm); crow.addWidget(self.btn_cancel)
+        self.confirm_row.setVisible(False)
+        v.addWidget(self.confirm_row)
+
+        # 記憶存入確認列
+        self.memory_row = QWidget()
+        mrow = QHBoxLayout(self.memory_row); mrow.setContentsMargins(0,0,0,0); mrow.setSpacing(6)
+        self.lbl_mem_ask = QLabel("存入記憶庫？")
+        self.lbl_mem_ask.setStyleSheet("color:#93c5fd;font-size:12px;font-weight:500;")
+        self.btn_mem_save = QPushButton("存入")
+        self.btn_mem_save.setFixedWidth(72)
+        self.btn_mem_save.setStyleSheet("background:#065f46;color:#6ee7b7;border:none;border-radius:8px;padding:6px 14px;")
+        self.btn_mem_save.clicked.connect(self._on_mem_save)
+        self.btn_mem_skip = QPushButton("跳過")
+        self.btn_mem_skip.setFixedWidth(72)
+        self.btn_mem_skip.setStyleSheet("background:#333;color:#888;border:none;border-radius:8px;padding:6px 14px;")
+        self.btn_mem_skip.clicked.connect(self._on_mem_skip)
+        mrow.addWidget(self.lbl_mem_ask); mrow.addStretch()
+        mrow.addWidget(self.btn_mem_save); mrow.addWidget(self.btn_mem_skip)
+        self.memory_row.setVisible(False)
+        v.addWidget(self.memory_row)
+
+        # Claude 對話循環控制列
+        self.claude_chat_row = QWidget()
+        crow2 = QHBoxLayout(self.claude_chat_row); crow2.setContentsMargins(0,0,0,0); crow2.setSpacing(6)
+        self.lbl_claude_chat = QLabel("🔄 立 AI 正在與 Claude 對話學習中...")
+        self.lbl_claude_chat.setStyleSheet("color:#fbbf24;font-size:12px;font-weight:600;")
+        self.btn_stop_claude = QPushButton("⏹ 停止對話")
+        self.btn_stop_claude.setStyleSheet("background:#7f1d1d;color:#fca5a5;border:none;border-radius:8px;padding:6px 14px;")
+        self.btn_stop_claude.clicked.connect(self._on_stop_claude_chat)
+        crow2.addWidget(self.lbl_claude_chat); crow2.addStretch()
+        crow2.addWidget(self.btn_stop_claude)
+        self.claude_chat_row.setVisible(False)
+        v.addWidget(self.claude_chat_row)
+
+        # ChatGPT 對話循環控制列
+        self.chatgpt_chat_row = QWidget()
+        crow3 = QHBoxLayout(self.chatgpt_chat_row); crow3.setContentsMargins(0,0,0,0); crow3.setSpacing(6)
+        self.lbl_chatgpt_chat = QLabel("🔄 立 AI 正在與 ChatGPT 對話學習中...")
+        self.lbl_chatgpt_chat.setStyleSheet("color:#34d399;font-size:12px;font-weight:600;")
+        self.btn_stop_chatgpt = QPushButton("⏹ 停止對話")
+        self.btn_stop_chatgpt.setStyleSheet("background:#064e3b;color:#6ee7b7;border:none;border-radius:8px;padding:6px 14px;")
+        self.btn_stop_chatgpt.clicked.connect(self._on_stop_chatgpt_chat)
+        crow3.addWidget(self.lbl_chatgpt_chat); crow3.addStretch()
+        crow3.addWidget(self.btn_stop_chatgpt)
+        self.chatgpt_chat_row.setVisible(False)
+        v.addWidget(self.chatgpt_chat_row)
+
+        row = QHBoxLayout(); row.setSpacing(6)
+        self.input_box = QLineEdit(); self.input_box.setPlaceholderText("輸入指令，按 Enter 傳送...")
+        self.input_box.returnPressed.connect(self.send_text)
+        self.send_btn = QPushButton("傳送"); self.send_btn.setFixedWidth(72); self.send_btn.clicked.connect(self.send_text)
+        self.stop_btn = QPushButton("取消")
+        self.stop_btn.setFixedWidth(72)
+        self.stop_btn.setStyleSheet("background:#7f1d1d;color:#fca5a5;border:none;border-radius:8px;padding:8px 18px;")
+        self.stop_btn.clicked.connect(self._stop_worker)
+        self.stop_btn.setVisible(False)
+        self.voice_btn = QPushButton("🎤"); self.voice_btn.setObjectName("btn_voice")
+        self.voice_btn.setFixedWidth(44); self.voice_btn.clicked.connect(self.voice_input)
+        row.addWidget(self.input_box); row.addWidget(self.send_btn); row.addWidget(self.stop_btn); row.addWidget(self.voice_btn)
+        v.addLayout(row)
+        self._agent_msg("你好！我是立 AI。輸入問題或切換上方的模式。")
+        return w
+
+    def _log_tab(self):
+        w = QWidget(); v = QVBoxLayout(w); v.setContentsMargins(8,8,8,8); v.setSpacing(6)
+
+        # ── 系統狀態列 ──────────────────────────────────────────────────────
+        status_frame = QWidget()
+        status_frame.setStyleSheet("background:#0d1117;border-radius:8px;padding:4px;")
+        sf = QHBoxLayout(status_frame); sf.setContentsMargins(8,6,8,6); sf.setSpacing(16)
+
+        def _status_label(title, value_attr):
+            col = QVBoxLayout(); col.setSpacing(2)
+            t = QLabel(title); t.setStyleSheet("color:#555;font-size:10px;")
+            val = QLabel("--"); val.setStyleSheet("color:#86efac;font-size:13px;font-weight:600;")
+            setattr(self, value_attr, val)
+            col.addWidget(t); col.addWidget(val)
+            return col
+
+        sf.addLayout(_status_label("Ollama", "lbl_ollama_status"))
+        sf.addLayout(_status_label("模型", "lbl_model_status"))
+        sf.addLayout(_status_label("記憶", "lbl_mem_status2"))
+        sf.addLayout(_status_label("Bot", "lbl_bot_status"))
+        sf.addLayout(_status_label("電腦A", "lbl_node_a"))
+        sf.addLayout(_status_label("電腦B", "lbl_node_b"))
+        sf.addLayout(_status_label("分散式", "lbl_dist"))
+        sf.addLayout(_status_label("運行時間", "lbl_uptime_status"))
+        sf.addStretch()
+        v.addWidget(status_frame)
+
+        # ── 篩選列 ──────────────────────────────────────────────────────────
+        filter_row = QHBoxLayout(); filter_row.setSpacing(6)
+        self.log_filter = QLineEdit()
+        self.log_filter.setPlaceholderText("篩選日誌...")
+        self.log_filter.textChanged.connect(self._filter_log)
+        filter_row.addWidget(self.log_filter)
+        for lbl, fn, tip in [
+            ("全部", lambda: self._set_log_filter(""),       "顯示全部"),
+            ("手機", lambda: self._set_log_filter("[手機]"), "只看手機"),
+            ("錯誤", lambda: self._set_log_filter("ERROR"),  "只看錯誤"),
+        ]:
+            b = QPushButton(lbl); b.setObjectName("btn_dim")
+            b.setFixedWidth(56); b.setToolTip(tip)
+            b.clicked.connect(fn); filter_row.addWidget(b)
+        v.addLayout(filter_row)
+
+        # ── 日誌框 ──────────────────────────────────────────────────────────
+        self.log_box = QTextEdit(); self.log_box.setReadOnly(True)
+        self.log_box.setFont(QFont("Consolas", 11))
+        self.log_box.setStyleSheet("color:#86efac;background:#0a0c10;")
+        v.addWidget(self.log_box)
+
+        row = QHBoxLayout()
+        for lbl, fn in [("載入日誌檔", self._load_log), ("清除", self.log_box.clear)]:
+            b = QPushButton(lbl); b.setObjectName("btn_dim"); b.setFixedWidth(90); b.clicked.connect(fn); row.addWidget(b)
+        row.insertStretch(0); v.addLayout(row)
+
+        # 啟動狀態更新計時器
+        self._update_log_status()
+        self._log_status_timer = QTimer(self)
+        self._log_status_timer.timeout.connect(self._update_log_status)
+        self._log_status_timer.start(300000)  # 每 5 分鐘更新一次
+        return w
+
+    def _set_log_filter(self, text):
+        self.log_filter.setText(text)
+
+    def _filter_log(self, text):
+        """篩選日誌內容（只顯示包含關鍵字的行）"""
+        # 儲存完整日誌（第一次篩選時記住）
+        if not hasattr(self, '_full_log_html'):
+            self._full_log_html = self.log_box.toHtml()
+
+        if not text:
+            # 清空篩選 → 還原完整日誌
+            self.log_box.setHtml(self._full_log_html)
+            self.log_box.moveCursor(QTextCursor.MoveOperation.End)
+            return
+
+        content = self.log_box.toPlainText()
+        lines = [l for l in content.splitlines() if text.lower() in l.lower()]
+        if lines:
+            self.log_box.setText("\n".join(lines[-200:]))
+
+    def _update_log_status(self):
+        """更新狀態列顯示"""
+        try:
+            # 模型
+            if _lobster:
+                self.lbl_model_status.setText(_lobster.model.split(":")[0][:12])
+            else:
+                self.lbl_model_status.setText("未載入")
+
+            # 記憶
+            mem_count = len(_memory._memories) if _memory else 0
+            self.lbl_mem_status2.setText(f"{mem_count} 筆")
+
+            # Bot
+            self.lbl_bot_status.setText("運行中")
+            self.lbl_bot_status.setStyleSheet("color:#86efac;font-size:13px;font-weight:600;")
+
+            # 運行時間
+            elapsed = datetime.datetime.now() - self._start_time
+            h, m = divmod(int(elapsed.total_seconds()), 3600)
+            m, s = divmod(m, 60)
+            self.lbl_uptime_status.setText(f"{h:02d}:{m:02d}:{s:02d}")
+
+            # Ollama 狀態（背景執行，用 signal 安全回主執行緒）
+            def _check_ollama():
+                try:
+                    import requests as rq
+                    rq.get("http://localhost:11434/api/tags", timeout=2)
+                    online = True
+                except Exception:
+                    online = False
+                # 用 signal 確保在主執行緒更新
+                self._sig_log.emit(f"__ollama_status__{'online' if online else 'offline'}")
+
+            import threading
+            threading.Thread(target=_check_ollama, daemon=True).start()
+
+            # AB 節點狀態（由獨立 timer 負責，這裡不再處理）
+        except Exception:
+            pass
+
+    def _check_nodes_bg(self):
+        """背景檢查 AB 節點狀態，用 signal 安全回主執行緒"""
+        def _run():
+            try:
+                from ollama_guard import NODES, _check_node, _should_use_distributed, _check_latency
+                for n in NODES:
+                    _check_node(n, force=True)
+                latency = _check_latency()
+                ns = {
+                    "local":  {"online": NODES[0]["online"], "latency_ms": None},
+                    "remote": {"online": NODES[1]["online"], "latency_ms": latency if NODES[1]["online"] else None},
+                }
+                dist = _should_use_distributed()
+                # 用 signal 安全回主執行緒
+                local_ok  = "✅" if ns["local"]["online"]  else "❌"
+                remote_ok = "✅" if ns["remote"]["online"] else "❌"
+                lat_str   = f"{latency:.0f}ms" if ns["remote"]["online"] and latency else ""
+                dist_str  = "✅ 分散式" if dist else "❌"
+                self._sig_log.emit(f"__node_status__{local_ok}|{remote_ok}|{lat_str}|{dist_str}")
+            except Exception:
+                pass
+        import threading
+        threading.Thread(target=_run, daemon=True).start()
+
+    # ── 心智圖選擇介面 ───────────────────────────────────────────────────────
+
+    def show_mindmap(self, groups: dict, steps: list):
+        """
+        顯示心智圖分組選擇列（由 dev_tool 觸發）
+        groups: {"key": {"label":..., "desc":..., "steps":[idx...]}, ...}
+        steps:  完整步驟清單
+        """
+        from PyQt6.QtCore import QTimer
+        QTimer.singleShot(0, lambda: self._show_mindmap_inner(groups, steps))
+
+    def _show_mindmap_inner(self, groups: dict, steps: list):
+        self._mindmap_groups = groups
+        self._mindmap_steps  = steps
+
+        # 清空舊的分組按鈕
+        for i in reversed(range(self.mindmap_group_layout.count())):
+            w = self.mindmap_group_layout.itemAt(i).widget()
+            if w: w.deleteLater()
+
+        # 建立分組按鈕
+        for key, info in groups.items():
+            btn = QPushButton(info["label"])
+            btn.setStyleSheet(
+                "background:#1a2744;color:#93c5fd;border:1px solid #1e3a5f;"
+                "border-radius:8px;padding:5px 12px;font-size:12px;"
+            )
+            btn.setToolTip(info.get("desc", ""))
+            btn.clicked.connect(lambda checked=False, k=key: self._on_mindmap_group_click(k))
+            self.mindmap_group_layout.addWidget(btn)
+
+        self.mindmap_group_layout.addStretch()
+        self.mindmap_step_row.setVisible(False)
+        self.mindmap_frame.setVisible(True)
+        self.tabs.setCurrentIndex(0)
+
+    def _on_mindmap_group_click(self, group_key: str):
+        """使用者點了某個分組 → 顯示該分組的步驟按鈕"""
+        groups = getattr(self, '_mindmap_groups', {})
+        steps  = getattr(self, '_mindmap_steps', [])
+        info   = groups.get(group_key, {})
+        step_indices = info.get("steps", [])
+
+        # 清空舊的步驟按鈕
+        for i in reversed(range(self.mindmap_step_layout.count())):
+            w = self.mindmap_step_layout.itemAt(i).widget()
+            if w: w.deleteLater()
+
+        # 建立步驟按鈕
+        for idx in step_indices:
+            if idx >= len(steps): continue
+            step = steps[idx]
+            icon = "🆕" if step.get("action") == "create" else "✏️"
+            btn = QPushButton(f"{icon} {step['file']}")
+            btn.setStyleSheet(
+                "background:#0f3460;color:#7eb8f7;border:1px solid #1e4a8f;"
+                "border-radius:8px;padding:5px 12px;font-size:12px;"
+            )
+            btn.setToolTip(step.get("title", "") + "\\n" + step.get("desc", "")[:80])
+            btn.clicked.connect(lambda checked=False, i=idx: self._on_mindmap_step_click(i))
+            self.mindmap_step_layout.addWidget(btn)
+
+        self.mindmap_step_layout.addStretch()
+        self.mindmap_step_row.setVisible(True)
+
+    def _on_mindmap_step_click(self, step_idx: int):
+        """使用者點了步驟 → 設定起始步驟，顯示確認列"""
+        try:
+            from dev_tool import get_tool as _dt
+            if _dt().state.active:
+                _plan_state["current_step"] = step_idx
+                _plan_state["pending_write"] = {}
+                step = _plan_state["steps"][step_idx]
+                self.mindmap_frame.setVisible(False)
+                self._agent_msg(
+                    f"▶️ 準備製作步驟 {step_idx+1}：{step['title']}\n"
+                    f"   📄 {step['file']}\n\n"
+                    f"{step.get('desc','')[:120]}\n\n"
+                    f"點「確認執行」開始生成程式碼"
+                )
+                self.confirm_row.setVisible(True)
+                self.lbl_pending.setText(f"步驟 {step_idx+1}：{step['title']} — 等待確認")
+        except Exception as e:
+            self._agent_msg(f"❌ 跳步失敗：{e}")
+
+    def _on_mindmap_confirm_all(self):
+        """從頭開始照順序執行"""
+        try:
+            from dev_tool import get_tool as _dt
+            if _dt().state.active:
+                _plan_state["current_step"] = 0
+                _plan_state["pending_write"] = {}
+                self.mindmap_frame.setVisible(False)
+                self.confirm_row.setVisible(True)
+                self.lbl_pending.setText("AI 有行動計畫等待確認")
+        except Exception as e:
+            self._agent_msg(f"❌ 失敗：{e}")
+
+    def _setup_dev_tool(self):
+        """啟動後設定 dev_tool 接入立AI大腦，等 bot 準備好再接入"""
+        import threading, time
+
+        def _wait_and_setup():
+            # 最多等 30 秒讓 bot 啟動
+            for _ in range(30):
+                bot = getattr(__import__("desktop_agent"), "_bot_instance", None)
+                if bot is not None:
+                    break
+                time.sleep(1)
+            try:
+                from dev_brain import setup_dev_tool
+                import bot_config
+                bot = getattr(__import__("desktop_agent"), "_bot_instance", None)
+                setup_dev_tool(
+                    lobster_core=_lobster,
+                    bot=bot,
+                    allowed_ids=list(bot_config.ALLOWED_CHAT_IDS),
+                )
+                self._log(f"[{self._ts()}] [系統] dev_tool 接入完成（bot={'有' if bot else '無'}）")
+            except Exception as e:
+                self._log(f"[{self._ts()}] [系統] dev_tool 接入失敗：{e}")
+
+        threading.Thread(target=_wait_and_setup, daemon=True).start()
+
+    def _dev_with_claude(self):
+        """與 Claude 共同開發模式：走完整規格討論流程"""
+        self._agent_msg(
+            "🤝 與 Claude 共同開發模式\n\n"
+            "請輸入你的需求，立AI會先與 Claude 討論規格和架構，\n"
+            "再逐步規劃並製作。\n\n"
+            "直接在下方輸入需求開始："
+        )
+        # 設定旗標：下一個輸入用 claude 共同開發
+        self._dev_mode_flag = "claude"
+
+    def _dev_solo(self):
+        """立AI自己開發：從知識庫找經驗，不問 Claude"""
+        # 先查知識庫有多少可用經驗
+        exp_count = 0
+        try:
+            from claude_knowledge import get_knowledge
+            stats = get_knowledge().get_stats()
+            import re
+            m = re.search(r'(\d+)', stats)
+            exp_count = int(m.group(1)) if m else 0
+        except Exception:
+            pass
+
+        self._agent_msg(
+            f"🦾 立AI自己開發模式\n\n"
+            f"知識庫中有 {exp_count} 筆開發經驗可參考。\n"
+            f"立AI會從經驗庫找相關模式，自己生成程式碼，不需要問 Claude。\n\n"
+            f"直接在下方輸入需求開始："
+        )
+        self._dev_mode_flag = "solo"
+
+    def _dev_solo_handle(self, text: str) -> str:
+        """立AI自己開發：從 claude_knowledge 找相關經驗，自己生成"""
+        try:
+            from claude_knowledge import get_knowledge
+            from dev_tool import get_tool
+
+            # 1. 從知識庫搜尋相關經驗
+            results = get_knowledge().search(text, top_k=5)
+            exp_context = ""
+            if results:
+                lines = ["以下是知識庫中相關的開發經驗，請參考這些模式生成程式碼："]
+                for r in results:
+                    q = r.get("question", "")
+                    a = r.get("answer", "")[:200]
+                    lines.append(f"\n經驗：{q}\n摘要：{a}")
+                exp_context = "\n".join(lines)
+                self._log(f"[{self._ts()}] [系統] 找到 {len(results)} 筆相關開發經驗")
+            else:
+                self._log(f"[{self._ts()}] [系統] 知識庫無相關經驗，用本地模型直接生成")
+
+            # 2. 把經驗注入到開發引擎的 prompt context
+            eng = get_engine()
+            if exp_context:
+                # 暫時注入經驗 context 到 _plan_state
+                from dev_tool import get_tool
+                get_tool().state.solo_context = exp_context
+
+            # 3. 走正常開發流程，但不會問 Claude（因為 _solo_context 已提供經驗）
+            result = eng.handle(text)
+            return result
+
+        except Exception as e:
+            return f"立AI自己開發失敗：{e}"
+
+    def _set_ollama_status(self, online: bool):
+        """在主執行緒更新 Ollama 狀態"""
+        try:
+            if online:
+                self.lbl_ollama_status.setText("在線")
+                self.lbl_ollama_status.setStyleSheet("color:#86efac;font-size:13px;font-weight:600;")
+            else:
+                self.lbl_ollama_status.setText("離線")
+                self.lbl_ollama_status.setStyleSheet("color:#f87171;font-size:13px;font-weight:600;")
+            import logging as _log
+            _log.getLogger("Agent.desktop").info(f"[UI] Ollama 狀態更新：{'在線' if online else '離線'}")
+        except Exception as e:
+            import logging as _log
+            _log.getLogger("Agent.desktop").warning(f"[UI] _set_ollama_status 失敗：{e}")
+
+    def _set_node_status(self, nodes: dict, dist_ok: bool):
+        """在主執行緒更新 AB 節點狀態（日誌頁 + 左側面板）"""
+        node_list = list(nodes.items())
+        # 日誌頁頂部狀態列
+        for lbl_attr, idx in [("lbl_node_a", 0), ("lbl_node_b", 1)]:
+            lbl = getattr(self, lbl_attr, None)
+            if lbl is None: continue
+            if idx < len(node_list):
+                name, info = node_list[idx]
+                ok  = info.get("online", False)
+                lat = info.get("latency_ms")
+                txt = (f"{lat:.0f}ms" if lat is not None else "✅") if ok else "✗"
+                col = "#86efac" if ok else "#f87171"
+            else:
+                txt, col = "—", "#555"
+            lbl.setText(txt)
+            lbl.setStyleSheet(f"color:{col};font-size:13px;font-weight:600;")
+        # 分散式狀態
+        if hasattr(self, 'lbl_dist'):
+            self.lbl_dist.setText("啟用" if dist_ok else "單機")
+            self.lbl_dist.setStyleSheet(f"color:{'#86efac' if dist_ok else '#fbbf24'};font-size:13px;font-weight:600;")
+        # 左側面板
+        for stat_attr, idx in [("stat_node_a", 0), ("stat_node_b", 1)]:
+            stat = getattr(self, stat_attr, None)
+            if stat is None: continue
+            vl = stat.findChild(QLabel, "val")
+            if vl is None: continue
+            if idx < len(node_list):
+                name, info = node_list[idx]
+                ok  = info.get("online", False)
+                lat = info.get("latency_ms")
+                txt = (f"✅ {lat:.0f}ms" if lat is not None else "✅") if ok else "❌ 離線"
+                col = "#86efac" if ok else "#f87171"
+            else:
+                txt, col = "—", "#555"
+            vl.setText(txt)
+            vl.setStyleSheet(f"color:{col};font-weight:700;")
+        if hasattr(self, 'stat_node_dist'):
+            vl = self.stat_node_dist.findChild(QLabel, "val")
+            if vl:
+                vl.setText("分散式" if dist_ok else "單機")
+                vl.setStyleSheet(f"color:{'#86efac' if dist_ok else '#fbbf24'};font-weight:700;")
+
+    def _memory_tab(self):
+        w = QWidget(); v = QVBoxLayout(w); v.setContentsMargins(8,8,8,8); v.setSpacing(6)
+        row = QHBoxLayout(); row.setSpacing(6)
+        self.mem_search = QLineEdit(); self.mem_search.setPlaceholderText("搜尋記憶...")
+        self.mem_search.textChanged.connect(self._refresh_memory)
+        btn = QPushButton("＋ 新增"); btn.setFixedWidth(72); btn.clicked.connect(self._add_memory)
+        row.addWidget(self.mem_search); row.addWidget(btn); v.addLayout(row)
+        self.mem_list = QListWidget(); self.mem_list.setSpacing(2)
+        self.mem_list.setSelectionMode(QListWidget.SelectionMode.SingleSelection)
+        v.addWidget(self.mem_list)
+        del_row = QHBoxLayout()
+        self.btn_del_mem = QPushButton("刪除選取的記憶")
+        self.btn_del_mem.setObjectName("btn_dim")
+        self.btn_del_mem.clicked.connect(self._delete_selected_memory)
+        del_row.addStretch(); del_row.addWidget(self.btn_del_mem)
+        v.addLayout(del_row)
+        self.mem_input = QLineEdit(); self.mem_input.setPlaceholderText("輸入要記住的內容...")
+        v.addWidget(self.mem_input)
+        self._refresh_memory()
+        return w
+
+    def _task_tab(self):
+        w = QWidget(); v = QVBoxLayout(w); v.setContentsMargins(8,8,8,8); v.setSpacing(6)
+        v.addWidget(self._sec("任務佇列"))
+        self.task_list = QListWidget(); v.addWidget(self.task_list)
+        row = QHBoxLayout(); row.setSpacing(6)
+        br = QPushButton("🔄 更新"); br.setObjectName("btn_dim"); br.setFixedWidth(80); br.clicked.connect(self._refresh_tasks)
+        bf = QPushButton("🔧 提交修復任務"); bf.clicked.connect(self._quick_repair)
+        row.addStretch(); row.addWidget(br); row.addWidget(bf); v.addLayout(row)
+        self._refresh_tasks()
+        return w
+
+    # ── 動作 ─────────────────────────────────────────────────────────────────
+
+    # ── 模式鎖定：偵測跨模式輸入 ────────────────────────────────────────────
+    _MODE_LOCK_RULES = {
+        "chat": {
+            "desc": "對話模式",
+            "blocked": [
+                # 終端關鍵字（明確的指令格式才攔）
+                (["ipconfig", "systeminfo", "tasklist", "netstat"],
+                 "終端指令", "terminal", "⌨️ 終端模式"),
+                # 教學關鍵字（只攔明確格式）
+                (["記住：", "記住:"],
+                 "教學指令", "teach", "📚 教學模式"),
+                # 桌面控制（只攔明確操作指令）
+                (["列出視窗", "滑鼠點擊", "鍵盤輸入", "開啟網頁 "],
+                 "桌面控制指令", "desktop", "🖥 桌面模式"),
+            ]
+        },
+        "terminal": {
+            "desc": "終端模式",
+            "blocked": [
+                (["記住：", "記住:", "讀取 ", "學習 "],
+                 "教學指令", "teach", "📚 教學模式"),
+                (["截圖", "列出視窗", "滑鼠", "鍵盤", "視窗"],
+                 "桌面控制指令", "desktop", "🖥 桌面模式"),
+            ]
+        },
+        "dev": {
+            "desc": "自主開發模式",
+            "blocked": [
+                (["記住：", "記住:", "讀取 ", "學習 "],
+                 "教學指令", "teach", "📚 教學模式"),
+                (["截圖", "列出視窗", "滑鼠", "鍵盤"],
+                 "桌面控制指令", "desktop", "🖥 桌面模式"),
+            ]
+        },
+        "teach": {
+            "desc": "教學模式",
+            "blocked": [
+                (["dir ", "cd ", "python ", "git ", "pip "],
+                 "終端指令", "terminal", "⌨️ 終端模式"),
+                (["截圖", "列出視窗", "滑鼠", "鍵盤"],
+                 "桌面控制指令", "desktop", "🖥 桌面模式"),
+            ]
+        },
+        "desktop": {
+            "desc": "桌面控制模式",
+            "blocked": [
+                (["記住：", "記住:", "讀取 ", "學習 "],
+                 "教學指令", "teach", "📚 教學模式"),
+                (["新增 ", "修改 ", "幫我改", ".py", "def "],
+                 "程式開發需求", "dev", "🤖 自主開發模式"),
+            ]
+        },
+    }
+
+    def _check_mode_lock(self, text: str, mode: str) -> bool:
+        """
+        檢查輸入是否違反模式鎖定。
+        第一層：比對寫死的關鍵字清單（快速）
+        第二層：查記憶庫的模式觸發詞知識（動態）
+        若違反 → 顯示提示並回傳 True。
+        若正常 → 回傳 False。
+        """
+        rules       = self._MODE_LOCK_RULES.get(mode, {})
+        blocked_list = rules.get("blocked", [])
+        mode_desc   = rules.get("desc", mode)
+
+        # ── 第一層：寫死關鍵字比對 ───────────────────────────────────────────
+        for keywords, category, suggest_mode, suggest_label in blocked_list:
+            if any(kw in text for kw in keywords):
+                self._user_msg(text)
+                self._agent_msg_no_ask(
+                    f"我現在在「{mode_desc}」，只能處理{mode_desc}的事情。\n"
+                    f"你輸入的內容像是「{category}」，請切換到 {suggest_label} 再試試。\n\n"
+                    f"（點上方 {suggest_label} 按鈕即可切換）"
+                )
+                return True
+
+        # ── 第二層：查記憶庫的模式觸發詞 ────────────────────────────────────
+        # 只在對話模式做記憶庫查詢（避免其他模式誤判）
+        if mode == "chat" and _memory:
+            try:
+                results = _memory.search(text, top_k=5)
+                # 模式對應表：記憶庫關鍵詞 → (模式ID, 顯示標籤, 類別描述)
+                mode_hint_map = {
+                    "自主開發模式": ("dev",     "🤖 自主開發模式", "程式開發需求"),
+                    "終端模式":     ("terminal","⌨️ 終端模式",    "終端指令"),
+                    "教學模式":     ("teach",   "📚 教學模式",    "教學指令"),
+                    "桌面控制模式": ("desktop", "🖥 桌面模式",    "桌面控制指令"),
+                }
+                for mem in results:
+                    content = mem.get("content", "")
+                    # 找記憶庫裡哪一筆包含「觸發詞」字眼且提到某個模式
+                    if "觸發詞" not in content and "模式" not in content:
+                        continue
+                    for mode_name, (suggest_mode, suggest_label, category) in mode_hint_map.items():
+                        if suggest_mode == mode:
+                            continue  # 已經在這個模式，不需要提示
+                        if mode_name in content:
+                            # 再確認輸入的詞真的出現在這筆記憶的觸發詞裡
+                            # 取觸發詞部分（冒號後面）
+                            if "：" in content:
+                                trigger_part = content.split("：", 1)[1]
+                                trigger_words = [w.strip() for w in trigger_part.replace("、", ",").split(",")]
+                                if any(tw and tw in text for tw in trigger_words):
+                                    self._user_msg(text)
+                                    self._agent_msg_no_ask(
+                                        f"我現在在「{mode_desc}」，只能處理{mode_desc}的事情。\n"
+                                        f"你輸入的內容像是「{category}」，請切換到 {suggest_label} 再試試。\n\n"
+                                        f"（點上方 {suggest_label} 按鈕即可切換）"
+                                    )
+                                    return True
+            except Exception:
+                pass  # 記憶庫查詢失敗就跳過，不影響正常流程
+
+        return False
+
+    def send_text(self):
+        text = self.input_box.text().strip()
+        if not text or (self._worker and self._worker.isRunning()): return
+        self.input_box.clear()
+        mode = getattr(self, '_mode', 'chat')
+
+        # ── 模式鎖定檢查（確認/取消/糾正指令跳過）──────────────────────────
+        t_lower_lock = text.strip().lower()
+        skip_lock = (
+            t_lower_lock in ["確認", "好", "執行", "yes", "ok", "confirm",
+                              "取消", "不", "算了", "cancel", "no"]
+            or any(text.startswith(t) for t in ["不對", "錯了", "應該是", "正確答案是",
+                                                 "不是這樣", "你說錯了", "答錯了", "正確的是", "其實是"])
+        )
+        if not skip_lock and self._check_mode_lock(text, mode):
+            return
+
+        # 教學模式：多種學習方式
+        if mode == "teach":
+            self._user_msg(f"[教學] {text}")
+
+            # 功能 1：批次匯入腳本（輸入 py xxx.py）
+            if text.strip().startswith("py ") and text.strip().endswith(".py"):
+                self._run_worker(text)
+                return
+
+            # 功能 2：讀取檔案學習（輸入 讀取 xxx.txt 或 學習 xxx.pdf）
+            import re as _re_teach
+            file_match = _re_teach.search(r'(讀取|學習|read)\s+(.+\.\w+)', text)
+            if file_match:
+                filepath = file_match.group(2).strip()
+                try:
+                    import pathlib
+                    f = pathlib.Path(filepath)
+                    if not f.exists():
+                        self._agent_msg(f"找不到檔案：{filepath}")
+                        return
+
+                    ext = f.suffix.lower()
+
+                    # PDF 檔案
+                    if ext == ".pdf":
+                        try:
+                            from pypdf import PdfReader
+                            reader = PdfReader(str(f))
+                            content = ""
+                            for page in reader.pages:
+                                page_text = page.extract_text()
+                                if page_text:
+                                    content += page_text + "\n"
+                            if not content.strip():
+                                self._agent_msg(f"PDF 無法提取文字（可能是掃描檔）：{f.name}")
+                                return
+                        except ImportError:
+                            self._agent_msg("需要安裝 pypdf：pip install pypdf")
+                            return
+                    else:
+                        # 純文字檔（txt, py, md, json 等）
+                        content = f.read_text(encoding="utf-8", errors="ignore")
+
+                    if not content.strip():
+                        self._agent_msg(f"檔案內容為空：{f.name}")
+                        return
+
+                    # 智慧分段：按段落或換行拆，不是固定 200 字硬切
+                    paragraphs = re.split(r'\n{2,}', content)  # 按空行分段
+                    chunks = []
+                    for para in paragraphs:
+                        para = para.strip()
+                        if len(para) < 10:
+                            continue
+                        # 太長的段落再拆
+                        if len(para) > 300:
+                            for i in range(0, len(para), 250):
+                                sub = para[i:i+250].strip()
+                                if len(sub) >= 10:
+                                    chunks.append(sub)
+                        else:
+                            chunks.append(para)
+
+                    count = 0
+                    for chunk in chunks[:100]:  # 最多 100 條
+                        if _memory:
+                            _memory.store(chunk, tags=["file_learn", f.name], importance=6, source="file_learn")
+                            count += 1
+
+                    self._agent_msg(f"已從 {f.name} 學習 {count} 段知識（共 {len(content)} 字）")
+                    self._refresh_memory()
+                except Exception as e:
+                    self._agent_msg(f"讀取失敗：{e}")
+                return
+
+            # 功能 3：一般知識輸入
+            try:
+                if _memory:
+                    _memory.store(text, tags=["user_teach", "manual"], importance=8, source="teach_mode")
+                    self._agent_msg(f"已記住：{text[:60]}{'...' if len(text)>60 else ''}")
+                    self._refresh_memory()
+                else:
+                    self._agent_msg("記憶庫未載入")
+            except Exception as e:
+                self._agent_msg(f"儲存失敗：{e}")
+            return
+
+        # 全域確認/取消攔截（不管在哪個模式，有 pending 開發任務就攔截）
+        t_lower = text.strip().lower()
+        if t_lower in ["確認", "好", "執行", "yes", "ok", "confirm"]:
+            try:
+                from dev_tool import get_tool
+                if get_tool().state.active:
+                    self._user_msg("確認")
+                    result = get_engine().confirm()
+                    self._agent_msg(result)
+                    return
+            except Exception:
+                pass
+        if t_lower in ["取消", "不", "算了", "cancel", "no"]:
+            try:
+                from dev_tool import get_tool
+                if get_tool().state.active:
+                    self._user_msg("取消")
+                    result = get_engine().cancel()
+                    self._agent_msg(result)
+                    return
+            except Exception:
+                pass
+
+        # 對話模式的糾正偵測（任何模式都生效）
+        correction_triggers = ["不對", "錯了", "應該是", "正確答案是", "不是這樣",
+                               "你說錯了", "答錯了", "正確的是", "其實是"]
+        is_correction = any(text.startswith(t) for t in correction_triggers)
+        if is_correction and _memory:
+            # 提取糾正內容
+            correction = text
+            for t in correction_triggers:
+                if correction.startswith(t):
+                    correction = correction[len(t):].strip("，, 。").strip()
+                    break
+
+            # 組合：問題 + 正確答案
+            last_q = getattr(self, '_last_user_input', '')
+            if last_q and correction:
+                knowledge = f"{last_q} -> {correction}"
+                _memory.store(knowledge, tags=["correction", "user_teach"], importance=9, source="correction")
+                # 也單獨存糾正內容
+                _memory.store(correction, tags=["correction", "user_teach"], importance=9, source="correction")
+                self._user_msg(text)
+                self._agent_msg(f"已學習糾正：{correction[:60]}")
+                self._refresh_memory()
+                return
+            elif correction:
+                _memory.store(correction, tags=["correction", "user_teach"], importance=9, source="correction")
+                self._user_msg(text)
+                self._agent_msg(f"已記住：{correction[:60]}")
+                self._refresh_memory()
+                return
+
+        def _start(txt, m):
+            w = AgentWorker(txt, self, mode=m)
+            w.reply.connect(self._agent_msg)
+            w.skip_memory_sig.connect(lambda skip: setattr(self, "_skip_next_memory", skip))
+            w.claude_bar_sig.connect(self.show_claude_chat_bar)
+            w.claude_reply_sig.connect(self._agent_msg_no_ask)
+            w.log_line.connect(self._log)
+            w.status_sig.connect(self._on_status)
+            self._worker = w; w.start()
+
+        # 桌面模式：直接執行
+        if mode == "desktop":
+            self._user_msg(f"[桌面] {text}")
+            _start(text, "desktop")
+            return
+
+        # 改程式模式
+        if mode == "dev":
+            # 攔截確認/取消指令
+            t_lower = text.strip().lower()
+            if t_lower in ["確認", "好", "執行", "yes", "ok", "confirm"]:
+                self._user_msg("確認")
+                try:
+                    from dev_tool import get_tool
+                    if get_tool().state.active:
+                        result = get_engine().confirm()
+                        self._agent_msg(result)
+                    else:
+                        self._agent_msg("沒有待確認的行動")
+                except Exception as e:
+                    self._agent_msg(f"確認失敗：{e}")
+                return
+            if t_lower in ["取消", "不", "算了", "cancel", "no"]:
+                self._user_msg("取消")
+                try:
+                    from dev_tool import get_tool
+                    get_tool().handle_callback("dt_stop")
+                    result = "❌ 已取消"
+                    self._agent_msg(result)
+                except Exception as e:
+                    self._agent_msg(f"取消失敗：{e}")
+                return
+
+            self._user_msg(f"[改程式] {text}")
+            # 優先用新的 dev_tool
+            try:
+                from dev_tool import get_tool
+                tool = get_tool()
+
+                # 繼續上次未完成的專案
+                if any(kw in text for kw in ["繼續作業", "繼續上次", "繼續開發", "接著做", "繼續做", "我要繼續", "繼續專案"]):
+                    if tool.state.request and tool.state.remaining_groups():
+                        tool.state.active = True
+                        tool.state.paused = False
+                        tool.state.save()
+                        done      = len(tool.state.completed_groups)
+                        total     = len(tool.state.groups)
+                        remaining = tool.state.remaining_groups()
+                        import threading
+                        threading.Thread(target=tool._push_mindmap, daemon=True).start()
+                        self._agent_msg(
+                            f"🔄 繼續上次的專案：{tool.state.request[:40]}\n"
+                            f"已完成 {done}/{total} 個模組，剩餘 {len(remaining)} 個\n"
+                            f"請在手機選擇要繼續哪個模組"
+                        )
+                    else:
+                        self._agent_msg("目前沒有進行中的專案，請輸入新的需求開始開發。")
+                    return
+
+                import threading
+                threading.Thread(
+                    target=tool.start,
+                    args=(text.strip(),),
+                    daemon=True
+                ).start()
+                self._agent_msg("🤖 開始規劃，請稍候...")
+            except Exception as e:
+                self._agent_msg(f"❌ dev_tool 失敗：{e}")
+            return
+
+        # 終端模式
+        if mode == "terminal":
+            self._user_msg(f"[終端] {text}")
+            _start(text, "terminal")
+            return
+
+        # 對話模式（預設）
+        self._user_msg(text)
+        _start(text, "chat")
+
+    def voice_input(self):
+        if not HAS_SR:
+            self._agent_msg("❌ 請先安裝：pip install SpeechRecognition pyaudio"); return
+        if self._voice_worker and self._voice_worker.isRunning(): return
+        vw = VoiceWorker()
+
+        def _on_recognized(t):
+            if t:
+                self._user_msg(f"🎤 {t}")
+                self._run_worker(t)
+            else:
+                self._agent_msg("❌ 語音辨識失敗")
+
+        def _on_voice_status(s):
+            if s == "listening":
+                self.voice_btn.setText("⏹")
+                self._on_status("listening")
+            else:
+                self.voice_btn.setText("🎤")
+                self._on_status("idle")
+
+        vw.recognized.connect(_on_recognized)
+        vw.status_sig.connect(_on_voice_status)
+        self._voice_worker = vw; vw.start()
+
+    def _on_confirm(self):
+        """點確認按鈕 → 直接呼叫 dev_tool.confirm()，不走 AgentWorker"""
+        if self._worker and self._worker.isRunning():
+            return
+        self.confirm_row.setVisible(False)
+        self._user_msg("確認")
+        try:
+            from dev_tool import get_tool
+            tool = get_tool()
+            idx = tool.state.__dict__.get("current_step_idx", 0)
+            tool.handle_callback(f"dt_confirm_{idx}")
+        except Exception as e:
+            self._agent_msg(f"確認失敗：{e}")
+
+    def _on_cancel(self):
+        """點取消按鈕 → 直接呼叫 dev_tool.cancel()，不走 AgentWorker"""
+        if self._worker and self._worker.isRunning():
+            return
+        self.confirm_row.setVisible(False)
+        self._user_msg("取消")
+        try:
+            from dev_tool import get_tool
+            get_tool().handle_callback("dt_stop")
+            self._agent_msg("❌ 已取消")
+        except Exception as e:
+            self._agent_msg(f"取消失敗：{e}")
+
+    def _run_worker(self, text: str):
+        """啟動 AgentWorker 執行指定文字（尊重目前模式）"""
+        if self._worker and self._worker.isRunning():
+            return
+        mode = getattr(self, '_mode', 'chat')
+
+        # 教學模式：直接存記憶庫，不走 Ollama
+        if mode == "teach":
+            try:
+                if _memory:
+                    _memory.store(text, tags=["user_teach", "manual"], importance=8, source="teach_mode")
+                    self._agent_msg(f"已記住：{text[:60]}{'...' if len(text)>60 else ''}")
+                    self._refresh_memory()
+                else:
+                    self._agent_msg("記憶庫未載入")
+            except Exception as e:
+                self._agent_msg(f"儲存失敗：{e}")
+            return
+
+        w = AgentWorker(text, self, mode=mode)
+        w.reply.connect(self._agent_msg)
+        w.log_line.connect(self._log)
+        w.status_sig.connect(self._on_status)
+        self._worker = w
+        w.start()
+
+    def _stop_worker(self):
+        """取消正在執行的 worker"""
+        if self._worker and self._worker.isRunning():
+            self._worker.terminate()
+            self._worker.wait(1000)
+            self._worker = None
+            self._agent_msg("（已取消）")
+            self._on_status("idle")
+
+    def _check_pending(self, ai_text: str):
+        """判斷 AI 回覆是否包含待確認提示，顯示/隱藏確認列"""
+        if "輸入「確認」執行" in ai_text or "✅ 輸入「確認」" in ai_text:
+            self.confirm_row.setVisible(True)
+        else:
+            self.confirm_row.setVisible(False)
+
+    def _on_status(self, s):
+        text  = {"idle":"● idle","running":"● 思考中...","listening":"● 聆聽中...","error":"● 錯誤"}.get(s, s)
+        color = {"idle":"#4ade80","running":"#fbbf24","listening":"#60a5fa","error":"#f87171"}.get(s,"#888")
+        self.lbl_status.setText(text); self.lbl_status.setStyleSheet(f"color:{color};font-weight:600;")
+        self.progress.setVisible(s == "running")
+        self.send_btn.setVisible(s != "running")
+        self.stop_btn.setVisible(s == "running")
+        self.send_btn.setEnabled(s != "running")
+
+    def _refresh_quick_actions(self, mode_id: str):
+        """根據模式更新左側快速操作按鈕"""
+        try:
+            mode_actions = {
+                "chat": [
+                    ("🤖 問 Claude",  self._ask_claude_directly),
+                    ("💬 問 ChatGPT", self._ask_chatgpt_directly),
+                ],
+                "terminal": [
+                    ("⚡ 查看能力",    self._show_capabilities),
+                    ("⌨️ 終端指令說明", self._show_terminal_help),
+                    ("🔧 自動修復",    self._quick_repair),
+                    ("🔍 分析模組",    self._analyze_module_dialog),
+                ],
+                "dev": [
+                    ("🤝 與Claude共同開發", self._dev_with_claude),
+                    ("🦾 立AI自己開發",     self._dev_solo),
+                    ("💻 開發歷史",         self._show_dev_history),
+                    ("🔧 自動修復",         self._quick_repair),
+                ],
+                "teach": [
+                    ("➕ 新增知識",      self._show_learn_dialog),
+                    ("🤖 問 Claude",   self._ask_claude_directly),
+                    ("💬 問 ChatGPT",  self._ask_chatgpt_directly),
+                ],
+                "database": [
+                    ("🧠 查看記憶庫",   lambda: self.tabs.setCurrentIndex(2)),
+                    ("🎓 Claude知識庫", self._show_claude_knowledge),
+                    ("💬 ChatGPT知識庫", self._show_chatgpt_knowledge),
+                    ("📖 模組說明",     self._show_module_explain_dialog),
+                ],
+                "desktop": [
+                    ("📸 截圖",       lambda: self._run_worker("截圖")),
+                    ("🪟 列出視窗",   lambda: self._run_worker("列出視窗")),
+                    ("📁 查看桌面",   lambda: self._run_worker("查看桌面資料夾")),
+                    ("💻 系統資訊",   lambda: self._run_worker("系統資訊")),
+                ],
+            }
+
+            actions = mode_actions.get(mode_id, mode_actions["chat"])
+
+            # 移除舊按鈕
+            for btn in self._quick_action_btns:
+                self._quick_action_layout.removeWidget(btn)
+                btn.hide()
+                btn.deleteLater()
+            self._quick_action_btns.clear()
+
+            # 加入新按鈕
+            for lbl, fn in actions:
+                b = QPushButton(lbl)
+                b.setObjectName("btn_accent")
+                b.clicked.connect(fn)
+                b.show()
+                self._quick_action_layout.addWidget(b)
+                self._quick_action_btns.append(b)
+
+            # 強制重繪
+            self._quick_action_layout.update()
+
+            # 更新模式說明標籤顏色
+            mode_colors = {
+                "chat":     "#7F77DD",
+                "terminal": "#185FA5",
+                "dev":      "#0F6E56",
+                "teach":    "#854F0B",
+                "database": "#5B3A8A",
+                "desktop":  "#993C1D",
+            }
+            color = mode_colors.get(mode_id, "#555")
+            self._mode_label.setStyleSheet(f"color:{color};font-size:11px;font-weight:500;")
+        except Exception as e:
+            import logging as _log
+            _log.getLogger("Agent.desktop").warning(f"[UI] _refresh_quick_actions 失敗：{e}")
+
+    def _ask_claude_directly(self):
+        """直接呼叫 chat_loop 與 Claude 多輪對話學習"""
+        text = self.input_box.text().strip()
+        if not text:
+            self._agent_msg_no_ask("請先在輸入框輸入問題，再按「問 Claude」")
+            return
+        self.input_box.clear()
+        self._user_msg(text)
+
+        # 顯示進度條與停止列
+        self.progress.setVisible(True)
+        self.show_claude_chat_bar(True)
+        self._agent_msg_no_ask("🔄 開始與 Claude 多輪對話學習，完成後通知你...")
+
+        import threading
+
+        def _run():
+            try:
+                from claude_desktop_bridge import get_bridge
+                bridge = get_bridge()
+                # 用 notify_fn 把每輪結果顯示在桌面
+                def _notify(msg):
+                    from PyQt6.QtCore import QTimer
+                    QTimer.singleShot(0, lambda m=msg: self._agent_msg_no_ask(m))
+                summary = bridge.chat_loop(
+                    text,
+                    max_rounds=9999,  # 無限輪，按停止按鈕才停
+                    notify_fn=_notify,
+                    ui_ref=self,
+                )
+            except Exception as e:
+                summary = f"❌ Claude 學習失敗：{e}"
+
+            from PyQt6.QtCore import QTimer
+            QTimer.singleShot(0, lambda s=summary: self._on_claude_direct_reply(s))
+
+        threading.Thread(target=_run, daemon=True).start()
+
+    def _on_claude_direct_reply(self, answer: str):
+        """Claude 學習完成後更新 UI"""
+        self.progress.setVisible(False)
+        self.show_claude_chat_bar(False)
+        self._agent_msg_no_ask(answer)
+
+    def show_chatgpt_chat_bar(self, show: bool = True):
+        """顯示/隱藏 ChatGPT 對話循環控制列"""
+        from PyQt6.QtCore import QTimer
+        QTimer.singleShot(0, lambda: self.chatgpt_chat_row.setVisible(show))
+
+    def _on_stop_chatgpt_chat(self):
+        """停止 ChatGPT 對話循環"""
+        try:
+            from chatgpt_desktop_bridge import get_bridge
+            get_bridge().stop_chat()
+            self._agent_msg_no_ask("⏹ 已發送停止訊號，ChatGPT 對話將在這輪結束後停止")
+        except Exception as e:
+            self._agent_msg_no_ask(f"停止失敗：{e}")
+        self.chatgpt_chat_row.setVisible(False)
+
+    def _ask_chatgpt_directly(self):
+        """直接呼叫 ChatGPTDesktopBridge 多輪學習（獨立執行緒）"""
+        text = self.input_box.text().strip()
+        if not text:
+            self._agent_msg_no_ask("請先在輸入框輸入問題，再按「問 ChatGPT」")
+            return
+        self.input_box.clear()
+        self._user_msg(text)
+
+        self.progress.setVisible(True)
+        self.show_chatgpt_chat_bar(True)
+        self._agent_msg_no_ask("🔄 正在與 ChatGPT 對話學習，請稍候...")
+
+        import threading
+        from PyQt6.QtCore import QTimer
+
+        def _notify(msg):
+            QTimer.singleShot(0, lambda m=msg: self._agent_msg_no_ask(m))
+
+        def _run():
+            try:
+                from chatgpt_desktop_bridge import get_bridge
+                summary = get_bridge().chat_loop(
+                    text, max_rounds=9999,
+                    notify_fn=_notify, ui_ref=self,
+                )
+                QTimer.singleShot(0, lambda s=summary: self._on_chatgpt_done(s))
+            except Exception as e:
+                QTimer.singleShot(0, lambda: self._on_chatgpt_done(f"❌ ChatGPT 橋接失敗：{e}"))
+
+        threading.Thread(target=_run, daemon=True).start()
+
+    def _on_chatgpt_done(self, summary: str):
+        """ChatGPT 多輪學習完成後更新 UI"""
+        self.progress.setVisible(False)
+        self.show_chatgpt_chat_bar(False)
+        self._agent_msg_no_ask(summary)
+
+    def _show_chatgpt_knowledge(self):
+        """顯示 ChatGPT 知識庫統計"""
+        try:
+            from chatgpt_knowledge import get_knowledge
+            stats = get_knowledge().get_stats()
+            self._agent_msg_no_ask(stats)
+            self.tabs.setCurrentIndex(0)
+        except Exception as e:
+            self._agent_msg_no_ask(f"ChatGPT 知識庫未載入：{e}")
+
+    def _show_claude_knowledge(self):
+        """顯示 Claude 知識庫統計和內容"""
+        try:
+            from claude_knowledge import get_knowledge
+            kb = get_knowledge()
+            stats = kb.get_stats()
+
+            # 顯示各分類最新一筆
+            details = []
+            for cat in kb.get_all_categories():
+                entries = kb.get_by_category(cat, limit=1)
+                if entries:
+                    e = entries[-1]
+                    details.append("\n【" + cat + "】最新：" + e["question"][:40])
+
+            msg = stats + "\n" + "".join(details) if details else stats
+            self._agent_msg_no_ask(msg)
+            self.tabs.setCurrentIndex(0)
+        except Exception as e:
+            self._agent_msg_no_ask(f"Claude 知識庫未載入：{e}")
+
+    def _analyze_module_dialog(self):
+        """彈出對話框輸入檔名，分析模組結構"""
+        from PyQt6.QtWidgets import QInputDialog
+        fname, ok = QInputDialog.getText(
+            self, "🔍 分析模組",
+            "輸入要分析的檔名（可多個，用空格分隔）：",
+            text="telegram_bot.py"
+        )
+        if ok and fname.strip():
+            self._run_worker("python analyze_module.py " + fname.strip())
+
+    def _show_module_explain_dialog(self):
+        """輸入 .py 檔名，用 AI 白話解釋這個模組的功能"""
+        from PyQt6.QtWidgets import QInputDialog
+        fname, ok = QInputDialog.getText(
+            self, "📖 模組說明",
+            "輸入要查詢的檔名（如：desktop_agent.py）：",
+            text=""
+        )
+        if not ok or not fname.strip():
+            return
+
+        fname = fname.strip()
+        if not fname.endswith(".py"):
+            fname += ".py"
+
+        def _explain():
+            try:
+                import pathlib
+                fpath = pathlib.Path(fname)
+                if not fpath.exists():
+                    self._agent_msg_no_ask(f"找不到 {fname}")
+                    return
+                head = "\n".join(fpath.read_text(encoding="utf-8", errors="ignore").splitlines()[:80])
+                prompt = (
+                    f"以下是 Python 模組 {fname} 的前 80 行程式碼：\n\n"
+                    f"{head}\n\n"
+                    f"請用繁體中文，用 2-4 句話說明這個模組的功能和用途，"
+                    f"像在跟不懂程式的人解釋一樣，簡單清楚。"
+                )
+                from ollama_guard import safe_infer
+                result = safe_infer(prompt=prompt, model="qwen2.5:14b", timeout=60)
+                self._agent_msg_no_ask(f"📖 {fname}\n\n{result}")
+                self.tabs.setCurrentIndex(0)
+            except Exception as e:
+                self._agent_msg_no_ask(f"❌ 說明失敗：{e}")
+
+        import threading
+        threading.Thread(target=_explain, daemon=True).start()
+        self._agent_msg_no_ask(f"正在分析 {fname}，請稍候...")
+        self.tabs.setCurrentIndex(0)
+
+    def _show_terminal_help(self):
+        self._agent_msg(
+            "終端模式使用方式：\n\n"
+            "直接輸入指令：\n"
+            "  dir -> 列出檔案\n"
+            "  python xxx.py -> 執行 Python\n"
+            "  git status -> Git 狀態\n"
+            "  systeminfo -> 系統資訊\n"
+            "  notepad -> 開啟記事本\n\n"
+            "自然語言也可以：\n"
+            "  查看系統資訊\n"
+            "  執行 python test.py\n\n"
+            "危險指令會先請您確認。"
+        )
+        self.tabs.setCurrentIndex(0)
+
+    def _show_teach_help(self):
+        self._agent_msg(
+            "教學模式使用方式：\n\n"
+            "1. 直接輸入知識 -> 存入記憶庫\n"
+            "   例：Python list 用 append 新增元素\n\n"
+            "2. 讀取 [檔案] -> 從檔案學習\n"
+            "   例：讀取 notes.txt\n\n"
+            "3. py batch_teach.py -> 批次匯入\n\n"
+            "4. 在對話模式中糾正：\n"
+            "   你問：X 是什麼？\n"
+            "   立答：（錯誤回答）\n"
+            "   你說：不對，X 是...\n"
+            "   立學：已學習糾正！"
+        )
+        self.tabs.setCurrentIndex(0)
+
+    def _show_batch_help(self):
+        self._agent_msg(
+            "批次匯入說明：\n\n"
+            "  py batch_teach.py -> 匯入知識清單\n"
+            "  py batch_teach_debug_fixes.py -> 匯入除錯經驗\n\n"
+            "編輯 .py 檔案中的 KNOWLEDGE 清單來新增知識。"
+        )
+        self.tabs.setCurrentIndex(0)
+
+    def _show_learn_dialog(self):
+        """彈出學習輸入框，讓使用者輸入知識存入記憶庫"""
+        from PyQt6.QtWidgets import QDialog, QVBoxLayout, QHBoxLayout, QLabel, QTextEdit, QPushButton, QComboBox
+        dlg = QDialog(self)
+        dlg.setWindowTitle("教立學習")
+        dlg.setMinimumSize(500, 320)
+        dlg.setStyleSheet(self.styleSheet())
+        v = QVBoxLayout(dlg)
+        v.setSpacing(10); v.setContentsMargins(16,16,16,16)
+
+        v.addWidget(QLabel("輸入要讓立記住的知識："))
+        text_edit = QTextEdit()
+        text_edit.setPlaceholderText(
+            "例如：\n"
+            "Python 的 list comprehension 寫法是 [x for x in iterable if condition]\n"
+            "我喜歡用深色主題的 UI\n"
+            "公司名稱是 XXX，負責人是 OOO"
+        )
+        text_edit.setMinimumHeight(120)
+        v.addWidget(text_edit)
+
+        # 重要性選擇
+        row = QHBoxLayout()
+        row.addWidget(QLabel("重要性："))
+        importance = QComboBox()
+        for label in ["1 - 一般", "3 - 普通", "5 - 重要", "7 - 很重要", "9 - 必須記住"]:
+            importance.addItem(label)
+        importance.setCurrentIndex(2)  # 預設重要性 5
+        row.addWidget(importance); row.addStretch()
+        v.addLayout(row)
+
+        # 標籤
+        tag_row = QHBoxLayout()
+        tag_row.addWidget(QLabel("標籤（逗號分隔）："))
+        from PyQt6.QtWidgets import QLineEdit
+        tag_input = QLineEdit()
+        tag_input.setPlaceholderText("例如：python, 程式設計, 工作")
+        tag_row.addWidget(tag_input)
+        v.addLayout(tag_row)
+
+        # 按鈕
+        btn_row = QHBoxLayout()
+        btn_save = QPushButton("存入記憶庫")
+        btn_save.setStyleSheet("background:#065f46;color:#6ee7b7;border-radius:8px;padding:8px 16px;")
+        btn_cancel = QPushButton("取消")
+        btn_cancel.setObjectName("btn_dim")
+        btn_row.addStretch(); btn_row.addWidget(btn_save); btn_row.addWidget(btn_cancel)
+        v.addLayout(btn_row)
+
+        def _save():
+            content = text_edit.toPlainText().strip()
+            if not content:
+                return
+            imp = int(importance.currentText().split(" - ")[0])
+            tags = [t.strip() for t in tag_input.text().split(",") if t.strip()] or ["manual"]
+            if _memory:
+                _memory.store(content, tags=tags, importance=imp, source="user_teach")
+                self._refresh_memory()
+                self._agent_msg(f"✅ 已記住：{content[:60]}{'...' if len(content)>60 else ''}")
+                self.tabs.setCurrentIndex(0)
+                dlg.accept()
+            else:
+                self._agent_msg("⚠️ 記憶庫未載入，無法儲存")
+                dlg.reject()
+
+        btn_save.clicked.connect(_save)
+        btn_cancel.clicked.connect(dlg.reject)
+        dlg.exec()
+
+    def _show_capabilities(self):
+        """顯示立目前所有能力和快捷指令"""
+        caps = (
+            "⚡ 立的能力清單\n\n"
+            "💬 對話\n"
+            "  直接輸入問題 → AI 回答\n"
+            "  記住：[內容] → 存入記憶庫\n\n"
+            "💻 程式開發\n"
+            "  修改 xxx.py，[需求] → 修改程式\n"
+            "  幫我做一個 [名稱] 程式 → 自主開發\n"
+            "  確認 / 取消 → 確認或取消開發行動\n"
+            "  還原 xxx.py → 還原備份\n"
+            "  開發記錄 → 查看開發歷史\n\n"
+            "🖥 桌面控制\n"
+            "  截圖 → 截取畫面\n"
+            "  讀取畫面 → OCR 辨識文字\n"
+            "  列出視窗 → 查看開啟的視窗\n"
+            "  切換到 [視窗名] → 切換視窗\n"
+            "  最大化 / 最小化 → 控制視窗\n"
+            "  點擊 [文字] → 點擊畫面上的文字\n"
+            "  輸入「[文字]」 → 鍵盤輸入\n"
+            "  按下 Ctrl+C → 快捷鍵\n"
+            "  監控畫面 / 停止監控 → 偵測變化\n\n"
+            "⌨️ 終端指令\n"
+            "  dir / ls → 列出檔案\n"
+            "  python xxx.py → 執行程式\n"
+            "  git status → Git 指令\n"
+            "  查看系統資訊 → CPU 記憶體磁碟\n\n"
+            "🧠 記憶\n"
+            "  查看記憶庫 → 開啟記憶頁籤\n"
+            "  自我診斷 → 掃描修復程式碼\n"
+            "  診斷報告 → 查看上次診斷結果\n\n"
+            "🤖 AI 模型\n"
+            "  目前模型 → 查看使用中的模型\n"
+            "  切換模型到 mistral → 手動切換\n"
+            "  （程式問題自動用 deepseek-r1）\n"
+            "  （一般對話自動用 qwen2）"
+        )
+        self._agent_msg(caps)
+        self.tabs.setCurrentIndex(0)
+
+    def _show_dev_history(self):
+        if _USE_DEV:
+            history = get_dev_engine().get_history(10)
+            self._agent_msg(f"最近開發記錄：\n{history}")
+            self.tabs.setCurrentIndex(0)
+        else:
+            self._agent_msg("dev_tool 未載入")
+
+    def _quick_repair(self):
+        if _scheduler:
+            task = create_auto_repair_task(".")
+            tid = _scheduler.submit(task)
+            self._agent_msg(f"✓ 修復任務已提交（ID: {tid}）")
+            self._refresh_tasks()
+        else:
+            self._agent_msg("⚠️ 排程器未啟動，請確認 task_scheduler.py 已放入專案資料夾")
+
+    def _add_memory(self):
+        c = self.mem_input.text().strip()
+        if c and _memory:
+            _memory.store(c, tags=["manual"], importance=7)
+            self.mem_input.clear(); self._refresh_memory()
+
+    def _delete_selected_memory(self):
+        item = self.mem_list.currentItem()
+        if not item:
+            self._agent_msg("請先選取一筆記憶再刪除")
+            return
+        # 從顯示文字取得 ID（格式：[id:xxxx] 內容...）
+        text = item.text()
+        import re
+        m = re.search(r'\[id:(\w+)\]', text)
+        if m and _memory:
+            mem_id = m.group(1)
+            if _memory.forget(mem_id):
+                self._refresh_memory()
+                self._log(f"[{self._ts()}] [記憶] 已刪除 ID：{mem_id}")
+            else:
+                self._agent_msg("刪除失敗，找不到此記憶")
+        else:
+            self._agent_msg("無法解析記憶 ID，請重新整理後再試")
+
+    # ── 資料刷新 ─────────────────────────────────────────────────────────────
+
+    def _refresh_memory(self):
+        if not _memory: return
+        q = self.mem_search.text().strip()
+        items = _memory.search(q, top_k=30) if q else sorted(_memory._memories, key=lambda m: m["accessed_at"], reverse=True)[:40]
+        self.mem_list.clear()
+        for m in items:
+            stars = "★" * min(m.get("importance",5),5)
+            tags  = "  ".join(f"[{t}]" for t in m.get("tags",[]))
+            mem_id = m.get("id","?")
+            item  = QListWidgetItem(f"{stars}  {m['content'][:80]}\n{tags}  [id:{mem_id}]")
+            item.setForeground(QColor("#d0d0d0")); self.mem_list.addItem(item)
+        self._set_stat(self.stat_mem, str(len(_memory._memories)))
+
+    def _refresh_tasks(self):
+        if not hasattr(self, 'task_list'):
+            return
+        self.task_list.clear()
+        if not _scheduler: self.task_list.addItem(QListWidgetItem("（排程器未啟動）")); return
+        tasks = _scheduler.list_tasks()
+        if not tasks: self.task_list.addItem(QListWidgetItem("（無任務）")); return
+        for t in tasks:
+            icon  = {"done":"✓","failed":"✗","running":"▶","pending":"○","cancelled":"✕"}.get(t["status"],"?")
+            color = {"done":"#4ade80","failed":"#f87171","running":"#fbbf24"}.get(t["status"],"#888")
+            item  = QListWidgetItem(f"{icon}  [{t['id']}] {t['name']}  {t['progress']}")
+            item.setForeground(QColor(color)); self.task_list.addItem(item)
+        self._set_stat(self.stat_task, str(len(tasks)))
+
+    def _load_log(self):
+        lf = pathlib.Path("logs") / f"agent_{datetime.datetime.now().strftime('%Y%m%d')}.log"
+        if lf.exists():
+            self.log_box.setPlainText("\n".join(lf.read_text(encoding="utf-8",errors="ignore").splitlines()[-200:]))
+            self.log_box.moveCursor(QTextCursor.MoveOperation.End)
+        else:
+            self.log_box.append("（找不到今天的日誌檔）")
+
+    # ── 計時器 ───────────────────────────────────────────────────────────────
+
+    def _start_timers(self):
+        t1 = QTimer(self); t1.timeout.connect(self._tick); t1.start(1000)
+        t2 = QTimer(self); t2.timeout.connect(self._refresh_tasks); t2.start(5000)
+        t3 = QTimer(self); t3.timeout.connect(self._poll_mobile_queue); t3.start(1500)
+        t4 = QTimer(self); t4.timeout.connect(self._check_mobile_msgs); t4.start(2000)
+        t5 = QTimer(self); t5.timeout.connect(self._poll_learn_folder); t5.start(3000)
+        t6 = QTimer(self); t6.timeout.connect(self._auto_backup_memory); t6.start(600000)  # 每 10 分鐘備份
+        t7 = QTimer(self); t7.timeout.connect(self._update_log_status); t7.start(300000)  # 每 5 分鐘更新 Ollama 狀態
+        t8 = QTimer(self); t8.timeout.connect(self._check_nodes_bg); t8.start(30000)      # 每 30 秒檢查 AB 節點
+        # 啟動時立刻更新一次
+        QTimer.singleShot(1000, self._update_log_status)
+        QTimer.singleShot(2000, self._check_nodes_bg)
+        # 啟動時清空舊的 queue
+        try:
+            import pathlib as _pl, json as _json
+            qf = _pl.Path("memory/mobile_queue.json")
+            if qf.exists():
+                qf.write_text("[]", encoding="utf-8")
+        except Exception:
+            pass
+        self._last_queue_count = 0
+        # 建立學習資料夾
+        self._learn_folder = pathlib.Path("learn_inbox")
+        self._learn_folder.mkdir(exist_ok=True)
+        self._learned_files = set()
+        self._pending_learn = {}  # {filename: 偵測時間} 等待 10 分鐘猶豫期
+        try:
+            for f in self._learn_folder.iterdir():
+                if f.is_file():
+                    self._learned_files.add(f.name)
+        except Exception:
+            pass
+        # 啟動時備份一次
+        self._auto_backup_memory()
+
+    def _auto_backup_memory(self):
+        """自動備份記憶庫"""
+        try:
+            import shutil
+            src = pathlib.Path("memory/long_term_memory.json")
+            if not src.exists():
+                return
+            backup_dir = pathlib.Path("memory/backups")
+            backup_dir.mkdir(exist_ok=True)
+            ts = datetime.datetime.now().strftime("%Y%m%d_%H%M")
+            dst = backup_dir / f"memory_backup_{ts}.json"
+            existing = sorted(backup_dir.glob("memory_backup_*.json"))
+            if len(existing) >= 10:
+                for old in existing[:-9]:
+                    old.unlink()
+            shutil.copy2(src, dst)
+        except Exception:
+            pass
+
+    def _poll_learn_folder(self):
+        """每 3 秒掃描 learn_inbox，新檔案等 10 分鐘猶豫期後才學習"""
+        try:
+            if not self._learn_folder.exists():
+                return
+
+            now = datetime.datetime.now()
+
+            for f in self._learn_folder.iterdir():
+                if not f.is_file():
+                    continue
+                if f.name in self._learned_files:
+                    continue
+                if f.name.startswith("."):
+                    continue
+
+                ext = f.suffix.lower()
+                if ext not in [".txt", ".md", ".py", ".json", ".csv", ".pdf"]:
+                    continue
+
+                # 第一次偵測到 → 加入等待清單，通知使用者
+                if f.name not in self._pending_learn:
+                    self._pending_learn[f.name] = now
+                    remaining = 10
+                    self._agent_msg(f"偵測到新檔案：{f.name}\n{remaining} 分鐘後自動學習（刪除檔案可取消）")
+                    continue
+
+                # 已在等待 → 檢查是否已過 10 分鐘
+                detected_time = self._pending_learn[f.name]
+                elapsed = (now - detected_time).total_seconds()
+                if elapsed < 600:  # 10 分鐘 = 600 秒
+                    continue
+
+                # 10 分鐘到了，檔案還在 → 開始學習
+                del self._pending_learn[f.name]
+                self._learned_files.add(f.name)
+                self._learn_file(f)
+
+            # 檢查等待中的檔案是否被刪除了
+            removed = []
+            for fname in self._pending_learn:
+                if not (self._learn_folder / fname).exists():
+                    removed.append(fname)
+                    self._agent_msg(f"已取消學習：{fname}（檔案已刪除）")
+            for fname in removed:
+                del self._pending_learn[fname]
+
+        except Exception:
+            pass
+
+    def _learn_file(self, f):
+        """讀取檔案內容並存入記憶庫"""
+        try:
+            ext = f.suffix.lower()
+
+            if ext == ".pdf":
+                try:
+                    from pypdf import PdfReader
+                    reader = PdfReader(str(f))
+                    content = ""
+                    for page in reader.pages:
+                        page_text = page.extract_text()
+                        if page_text:
+                            content += page_text + "\n"
+                    if not content.strip():
+                        self._agent_msg(f"learn_inbox: PDF 無法提取文字 ({f.name})")
+                        return
+                except ImportError:
+                    self._agent_msg(f"learn_inbox: 需要 pip install pypdf")
+                    return
+            else:
+                content = f.read_text(encoding="utf-8", errors="ignore")
+
+            if not content.strip():
+                return
+
+            import re as _re_learn
+            paragraphs = _re_learn.split(r'\n{2,}', content)
+            count = 0
+            for para in paragraphs:
+                para = para.strip()
+                if len(para) < 10:
+                    continue
+                if len(para) > 300:
+                    for i in range(0, len(para), 250):
+                        sub = para[i:i+250].strip()
+                        if len(sub) >= 10 and _memory:
+                            _memory.store(sub, tags=["auto_learn", f.name], importance=6, source="learn_inbox")
+                            count += 1
+                else:
+                    if _memory:
+                        _memory.store(para, tags=["auto_learn", f.name], importance=6, source="learn_inbox")
+                        count += 1
+
+            self._agent_msg(f"已自動學習：{f.name}（{count} 段，{len(content)} 字）")
+            self._log(f"[{self._ts()}] [系統] learn_inbox: {f.name} -> {count} 段知識")
+            self._refresh_memory()
+
+            # 推送通知到手機
+            try:
+                import bot_config, telebot, threading
+                def _notify():
+                    try:
+                        bot = telebot.TeleBot(bot_config.TELEGRAM_TOKEN, parse_mode=None)
+                        msg = f"立 AI 已學習新知識\n\n檔案：{f.name}\n內容：{count} 段（{len(content)} 字）"
+                        for cid in bot_config.ALLOWED_CHAT_IDS:
+                            bot.send_message(cid, msg)
+                    except Exception:
+                        pass
+                threading.Thread(target=_notify, daemon=True).start()
+            except Exception:
+                pass
+
+        except Exception as e:
+            self._agent_msg(f"learn_inbox: 讀取 {f.name} 失敗 ({e})")
+
+    def _poll_mobile_queue(self):
+        """每 1.5 秒讀取手機訊息 queue，有新訊息就顯示在日誌"""
+        try:
+            import json, pathlib
+            queue_file = pathlib.Path("memory/mobile_queue.json")
+            if not queue_file.exists():
+                return
+            queue = json.loads(queue_file.read_text(encoding="utf-8"))
+            if len(queue) <= self._last_queue_count:
+                return
+            new_msgs = queue[self._last_queue_count:]
+            self._last_queue_count = len(queue)
+            for msg in new_msgs:
+                # 只寫入日誌，不打擾主對話
+                self._log(f"[{msg['time']}] [手機] {msg['user'][:60]}")
+                self._log(f"[{msg['time']}] [回覆] {msg['ai'][:100]}")
+        except Exception:
+            pass
+
+    def _check_mobile_msgs(self):
+        """每 2 秒檢查有沒有新的手機訊息，有就顯示在桌面視窗"""
+        try:
+            if not _MOBILE_MSG_FILE.exists():
+                return
+            msgs = _json.loads(_MOBILE_MSG_FILE.read_text(encoding="utf-8"))
+            if len(msgs) <= self._last_mobile_count:
+                return
+            # 有新訊息
+            new_msgs = msgs[self._last_mobile_count:]
+            self._last_mobile_count = len(msgs)
+            for m in new_msgs:
+                self._show_mobile_msg(m["user"], m["reply"])
+        except Exception:
+            pass
+
+    def _tick(self):
+        # 更新執行狀態指示
+        try:
+            if self._worker and self._worker.isRunning():
+                dots = "." * (int(datetime.datetime.now().second) % 4)
+                if hasattr(self, "lbl_uptime_status"):
+                    elapsed = datetime.datetime.now() - self._start_time
+                    h, m = divmod(int(elapsed.total_seconds()), 3600)
+                    m, s = divmod(m, 60)
+                    self.lbl_uptime_status.setText(f"執行中{dots}")
+            else:
+                if hasattr(self, "lbl_uptime_status"):
+                    elapsed = datetime.datetime.now() - self._start_time
+                    h, m = divmod(int(elapsed.total_seconds()), 3600)
+                    m, s = divmod(m, 60)
+                    self.lbl_uptime_status.setText(f"{h:02d}:{m:02d}:{s:02d}")
+        except Exception:
+            pass
+
+        self.lbl_clock.setText(datetime.datetime.now().strftime("%H:%M:%S"))
+        e = int((datetime.datetime.now() - self._start_time).total_seconds())
+        h,r = divmod(e,3600); m,s = divmod(r,60)
+        self._set_stat(self.stat_uptime, (f"{h}h " if h else "")+f"{m}m {s}s")
+
+    # ── 顯示輔助 ─────────────────────────────────────────────────────────────
+
+    def _show_mobile_msg(self, user_text: str, ai_reply: str):
+        """顯示手機傳來的對話（只寫入日誌，不打擾主對話）"""
+        self._log(f"[{self._ts()}] [手機] {user_text[:60]}")
+        self._log(f"[{self._ts()}] [回覆] {ai_reply[:100]}")
+
+    def _user_msg(self, text):
+        self._last_user_input = text  # 記住最後一次輸入（糾正用）
+        self.chat_history.append(
+            f'<div style="text-align:left;margin:4px 0;">'
+            f'<span style="background:#1e3a5f;color:#93c5fd;border-radius:10px;padding:6px 12px;display:inline-block;">You: {text}</span>'
+            f'<div style="color:#555;font-size:11px;">{self._ts()}</div></div>')
+        self.chat_history.moveCursor(QTextCursor.MoveOperation.End)
+
+    def _agent_msg(self, text, skip_memory: bool = False):
+        self._last_ai_reply = text  # 記住最後一次回覆（糾正用）
+        self.chat_history.append(
+            f'<div style="text-align:left;margin:4px 0;">'
+            f'<span style="background:#1e2d1e;color:#86efac;border-radius:10px;padding:6px 12px;display:inline-block;">Li: {text}</span>'
+            f'<div style="color:#555;font-size:11px;">{self._ts()}</div></div>')
+        self.chat_history.moveCursor(QTextCursor.MoveOperation.End)
+        self._check_pending(text)
+
+        # 對話模式下，每次 AI 回覆後問要不要存入記憶
+        mode = getattr(self, '_mode', 'chat')
+        last_input = getattr(self, '_last_user_input', '')
+        skip = skip_memory or getattr(self, "_skip_next_memory", False)
+        self._skip_next_memory = False
+        if skip:
+            return  # Claude 橋接的回答不問存入
+        if mode == "chat" and last_input and "[LLM ERROR]" not in text and not text.startswith("（已取消）"):
+            # 檢查是否已經在記憶裡（已學過就不用再問）
+            already_known = False
+            if _lobster:
+                # 查 reflex memory
+                cached = _lobster.reflex_memory.get(last_input)
+                if cached:
+                    already_known = True
+                # 查 episodic memory
+                if not already_known:
+                    recent = _lobster.episodic.search_recent(20)
+                    for ep in recent:
+                        if ep.get("input", "").strip() == last_input.strip():
+                            already_known = True
+                            break
+
+            if not already_known:
+                self._pending_memory = {
+                    "input": last_input,
+                    "reply": text,
+                }
+                self.memory_row.setVisible(True)
+
+    # ── Claude 對話循環控制 ──────────────────────────────────────────────────
+
+    def show_claude_chat_bar(self, show: bool = True):
+        """顯示/隱藏 Claude 對話循環控制列"""
+        from PyQt6.QtCore import QTimer
+        QTimer.singleShot(0, lambda: self.claude_chat_row.setVisible(show))
+
+    def _on_stop_claude_chat(self):
+        """停止 Claude 對話循環"""
+        try:
+            from claude_desktop_bridge import get_bridge
+            get_bridge()._stop_chat = True
+            self._agent_msg_no_ask("⏹ 已發送停止訊號，對話將在這輪結束後停止")
+        except Exception as e:
+            self._agent_msg_no_ask(f"停止失敗：{e}")
+        self.claude_chat_row.setVisible(False)
+
+    def _on_mem_save(self):
+        """使用者同意存入記憶庫"""
+        pm = getattr(self, '_pending_memory', None)
+        if pm and _lobster:
+            # 存入 episodic memory
+            _lobster.episodic.store(pm["input"], pm["reply"])
+            # 存入 reflex memory
+            _lobster.reflex_memory.learn(pm["input"], pm["reply"])
+            self._agent_msg_no_ask("(已存入記憶)")
+        self._pending_memory = None
+        self.memory_row.setVisible(False)
+
+    def _on_mem_skip(self):
+        """使用者跳過，不存入記憶"""
+        self._pending_memory = None
+        self.memory_row.setVisible(False)
+
+    def _agent_msg_no_ask(self, text):
+        """顯示訊息但不觸發記憶確認"""
+        self.chat_history.append(
+            f'<div style="text-align:left;margin:4px 0;">'
+            f'<span style="background:#1e2d1e;color:#86efac;border-radius:10px;padding:6px 12px;display:inline-block;">Li: {text}</span>'
+            f'<div style="color:#555;font-size:11px;">{self._ts()}</div></div>')
+        self.chat_history.moveCursor(QTextCursor.MoveOperation.End)
+
+    def _log(self, line: str):
+        # 攔截 Ollama 狀態更新訊號
+        if line.startswith("__ollama_status__"):
+            online = line == "__ollama_status__online"
+            self._set_ollama_status(online)
+            return
+
+        # 攔截 AB 節點狀態訊號
+        if line.startswith("__node_status__"):
+            try:
+                parts = line[len("__node_status__"):].split("|")
+                local_ok, remote_ok, lat_str, dist_str = parts
+                if hasattr(self, "lbl_node_a"):
+                    self.lbl_node_a.setText(local_ok)
+                if hasattr(self, "lbl_node_b"):
+                    self.lbl_node_b.setText(remote_ok + (f" {lat_str}" if lat_str else ""))
+                if hasattr(self, "stat_node_a"):
+                    vl = self.stat_node_a.findChild(QLabel, "val")
+                    if vl: vl.setText(local_ok)
+                if hasattr(self, "stat_node_b"):
+                    vl = self.stat_node_b.findChild(QLabel, "val")
+                    if vl: vl.setText(remote_ok + (f" {lat_str}" if lat_str else ""))
+                if hasattr(self, "stat_node_dist"):
+                    vl = self.stat_node_dist.findChild(QLabel, "val")
+                    if vl: vl.setText(dist_str)
+            except Exception:
+                pass
+            return
+
+        ts = self._ts()
+        color = "#86efac"  # 預設綠色
+
+        # ── agent_logger 等級（WARNING / ERROR / INFO / DEBUG）────────────────
+        if " ERROR " in line or line.startswith("[") and "] ERROR " in line:
+            color = "#f87171"   # 紅色
+            source = "錯誤"
+        elif " WARNING " in line:
+            color = "#fbbf24"   # 黃色
+            source = "警告"
+        elif " INFO " in line:
+            color = "#86efac"   # 綠色
+            source = "系統"
+        # ── 原有標記 ────────────────────────────────────────────────────────
+        elif "[手機]" in line:
+            color = "#38bdf8"   # 藍色
+            source = "手機"
+        elif "[輸入]" in line:
+            color = "#93c5fd"
+            source = "電腦"
+        elif "[回覆]" in line:
+            color = "#86efac"
+            source = "AI"
+        elif "[系統]" in line:
+            color = "#a78bfa"   # 紫色
+            source = "系統"
+        else:
+            source = ""
+
+        source_html = f'<span style="color:#555;font-size:11px;">[{source}]</span> ' if source else ""
+        import re as _re
+        if _re.match(r"^\[\d{2}:\d{2}:\d{2}\]", line):
+            html = (
+                f'{source_html}'
+                f'<span style="color:{color};">{line}</span>'
+            )
+        else:
+            html = (
+                f'<span style="color:#333;">[{ts}]</span> '
+                f'{source_html}'
+                f'<span style="color:{color};">{line}</span>'
+            )
+        self.log_box.append(html)
+        self.log_box.moveCursor(QTextCursor.MoveOperation.End)
+        # 同步更新完整日誌快取（供篩選還原用）
+        self._full_log_html = self.log_box.toHtml()
+
+    def _sec(self, text):
+        l = QLabel(text.upper()); l.setStyleSheet("color:#555;font-size:10px;font-weight:700;letter-spacing:1px;"); return l
+
+    def _stat_row(self, label, value):
+        w = QWidget(); h = QHBoxLayout(w); h.setContentsMargins(0,0,0,0)
+        lb = QLabel(label); lb.setStyleSheet("color:#888;font-size:12px;")
+        vl = QLabel(value); vl.setStyleSheet("color:#7eb8f7;font-weight:700;"); vl.setObjectName("val")
+        h.addWidget(lb); h.addStretch(); h.addWidget(vl); return w
+
+    def _set_stat(self, widget, value):
+        vl = widget.findChild(QLabel, "val")
+        if vl: vl.setText(value)
+
+    def _ts(self): return datetime.datetime.now().strftime("%H:%M:%S")
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    app.setApplicationName("立 AI 系統核心")
+    win = LobsterDesktop()
+    win.show()
+    sys.exit(app.exec())

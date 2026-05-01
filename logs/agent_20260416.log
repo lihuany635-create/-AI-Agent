@@ -1,0 +1,79 @@
+[2026-04-16 00:03:38] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-16 00:03:38] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-16 00:03:39] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-16 00:03:39] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-16 00:03:45] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-16 00:03:45] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-16 00:03:45] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:03:50] [32mINFO[0m [Agent.webhook_server] webhook_server.py:307 - [Webhook] 設定結果：{'ok': True, 'result': True, 'description': 'Webhook is already set'}
+[2026-04-16 00:03:50] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-16 00:03:50] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-16 00:03:50] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-16 00:03:50] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-16 00:03:54] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-16 00:03:54] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-16 00:03:54] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:03:58] [32mINFO[0m [Agent.webhook_server] webhook_server.py:307 - [Webhook] 設定結果：{'ok': True, 'result': True, 'description': 'Webhook is already set'}
+[2026-04-16 00:04:29] [32mINFO[0m [Agent.dev_brain] dev_brain.py:122 - [DevBrain] PrintNotifier 已設定（測試模式）
+[2026-04-16 00:04:29] [32mINFO[0m [Agent.dev_brain] dev_brain.py:124 - [DevBrain] dev_tool 接入完成，AI可用：True
+[2026-04-16 00:08:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:08:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:13:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:13:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:18:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:18:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:23:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:23:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:28:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:28:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:33:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:33:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:38:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:38:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:43:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:43:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:48:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:48:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:53:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:53:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:58:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 00:58:51] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 10:24:32] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-16 10:24:32] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-16 10:24:32] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-16 10:24:32] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-16 10:24:36] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-16 10:24:36] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-16 10:24:36] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-16 10:24:36] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-16 10:24:39] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-16 10:24:39] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-16 10:24:40] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 10:24:44] [32mINFO[0m [Agent.webhook_server] webhook_server.py:307 - [Webhook] 設定結果：{'ok': True, 'result': True, 'description': 'Webhook is already set'}
+[2026-04-16 10:24:44] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-16 10:24:44] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-16 10:24:45] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-16 10:24:45] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-16 10:24:48] DEBUG    [Agent.lobster.core] Lobster_Core.py:46 - [Lazy] OSController 初始化
+[2026-04-16 10:24:48] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-16 10:24:48] [32mINFO[0m [Agent.desktop] desktop_agent.py:1100 - [UI] Ollama 狀態更新：在線
+[2026-04-16 10:24:52] [32mINFO[0m [Agent.webhook_server] webhook_server.py:307 - [Webhook] 設定結果：{'ok': True, 'result': True, 'description': 'Webhook is already set'}
+[2026-04-16 21:33:52] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-16 21:33:52] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-16 21:33:52] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:254 - Ollama monitor started (every 30s)
+[2026-04-16 21:33:52] DEBUG    [Agent.lobster.core] Lobster_Core.py:62 - [Lazy] EpisodicMemory 初始化
+[2026-04-16 21:33:52] DEBUG    [Agent.lobster.core] Lobster_Core.py:70 - [Lazy] PromptEngine 初始化
+[2026-04-16 21:33:52] [32mINFO[0m [Agent.model_selector] model_selector.py:140 - 模型選擇器啟動，可用模型：['gemma4:latest', 'qwen2.5:14b', 'qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest']
+[2026-04-16 21:33:52] [32mINFO[0m [Agent.model_selector] model_selector.py:141 - 預設模型：gemma4:latest
+[2026-04-16 21:33:52] [32mINFO[0m [Agent.lobster.engine.infer] infer_engine.py:85 - [think] 推論（gemma4:latest）：你現在用的是哪個模型？目前有哪些子系統已經啟動？
+[2026-04-16 21:33:52] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：local
+[2026-04-16 21:33:52] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:250 - [Ollama Monitor] online: ['local', 'remote']
+[2026-04-16 21:34:22] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:250 - [Ollama Monitor] online: ['local', 'remote']
+[2026-04-16 21:34:52] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:250 - [Ollama Monitor] online: ['local', 'remote']
+[2026-04-16 21:35:22] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:250 - [Ollama Monitor] online: ['local', 'remote']
+[2026-04-16 21:35:52] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:250 - [Ollama Monitor] online: ['local', 'remote']
+[2026-04-16 21:36:22] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:250 - [Ollama Monitor] online: ['local', 'remote']
+[2026-04-16 21:36:23] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：remote
+[2026-04-16 21:36:23] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:107 - [remote] 推論失敗：404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-16 21:41:25] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-16 21:41:25] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶

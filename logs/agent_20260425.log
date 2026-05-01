@@ -1,0 +1,122 @@
+[2026-04-25 16:39:10] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-25 16:39:10] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-25 16:39:10] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-25 16:39:16] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-25 16:39:16] [32mINFO[0m [Agent.desktop] desktop_agent.py:1072 - [UI] Ollama 狀態更新：在線
+[2026-04-25 16:39:19] [32mINFO[0m [Agent.desktop] desktop_agent.py:1072 - [UI] Ollama 狀態更新：在線
+[2026-04-25 16:39:53] [32mINFO[0m [Agent.dev_brain] dev_brain.py:122 - [DevBrain] PrintNotifier 已設定（測試模式）
+[2026-04-25 16:39:53] [32mINFO[0m [Agent.dev_brain] dev_brain.py:124 - [DevBrain] dev_tool 接入完成，AI可用：True
+[2026-04-25 16:41:49] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-25 16:41:49] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-25 16:41:49] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-25 16:41:52] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:138 - TaskScheduler 啟動
+[2026-04-25 16:41:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 16:42:27] [32mINFO[0m [Agent.dev_brain] dev_brain.py:122 - [DevBrain] PrintNotifier 已設定（測試模式）
+[2026-04-25 16:42:27] [32mINFO[0m [Agent.dev_brain] dev_brain.py:124 - [DevBrain] dev_tool 接入完成，AI可用：True
+[2026-04-25 16:46:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 16:46:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 16:51:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 16:51:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 16:56:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 16:56:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:01:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:01:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:06:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:06:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:11:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:11:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:16:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:16:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:21:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:21:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:26:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:26:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:31:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:31:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:36:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:36:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:41:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:41:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:46:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:46:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:51:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:51:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:56:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 17:56:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:01:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:01:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:06:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:06:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:11:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:11:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:16:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:16:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:21:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:21:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:26:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:26:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:31:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:31:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:36:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:36:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:41:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:41:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:46:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:46:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:51:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:51:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:56:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 18:56:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:01:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:01:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:06:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:06:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:11:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:11:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:16:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:16:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:21:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:21:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:26:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:26:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:31:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:31:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:36:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:36:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:41:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:41:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:46:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:46:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:51:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:51:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:56:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 19:56:55] [32mINFO[0m [Agent.desktop] desktop_agent.py:1066 - [UI] Ollama 狀態更新：在線
+[2026-04-25 21:39:06] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-25 21:39:06] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-25 21:39:06] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:224 - TaskScheduler 啟動
+[2026-04-25 21:39:58] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-25 21:39:58] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-25 21:41:15] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:233 - 任務已提交：[482eeca2] 自動修復：.（6 個步驟）
+[2026-04-25 21:41:15] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:289 - 開始執行任務：[482eeca2] 自動修復：.
+[2026-04-25 21:41:15] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:301 -   步驟 [scan] 由 project_scanner 執行中...
+[2026-04-25 21:41:15] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:309 -   步驟 [scan] 完成：掃描完成：50 個 .py 檔案
+[2026-04-25 21:41:15] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:301 -   步驟 [detect] 由 error_detector 執行中...
+[2026-04-25 21:41:15] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:309 -   步驟 [detect] 完成：發現錯誤：agent_basic.py → RUNTIME_ERROR line 6
+[2026-04-25 21:41:15] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:301 -   步驟 [plan] 由 repair_planner 執行中...
+[2026-04-25 21:43:31] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:309 -   步驟 [plan] 完成：{'repair': True, 'file': '規劃修復策略', 'reason': '此文件包含關鍵的修復策略，缺
+[2026-04-25 21:43:31] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:301 -   步驟 [repair] 由 repair_engine 執行中...
+[2026-04-25 21:43:31] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:309 -   步驟 [repair] 完成：沒有需要修復的檔案
+[2026-04-25 21:43:31] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:301 -   步驟 [validate] 由 repair_validator 執行中...
+[2026-04-25 21:43:31] [33mWARNING[0m [Agent.task_scheduler] task_scheduler.py:204 - 模組 repair_validator 執行失敗：RepairValidator.validate() missing 1 required positional argument: 'after_code'，改用 Lobster_Core
+[2026-04-25 21:43:31] DEBUG    [Agent.lobster.core] Lobster_Core.py:62 - [Lazy] EpisodicMemory 初始化
+[2026-04-25 21:43:31] DEBUG    [Agent.lobster.core] Lobster_Core.py:70 - [Lazy] PromptEngine 初始化
+[2026-04-25 21:43:32] [32mINFO[0m [Agent.model_selector] model_selector.py:140 - 模型選擇器啟動，可用模型：['gemma4:latest', 'qwen2.5:14b', 'qwen2:7b-instruct-q4_0', 'qwen2:7b', 'deepseek-r1:1.5b', 'llama3.2:latest', 'mistral:7b', 'llama3:latest']
+[2026-04-25 21:43:32] [32mINFO[0m [Agent.model_selector] model_selector.py:141 - 預設模型：gemma4:latest
+[2026-04-25 21:43:32] [32mINFO[0m [Agent.lobster.engine.infer] infer_engine.py:85 - [think] 推論（gemma4:latest）：[repair_validator] 驗證修復結果
+[2026-04-25 21:43:32] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：local
+[2026-04-25 21:46:32] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：remote
+[2026-04-25 21:46:33] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:107 - [remote] 推論失敗：404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-25 21:46:33] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:309 -   步驟 [validate] 完成：你好。（Ollama 目前離線）
+[2026-04-25 21:46:33] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:301 -   步驟 [learn] 由 bug_learning_engine 執行中...
+[2026-04-25 21:46:33] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:309 -   步驟 [learn] 完成：已學習此次修復經驗
+[2026-04-25 21:46:33] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:340 - 任務完成：[482eeca2] 自動修復：.

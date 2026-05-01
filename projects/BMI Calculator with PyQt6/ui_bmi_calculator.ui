@@ -1,0 +1,32 @@
+在開始編寫 `ui_bmi_calculator.ui` 的程式碼之前,我們首先需要設置一些基本的設定和參數.下面是一個簡單的例子:
+
+```python
+# ui_bmi_calculator.ui 文件中的程式碼範例
+
+from PyQt6.QtWidgets import QWidget, QLabel, QLineEdit, QPushButton, QVBoxLayout
+
+class Ui_BMI_Calculator(QWidget):
+    def __init__(self):
+        super().__init__()
+
+        # 創建佈局物件
+        self.layout = QVBoxLayout()
+
+        # 輸入欄位標籤和輸入框
+        self.height_label = QLabel('請輸入身高(米):')
+        self.height_input = QLineEdit()
+        self.weight_label = QLabel('請輸入體重(公斤):')
+        self.weight_input = QLineEdit()
+
+        # 按鈕物件
+        self.calculate_button = QPushButton('計算BMI')
+        self.result_label = QLabel('')
+        self.health_status_label = QLabel('')
+
+        # 添加到佈局中
+        self.layout.addWidget(self.height_label)
+        self.layout.addWidget(self.height_input)
+        self.layout.addWidget(self.weight_label)
+        self.layout.addWidget(self.weight_input)
+
+        # 創建按鈕的事件

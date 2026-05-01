@@ -1,0 +1,76 @@
+# prompt_engine.py — 升級版
+# 修復：
+#   1. 強制繁體中文（解決回簡體問題）
+#   2. 加入豐富人格指引（解決回覆死板問題）
+#   3. 上下文帶入更完整（解決忘記對話問題）
+#   4. 精簡 prompt 結構（減少 token，加快回覆速度）
+
+from cognition_state_manager import get_current_context, get_persona
+
+
+# ── 系統人格提示詞（這是解決「回簡體、死板、沒個性」的核心）──────────────────
+SYSTEM_PROMPT_TEMPLATE = """你是「{name}」，{role}。
+
+【語言規則 — 最高優先】
+- 永遠使用繁體中文回覆，絕對不使用簡體字
+- 即使使用者用簡體或英文問，也用繁體中文回答
+
+【個性】
+{personality}
+- 說話自然、像朋友聊天，不要官腔或死板
+- 回覆要簡潔有重點，不要廢話連篇
+- 可以有自己的想法和語氣，不要每次都「好的，我來幫您...」
+
+【記憶與上下文】
+- 記住對話歷史，回覆時要前後連貫
+- 如果使用者問的事情前面聊過，要直接接續，不要重新介紹自己
+
+【使命】
+{mission}
+忠誠對象：{loyalty}
+"""
+
+
+class PromptEngine:
+
+    def build_system(self) -> str:
+        """建立系統提示詞（人格 + 語言規則）"""
+        persona = get_persona()
+        return SYSTEM_PROMPT_TEMPLATE.format(
+            name=persona.get("name", "立"),
+            role=persona.get("role", "AI 系統核心"),
+            personality=persona.get("personality", "理性、直接"),
+            mission=persona.get("mission", "協助創造者"),
+            loyalty=persona.get("loyalty", "creator"),
+        )
+
+    def build_prompt(self, text: str, episodic) -> str:
+        """建立使用者 prompt（上下文 + 當前輸入）"""
+
+        # 取得對話歷史（cognition_state_manager）
+        context = get_current_context()
+
+        # 取得近期情節記憶（最多 3 筆，避免太長拖慢速度）
+        recent = episodic.search_recent(3)
+        mem_lines = []
+        for e in recent:
+            # 只取前 60 字，避免 prompt 太長
+            user_part = e["input"][:60]
+            ai_part   = e["response"][:80]
+            if "[LLM ERROR]" not in ai_part:  # 過濾掉錯誤記錄
+                mem_lines.append(f"之前：{user_part} → {ai_part}")
+
+        # 組合最終 prompt（精簡版，速度更快）
+        parts = []
+
+        if mem_lines:
+            parts.append("[過去對話摘要]")
+            parts.extend(mem_lines)
+
+        if context.strip():
+            parts.append("[本次對話紀錄]")
+            parts.append(context.strip())
+
+        parts.append(f"[使用者說]\n{text}")
+
+        return "\n\n".join(parts)

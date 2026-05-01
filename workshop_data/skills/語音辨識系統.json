@@ -1,0 +1,209 @@
+{
+  "name": "語音辨識系統",
+  "filename": "語音辨識系統.py",
+  "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\語音辨識系統.py",
+  "description": "**工程需求（200字內）**",
+  "functions": [
+    {
+      "name": "run_recognizer",
+      "description": "",
+      "inputs": [
+        "stop_event"
+      ]
+    },
+    {
+      "name": "main",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "get_logger",
+      "description": "建立或取得 logger。",
+      "inputs": [
+        "name",
+        "level"
+      ]
+    },
+    {
+      "name": "record_audio",
+      "description": "使用麥克風錄音並轉成文字。",
+      "inputs": [
+        "duration",
+        "language"
+      ]
+    },
+    {
+      "name": "translate_text",
+      "description": "將文字翻譯成目標語言。",
+      "inputs": [
+        "text",
+        "dest_lang"
+      ]
+    },
+    {
+      "name": "ask_openai",
+      "description": "呼叫 OpenAI API 取得回覆。",
+      "inputs": [
+        "prompt",
+        "model"
+      ]
+    },
+    {
+      "name": "format_message",
+      "description": "格式化輸出訊息。",
+      "inputs": [
+        "original",
+        "translated",
+        "reply"
+      ]
+    },
+    {
+      "name": "signal_handler",
+      "description": "",
+      "inputs": [
+        "signum",
+        "frame"
+      ]
+    },
+    {
+      "name": "run_child",
+      "description": "Starts a child process that sleeps for 1 second and then exits with code 1\nto simulate a crash.",
+      "inputs": []
+    },
+    {
+      "name": "simulate_network_disconnect",
+      "description": "模擬網路斷線：嘗試連線失敗，拋出連線錯誤。",
+      "inputs": []
+    },
+    {
+      "name": "simulate_resource_exhaustion",
+      "description": "模擬資源耗盡：嘗試分配適量的記憶體，拋出 MemoryError。",
+      "inputs": []
+    },
+    {
+      "name": "verify_log_file",
+      "description": "",
+      "inputs": [
+        "log_path"
+      ]
+    },
+    {
+      "name": "parse_ts",
+      "description": "返回 datetime 对象或 None",
+      "inputs": [
+        "line"
+      ]
+    },
+    {
+      "name": "check_order",
+      "description": "检查时间戳是否非递减",
+      "inputs": [
+        "ts_list"
+      ]
+    },
+    {
+      "name": "extract_error_code",
+      "description": "返回错误码字符串或 None",
+      "inputs": [
+        "line"
+      ]
+    },
+    {
+      "name": "process_log_file",
+      "description": "",
+      "inputs": [
+        "log_path"
+      ]
+    },
+    {
+      "name": "read_error_codes",
+      "description": "",
+      "inputs": [
+        "file_path",
+        "output_file_path"
+      ]
+    },
+    {
+      "name": "read_missing_items",
+      "description": "",
+      "inputs": [
+        "file_path"
+      ]
+    },
+    {
+      "name": "generate_json_report",
+      "description": "",
+      "inputs": [
+        "items",
+        "out_path"
+      ]
+    },
+    {
+      "name": "generate_csv_report",
+      "description": "",
+      "inputs": [
+        "items",
+        "out_path"
+      ]
+    },
+    {
+      "name": "start",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "stop",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "get_stream",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "start",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "stop",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "on_text",
+      "description": "",
+      "inputs": [
+        "self",
+        "callback"
+      ]
+    },
+    {
+      "name": "set_language",
+      "description": "",
+      "inputs": [
+        "self",
+        "lang"
+      ]
+    },
+    {
+      "name": "guard_func",
+      "description": "",
+      "inputs": []
+    }
+  ],
+  "example": "python 語音辨識系統.py",
+  "has_main": true,
+  "needs_args": false
+}

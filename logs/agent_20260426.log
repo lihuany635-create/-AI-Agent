@@ -1,0 +1,46 @@
+[2026-04-26 11:45:19] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-26 11:45:19] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-26 20:48:35] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-26 20:48:35] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-26 21:03:17] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-26 21:03:17] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-26 21:13:21] DEBUG    [Agent.lobster.core] Lobster_Core.py:70 - [Lazy] PromptEngine 初始化
+[2026-04-26 21:13:22] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：local
+[2026-04-26 21:16:22] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:107 - [local] 推論失敗：HTTPConnectionPool(host='localhost', port=11434): Read timed out. (read timeout=180)
+[2026-04-26 21:16:25] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：remote
+[2026-04-26 21:16:25] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:107 - [remote] 推論失敗：404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-26 21:16:28] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：local
+[2026-04-26 21:17:35] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：remote
+[2026-04-26 21:17:35] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:107 - [remote] 推論失敗：404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-26 21:17:36] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：local
+[2026-04-26 21:18:14] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：remote
+[2026-04-26 21:18:15] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:107 - [remote] 推論失敗：404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-26 21:20:08] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-26 21:20:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-26 21:36:24] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-26 21:36:24] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-26 21:36:24] [32mINFO[0m [Agent.task_scheduler] task_scheduler.py:255 - TaskScheduler 啟動
+[2026-04-26 21:50:08] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-26 21:50:08] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-26 21:53:59] DEBUG    [Agent.lobster.core] Lobster_Core.py:70 - [Lazy] PromptEngine 初始化
+[2026-04-26 21:54:00] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：local
+[2026-04-26 21:55:12] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：remote
+[2026-04-26 21:55:13] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:107 - [remote] 推論失敗：404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-26 21:55:13] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：local
+[2026-04-26 21:55:57] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：remote
+[2026-04-26 21:55:57] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:107 - [remote] 推論失敗：404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-26 21:55:58] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：local
+[2026-04-26 21:56:44] [32mINFO[0m [Agent.ollama_guard] ollama_guard.py:201 - [Ollama] 單節點推論：remote
+[2026-04-26 21:56:44] [33mWARNING[0m [Agent.ollama_guard] ollama_guard.py:107 - [remote] 推論失敗：404 Client Error: Not Found for url: http://100.91.121.85:11434/api/generate
+[2026-04-26 22:17:10] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-26 22:17:10] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-26 22:32:05] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-26 22:32:05] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-26 22:32:55] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-26 22:32:55] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-26 22:46:25] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-26 22:46:25] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-26 23:06:14] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-26 23:06:14] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
+[2026-04-26 23:15:38] [31mERROR[0m [Agent.long_term_memory] long_term_memory.py:175 - 記憶載入失敗：Expecting value: line 1 column 1 (char 0)，重置為空白
+[2026-04-26 23:15:38] [32mINFO[0m [Agent.long_term_memory] long_term_memory.py:50 - 長期記憶系統啟動，已載入 0 筆記憶
