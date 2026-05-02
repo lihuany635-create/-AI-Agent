@@ -1,0 +1,109 @@
+{
+  "name": "Notification Organ",
+  "filename": "Notification_Organ.py",
+  "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\Notification_Organ.py",
+  "description": "**工程需求（≤200字）**",
+  "functions": [
+    {
+      "name": "main",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "get",
+      "description": "Thread-safe accessor for a single configuration value.\n\nArgs:\n    key (str): The key of the configuration value to retrieve.\n    default: The default value to return if the key is not found.\n\nReturns:\n    The value associated with the given key, or the default value if the key does not exist.",
+      "inputs": [
+        "self",
+        "key",
+        "default"
+      ]
+    },
+    {
+      "name": "get_all",
+      "description": "Thread-safe accessor for the entire configuration.\n\nReturns:\n    A dictionary containing all configuration values.",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "start",
+      "description": "Schedule an alarm.",
+      "inputs": [
+        "cls",
+        "trigger_time",
+        "title",
+        "message",
+        "sound_path"
+      ]
+    },
+    {
+      "name": "play",
+      "description": "Play an MP3 or OGG file.\n\nArgs:\n    file_path: Path to the audio file.\n    block: If True, block until playback finishes.\n\nReturns:\n    True if playback started successfully, False otherwise.",
+      "inputs": [
+        "self",
+        "file_path",
+        "block"
+      ]
+    },
+    {
+      "name": "play_async",
+      "description": "Play audio asynchronously in a separate thread.\n\nArgs:\n    file_path: Path to the audio file.",
+      "inputs": [
+        "self",
+        "file_path"
+      ]
+    },
+    {
+      "name": "setUp",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "tearDown",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_immediate_trigger_repeat",
+      "description": "Trigger with past time should call _trigger repeat times.",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_time_trigger_logic_future",
+      "description": "Future time schedules a timer that fires immediately in test.",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_audio_playback_success",
+      "description": "Audio playback should be called when file exists.",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_audio_playback_failure_missing_file",
+      "description": "Missing audio file triggers warning and alert.",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_error_handling_popup_exception",
+      "description": "Popup exception should be logged without crashing.",
+      "inputs": [
+        "self"
+      ]
+    }
+  ],
+  "example": "python Notification_Organ.py",
+  "has_main": true,
+  "needs_args": false
+}

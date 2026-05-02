@@ -2,7 +2,7 @@
   "name": "器官技能描述系統",
   "filename": "器官技能描述系統.py",
   "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\器官技能描述系統.py",
-  "description": "生成Python模組函式元資料JSON",
+  "description": "產生 Python 模組函式元資料 JSON",
   "functions": [
     {
       "name": "load_module_from_path",
@@ -201,14 +201,14 @@
   "example": "python organ_describer.py my_module.py -o my_module.json",
   "has_main": true,
   "needs_args": true,
-  "when_to_use": "需要快速瞭解模組函式結構時使用",
+  "when_to_use": "需要快速瞭解模組函式結構時",
   "inputs": [
     {
       "name": "module_file",
-      "description": "Python模組檔案路徑",
+      "description": "Python 模組檔案路徑",
       "required": true
     }
   ],
-  "outputs": "輸出JSON檔案，包含模組名稱、說明及所有函式的名稱、說明與參數型別",
+  "outputs": "輸出包含模組名稱、說明及所有函式的名稱、說明與參數類型的 JSON 物件",
   "ai_described": true
 }
