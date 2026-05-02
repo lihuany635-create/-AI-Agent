@@ -2,7 +2,7 @@
   "name": "Integration Test Organ",
   "filename": "Integration_Test_Organ.py",
   "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\Integration_Test_Organ.py",
-  "description": "執行加減法測試並回報結果",
+  "description": "掃描同目錄 Python 檔並列出其主要功能",
   "functions": [
     {
       "name": "import_module_from_path",
@@ -73,11 +73,11 @@
       "inputs": []
     }
   ],
-  "example": "python -c \"import yourmodule; print(yourmodule.run_auto_tests())\"",
+  "example": "python organ.py",
   "has_main": true,
   "needs_args": false,
-  "when_to_use": "需要快速驗證加減法功能時",
+  "when_to_use": "需要快速瞭解專案中各模組功能時使用",
   "inputs": [],
-  "outputs": "一個列表，包含每個測試名稱、是否通過及錯誤訊息",
+  "outputs": "列出每個 .py 檔案中符合 EXPECTED_FUNCS 的函式名，並以日誌方式輸出",
   "ai_described": true
 }

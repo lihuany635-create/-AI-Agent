@@ -1,0 +1,85 @@
+{
+  "name": "系統監控器官",
+  "filename": "系統監控器官.py",
+  "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\系統監控器官.py",
+  "description": "新增 **agent_monitor.py**，提供 `start()` 與 `get_status()`。",
+  "functions": [
+    {
+      "name": "get_status",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "cli_agent_monitor",
+      "description": "",
+      "inputs": []
+    },
+    {
+      "name": "get_agent_status",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "is_sensitive_process",
+      "description": "",
+      "inputs": [
+        "proc"
+      ]
+    },
+    {
+      "name": "start",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "start",
+      "description": "",
+      "inputs": [
+        "self",
+        "interval"
+      ]
+    },
+    {
+      "name": "test_get_status_structure",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "setUp",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_cli_logging_and_verbose",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_cli_missing_argument",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "test_cli_invalid_argument",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    }
+  ],
+  "example": "python 系統監控器官.py -v -v",
+  "has_main": true,
+  "needs_args": true
+}
