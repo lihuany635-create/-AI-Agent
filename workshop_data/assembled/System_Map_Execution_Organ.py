@@ -1,9 +1,10 @@
 """請開發一個可執行的 **system_map.py**，啟動時自動掃描專案根目錄下所有 Python 檔案，解析 `import` 依賴並生成完整依賴圖；若發現未安裝的第三方模組或缺失的內部模組，將其列入報告；報告以 Markdown/JS"""
 # ── 工坊組裝：System Map Execution Organ ──────────────────────────────────────────
-# 組裝時間：2026-05-03T02:08:31
-# 任務數：6
+# 組裝時間：2026-05-03T02:51:13
+# 任務數：8
 
 from pathlib import Path
+from typing import Dict, List
 import glob
 import importlib.util
 import os
@@ -42,6 +43,30 @@ def parse_imports(file_path):
         print(f'Error reading {file_path}: {e}')
         return {}
 
+def build_dependency_graph(directory_path: str) -> Dict[str, List[str]]:
+    graph_data = {}
+    for root, _, files in os.scandir(directory_path):
+        if root.is_dir():
+            for entry in os.scandir(root):
+                if entry.name.endswith('.py'):
+                    module_name = os.path.abspath(entry.path).replace(os.sep, '.')
+                    with open(entry.path, 'r') as file:
+                        lines = file.readlines()
+                        imports = []
+                        for line in lines:
+                            if line.strip().startswith('import'):
+                                imports.append(line.strip())
+                    if module_name not in graph_data:
+                        graph_data[module_name] = []
+                    graph_data[module_name].extend(imports)
+    return graph_data
+
+directory_path = 'path/to/your/directory'
+
+graph_data = build_dependency_graph(directory_path)
+
+print(graph_data)
+
 def detect_missing_modules(file_list):
     """
     檢測指定的模塊是否缺失。
@@ -68,6 +93,45 @@ file_list = ['module1.py', 'module2.py']
 missing_modules = detect_missing_modules(file_list)
 
 print(missing_modules)
+
+def generate_report_data(directory_path):
+    graph_data = {}
+
+    def is_module_file(file_name):
+        return file_name.endswith('.py')
+
+    def read_module_dependencies(module_path):
+        with open(module_path, 'r', encoding='utf-8') as file:
+            lines = file.readlines()
+            dependencies = []
+            for line in lines:
+                if line.strip().startswith('import'):
+                    import_line = line.strip().split()[1]
+                    if not os.path.isabs(import_line) and (not import_line.startswith(directory_path)):
+                        dependencies.append(import_line)
+            return dependencies
+
+    def walk_modules(root, directory_path):
+        for file in os.listdir(root):
+            full_path = os.path.join(root, file)
+            if os.path.isfile(full_path) and is_module_file(file):
+                module_dependencies = read_module_dependencies(full_path)
+                graph_data[full_path] = {'dependencies': module_dependencies}
+            elif os.path.isdir(full_path):
+                walk_modules(full_path, directory_path)
+
+    def add_file_to_graph(file_path):
+        if is_module_file(file_path):
+            module_dependencies = read_module_dependencies(file_path)
+            graph_data[file_path] = {'dependencies': module_dependencies}
+    walk_modules(directory_path, directory_path)
+    return graph_data
+
+directory_path = 'path/to/your/directory'
+
+graph_data = generate_report_data(directory_path)
+
+print(graph_data)
 
 def save_markdown_report(report_data):
     report_path = Path('reports/system_map_report.md')
