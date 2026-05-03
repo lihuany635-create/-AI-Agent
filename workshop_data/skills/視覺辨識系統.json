@@ -1,8 +1,8 @@
 {
   "name": "視覺辨識系統",
   "filename": "視覺辨識系統.py",
-  "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\視覺辨識系統.py",
-  "description": "即時截圖並以 JPEG 傳送",
+  "path": "workshop_data\\assembled\\視覺辨識系統.py",
+  "description": "我希望他能夠看到我電腦上的畫面",
   "functions": [
     {
       "name": "capture_screen",
@@ -76,22 +76,7 @@
       "inputs": []
     }
   ],
-  "example": "python server.py 0.0.0.0 8000",
+  "example": "python 視覺辨識系統.py",
   "has_main": true,
-  "needs_args": false,
-  "when_to_use": "需要遠端監控或直播畫面時",
-  "inputs": [
-    {
-      "name": "host",
-      "description": "伺服器監聽的 IP 位址",
-      "required": true
-    },
-    {
-      "name": "port",
-      "description": "伺服器監聽的埠號",
-      "required": true
-    }
-  ],
-  "outputs": "連線客戶端會持續接收 JPEG 圖像資料",
-  "ai_described": true
+  "needs_args": false
 }
