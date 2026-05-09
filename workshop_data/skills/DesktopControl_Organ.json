@@ -1,7 +1,7 @@
 {
   "name": "DesktopControl Organ",
   "filename": "DesktopControl_Organ.py",
-  "path": "workshop_data\\assembled\\DesktopControl_Organ.py",
+  "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\DesktopControl_Organ.py",
   "description": "**工程需求說明（200字以內）**",
   "functions": [
     {
@@ -74,77 +74,5 @@
   ],
   "example": "python DesktopControl_Organ.py",
   "has_main": false,
-  "needs_args": false,
-  "when_to_use": "",
-  "inputs": [
-    {
-      "name": "list_windows",
-      "description": "",
-      "inputs": []
-    },
-    {
-      "name": "activate_window",
-      "description": "",
-      "inputs": [
-        "handle"
-      ]
-    },
-    {
-      "name": "resize_window",
-      "description": "",
-      "inputs": [
-        "handle",
-        "width",
-        "height"
-      ]
-    },
-    {
-      "name": "move_window",
-      "description": "",
-      "inputs": [
-        "handle",
-        "x",
-        "y"
-      ]
-    },
-    {
-      "name": "capture_screen",
-      "description": "",
-      "inputs": [
-        "self",
-        "region",
-        "format"
-      ]
-    },
-    {
-      "name": "send_key",
-      "description": "",
-      "inputs": [
-        "self",
-        "keys",
-        "delay"
-      ]
-    },
-    {
-      "name": "move_mouse",
-      "description": "",
-      "inputs": [
-        "self",
-        "x",
-        "y",
-        "duration"
-      ]
-    },
-    {
-      "name": "click_button",
-      "description": "",
-      "inputs": [
-        "self",
-        "button",
-        "times"
-      ]
-    }
-  ],
-  "outputs": "",
-  "ai_described": true
+  "needs_args": false
 }

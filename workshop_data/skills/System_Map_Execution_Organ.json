@@ -1,7 +1,7 @@
 {
   "name": "System Map Execution Organ",
   "filename": "System_Map_Execution_Organ.py",
-  "path": "workshop_data\\assembled\\System_Map_Execution_Organ.py",
+  "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\System_Map_Execution_Organ.py",
   "description": "請開發一個可執行的 **system_map.py**，啟動時自動掃描專案根目錄下所有 Python 檔案，解析 `import` 依賴並生成完整依賴圖；若發現未安裝的第三方模組或缺失的內部模組，將其列入報告；報告以 Markdown/JS",
   "functions": [
     {
@@ -25,7 +25,7 @@
     },
     {
       "name": "build_dependency_graph",
-      "description": "",
+      "description": "掃描目錄建立依賴圖。",
       "inputs": [
         "directory_path"
       ]
@@ -88,91 +88,5 @@
   ],
   "example": "python System_Map_Execution_Organ.py",
   "has_main": false,
-  "needs_args": false,
-  "when_to_use": "",
-  "inputs": [
-    {
-      "name": "initialize_logger",
-      "description": "",
-      "inputs": []
-    },
-    {
-      "name": "scan_python_files",
-      "description": "",
-      "inputs": [
-        "directory"
-      ]
-    },
-    {
-      "name": "parse_imports",
-      "description": "",
-      "inputs": [
-        "file_path"
-      ]
-    },
-    {
-      "name": "build_dependency_graph",
-      "description": "",
-      "inputs": [
-        "directory_path"
-      ]
-    },
-    {
-      "name": "detect_missing_modules",
-      "description": "檢測指定的模塊是否缺失。\n\n參數:\n    file_list (list of str): 需要檢測的模塊列表。\n\n返回:\n    list of str: 缺失的模塊列表。",
-      "inputs": [
-        "file_list"
-      ]
-    },
-    {
-      "name": "generate_report_data",
-      "description": "",
-      "inputs": [
-        "directory_path"
-      ]
-    },
-    {
-      "name": "save_markdown_report",
-      "description": "",
-      "inputs": [
-        "report_data"
-      ]
-    },
-    {
-      "name": "system_map_main",
-      "description": "主函式，用於檢查並列印所有預設模組是否已安裝成功，以及系統的基本資訊。",
-      "inputs": []
-    },
-    {
-      "name": "is_module_file",
-      "description": "",
-      "inputs": [
-        "file_name"
-      ]
-    },
-    {
-      "name": "read_module_dependencies",
-      "description": "",
-      "inputs": [
-        "module_path"
-      ]
-    },
-    {
-      "name": "walk_modules",
-      "description": "",
-      "inputs": [
-        "root",
-        "directory_path"
-      ]
-    },
-    {
-      "name": "add_file_to_graph",
-      "description": "",
-      "inputs": [
-        "file_path"
-      ]
-    }
-  ],
-  "outputs": "",
-  "ai_described": true
+  "needs_args": false
 }

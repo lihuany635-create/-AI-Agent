@@ -1,0 +1,53 @@
+{
+  "user_preferences": [
+    "使用者希望更簡潔、更易懂地解釋 Image Explanation Organ 的功能和技術細節",
+    "使用者對Image Explanation Organ的興趣"
+  ],
+  "system_context": [
+    "ASSISTANT 正在解釋 Image Explanation Organ 系統的詳細資訊。",
+    "系統正在開發中，名稱為 Image Explanation Organ。",
+    "ASSISTANT需要了解使用者對Image Explanation Organ的理解程度，並根據此調整解釋方式",
+    "Assistant 正在解釋 Image Explanation Organ 的功能和技術細節。",
+    "ASSISTANT 正在確認用戶對 Image Explanation Organ 的關注程度。",
+    "Assistant正在解釋其正在開發的系統的功能。",
+    "ASSISTANT 正在確認使用者是否詢問關於 Image Explanation Organ 的資訊",
+    "使用者詢問檔案位置，系統確認了“Image Explanation Organ”的名稱和功能。",
+    "Assistant正在解釋其正在開發的系統的功能和組成部分。",
+    "系統正在解釋使用者對其功能的提問"
+  ],
+  "recent_topics": [
+    "Image Explanation Organ 系統的開發與功能",
+    "Image Explanation Organ 系統的介紹和功能",
+    "使用者希望ASSISTANT調整解釋方式，提供更具體的資訊或使用更易懂的語言",
+    "Image Explanation Organ 的開發與功能",
+    "圖片解釋系統",
+    "Image Explanation System development",
+    "Image Explanation Organ的解釋和功能"
+  ],
+  "important_facts": [
+    "模組：ai_bridge, ai_chat_memory, ai_memory",
+    "功能：利用視覺變換器解釋圖片，提取特徵並結合語言模型生成文字說明",
+    "系統的主要功能包括提取圖片特徵和生成文字說明。",
+    "它能提取圖片中的特徵並結合語言模型生成文字說明。",
+    "Image Explanation Organ 是一個利用視覺變換器解釋圖片的系統。",
+    "使用者對 Image Explanation Organ 的描述感到困惑",
+    "協同模組：ai_bridge, ai_chat_memory, ai_memory",
+    "模組：可使用 ai_bridge、ai_chat_memory、ai_memory 等模組協同完成。",
+    "功能：提取圖片特徵並結合語言模型生成文字說明。",
+    "Image Explanation Organ: 一個利用視覺變換器解釋圖片的系統。",
+    "它提取圖片中的特徵，並結合語言模型生成文字說明。",
+    "這個系統使用視覺變換器解釋圖片。",
+    "功能細節：提取圖片特徵，結合語言模型生成文字說明",
+    "功能：利用視覺變換器解釋圖片",
+    "系統名：Image Explanation Organ",
+    "這個系統結合語言模型生成對圖片內容的文字說明。",
+    "這個系統可以提取圖片中的特徵。",
+    "“Image Explanation Organ”是一個利用視覺變換器解釋圖片的系統。",
+    "它與 `ai_bridge`、`ai_chat_memory`、`ai_memory` 等模組協同工作。",
+    "該系統使用視覺變換器解釋圖片，提取特徵並生成文字說明。",
+    "Assistant正在開發一個名為\"Image Explanation Organ\"的系統。",
+    "系統可以提取圖片特徵並生成文字說明",
+    "Image Explanation Organ是一個基於視覺變換器，用於解釋圖片的系統"
+  ],
+  "last_updated": "2026-05-09 10:54"
+}

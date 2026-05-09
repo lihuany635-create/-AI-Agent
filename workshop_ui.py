@@ -5,7 +5,7 @@
 
 from flask import Flask, request, jsonify, render_template_string, Response, stream_with_context
 from flask_socketio import SocketIO, emit
-import pathlib, json, os, sqlite3, datetime, logging, traceback, subprocess, sys, threading, uuid
+import pathlib, json, os, re, sqlite3, datetime, logging, traceback, subprocess, sys, threading, uuid
 import requests as req
 
 # ── 系統地圖 ──────────────────────────────────────────────────────────────────
@@ -114,8 +114,8 @@ _migrate_db()
 
 # ── Ollama ────────────────────────────────────────────────────────────────────
 OLLAMA_URL   = "http://localhost:11434"
-PLANNER_MODELS  = ["gpt-oss:20b", "qwen2.5:14b", "qwen2.5:7b", "gemma3:4b"]
-CODER_MODELS    = ["gpt-oss:20b", "qwen2.5:14b", "qwen2.5:7b", "gemma3:4b"]
+PLANNER_MODELS  = ["gpt-oss:20b", "qwen2.5:14b", "qwen2.5:7b", "gemma3:4b"]   # 規劃用大模型
+CODER_MODELS    = ["deepseek-coder:6.7b-instruct-q4_K_M", "qwen2.5:14b", "gemma3:4b"]  # 程式碼生成
 REVIEWER_MODELS = ["qwen2.5:14b", "qwen2.5:7b", "gemma3:4b", "gpt-oss:20b"]  # 本機審查備用模型
 
 # ── 審查Agent 設定 ─────────────────────────────────────────────────────────────
@@ -150,6 +150,13 @@ _ollama_sessions: dict = {}
 
 def _ollama_stream(model, system, prompt, temperature=0.4, pid: str = "", num_predict: int = 2000):
     """Streaming generator，yield token strings。支援強制中斷。"""
+    _lock_acquired = False
+    try:
+        from ollama_lock import acquire as _acq_ws
+        if _acq_ws("workshop_stream", priority=2, timeout=300):
+            _lock_acquired = True
+    except Exception:
+        pass
     session = __import__('requests').Session()
     if pid:
         _ollama_sessions[pid] = session
@@ -173,6 +180,81 @@ def _ollama_stream(model, system, prompt, temperature=0.4, pid: str = "", num_pr
     finally:
         if pid and pid in _ollama_sessions:
             _ollama_sessions.pop(pid, None)
+        if _lock_acquired:
+            try:
+                from ollama_lock import release as _rel_ws
+                _rel_ws("workshop_stream")
+            except Exception:
+                pass
+
+def _wait_model_loaded(model: str, timeout: int = 60) -> bool:
+    """
+    等待 Ollama 真的把指定模型載入完成。
+    用一個小請求確認模型可用，最多等 timeout 秒。
+    回傳 True 代表載入成功。
+    """
+    import time as _t
+    start = _t.time()
+    while _t.time() - start < timeout:
+        try:
+            r = req.post(f"{OLLAMA_URL}/api/generate", json={
+                "model": model,
+                "prompt": "hi",
+                "stream": False,
+                "options": {"num_predict": 1}
+            }, timeout=10)
+            if r.status_code == 200:
+                return True
+        except Exception:
+            pass
+        _t.sleep(2)
+    return False
+
+
+def _unload_model(model: str) -> bool:
+    """用 keep_alive:0 讓 Ollama 立刻從記憶體卸載指定模型。"""
+    try:
+        r = req.post(f"{OLLAMA_URL}/api/generate", json={
+            "model": model, "prompt": "", "keep_alive": 0,
+        }, timeout=10)
+        return r.status_code == 200
+    except Exception:
+        return False
+
+
+def _switch_model(pid: str, tid: str, target_model: str) -> bool:
+    """用 keep_alive:0 卸載非目標模型，不重啟 daemon。"""
+    import time as _t
+    _log(pid, f"🔄 切換模型 → {target_model}...", "AI", tid)
+    socketio.emit("model_switching", {"project_id": pid, "task_id": tid,
+                                      "model": target_model, "status": "stopping"})
+    try:
+        loaded = [m["name"] for m in req.get(f"{OLLAMA_URL}/api/ps", timeout=5).json().get("models", [])]
+    except Exception:
+        loaded = []
+    target_stem = target_model.split(":")[0]
+    for m in loaded:
+        if not m.startswith(target_stem):
+            _log(pid, f"  ⬇ 卸載 {m}", "INFO", tid)
+            _unload_model(m)
+    if loaded:
+        _t.sleep(1)
+    _log(pid, f"⏳ 載入 {target_model}...", "AI", tid)
+    socketio.emit("model_switching", {"project_id": pid, "task_id": tid,
+                                      "model": target_model, "status": "loading"})
+    ok = _wait_model_loaded(target_model, timeout=180)
+    if ok:
+        _log(pid, f"✅ {target_model} 已就緒", "OK", tid)
+        socketio.emit("model_switching", {
+            "project_id": pid,
+            "task_id":    tid,
+            "model":      target_model,
+            "status":     "ready",
+        })
+    else:
+        _log(pid, f"⚠ {target_model} 載入逾時，繼續嘗試", "WARN", tid)
+    return ok
+
 
 def _force_stop_ollama(pid: str):
     """強制關閉該專案的 Ollama 連線。"""
@@ -186,12 +268,27 @@ def _force_stop_ollama(pid: str):
 
 def _ollama_once(model, system, prompt, temperature=0.3, timeout=None):
     """Non-streaming call，回傳完整字串。"""
-    r = req.post(f"{OLLAMA_URL}/api/generate", json={
-        "model": model, "system": system, "prompt": prompt,
-        "stream": False, "options": {"temperature": temperature, "num_predict": -1}
-    }, timeout=timeout)
-    r.raise_for_status()
-    return r.json().get("response", "").strip()
+    _lock_acquired = False
+    try:
+        from ollama_lock import acquire as _acq_wo, release as _rel_wo
+        if _acq_wo("workshop", priority=2, timeout=300):
+            _lock_acquired = True
+    except Exception:
+        pass
+    try:
+        r = req.post(f"{OLLAMA_URL}/api/generate", json={
+            "model": model, "system": system, "prompt": prompt,
+            "stream": False, "options": {"temperature": temperature, "num_predict": -1}
+        }, timeout=timeout)
+        r.raise_for_status()
+        return r.json().get("response", "").strip()
+    finally:
+        if _lock_acquired:
+            try:
+                from ollama_lock import release as _rel_wo2
+                _rel_wo2("workshop")
+            except Exception:
+                pass
 
 # ── LobsterCore 包裝函式（只保留修復閉環）────────────────────────────────────
 
@@ -212,11 +309,17 @@ def _lobster_repair(code: str, error: str, task_desc: str) -> str:
     """
     修復程式碼 — 直連本機 Ollama，不使用 LobsterCore 分散式推論。
     """
-    prompt = f"任務：{task_desc}\n\n錯誤：{error}\n\n程式碼：\n{code}\n\n請輸出修正後的完整 Python 程式碼："
+    # 確保帶入完整程式碼（不截斷）
+    code_section = code if len(code) <= 2000 else code[:2000] + "\n# ...（截斷）"
+    prompt = (f"任務：{task_desc}\n\n"
+              f"錯誤訊息：\n{error[:300]}\n\n"
+              f"以下是完整的有問題程式碼，請修正並輸出完整版本：\n"
+              f"```python\n{code_section}\n```\n\n"
+              f"輸出修正後的完整 Python 程式碼（不要說明，直接輸出程式碼）：")
     return _ollama_once(
         _pick(CODER_MODELS),
-        "你是資深 Python 工程師，只輸出可直接執行的程式碼，不要說明。",
-        prompt, temperature=0.2
+        "你是 Python 程式碼修復機器。規則：1.只輸出純 Python 程式碼 2.不寫任何說明文字 3.不用 markdown 4.輸出必須是完整可執行的程式碼 5.這是 Windows 系統不要用 Linux 指令 6.優先使用現有模組不要重新實作",
+        prompt, temperature=0.1
     )
 
 def _lobster_judge(code: str, task_desc: str, run_output: str) -> bool:
@@ -243,7 +346,7 @@ def _review_plan(pid: str, tasks: list[dict]) -> dict:
     _log(pid, f"🔍 審查規劃中（{model}）...", "AI")
 
     task_text = "\n".join(
-        f"{t['seq']}. {t['title']}：{t.get('description','')}" for t in tasks
+        f"{t['seq']}. {t['title']}：{t['description'] or ''}" for t in tasks
     )
     system = """你是嚴格的技術主管，負責審查 AI 產出的任務規劃。
 
@@ -311,7 +414,7 @@ def _review_code(pid: str, task: dict, code: str, run_output: str) -> dict:
 用繁體中文回答，fixed_code 用英文（Python 程式碼）。"""
 
     prompt = f"""任務：{task['title']}
-說明：{task.get('description','')}
+說明：{task['description'] or ''}
 
 程式碼：
 ```python
@@ -360,6 +463,7 @@ def _send_to_reviewer(pid: str, task_id: str, content: str,
         "review_type":  review_type,
         "task_id":      task_id,
         "callback_url": callback_url,
+        "source_url":   WORKSHOP_CALLBACK_BASE,
     }
     try:
         r = req.post(f"{REVIEWER_URL}/review", json=payload, timeout=10)
@@ -696,6 +800,29 @@ def _auto_assemble(pid: str):
         out_path.write_text("\n".join(header) + "\n" + cleaned, encoding="utf-8")
         _log(pid, f"🔩 已自動組裝器官：{out_path.name}", "OK")
 
+        # 自動 import 驗證
+        try:
+            import subprocess as _spv, sys as _sysv, os as _osv, re as _rev
+            _env_v = _osv.environ.copy()
+            _env_v["PYTHONPATH"] = str(WORKSHOP_DIR.parent.resolve()) + _osv.pathsep + _env_v.get("PYTHONPATH","")
+            _vr = _spv.run(
+                [_sysv.executable, "-c",
+                 f"import importlib.util; spec=importlib.util.spec_from_file_location('_t',r'{out_path}'); "
+                 f"m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m); print('OK')"],
+                capture_output=True, text=True, timeout=15,
+                cwd=str(WORKSHOP_DIR.parent.resolve()), env=_env_v
+            )
+            if "OK" in _vr.stdout:
+                _log(pid, f"✅ 器官驗證通過：{out_path.name}", "OK")
+            else:
+                _missing = _rev.findall(r"No module named '([^']+)'", _vr.stderr)
+                if _missing:
+                    _log(pid, f"ℹ 器官警告：找不到套件：{', '.join(_missing)}（可能需要 pip install）", "INFO")
+                else:
+                    _log(pid, f"ℹ 器官載入警告：{_vr.stderr.strip()[:100]}", "INFO")
+        except Exception as _ve:
+            _log(pid, f"ℹ 器官驗證跳過：{_ve}", "INFO")
+
         # 自動驗證，失敗則自動修正
         val = _validate_assembled(out_path)
         if not val["ok"] or any("過少" in w or "空殼" in w for w in val.get("warnings", [])):
@@ -719,12 +846,57 @@ def _auto_assemble(pid: str):
         # 自動更新技能描述（背景 AI 分析，讓立AI 知道新器官）
         def _update_skills():
             try:
-                from organ_skill_system import scan_and_generate
-                scan_and_generate(use_ai=True)   # AI 分析產生繁體中文描述
-                logger.info(f"[AutoAssemble] 技能描述已更新（AI 分析完成）")
+                from organ_skill_system import generate_skill_json, _ai_describe_skill, SKILLS_DIR
+                import json as _json
+                SKILLS_DIR.mkdir(parents=True, exist_ok=True)
+                basic = generate_skill_json(out_path)
+                skill = _ai_describe_skill(out_path, basic)
+                json_path = SKILLS_DIR / (out_path.stem + ".json")
+                json_path.write_text(
+                    _json.dumps(skill, ensure_ascii=False, indent=2),
+                    encoding="utf-8"
+                )
+                logger.info(f"[AutoAssemble] 技能描述已更新：{json_path.name}")
             except Exception as se:
                 logger.warning(f"[AutoAssemble] 技能描述更新失敗：{se}")
         threading.Thread(target=_update_skills, daemon=True).start()
+
+        # ── Git 自動 commit ────────────────────────────────────────────────
+        def _git_commit():
+            try:
+                import subprocess as _sp
+                git_dir = WORKSHOP_DIR.parent.resolve()  # AI-Agent/ 資料夾
+                # 確認是 git repo
+                result = _sp.run(
+                    ["git", "rev-parse", "--is-inside-work-tree"],
+                    capture_output=True, cwd=str(git_dir),
+                    creationflags=_sp.CREATE_NO_WINDOW
+                )
+                if result.returncode != 0:
+                    return
+
+                # git add 組裝的器官和技能描述
+                _sp.run(["git", "add",
+                         str(out_path),
+                         str(WORKSHOP_DIR / "skills"),
+                         ], capture_output=True, cwd=str(git_dir),
+                        creationflags=_sp.CREATE_NO_WINDOW)
+
+                commit_msg = f"器官：{p['name']} — 自動組裝 {_now()[:16]}"
+                result = _sp.run(
+                    ["git", "commit", "-m", commit_msg],
+                    capture_output=True, text=True, cwd=str(git_dir),
+                    creationflags=_sp.CREATE_NO_WINDOW
+                )
+                if result.returncode == 0:
+                    _log(pid, f"📦 Git commit：{commit_msg}", "OK")
+                else:
+                    # 沒有變動也不算錯
+                    if "nothing to commit" not in result.stdout:
+                        _log(pid, f"⚠ Git commit 失敗：{result.stderr[:100]}", "WARN")
+            except Exception as ge:
+                _log(pid, f"⚠ Git 自動 commit 失敗：{ge}", "WARN")
+        threading.Thread(target=_git_commit, daemon=True).start()
     except Exception as e:
         logger.warning(f"[AutoAssemble] 組裝失敗（不影響主流程）：{e}")
 
@@ -782,48 +954,32 @@ def _is_server_code(code: str) -> bool:
     涵蓋：長駐服務、需要命令列參數、本地模組依賴、GUI、硬體、網路監聽等情況。
     """
     patterns = [
-        # ── 長駐服務 ──────────────────────────────────────────────
-        "server.listen", "server.serve_forever", "server.start",
-        "app.run(", "socketio.run(", "uvicorn.run(", "asyncio.run(",
-        ".listen(", "while True:", "serve_forever", "run_forever",
+        # ── 確定會佔用 port 或永久阻塞的長駐服務 ──────────────────
+        "app.run(", "socketio.run(", "uvicorn.run(",
+        "server.serve_forever", "serve_forever", "run_forever",
         "socket.bind(", "TCPServer", "HTTPServer", "ThreadingTCPServer",
-        "BaseServer", "start_server", "grpc", "zmq",
+        "BaseServer", "start_server", "grpc.server", "zmq.Context",
 
-        # ── 需要命令列參數 ─────────────────────────────────────────
-        "argparse", "ArgumentParser", "add_argument", "parse_args",
-        "click.command", "@click", "typer.run",
-        "sys.argv", "len(sys.argv)",
+        # ── 本地自訂模組 import（相對 import 或已知同專案模組）─────
+        "from . import", "from ..",
+        "import AlarmScheduler", "from AlarmScheduler",
+        "import audio_player", "from audio_player",
 
-        # ── 本地自訂模組 import（相對 import 或同專案模組）──────────
-        "from . import", "from ..", "import AlarmScheduler",
-        "import audio_player", "from audio_player", "from AlarmScheduler",
-
-        # ── GUI 框架 ───────────────────────────────────────────────
-        "tkinter", "PyQt", "PySide", "wx.App", "kivy", "pygame.init",
+        # ── GUI 框架（需要視覺環境，無法在 subprocess 執行）────────
+        "PyQt", "PySide", "wx.App", "kivy",
         "QApplication", "gtk.main", "Gtk.main",
 
-        # ── 硬體 / 系統資源 ────────────────────────────────────────
+        # ── 硬體 / 音訊（需要實體裝置）────────────────────────────
         "playsound", "pygame.mixer", "sounddevice", "pyaudio",
-        "serial.Serial", "smbus", "RPi.GPIO", "cv2.VideoCapture",
+        "serial.Serial", "smbus", "RPi.GPIO",
         "picamera", "pynput", "keyboard.on_press",
 
-        # ── 資料庫連線（需要外部服務）─────────────────────────────
+        # ── 需要外部服務的資料庫連線 ───────────────────────────────
         "psycopg2.connect", "pymysql.connect", "cx_Oracle",
-        "MongoClient", "redis.Redis", "elasticsearch",
+        "MongoClient(", "redis.Redis(", "elasticsearch",
 
-        # ── 檔案監控 / 排程 ────────────────────────────────────────
-        "watchdog", "schedule.run", "apscheduler",
-        "Observer()", "start_watching",
-
-        # ── 網路請求主迴圈（只攔 aiohttp 長連線）────────────────────
-        "aiohttp.ClientSession",
-
-        # ── 測試框架（需要特定執行方式）───────────────────────────
+        # ── 測試框架（需要特定執行環境）───────────────────────────
         "unittest.main()", "pytest.main(", "nose.run(",
-
-        # ── 需要環境變數或設定檔 ───────────────────────────────────
-        "os.environ[", "dotenv", "load_dotenv",
-        "configparser.read", "yaml.safe_load(open(",
     ]
     code_lower = code.lower()
     if any(p.lower() in code_lower for p in patterns):
@@ -851,14 +1007,22 @@ def _run_code(code: str, project_id: str, stop_ev=None) -> tuple[bool, str]:
     執行 Python code，回傳 (success, output)。
     如果偵測到長駐服務類型的程式碼，改用語法檢查代替執行。
     """
+    import os as _os
     tmp = WORKSHOP_DIR / f"tmp_{project_id[:8]}.py"
     tmp.write_text(code, encoding="utf-8")
+
+    # 設定 PYTHONPATH 讓器官能找到系統模組
+    env = _os.environ.copy()
+    base_dir = str(WORKSHOP_DIR.parent.resolve())
+    env["PYTHONPATH"] = base_dir + _os.pathsep + env.get("PYTHONPATH", "")
+
     try:
         # 長駐服務類：只做語法檢查，不實際執行
         if _is_server_code(code):
             result = subprocess.run(
                 [sys.executable, "-m", "py_compile", str(tmp)],
-                capture_output=True, text=True, timeout=10
+                capture_output=True, text=True, timeout=10,
+                cwd=base_dir, env=env
             )
             if result.returncode == 0:
                 return True, "（伺服器/服務類程式碼，語法檢查通過，跳過實際執行）"
@@ -869,7 +1033,8 @@ def _run_code(code: str, project_id: str, stop_ev=None) -> tuple[bool, str]:
         import time as _time
         proc = subprocess.Popen(
             [sys.executable, str(tmp)],
-            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
+            cwd=base_dir, env=env
         )
         deadline = 30.0; elapsed = 0.0
         while proc.poll() is None:
@@ -1009,7 +1174,7 @@ body::before {
 
 /* ── 中央工作區 ── */
 #workspace {
-  background: var(--bg); display: flex; flex-direction: column; overflow: hidden;
+  background: var(--bg); display: flex; flex-direction: column; overflow-y: auto;
 }
 #workspace-header {
   padding: 16px 24px; border-bottom: 1px solid var(--border);
@@ -1061,6 +1226,7 @@ body::before {
 
 /* 任務列表 */
 #tasks-area { flex: 1; overflow-y: auto; padding: 16px 24px; }
+#project-detail { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
 #tasks-label {
   font-family: 'Space Mono', monospace; font-size: .65rem;
   color: var(--muted); letter-spacing: .12em; margin-bottom: 12px;
@@ -1186,6 +1352,30 @@ body::before {
 #newproj-name:focus { outline:none; border-color:var(--accent); }
 #newproj-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:16px; }
 
+/* 摺疊區塊 */
+.collapsible-block { margin: 6px 0; border-radius: 6px; overflow: hidden; border: 1px solid var(--border); }
+.collapsible-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 10px; cursor: pointer; user-select: none;
+  background: #0d1117; font-family: 'Space Mono',monospace; font-size: .65rem;
+  color: var(--muted); transition: background .15s;
+}
+.collapsible-header:hover { background: #161b22; }
+.collapsible-header .ch-label { display: flex; align-items: center; gap: 6px; }
+.collapsible-header .ch-arrow { transition: transform .2s; font-size: 10px; }
+.collapsible-header.open .ch-arrow { transform: rotate(90deg); }
+.collapsible-content {
+  display: none; padding: 10px 12px;
+  background: #080a0c; font-size: .72rem; line-height: 1.65;
+  font-family: 'Space Mono',monospace; white-space: pre-wrap;
+  overflow-x: auto; max-height: 320px; overflow-y: auto;
+}
+.collapsible-content.open { display: block; }
+.collapsible-content.code-content { color: var(--accent); }
+.collapsible-content.error-content { color: var(--danger); }
+.collapsible-content.plan-content  { color: #8b949e; }
+.collapsible-content.review-content { color: var(--text); }
+
 /* 施工計畫 */
 #build-plan {
   background: #0d1117; border: 1px solid #1e1e2e;
@@ -1238,6 +1428,7 @@ body::before {
 }
 #live-status-bar .live-counter { color: #8b949e; flex-shrink: 0; }
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+@keyframes spin   { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 </style>
 </head>
 <body>
@@ -1275,20 +1466,7 @@ body::before {
       <div id="workspace-actions"></div>
     </div>
 
-    <div id="requirement-area" style="display:none">
-      <div id="req-label">REQUIREMENT — 描述你要做什麼</div>
-      <textarea id="req-input" placeholder="例：做一個讀取 CSV 並計算每欄平均值的工具，輸出結果到 output.txt"></textarea>
-      <div id="req-actions">
-        <button class="btn btn-primary" id="plan-btn" onclick="startPlanning()">⚙ 開始規劃</button>
-        <button class="btn btn-ghost"   id="expand-btn" onclick="expandRequirement()" title="AI 幫你把模糊想法擴展成清楚的需求">✨ 擴展需求</button>
-        <div id="req-status" style="font-family:'Space Mono',monospace;font-size:.7rem;color:var(--muted);"></div>
-      </div>
-      <div id="build-plan">
-        <div class="bp-title">施工計畫</div>
-        <div id="bp-steps"></div>
-      </div>
-      <div id="stream-output"></div>
-    </div>
+    <div id="stream-output" style="display:none"></div>
 
     <div id="tasks-area">
       <div id="empty-state">
@@ -1372,6 +1550,25 @@ function _updateProjectBadge(id, status) {
 let _liveBuffer = '';
 let _liveTaskId = null;
 
+socket.on('model_switching', d => {
+  if (!_currentProject || d.project_id !== _currentProject.id) return;
+  const bar = document.getElementById('live-status-bar');
+  const icon = d.status === 'stopping' ? '🔄' : d.status === 'loading' ? '⏳' : '✅';
+  const msg  = d.status === 'stopping' ? '關閉舊模型...'
+             : d.status === 'loading'  ? `載入 ${d.model}...`
+             : `${d.model} 就緒`;
+  bar.style.display = 'flex';
+  document.getElementById('live-task-name').textContent  = `模型切換`;
+  document.getElementById('live-code-preview').textContent = `${icon} ${msg}`;
+  document.getElementById('live-char-count').textContent = '';
+  if (d.status === 'ready') {
+    setTimeout(() => {
+      if (bar.style.display !== 'none')
+        document.getElementById('live-code-preview').textContent = `✅ ${d.model} 生成中...`;
+    }, 500);
+  }
+});
+
 socket.on('stream_token', d => {
   // 頂部狀態列
   const bar = document.getElementById('live-status-bar');
@@ -1435,15 +1632,7 @@ socket.on('stream_token', d => {
   streamBox.textContent += d.token;
   streamBox.scrollTop = streamBox.scrollHeight;
 
-  // 原本的 stream-output 也同步
-  const box = document.getElementById('stream-output');
-  box.style.display = 'block';
-  if (d.task_id !== box.dataset.taskId) {
-    box.textContent = '';
-    box.dataset.taskId = d.task_id;
-  }
-  box.textContent += d.token;
-  box.scrollTop = box.scrollHeight;
+  // stream-output 不同步程式碼（避免重複顯示）
 });
 
 socket.on('task_updated', d => {
@@ -1471,6 +1660,13 @@ socket.on('task_updated', d => {
   }
 });
 // 施工計畫
+socket.on('analyzed', d => {
+  const status = document.getElementById('req-status');
+  if (status) {
+    status.innerHTML = '<span style="color:#e8c547">📋 需求分析：</span>' + esc(d.text);
+  }
+});
+
 socket.on('build_plan', d => {
   if (!_currentProject || d.project_id !== _currentProject.id) return;
   const panel = document.getElementById('build-plan');
@@ -1494,30 +1690,55 @@ socket.on('task_plan_token', d => {
   if (!_currentProject || d.project_id !== _currentProject.id) return;
 
   let planBox = document.getElementById('task-plan-box');
+  if (planBox && planBox._taskId && planBox._taskId !== d.task_id) {
+    planBox._text = '';
+    planBox._taskId = d.task_id;
+    while (planBox.firstChild) planBox.removeChild(planBox.firstChild);
+  }
+  if (planBox && planBox._taskId && planBox._taskId !== d.task_id) {
+    planBox._text = '';
+    planBox._taskId = d.task_id;
+    while (planBox.firstChild) planBox.removeChild(planBox.firstChild);
+  }
   if (!planBox) {
+    // 建立摺疊容器
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = 'margin-bottom:10px;border:1px solid #1e3a1e;border-radius:6px;overflow:hidden;';
+
+    const header = document.createElement('div');
+    header.style.cssText = 'display:flex;align-items:center;justify-content:space-between;padding:7px 12px;background:#0d1117;cursor:pointer;user-select:none;';
+    header.innerHTML = '<span style="font-size:11px;color:#3fb950;letter-spacing:.06em;">📋 施工計畫</span><span id="plan-toggle-icon" style="font-size:10px;color:#555;transition:transform .2s;">▼</span>';
+
     planBox = document.createElement('div');
     planBox.id = 'task-plan-box';
     planBox.style.cssText = [
-      'background:#0d1117',
-      'border:1px solid #1e3a1e',
-      'border-radius:6px',
+      'background:#0a0e14',
       'padding:10px 14px',
-      'margin-bottom:10px',
-      'font-size:12.5px',
+      'font-size:12px',
       'color:#3fb950',
       'white-space:pre-wrap',
       'line-height:1.6',
+      'max-height:300px',
+      'overflow-y:auto',
     ].join(';');
-    const so = document.getElementById('stream-output');
-    so.parentNode.insertBefore(planBox, so);
 
-    const label = document.createElement('div');
-    label.textContent = '📋 施工計畫';
-    label.style.cssText = 'font-size:11px;color:#555;letter-spacing:.06em;margin-bottom:6px;';
-    planBox.prepend(label);
+    // 點 header 收納/展開
+    let _planOpen = true;
+    header.onclick = () => {
+      _planOpen = !_planOpen;
+      planBox.style.display = _planOpen ? 'block' : 'none';
+      document.getElementById('plan-toggle-icon').style.transform = _planOpen ? 'rotate(0deg)' : 'rotate(-90deg)';
+    };
+
+    wrapper.appendChild(header);
+    wrapper.appendChild(planBox);
+    const so = document.getElementById('stream-output');
+    so.parentNode.insertBefore(wrapper, so);
   }
 
   // 累積 token 顯示
+  if (!planBox._taskId) planBox._taskId = d.task_id;
+  if (!planBox._taskId) planBox._taskId = d.task_id;
   if (!planBox._text) planBox._text = '';
   planBox._text += d.token;
   // 更新顯示（label 之後的文字）
@@ -1691,9 +1912,10 @@ function renderWorkspace() {
   if (p.status === 'planning') {
     const hasTasks = (p.tasks || []).length > 0;
     acts.innerHTML = hasTasks
-      ? `<button class="btn btn-primary" onclick="startExecution()">▶ 開始執行</button>
-         <button class="btn btn-danger"  onclick="deleteProject('${p.id}')">🗑 刪除</button>`
-      : `<button class="btn btn-danger"  onclick="deleteProject('${p.id}')">🗑 刪除</button>`;
+      ? `<span style="font-family:'Space Mono',monospace;font-size:.75rem;color:var(--planning);animation:blink 1.2s infinite;">⏳ 規劃完成，自動執行中...</span>
+         <button class="btn btn-danger" onclick="deleteProject('${p.id}')">🗑 刪除</button>`
+      : `<span style="font-family:'Space Mono',monospace;font-size:.75rem;color:var(--planning);animation:blink 1.2s infinite;">⏳ AI 規劃中，請稍候...</span>
+         <button class="btn btn-danger" onclick="deleteProject('${p.id}')">🗑 刪除</button>`;
   } else if (p.status === 'running') {
     acts.innerHTML = `
       <button class="btn btn-warn" onclick="pauseProject('${p.id}')">⏸ 暫停</button>
@@ -1717,10 +1939,7 @@ function renderWorkspace() {
       <button class="btn btn-danger"   onclick="deleteProject('${p.id}')">🗑</button>`;
   }
 
-  // Requirement area
-  const reqArea = document.getElementById('requirement-area');
-  reqArea.style.display = p.status === 'planning' ? '' : 'none';
-  if (p.description) document.getElementById('req-input').value = p.description;
+  // requirement-area 已移除
 
   // Tasks
   const tasks = p.tasks || [];
@@ -1731,7 +1950,8 @@ function renderWorkspace() {
   if (!tasks.length) {
     emptyEl.style.display = p.status === 'planning' ? '' : 'flex';
     emptyEl.innerHTML = p.status === 'planning'
-      ? '' : '<div class="big">⚙</div><div class="hint">描述需求後點「開始規劃」</div>';
+      ? '<div class="big" style="animation:spin 2s linear infinite;display:inline-block;">⚙</div><div class="hint" style="color:var(--planning);">AI 規劃中，請稍候...</div>'
+      : '<div class="big">⚙</div><div class="hint">等待立AI 下單...</div>';
     labelEl.style.display = 'none';
     container.innerHTML = '';
   } else {
@@ -1753,25 +1973,28 @@ function renderTask(t, p) {
   let body = `<div class="task-desc">${esc(t.description || '')}</div>`;
 
   if (t.code) {
-    body += `<div style="font-family:'Space Mono',monospace;font-size:.6rem;color:var(--muted);margin-bottom:4px;">CODE OUTPUT</div>
-             <div class="code-block">${esc(t.code)}</div>`;
+    const lineCount = (t.code.match(/\n/g) || []).length + 1;
+    body += makeCollapsible(
+      `📄 程式碼輸出 <span style="color:#444;margin-left:6px;">${lineCount} 行</span>`,
+      esc(t.code), 'code-content', false
+    );
   }
   if (t.error) {
-    body += `<div style="font-family:'Space Mono',monospace;font-size:.6rem;color:var(--danger);margin-bottom:4px;">ERROR (修復 ${t.repair_count}/3)</div>
-             <div class="error-block">${esc(t.error)}</div>`;
+    body += makeCollapsible(
+      `❌ 錯誤訊息 <span style="color:#444;margin-left:6px;">修復 ${t.repair_count}/3</span>`,
+      esc(t.error), 'error-content', true
+    );
   }
-  // 審查結果
   if (t.review_report) {
-    const rvIcon  = t.review_passed ? '✅' : '⚠';
-    const rvColor = t.review_passed ? 'rgba(0,230,118,.12)' : 'rgba(255,179,0,.1)';
-    const rvBorder= t.review_passed ? 'rgba(0,230,118,.25)' : 'rgba(255,179,0,.35)';
-    const rvText  = t.review_passed ? 'var(--success)' : 'var(--warning)';
-    body += `<div style="background:${rvColor};border:1px solid ${rvBorder};border-radius:6px;padding:10px 12px;margin:8px 0;font-size:.75rem;line-height:1.6;">
-      <div style="font-family:'Space Mono',monospace;font-size:.6rem;color:${rvText};margin-bottom:4px;">${rvIcon} 審查結果</div>
-      <div style="color:var(--text);">${esc(t.review_report)}</div>
-      ${t.review_issues    ? `<div style="color:var(--warning);margin-top:4px;">問題：${esc(t.review_issues)}</div>` : ''}
-      ${t.review_suggestions ? `<div style="color:var(--accent);margin-top:2px;">建議：${esc(t.review_suggestions)}</div>` : ''}
-    </div>`;
+    const rvIcon = t.review_passed ? '✅' : '⚠';
+    const rvLabel = t.review_passed ? '審查通過' : '審查意見';
+    const rvContent = esc(t.review_report)
+      + (t.review_issues     ? '\n\n問題：' + esc(t.review_issues) : '')
+      + (t.review_suggestions ? '\n建議：'  + esc(t.review_suggestions) : '');
+    body += makeCollapsible(
+      `${rvIcon} ${rvLabel}`,
+      rvContent, 'review-content', !t.review_passed
+    );
   }
 
   // 動作按鈕
@@ -1799,7 +2022,9 @@ function renderTask(t, p) {
       <button class="btn btn-warn"  onclick="editTask('${t.id}', \`${esc(t.description)}\`)">✎ 修改描述</button>
       ${deleteBtn}`;
   } else if (t.status === 'skipped') {
-    taskActions = deleteBtn;
+    taskActions = `
+      <button class="btn btn-ghost" onclick="retryTask('${t.id}')">🔄 重試</button>
+      ${deleteBtn}`;
   }
 
   if (taskActions) body += `<div class="task-actions">${taskActions}</div>`;
@@ -1818,6 +2043,27 @@ function renderTask(t, p) {
 function toggleTask(id) {
   const el = document.getElementById(`tbody-${id}`);
   el.classList.toggle('open');
+}
+
+function toggleCollapsible(headerId) {
+  const header  = document.getElementById(headerId);
+  const content = document.getElementById(headerId + '-content');
+  if (!header || !content) return;
+  header.classList.toggle('open');
+  content.classList.toggle('open');
+}
+
+function makeCollapsible(label, innerHtml, colorClass, defaultOpen) {
+  const id = 'col-' + Math.random().toString(36).slice(2, 8);
+  const openCls = defaultOpen ? ' open' : '';
+  return `
+    <div class="collapsible-block">
+      <div class="collapsible-header${openCls}" id="${id}" onclick="toggleCollapsible('${id}')">
+        <span class="ch-label">${label}</span>
+        <span class="ch-arrow">▶</span>
+      </div>
+      <div class="collapsible-content ${colorClass}${openCls}" id="${id}-content">${innerHtml}</div>
+    </div>`;
 }
 
 // ── 規劃 ──────────────────────────────────────────────────────────────────────
@@ -2259,6 +2505,35 @@ def api_review_callback():
     return jsonify({"ok": True})
 
 
+@app.route("/health")
+def health():
+    return "ok", 200
+
+
+@app.route("/api/module_context", methods=["GET"])
+def api_module_context():
+    """供審查 Agent 主動來拉的模組摘要 endpoint。"""
+    import ast as _ast_mc
+    _base = WORKSHOP_DIR.parent
+    _mods = []
+    for _mp in sorted(_base.glob("*.py"))[:30]:
+        try:
+            _src  = _mp.read_text(encoding="utf-8", errors="replace")
+            _tree = _ast_mc.parse(_src)
+            _doc  = _ast_mc.get_docstring(_tree) or ""
+            _fns  = []
+            for _n in _ast_mc.walk(_tree):
+                if isinstance(_n, (_ast_mc.FunctionDef, _ast_mc.AsyncFunctionDef)):
+                    if _n.name.startswith("_"):
+                        continue
+                    _fns.append({"name": _n.name, "args": ", ".join(a.arg for a in _n.args.args), "doc": ""})
+            if _fns:
+                _mods.append({"module": _mp.stem, "description": _doc.splitlines()[0] if _doc else "", "functions": _fns[:8]})
+        except Exception:
+            pass
+    return jsonify({"ok": True, "modules": _mods, "count": len(_mods)})
+
+
 @app.route("/api/auto_create", methods=["POST"])
 def api_auto_create():
     """
@@ -2273,18 +2548,8 @@ def api_auto_create():
     if not requirement:
         return jsonify({"error": "需求不能為空"}), 400
 
-    # 先擴展需求
-    sys_ctx = get_system_context(max_chars=1200) if _HAS_SYSTEM_MAP else ""
-    try:
-        expanded = _ollama_once(
-            _pick(PLANNER_MODELS),
-            "你是資深軟體架構師，把模糊需求擴展成清楚的工程需求，用繁體中文，200字以內。",
-            "需求：" + requirement + "\n\n" + sys_ctx,
-            temperature=0.3
-        )
-        final_req = expanded or requirement
-    except Exception:
-        final_req = requirement
+    final_req = requirement  # 分析在背景執行
+
 
     # 建立專案
     pid = str(__import__('uuid').uuid4())
@@ -2304,9 +2569,53 @@ def api_auto_create():
     # 背景執行規劃 + 執行
     def _auto_run():
         import json as _json, re as _re
+        try:
+            _auto_run_inner()
+        except Exception as _e:
+            import traceback
+            _log(pid, f"[auto_run 崩潰] {_e}\n{traceback.format_exc()}", "ERROR")
+            _notify_ai(pid, "failed", f"自動執行崩潰：{_e}")
+
+    def _auto_run_inner():
+        import json as _json, re as _re
+        _log(pid, "▶ _auto_run 開始", "INFO")
+        # ── 需求分析（整合現有模組）────────────────────────────────────
+        _base_scan = WORKSHOP_DIR.parent
+        _mod_summary = []
+        try:
+            import ast as _ast_req2
+            for _mp in sorted(_base_scan.glob("*.py"))[:20]:
+                try:
+                    _src = _mp.read_text(encoding="utf-8", errors="replace")
+                    _tree = _ast_req2.parse(_src)
+                    _doc = _ast_req2.get_docstring(_tree) or ""
+                    _fns = [n.name for n in _tree.body
+                            if isinstance(n, (_ast_req2.FunctionDef, _ast_req2.AsyncFunctionDef, _ast_req2.ClassDef))]
+                    if _fns:
+                        _mod_summary.append(f"{_mp.name}：{_doc[:60] or ', '.join(_fns[:5])}")
+                except Exception:
+                    pass
+        except Exception:
+            pass
+        _mod_list = "\n".join(_mod_summary) if _mod_summary else "（無）"
+        _aprmt = f"使用者需求：{requirement}\n\n現有系統模組：\n{_mod_list}\n\n請用繁體中文100字以內輸出完整需求說明，包含要用哪些現有模組。直接輸出，不要標題。"
+        _analyzed_req = requirement
+        try:
+            _log(pid, f"⏳ 需求分析中，使用模型：{_pick(PLANNER_MODELS)}...", "INFO")
+            _ar = _ollama_once(_pick(PLANNER_MODELS), "你是需求分析師，整合現有模組輸出完整需求說明。", _aprmt, temperature=0.2)
+            if _ar and len(_ar) > 10:
+                _analyzed_req = _ar
+                _log(pid, f"📋 需求分析完成：{_ar[:100]}...", "AI")
+                with _db() as c:
+                    c.execute("UPDATE projects SET description=?,updated_at=? WHERE id=?", (_analyzed_req, _now(), pid))
+        except Exception as _ae:
+            _log(pid, f"⚠ 需求分析失敗：{_ae}", "WARN")
+
         # 規劃
+        _log(pid, "⏳ 開始規劃任務...", "INFO")
         sys_c = get_system_context(max_chars=1500) if _HAS_SYSTEM_MAP else ""
-        plan_raw = _lobster_plan(final_req, ("\n\n" + sys_c) if sys_c else "")
+        plan_raw = _lobster_plan(_analyzed_req, ("\n\n" + sys_c) if sys_c else "")
+        _log(pid, f"⏳ 規劃原始輸出（{len(plan_raw)} 字元），解析中...", "INFO")
 
         # 解析任務
         try:
@@ -2330,7 +2639,7 @@ def api_auto_create():
             normalized.append({
                 "seq":         seq,
                 "title":       t.get("title") or t.get("name") or f"任務{seq}",
-                "description": t.get("description",""),
+                "description": t["description"] or "",
             })
 
         now2 = _now()
@@ -2345,9 +2654,39 @@ def api_auto_create():
             c.execute("UPDATE projects SET status='planning',updated_at=? WHERE id=?", (now2, pid))
 
         socketio.emit("project_updated", {"id": pid})
-        _log(pid, f"規劃完成：{len(normalized)} 個任務，開始自動執行", "OK")
+        _log(pid, f"規劃完成：{len(normalized)} 個任務", "OK")
 
-        # 執行
+        # 如果有規劃審查，先等完成再執行
+        if REVIEW_ENABLED:
+            _log(pid, "🔍 送審查Agent審查規劃...", "AI")
+            _plan_text = "\n".join(
+                f"{t['seq']}. {t['title']}：{t['description'] or ''}"
+                for t in normalized
+            )
+            _rv = _send_to_reviewer(
+                pid=pid, task_id=pid + "_plan",
+                content=_plan_text,
+                review_type="plan",
+                filename=f"{pid[:8]}_plan.txt",
+                timeout=3600,
+            )
+            if _rv:
+                _pn = _rv.get("plan",""); _is = _rv.get("issues","")
+                if _pn or _is:
+                    _note = f"\n\n【規劃審查建議】\n{_pn}"
+                    if _is: _note += f"\n問題：\n{_is}"
+                    with _db() as c:
+                        req0 = c.execute("SELECT description FROM projects WHERE id=?", (pid,)).fetchone()
+                        _orig = req0["description"] if req0 else ""
+                        c.execute("UPDATE projects SET description=?,updated_at=? WHERE id=?",
+                                  (_orig + _note, _now(), pid))
+                    _log(pid, "✅ 規劃審查完成，已更新描述", "OK")
+                else:
+                    _log(pid, "✅ 規劃審查完成，無需修改", "OK")
+
+        # 審查完成後才執行，標記規劃審查已做過讓 _run_project 跳過
+        _review_results[pid + "_plan"] = _rv or {"skipped": True}
+        _log(pid, "▶ 開始自動執行任務", "OK")
         _run_project(pid)
 
     threading.Thread(target=_auto_run, daemon=True).start()
@@ -2491,16 +2830,54 @@ def api_plan(pid):
         with _sock.socket(_sock.AF_INET, _sock.SOCK_STREAM) as s:
             if s.connect_ex(('localhost', 7861)) == 0:
                 r = req.post("http://localhost:7861/api/search",
-                             json={"query": requirement, "limit": 3}, timeout=5)
+                             json={"query": requirement, "limit": 5}, timeout=5)
                 if r.status_code == 200:
                     results = r.json().get("results", [])
                     if results:
-                        kb_context = "\n\n參考知識庫：\n"
+                        kb_context = "\n\n【知識庫規則 - 規劃任務時必須遵守，並寫入每個任務的描述中】\n"
                         for item in results:
-                            kb_context += f"- {item.get('title','')}：{str(item.get('content',''))[:150]}\n"
-                        _log(pid, f"📚 從知識庫找到 {len(results)} 筆參考資料", "AI")
+                            kb_context += f"- {item.get('title','')}：{item.get('content','')}\n"
+                        _log(pid, f"📚 從知識庫找到 {len(results)} 筆規則，已注入規劃 prompt", "AI")
     except Exception:
         pass
+
+    # ── 規劃前掃描現有模組 API（不靠知識庫，直接看系統有什麼）──────────────
+    module_api_ctx = ""
+    try:
+        import ast as _ast_plan
+        _base = WORKSHOP_DIR.parent
+        _api_parts = []
+        for _mpath in sorted(_base.glob("*.py")):
+            try:
+                _src = _mpath.read_text(encoding="utf-8", errors="replace")
+                _tree = _ast_plan.parse(_src)
+                # 取 module docstring
+                _mod_doc = _ast_plan.get_docstring(_tree) or ""
+                # 取所有函式和類別簽名
+                _sigs = []
+                for _node in _tree.body:
+                    if isinstance(_node, (_ast_plan.FunctionDef, _ast_plan.AsyncFunctionDef)):
+                        _args = [a.arg for a in _node.args.args if a.arg != "self"]
+                        _doc  = _ast_plan.get_docstring(_node) or ""
+                        _sigs.append(f"  def {_node.name}({', '.join(_args)}){': ' + _doc[:60] if _doc else ''}")
+                    elif isinstance(_node, _ast_plan.ClassDef):
+                        _sigs.append(f"  class {_node.name}")
+                        for _cn in _node.body:
+                            if isinstance(_cn, (_ast_plan.FunctionDef, _ast_plan.AsyncFunctionDef)):
+                                _ca = [a.arg for a in _cn.args.args if a.arg != "self"]
+                                _sigs.append(f"    def {_cn.name}({', '.join(_ca)})")
+                if _sigs:
+                    _api_parts.append(
+                        f"【{_mpath.name}】{(' - ' + _mod_doc[:100]) if _mod_doc else ''}\n" +
+                        "\n".join(_sigs[:12])
+                    )
+            except Exception:
+                pass
+        if _api_parts:
+            module_api_ctx = "\n\n【現有系統模組 API - 規劃時優先使用這些，不要重新實作】\n" + "\n\n".join(_api_parts)
+            _log(pid, f"🔍 已掃描 {len(_api_parts)} 個現有模組 API 注入規劃", "AI")
+    except Exception as _me:
+        _log(pid, f"⚠ 模組掃描失敗：{_me}", "WARN")
 
     system = """你是一個資深軟體工程師，負責把使用者需求拆解成具體可執行的程式任務。
 
@@ -2515,20 +2892,24 @@ def api_plan(pid):
 - 每個任務的程式碼預期在 30~60 行以內
 - 如果某個功能需要超過 60 行，必須拆成多個任務
 - 測試類任務每個只測一個功能模組（不要寫一個大測試檔測所有東西）
-- 任務數量 3~12 個（寧可多拆也不要太大）
+- 任務數量 3~8 個（寧可多拆也不要太大）
 - title 簡短清楚（10字以內）
-- description 詳細說明邏輯和預期行為
+- description 必須包含：要用哪些現有模組、禁止用哪些、函式名稱和參數
+- 如果知識庫規則有指定使用某個模組，description 必須明確寫出 import 方式
 - 只輸出 JSON，第一個字必須是 {"""
 
     sys_ctx     = get_system_context(max_chars=1500) if _HAS_SYSTEM_MAP else ""
     sys_section = f"\n\n{sys_ctx}" if sys_ctx else ""
-    prompt = f"請把以下需求拆解成任務清單：\n\n{requirement}{kb_context}{sys_section}"
+    prompt = f"請把以下需求拆解成任務清單：\n\n{requirement}{kb_context}{module_api_ctx}{sys_section}"
 
     def sse_gen():
         full = []
+        # 先顯示需求分析結果
+        if final_req != requirement:
+            yield f"data: {json.dumps({'type':'analyzed','text': final_req})}\n\n"
         yield f"data: {json.dumps({'type':'token','text':''})}\n\n"
         try:
-            raw = _lobster_plan(requirement, kb_context)
+            raw = _lobster_plan(final_req, kb_context + module_api_ctx)
             for i in range(0, len(raw), 15):
                 tok = raw[i:i+15]
                 full.append(tok)
@@ -2594,7 +2975,7 @@ def api_plan(pid):
                 normalized.append({
                     "seq":         seq,
                     "title":       title,
-                    "description": t.get("description") or t.get("desc", ""),
+                    "description": t["description"] or "" or t["description"] or "",
                 })
             tasks = normalized
 
@@ -2605,42 +2986,14 @@ def api_plan(pid):
                     c.execute("""INSERT INTO tasks
                         (id,project_id,seq,title,description,status,repair_count,created_at,updated_at)
                         VALUES (?,?,?,?,?,?,?,?,?)""",
-                        (tid, pid, t["seq"], t["title"], t.get("description",""),
+                        (tid, pid, t["seq"], t["title"], t["description"] or "",
                          "pending", 0, now, now))
                 c.execute("UPDATE projects SET status='planning',updated_at=? WHERE id=?", (now, pid))
 
             _log(pid, f"規劃完成：{len(tasks)} 個任務", "OK")
             socketio.emit("project_updated", {"id": pid})
 
-            if REVIEW_ENABLED:
-                # ── 送給審查Agent，同步等待結果 ──────────────────────────
-                _review_msg = json.dumps({'type':'token','text':'\n\n🔍 送審查Agent審查規劃，等待結果...'})
-                yield f"data: {_review_msg}\n\n"
-                plan_text = "\n".join(
-                    f"{t['seq']}. {t['title']}：{t.get('description','')}"
-                    for t in tasks
-                )
-                review_result = _send_to_reviewer(
-                    pid=pid, task_id=pid,
-                    content=plan_text,
-                    review_type="plan",
-                    filename=f"{pid[:8]}_plan.txt",
-                    timeout=3600,  # 等最多 1 小時
-                )
-                if review_result:
-                    plan_note = review_result.get("plan", "")
-                    issues    = review_result.get("issues", "")
-                    if plan_note or issues:
-                        review_note = f"\n\n【規劃審查建議】\n{plan_note}"
-                        if issues:
-                            review_note += f"\n\n問題清單：\n{issues}"
-                        with _db() as c:
-                            c.execute("UPDATE projects SET description=?,updated_at=? WHERE id=?",
-                                      (requirement + review_note, _now(), pid))
-                        _log(pid, "✅ 規劃審查完成，已更新任務描述", "OK")
-                        _msg_adopted = json.dumps({'type':'token','text':'\n✅ 規劃審查完成，已採納建議'})
-                        yield f"data: {_msg_adopted}\n\n"
-
+            # 規劃審查統一由 _run_project 開始前處理，避免與程式碼審查同時進行
             yield f"data: {json.dumps({'type':'done','task_count':len(tasks)})}\n\n"
 
         except Exception as e:
@@ -2667,6 +3020,37 @@ def _run_project(pid: str):
     """背景執行緒：依序執行所有 pending 任務。"""
     stop_ev = threading.Event()
     _stop_events[pid] = stop_ev
+
+    # ── 規劃審查（只做一次，確保在任何程式碼審查之前完成）──────────────
+    _plan_key = pid + "_plan"
+    if REVIEW_ENABLED and _plan_key not in _review_results:
+        _review_results[_plan_key] = True  # 先標記，避免重複
+        with _db() as c:
+            _tlist = c.execute(
+                "SELECT seq,title,description FROM tasks WHERE project_id=? ORDER BY seq", (pid,)
+            ).fetchall()
+        if _tlist:
+            _log(pid, "🔍 送審查Agent審查規劃...", "AI")
+            _ptxt = "\n".join(
+                f"{t['seq']}. {t['title']}：{t['description'] or ''}" for t in _tlist
+            )
+            _prv = _send_to_reviewer(
+                pid=pid, task_id=_plan_key,
+                content=_ptxt, review_type="plan",
+                filename=f"{pid[:8]}_plan.txt", timeout=3600,
+            )
+            if _prv:
+                _pn = _prv.get("plan",""); _pi = _prv.get("issues","")
+                if _pn or _pi:
+                    with _db() as c:
+                        _req0 = c.execute("SELECT description FROM projects WHERE id=?", (pid,)).fetchone()
+                        _note = f"\n\n【規劃審查建議】\n{_pn}"
+                        if _pi: _note += f"\n問題：\n{_pi}"
+                        c.execute("UPDATE projects SET description=?,updated_at=? WHERE id=?",
+                                  ((_req0["description"] if _req0 else "") + _note, _now(), pid))
+                    _log(pid, "✅ 規劃審查完成，已更新描述", "OK")
+                else:
+                    _log(pid, "✅ 規劃審查完成，無需修改", "OK")
 
     with _db() as c:
         # 清掉上次殘留的 running 狀態（執行緒中斷沒清乾淨的）
@@ -2776,7 +3160,7 @@ def _split_task_if_needed(pid: str, task: dict, system: str, prompt: str) -> lis
     split_prompt = f"""任務太複雜，需要拆成 {n_parts} 個獨立的子任務。
 
 原任務：{task['title']}
-說明：{task.get('description','')}
+說明：{task['description'] or ''}
 
 請輸出嚴格 JSON（不要其他文字）：
 {{"subtasks": [
@@ -2801,7 +3185,7 @@ def _split_task_if_needed(pid: str, task: dict, system: str, prompt: str) -> lis
     except Exception as e:
         _log(pid, f"⚠ 拆分規劃失敗（{e}），改用簡單拆分", "WARN")
         # 簡單拆分：把描述切成幾段
-        desc = task.get("description", "")
+        desc = task["description"] or ""
         chunk_size = len(desc) // n_parts or 1
         subtasks = []
         for i in range(n_parts):
@@ -2833,11 +3217,11 @@ def _split_task_if_needed(pid: str, task: dict, system: str, prompt: str) -> lis
             c.execute("""INSERT INTO tasks
                 (id,project_id,seq,title,description,status,repair_count,created_at,updated_at)
                 VALUES (?,?,?,?,?,?,?,?,?)""",
-                (tid_new, pid, new_seq, st["title"], st.get("description",""),
+                (tid_new, pid, new_seq, st["title"], st["description"] or "",
                  "pending", 0, now, now))
             new_tasks.append({"id": tid_new, "seq": new_seq,
                                "title": st["title"],
-                               "description": st.get("description","")})
+                               "description": st["description"] or ""})
 
     socketio.emit("project_updated", {"id": pid})
     _log(pid, f"✅ 已拆成 {len(new_tasks)} 個子任務", "OK")
@@ -2858,12 +3242,27 @@ def _execute_task(pid: str, task: dict, stop_ev: threading.Event = None):
         done_tasks = c.execute(
             "SELECT title,code FROM tasks WHERE project_id=? AND status='done' ORDER BY seq", (pid,)
         ).fetchall()
+    import ast as _ast_ctx
     context = ""
     if done_tasks:
-        context = "\n已完成的任務：\n"
+        context = "\n【已完成任務的可用函式/類別，不要重複定義】\n"
         for dt in done_tasks:
-            context += f"# {dt['title']}\n{dt['code'] or ''}\n\n"
+            code = dt["code"] or ""
+            sigs = []
+            try:
+                tree = _ast_ctx.parse(code)
+                for node in tree.body:
+                    if isinstance(node, (_ast_ctx.FunctionDef, _ast_ctx.AsyncFunctionDef)):
+                        args = [a.arg for a in node.args.args]
+                        sigs.append(f"def {node.name}({', '.join(args)})")
+                    elif isinstance(node, _ast_ctx.ClassDef):
+                        sigs.append(f"class {node.name}")
+            except Exception:
+                pass
+            if sigs:
+                context += f"# {dt['title']}：{', '.join(sigs)}\n"
 
+    plan_text = ""
     for attempt in range(4):  # 0=初次, 1~3=修復
         is_repair = attempt > 0
         action = "修復" if is_repair else "生成"
@@ -2878,19 +3277,67 @@ def _execute_task(pid: str, task: dict, stop_ev: threading.Event = None):
         sys_section  = f"\n\n可用模組：{sys_ctx}" if sys_ctx else ""
         local_mods   = _scan_local_modules(max_chars=300)
         local_section = f"\n\n本地模組：{local_mods}" if local_mods else ""
+        # ── 查詢知識庫規則 ────────────────────────────────────────────────
+        _kb_rules = ""
+        try:
+            import socket as _sk2
+            with _sk2.socket(_sk2.AF_INET, _sk2.SOCK_STREAM) as _s2:
+                if _s2.connect_ex(('localhost', 7861)) == 0:
+                    _kr = req.post("http://localhost:7861/api/search",
+                                   json={"query": task['title'] + " " + task['description'] or ''[:100],
+                                         "limit": 3}, timeout=5)
+                    if _kr.status_code == 200:
+                        _kr_results = _kr.json().get("results", [])
+                        if _kr_results:
+                            _kb_rules = "\n\n【知識庫規則 - 必須遵守】\n"
+                            for _kr_item in _kr_results:
+                                _kb_rules += f"- {_kr_item.get('title','')}：{_kr_item.get('content','')}\n"
+                            _log(pid, f"📚 知識庫規則已載入（{len(_kr_results)} 條）", "AI", tid)
+        except Exception:
+            pass
+
         system = f"""你是資深 Python 工程師。只輸出可直接執行的 Python 程式碼，不要任何說明文字或 markdown。
-程式碼限制在 120 行以內，超過就精簡實作，保留核心功能。
+
+【輸出規則 - 嚴格遵守】
+1. 所有函式必須有完整實作，嚴禁輸出 pass、# TODO、...、raise NotImplementedError 等佔位符
+2. 程式碼控制在 120 行以內；若功能超過 120 行，在最後一行加上注釋：# SPLIT_NEEDED: <建議的拆分方式>，然後只實作核心部分
+3. 這是 Windows 系統，不要使用 Linux 指令（xdotool、scrot、xrandr 等）
+4. 優先使用上方「現有系統檔案」中列出的模組，不要重新實作已有的功能
+5. 不要使用未在現有模組中出現的第三方套件，除非任務明確要求
+
+【輸出格式範例】
+import os
+import json
+
+def load_config(path: str) -> dict:
+    \"\"\"載入設定檔，找不到則回傳空字典。\"\"\"
+    if not os.path.exists(path):
+        return {{}}
+    with open(path, encoding='utf-8') as f:
+        return json.load(f)
+
+def save_config(path: str, data: dict) -> bool:
+    \"\"\"儲存設定檔，成功回傳 True。\"\"\"
+    try:
+        with open(path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        return True
+    except Exception as e:
+        print(f"儲存失敗：{{e}}")
+        return False
+
+if __name__ == '__main__':
+    cfg = load_config('config.json')
+    cfg['version'] = '1.0'
+    save_config('config.json', cfg)
 
 專案需求：{project_req}
-{context}{sys_section}{local_section}
-
-重要：生成的程式碼可以 import 並使用上方「現有系統檔案」中列出的任何模組。
-如果任務描述提到某個模組名稱但上方沒有列出，請自行實作該功能而不要 import 它。"""
+{context}{sys_section}{local_section}{_kb_rules}"""
 
         # ── 先估算是否需要拆分（在建 prompt 之前）─────────────────────────
         if not is_repair:
-            task_desc = task.get('description', '')
-            estimated = _estimate_tokens(system + task_desc + task.get('title',''))
+            task_desc = task['description'] or ''
+            estimated = _estimate_tokens(system + task_desc + task['title'] or '')
             if estimated > TOKEN_LIMIT:
                 # 建一個暫時的 prompt 來估算
                 temp_prompt = f"任務：{task['title']}\n說明：{task_desc}\n\n請輸出完整的 Python 程式碼："
@@ -2900,35 +3347,110 @@ def _execute_task(pid: str, task: dict, stop_ev: threading.Event = None):
                     tid   = task["id"]
                     _log(pid, f"🔀 已拆分，執行子任務：{task['title']}", "AI", tid)
 
-        plan_text = plan_text if not is_repair and 'plan_text' in dir() else ""
+        plan_text = "" if is_repair else plan_text if attempt == 0 and 'plan_text' in locals() else ""
         if is_repair:
             prompt = f"""任務：{task['title']}
-說明：{task.get('description','')}
+說明：{task['description'] or ''}
 
 上次的程式碼執行出錯：
 {prev_error}
 
 請修復並輸出完整的修正後程式碼："""
         else:
-            # 把施工計畫帶進 prompt（最多 200 字，避免佔用太多 context）
-            plan_section = f"\n\n施工計畫（摘要）：\n{plan_text[:200]}" if plan_text else ""
+            # 把施工計畫和已完成任務的函式簽名帶進 prompt
+            plan_section   = f"\n\n施工計畫（完整規格，照此實作）：\n{plan_text}" if plan_text else ""
+            context_section = f"\n\n{context}" if context else ""
             prompt = f"""任務：{task['title']}
-說明：{task.get('description','')}{plan_section}
+說明：{task['description'] or ''}{plan_section}{context_section}
 
 請根據以上計畫輸出完整的 Python 程式碼（最多 120 行，超過就精簡）："""
 
             # ── 施工計畫（首次生成才做）────────────────────────────────────
         if not is_repair:
+            try:
+                _planner_stem = _pick(PLANNER_MODELS).split(":")[0]
+                for _lm in [m["name"] for m in req.get(f"{OLLAMA_URL}/api/ps", timeout=5).json().get("models", [])]:
+                    if not _lm.startswith(_planner_stem):
+                        _log(pid, f"  ⬇ 施工計畫前卸載 {_lm}", "INFO", tid)
+                        _unload_model(_lm)
+            except Exception:
+                pass
+            # ── Step 0：查詢相關模組 API ──────────────────────────────────
+            _emit_step(pid, tid, "查詢相關模組", "active")
+            _module_api_ctx = ""
+            try:
+                # 讓模型說「我需要參考哪些現有模組」
+                _ref_prompt = (
+                    f"任務：{task['title']}\n說明：{task['description'] or ''}\n\n"
+                    f"現有系統模組：{local_section[:300]}\n\n"
+                    f"請列出這個任務需要參考的現有模組名稱（只列檔名，用逗號分隔，最多3個）："
+                )
+                _ref_raw = _ollama_once(
+                    _pick(PLANNER_MODELS),
+                    "只列出檔名，不要說明。格式：module1.py, module2.py",
+                    _ref_prompt, temperature=0.1
+                )
+                # 解析模組名稱並讀取 docstring
+                import re as _re_mod
+                _ref_names = [n.strip().replace(".py","") for n in _re_mod.split(r"[,\n\s]+", _ref_raw) if n.strip() and ".py" in n or n.strip() in [
+                    p.stem for p in WORKSHOP_DIR.parent.glob("*.py")
+                ]][:3]
+
+                _base = WORKSHOP_DIR.parent
+                _api_parts = []
+                for _mname in _ref_names:
+                    _mpath = _base / f"{_mname}.py"
+                    if not _mpath.exists():
+                        continue
+                    try:
+                        import ast as _ast_ref
+                        _src = _mpath.read_text(encoding="utf-8", errors="replace")
+                        _tree = _ast_ref.parse(_src)
+                        # 取 module docstring + 所有函式/類別簽名
+                        _mod_doc = _ast_ref.get_docstring(_tree) or ""
+                        _sigs = []
+                        for _node in _tree.body:
+                            if isinstance(_node, (_ast_ref.FunctionDef, _ast_ref.AsyncFunctionDef)):
+                                _args = [a.arg for a in _node.args.args]
+                                _doc  = _ast_ref.get_docstring(_node) or ""
+                                _sigs.append(f"  def {_node.name}({', '.join(_args)}): {_doc[:80]}")
+                            elif isinstance(_node, _ast_ref.ClassDef):
+                                _sigs.append(f"  class {_node.name}")
+                                for _cn in _node.body:
+                                    if isinstance(_cn, (_ast_ref.FunctionDef, _ast_ref.AsyncFunctionDef)):
+                                        _ca = [a.arg for a in _cn.args.args]
+                                        _sigs.append(f"    def {_cn.name}({', '.join(_ca)})")
+                        _api_parts.append(
+                            f"【{_mname}.py】\n{_mod_doc[:200]}\n" + "\n".join(_sigs[:15])
+                        )
+                    except Exception:
+                        pass
+
+                if _api_parts:
+                    _module_api_ctx = "\n\n【可參考的現有模組 API】\n" + "\n\n".join(_api_parts)
+                    _log(pid, f"📚 已載入模組 API：{', '.join(_ref_names)}", "AI", tid)
+
+            except Exception as _me:
+                _log(pid, f"⚠ 模組查詢失敗（繼續）：{_me}", "WARN", tid)
+            _emit_step(pid, tid, "查詢相關模組", "done",
+                       f"{len(_module_api_ctx)} 字")
+
             _emit_step(pid, tid, "分析施工計畫", "active")
             plan_prompt = f"""任務：{task['title']}
 說明：{task['description']}
+{context}{_module_api_ctx}
+請用以下結構說明施工計畫（繁體中文，不要輸出程式碼）：
 
-請用繁體中文簡短說明你的施工計畫（3-5點）：
-1. 準備 import 哪些模組（只列出真正需要的）
-2. 主要實作步驟
-3. 可能遇到的問題
+【平台確認】Windows 系統，使用 Python 套件，禁用 xdotool/scrot/Linux 指令
 
-不要輸出程式碼，只要計畫說明。"""
+【Import 清單】只列出真正需要的模組，優先使用現有系統模組
+
+【函式設計】列出要實作的函式名稱和參數，例如：
+  - execute_command(command: str) -> str
+
+【實作步驟】3-5 個步驟
+
+【注意】不要重複定義已有函式"""
             plan_parts = []
             for tok in _ollama_stream(
                 _pick(CODER_MODELS),
@@ -2943,6 +3465,9 @@ def _execute_task(pid: str, task: dict, stop_ev: threading.Event = None):
             _emit_step(pid, tid, "分析施工計畫", "done", f"{len(plan_text)} 字")
             _log(pid, f"📋 施工計畫：{plan_text[:100]}...", "INFO", tid)
 
+            # ── 切換到程式碼生成模型 ──────────────────────────────────────────
+            _switch_model(pid, tid, CODER_MODELS[0])
+
         with _db() as c:
             c.execute("UPDATE tasks SET status='running',updated_at=? WHERE id=?", (_now(), tid))
         socketio.emit("task_updated", {"project_id": pid, "task_id": tid, "status": "running"})
@@ -2952,24 +3477,12 @@ def _execute_task(pid: str, task: dict, stop_ev: threading.Event = None):
         _auto_simplified = threading.Event()
 
 
-        # 動態估算生成時間
+        # 動態估算生成時間（字元數估算）
         def _estimate_duration(title: str, desc: str) -> int:
-            try:
-                raw = _ollama_once(
-                    _pick(PLANNER_MODELS),
-                    "只輸出一個整數（分鐘數），不要其他文字。",
-                    f"估算以下 Python 任務大概需要幾分鐘生成：\n任務：{title}\n說明：{desc[:200]}\n\n只輸出數字（2~20）：",
-                    temperature=0.1
-                )
-                import re as _re2
-                m = _re2.search(r'\d+', raw.strip())
-                minutes = int(m.group()) if m else 5
-                return max(2, min(20, minutes))
-            except Exception:
-                return 5
+            return max(2, min(15, len(desc) // 150 + 3))
 
         if not is_repair:
-            estimated_minutes = _estimate_duration(task.get('title',''), task.get('description',''))
+            estimated_minutes = _estimate_duration(task['title'] or '', task['description'] or '')
             _log(pid, f"⏱ 預估生成時間：{estimated_minutes} 分鐘", "AI", tid)
         else:
             estimated_minutes = 5
@@ -3016,7 +3529,7 @@ def _execute_task(pid: str, task: dict, stop_ev: threading.Event = None):
             raw_code = _lobster_repair(
                 code="",
                 error=prev_error,
-                task_desc=f"{task['title']}：{task.get('description','')}"
+                task_desc=f"{task['title']}：{task['description'] or ''}"
             )
             for i in range(0, len(raw_code), 20):
                 tok = raw_code[i:i+20]
@@ -3039,9 +3552,9 @@ def _execute_task(pid: str, task: dict, stop_ev: threading.Event = None):
         if _auto_simplified.is_set() and not is_repair:
             _log(pid, "🔄 自動精簡描述，重新生成...", "AI", tid)
             try:
-                simple_prompt = (f"把以下任務描述精簡成 2-3 句重點，不超過 80 字：\n\n{task.get('description','')}")
+                simple_prompt = (f"把以下任務描述精簡成 2-3 句重點，不超過 80 字：\n\n{task['description'] or ''}")
                 simplified = _ollama_once(
-                    _pick(PLANNER_MODELS),
+                    _pick(CODER_MODELS),
                     "只輸出精簡後的描述，不要說明。",
                     simple_prompt, temperature=0.2
                 )
@@ -3072,10 +3585,56 @@ def _execute_task(pid: str, task: dict, stop_ev: threading.Event = None):
             socketio.emit("task_updated", {"project_id": pid, "task_id": tid})
             return "failed"
 
-        # 移除可能的 markdown fences
-        if code.startswith("```"):
-            lines = code.split("\n")
-            code = "\n".join(lines[1:-1] if lines[-1].strip() == "```" else lines[1:])
+        # 移除可能的 markdown fences 和說明文字
+        import re as _re_clean
+        code = _re_clean.sub(r"```(?:python)?\s*", "", code).strip().rstrip("`")
+
+        # 黑名單指令掃描
+        _blacklist = ["xdotool", "scrot", "xrandr", "wmctrl", "xwininfo"]
+        _found_bl  = [b for b in _blacklist if b in code]
+        if _found_bl:
+            _log(pid, f"⚠ 偵測到不相容 Linux 指令：{_found_bl}，重新修復", "WARN", tid)
+            # 強制帶入修復提示
+            code = "# 錯誤：包含 Windows 不支援的指令，請用 pyautogui/desktop_control 替代\n" + code
+        # 過濾說明文字：移除夾在程式碼中的中文說明行
+        _code_line = re.compile(
+            r'^\s*($|#|import |from |def |class |if |else:|elif |try:|except|finally:|'
+            r'with |return |raise |pass|break|continue|[a-zA-Z_][\w\.]*\s*[=(\[{]|'
+            r'"""|\'\'\'|[\-+*/]|@|async |await |yield |lambda )',
+            re.MULTILINE
+        )
+        lines = code.split("\n")
+        # 找第一行程式碼
+        start_idx = 0
+        for i, line in enumerate(lines):
+            if _code_line.match(line):
+                start_idx = i
+                break
+        # 過濾中間的純中文說明行（不在字串內的）
+        cleaned = []
+        in_string = False
+        for line in lines[start_idx:]:
+            stripped = line.strip()
+            # 偵測多行字串邊界
+            if stripped.count('"""') % 2 == 1 or stripped.count("'''") % 2 == 1:
+                in_string = not in_string
+            if in_string:
+                cleaned.append(line)
+                continue
+            # 純中文說明行特徵：以中文字開頭、不含 Python 語法符號
+            is_chinese_desc = (
+                stripped and
+                '\u4e00' <= stripped[0] <= '\u9fff' and
+                not stripped.startswith('#') and
+                '=' not in stripped and
+                '(' not in stripped and
+                ':' not in stripped
+            )
+            if not is_chinese_desc:
+                cleaned.append(line)
+            else:
+                _log(pid, f"⚠ 過濾說明文字：{stripped[:40]}", "INFO", tid)
+        code = "\n".join(cleaned).strip()
 
         if not code.strip():
             _log(pid, "❌ 生成的程式碼是空的，任務中止", "ERROR", tid)
@@ -3134,43 +3693,8 @@ def _execute_task(pid: str, task: dict, stop_ev: threading.Event = None):
                 _log(pid, f"✅ [{task['seq']}] {task['title']} 完成", "OK", tid)
                 review_summary = ""
 
-            # ── 自動模式：直接繼續 ─────────────────────────────────────────
-            if pid in _auto_projects:
-                _log(pid, f"🤖 自動模式：任務 #{task['seq']} 完成，自動繼續", "AI", tid)
-                return "continue"
-
-            # ── 手動模式：問使用者 ──────────────────────────────────────────
-            confirm_id = str(uuid.uuid4())
-            ev = threading.Event()
-            _confirm_events[confirm_id] = ev
-            _confirm_results[confirm_id] = "continue"
-
-            socketio.emit("confirm_request", {
-                "project_id": pid,
-                "confirm_id": confirm_id,
-                "title": f"// 任務 #{task['seq']} ✅ 完成",
-                "body":  f"「{task['title']}」執行成功。{review_summary}\n\n繼續下一個任務？",
-                "buttons": [
-                    {"label": "▶ 繼續",  "action": "continue", "cls": "btn-primary"},
-                    {"label": "⏸ 暫停",  "action": "pause",    "cls": "btn-warn"},
-                ]
-            })
-
-            # 同時監聽 stop_ev 和 confirm ev
-            while not ev.wait(timeout=1):
-                if stop_ev and stop_ev.is_set():
-                    _confirm_results[confirm_id] = "pause"
-                    ev.set()
-                    break
-            action = _confirm_results.pop(confirm_id, "continue")
-            _confirm_events.pop(confirm_id, None)
-
-            if action == "pause":
-                with _db() as c:
-                    c.execute("UPDATE projects SET status='paused',updated_at=? WHERE id=?", (_now(), pid))
-                _log(pid, "⏸ 已暫停，等待確認", "WARN")
-                socketio.emit("project_updated", {"id": pid})
-                return "paused"
+            # ── 預設自動繼續，只有按暫停才停 ───────────────────────────────
+            _log(pid, f"✅ 任務 #{task['seq']} 完成，自動繼續", "AI", tid)
             return "continue"
 
         else:
@@ -3182,11 +3706,13 @@ def _execute_task(pid: str, task: dict, stop_ev: threading.Event = None):
                 skip_patterns = [
                     "No module named",
                     "ModuleNotFoundError",
-                    "ImportError",
                     "cannot import name",
-                    "is not installed",
                 ]
-                should_auto_skip = any(p in (output + error_msg) for p in skip_patterns)
+                # 只有真的缺模組才跳過，一般執行錯誤不跳過
+                should_auto_skip = (
+                    any(p in output for p in skip_patterns)
+                    and "ImportError" not in output.split("No module")[0][:50]  # 確認是 import 錯誤
+                )
 
                 if should_auto_skip:
                     _log(pid, f"⏭ [{task['seq']}] 自動跳過：缺少依賴模組（{output[:80]}）", "WARN", tid)
@@ -3212,13 +3738,20 @@ def _execute_task(pid: str, task: dict, stop_ev: threading.Event = None):
                     "human_id":   human_id,
                     "task_seq":   task["seq"],
                     "task_title": task["title"],
-                    "error":      error_msg,
+                    "error":      output[:500],
                     "code":       "".join(code_parts) if code_parts else "",
                 })
 
                 if pid in _auto_projects:
                     _notify_ai(pid, "failed",
-                               f"任務 #{task['seq']}「{task['title']}」修復 3 次仍失敗，需要人工介入")
+                               f"任務 #{task['seq']}「{task['title']}」修復 3 次仍失敗，需要人工介入",
+                               extra={
+                                   "human_id":   human_id,
+                                   "task_id":    tid,
+                                   "task_title": task["title"],
+                                   "error":      output[:500],
+                                   "code":       "".join(code_parts) if code_parts else "",
+                               })
 
                 _log(pid, "⏳ 等待人工輸入解答（最多 2 小時）...", "AI", tid)
                 signaled = human_ev.wait(timeout=7200)
@@ -3239,8 +3772,8 @@ def _execute_task(pid: str, task: dict, stop_ev: threading.Event = None):
                 _log(pid, "✅ 收到人工解答，繼續修復", "AI", tid)
                 import re as _re2
                 fix_prompt = (f"任務：{task['title']}\n"
-                              f"說明：{task.get('description','')}\n\n"
-                              f"錯誤：{error_msg}\n\n"
+                              f"說明：{task['description'] or ''}\n\n"
+                              f"錯誤：{output[:300]}\n\n"
                               f"人工解決方案：\n{human_solution}\n\n"
                               f"請輸出修正後的完整 Python 程式碼：")
                 fixed_code = _ollama_once(
@@ -3257,7 +3790,7 @@ def _execute_task(pid: str, task: dict, stop_ev: threading.Event = None):
                             from bug_learning_engine import learn_bug
                             learn_bug(
                                 project_state={"changed": [task["title"]], "files": []},
-                                diagnosis=error_msg,
+                                diagnosis=output[:500],
                                 repair_plan=human_solution,
                                 result=True,
                             )
@@ -3314,14 +3847,31 @@ def api_resume_project(pid):
 
 @app.route("/api/projects/<pid>/pause", methods=["POST"])
 def api_pause_project(pid):
-    # 設置停止信號，讓執行緒在下一個檢查點停下來
+    # 1. 設置停止信號
     if pid in _stop_events:
         _stop_events[pid].set()
+
+    # 2. 關閉 requests session（中斷 streaming）
     _force_stop_ollama(pid)
+
+    # 3. 用 taskkill 強制中斷 Ollama（確保生成真的停止）
+    try:
+        import subprocess as _sp
+        _sp.run(["taskkill", "/F", "/IM", "ollama.exe"],
+                capture_output=True, creationflags=_sp.CREATE_NO_WINDOW)
+        import time as _t; _t.sleep(1)
+        _sp.Popen(["ollama", "serve"],
+                  creationflags=_sp.CREATE_NO_WINDOW)
+        _log(pid, "🔄 Ollama 已重啟", "WARN")
+    except Exception as _e:
+        _log(pid, f"⚠ Ollama 重啟失敗：{_e}", "WARN")
+
     with _db() as c:
         c.execute("UPDATE projects SET status='paused',updated_at=? WHERE id=?", (_now(), pid))
+        c.execute("UPDATE tasks SET status='pending',updated_at=? WHERE project_id=? AND status='running'",
+                  (_now(), pid))
     socketio.emit("project_updated", {"id": pid})
-    _log(pid, "⏸ 強制暫停，已中斷 Ollama", "WARN")
+    _log(pid, "⏸ 已暫停，Ollama 已中斷", "WARN")
     return jsonify({"ok": True})
 
 @app.route("/api/projects/<pid>/rerun", methods=["POST"])
@@ -3661,7 +4211,10 @@ def api_repair_assembled():
 
 # ── 啟動 ──────────────────────────────────────────────────────────────────────
 if __name__ == "__main__":
-    print("⚙  工坊啟動中...")
+    # 強制 stdout 使用 utf-8，避免 Windows cp950 無法顯示特殊字元導致啟動崩潰
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    print("[workshop] 工坊啟動中...")
     print("   http://localhost:7862")
     try:
         models = _get_models()
@@ -3669,8 +4222,8 @@ if __name__ == "__main__":
             print(f"   規劃模型：{_pick(PLANNER_MODELS)}")
             print(f"   生成模型：{_pick(CODER_MODELS)}")
         else:
-            print("   ⚠  Ollama 無回應")
+            print("   [!] Ollama 無回應")
     except:
-        print("   ⚠  無法連線 Ollama")
+        print("   [!] 無法連線 Ollama")
     print("   Ctrl+C 停止")
     socketio.run(app, host="0.0.0.0", port=7862, debug=False, allow_unsafe_werkzeug=True)

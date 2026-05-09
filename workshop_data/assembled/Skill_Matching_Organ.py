@@ -7,7 +7,8 @@ from agent_logger import get_logger
 from fastapi import FastAPI, HTTPException
 from fastapi import HTTPException
 from functools import lru_cache
-from logging import logger
+import logging
+logger = logging.getLogger(__name__)
 from pydantic import BaseModel, Field, validator
 from typing import List, Optional
 from typing import List, Tuple
@@ -244,7 +245,6 @@ def batch_process(descs: List[str], skill_sets: List[List[str]], max_workers=Non
         futures = [executor.submit(_batch_worker, (desc, skills)) for desc, skills in zip(descs, skill_sets)]
         return [future.result() for future in concurrent.futures.as_completed(futures)]
 
-logger = get_logger(__name__)
 
 if __name__ == '__main__':
     desc = 'Experienced in Python, data analysis, and machine learning.'

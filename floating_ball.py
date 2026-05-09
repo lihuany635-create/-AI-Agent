@@ -14,7 +14,7 @@ from PyQt6.QtWidgets import (
     QPushButton, QVBoxLayout, QHBoxLayout, QFrame,
     QGraphicsDropShadowEffect
 )
-from PyQt6.QtCore import Qt, QPoint, QTimer, QRect, pyqtSignal, QThread
+from PyQt6.QtCore import Qt, QPoint, QTimer, QRect, pyqtSignal, QThread, pyqtSlot
 from PyQt6.QtGui import (
     QPainter, QColor, QBrush, QPen, QFont,
     QRadialGradient, QCursor
@@ -35,6 +35,7 @@ ACTIONS = [
     ("⚙", "工坊",    "#fb923c"),   # workshop_ui
     ("🎨", "圖片",    "#e879f9"),   # ComfyUI
     ("🎬", "Filmora", "#f87171"),   # Filmora
+    ("🧠", "Hermes",  "#a78bfa"),   # Hermes Agent (WSL)
 ]
 
 VMAGIC_PATH   = r"C:\Program Files (x86)\VMagicMirror\VMagicMirror.exe"
@@ -49,6 +50,51 @@ SUB_ACTIONS = [
 # ── 問立AI 工作執行緒 ─────────────────────────────────────────────────────────
 
 OLLAMA_URL   = "http://localhost:11434/api/chat"
+
+# ── 桌面控制 Server ───────────────────────────────────────────────────────────
+DESKTOP_API_URL = "http://172.23.48.1:7864"
+
+def _desktop_api(endpoint: str, method: str = "GET", data: dict = None) -> dict:
+    import requests as _req_dc
+    try:
+        if method == "GET":
+            r = _req_dc.get(f"{DESKTOP_API_URL}/{endpoint}", timeout=10)
+        else:
+            r = _req_dc.post(f"{DESKTOP_API_URL}/{endpoint}", json=data or {}, timeout=10)
+        return r.json() if r.status_code == 200 else {"ok": False, "error": r.text}
+    except Exception as e:
+        return {"ok": False, "error": str(e)}
+
+def _is_desktop_running() -> bool:
+    import requests as _req_dc
+    try:
+        return _req_dc.get(f"{DESKTOP_API_URL}/health", timeout=3).status_code == 200
+    except Exception:
+        return False
+
+# ── 記憶系統 ──────────────────────────────────────────────────────────────────
+try:
+    import sys as _sys_mem
+    _sys_mem.path.insert(0, str(BASE_DIR))
+    from ai_memory import (build_memory_prompt, update_memory_from_conversation,
+                        save_conversation, load_recent_conversations)
+    _HAS_MEMORY = True
+except ImportError:
+    _HAS_MEMORY = False
+    def build_memory_prompt(): return ""
+    def update_memory_from_conversation(conv, url, model): pass
+    def save_conversation(u, r): pass
+    def load_recent_conversations(max_turns=10): return []
+
+_conversation_history: list = []
+_MAX_HISTORY = 10
+
+# 啟動時載入最近的對話紀錄
+try:
+    if _HAS_MEMORY:
+        _conversation_history = load_recent_conversations(max_turns=_MAX_HISTORY)
+except Exception:
+    pass
 OLLAMA_MODEL = "gpt-oss:20b"
 BASE_DIR     = pathlib.Path(__file__).parent
 ASSEMBLED_DIR = BASE_DIR / "workshop_data" / "assembled"
@@ -129,16 +175,20 @@ def _find_skill(query: str, skills: list[dict]) -> dict | None:
 
 def _run_skill(skill: dict, args: list = None) -> str:
     """執行器官技能，回傳結果。"""
-    import subprocess, sys
+    import subprocess, sys, os
     path = pathlib.Path(skill.get("path",""))
     if not path.exists():
         path = ASSEMBLED_DIR / skill.get("filename","")
     if not path.exists():
         return f"找不到器官：{skill.get('filename')}"
     try:
+        env = os.environ.copy()
+        # 把 AI-Agent 資料夾加進 PYTHONPATH，讓器官能 import 系統模組
+        env["PYTHONPATH"] = str(BASE_DIR) + os.pathsep + env.get("PYTHONPATH", "")
         cmd = [sys.executable, str(path)] + (args or [])
         r   = subprocess.run(cmd, capture_output=True, text=True,
-                             timeout=60, encoding="utf-8", errors="replace")
+                             timeout=60, encoding="utf-8", errors="replace",
+                             cwd=str(BASE_DIR), env=env)
         out = (r.stdout + r.stderr).strip()
         return out[:600] if out else "（無輸出）"
     except subprocess.TimeoutExpired:
@@ -214,9 +264,13 @@ class AskWorker(QThread):
             import re as _re2
             raw = _re2.sub(r"^```[a-z]*\n?", "", raw)
             raw = _re2.sub(r"\n?```$", "", raw).strip()
-            plan = json.loads(raw)
+            # 找 JSON 部分
+            start, end = raw.find("{"), raw.rfind("}") + 1
+            if start == -1:
+                return "無法解析 Filmora 指令，請更具體描述（例如：剪掉第 3 到 8 秒）"
+            plan = json.loads(raw[start:end])
         except Exception as e:
-            return f"指令解析失敗：{e}"
+            return "無法解析 Filmora 指令，請更具體描述（例如：剪掉第 3 到 8 秒）"
 
         actions = plan.get("actions", [])
         summary = plan.get("summary", "執行 Filmora 操作")
@@ -259,18 +313,68 @@ print('DONE')
             return f"⚠ 執行失敗：{err}"
 
     def run(self):
+        global _conversation_history
         try:
             reply = self._process(self.msg)
             self.result.emit(reply)
+            _conversation_history.append({"role": "user",      "content": self.msg})
+            _conversation_history.append({"role": "assistant", "content": reply})
+            _conversation_history = _conversation_history[-_MAX_HISTORY*2:]
+            if _HAS_MEMORY:
+                # 存入對話紀錄檔
+                save_conversation(self.msg, reply)
+                # 背景更新長期記憶
+                import threading as _th2
+                _th2.Thread(
+                    target=update_memory_from_conversation,
+                    args=(_conversation_history[:],
+                          "http://localhost:11434", OLLAMA_MODEL),
+                    daemon=True
+                ).start()
         except Exception as e:
             self.result.emit(f"錯誤：{e}")
 
     def _process(self, msg: str) -> str:
-        import requests as _req
+        import requests as _req, re as _re
         skills = _load_skills()
 
         # ── 特殊指令 ──────────────────────────────────────────────────────────
         msg_lower = msg.lower().strip()
+
+        # ── 桌面控制（透過 desktop_control_server）────────────────────────────
+        dc_kws = ["截圖", "點擊", "按鍵", "輸入文字", "視窗列表", "辨識螢幕"]
+        if any(kw in msg for kw in dc_kws):
+            if not _is_desktop_running():
+                return "❌ 桌面控制 Server 未啟動，請先在 Windows 執行 desktop_control_server.py"
+            if "截圖" in msg:
+                r = _desktop_api("screenshot")
+                return f"✅ 截圖：{r.get('path','')}" if r.get("ok") else f"❌ {r.get('error','')}"
+            if "辨識螢幕" in msg:
+                r = _desktop_api("ocr")
+                return f"📖 螢幕文字：\n{r.get('text','（無）')}"
+            if "視窗列表" in msg:
+                r = _desktop_api("windows")
+                return "🪟 視窗：\n" + "\n".join(str(w) for w in r.get("windows", [])[:10])
+            if "點擊" in msg:
+                nums = _re.findall(r"\d+", msg)
+                quoted = msg.split("300c")[1].split("300d")[0:1] if "300c" in msg else []
+                if len(nums) >= 2:
+                    r = _desktop_api("click", "POST", {"x": int(nums[0]), "y": int(nums[1])})
+                elif quoted:
+                    r = _desktop_api("click", "POST", {"text": quoted[0]})
+                else:
+                    return "請指定座標或文字，例如：點擊「確定」或點擊 100 200"
+                return "✅ 點擊完成" if r.get("ok") else f"❌ {r.get('error','')}"
+            if "輸入文字" in msg:
+                quoted = msg.split("300c")[1].split("300d")[0:1] if "300c" in msg else []
+                text = quoted[0] if quoted else msg.replace("輸入文字", "").strip()
+                r = _desktop_api("type", "POST", {"text": text})
+                return f"✅ 輸入：{text}" if r.get("ok") else f"❌ {r.get('error','')}"
+            if "按鍵" in msg:
+                quoted = msg.split("300c")[1].split("300d")[0:1] if "300c" in msg else []
+                key = quoted[0] if quoted else msg.replace("按鍵", "").strip()
+                r = _desktop_api("key", "POST", {"key": key})
+                return f"✅ 按鍵：{key}" if r.get("ok") else f"❌ {r.get('error','')}"
 
         # ── Filmora 控制指令偵測 ───────────────────────────────────────────────
         filmora_kws = [
@@ -356,12 +460,14 @@ print('DONE')
 - exists: true 代表現有器官已能滿足，false 代表需要製作"""
 
         try:
+            # 帶入對話歷史讓規劃器有上下文
+            plan_msgs = [{"role": "system", "content": plan_system}]
+            for h in _conversation_history[-6:]:
+                plan_msgs.append(h)
+            plan_msgs.append({"role": "user", "content": msg})
             r = _req.post(OLLAMA_URL, json={
                 "model": OLLAMA_MODEL,
-                "messages": [
-                    {"role": "system", "content": plan_system},
-                    {"role": "user",   "content": msg},
-                ],
+                "messages": plan_msgs,
                 "stream": False,
                 "options": {"temperature": 0.2, "num_predict": 600},
             }, timeout=None)
@@ -381,12 +487,13 @@ print('DONE')
                 return direct
             # fallback 到一般 Ollama 回答
             sys_msg = "你是「立」，顏立桓的AI助理，用繁體中文回答，最多5句。"
+            hist2 = [{"role": "system", "content": sys_msg}]
+            for h in _conversation_history[-6:]:
+                hist2.append(h)
+            hist2.append({"role": "user", "content": msg})
             r2 = _req.post(OLLAMA_URL, json={
                 "model": OLLAMA_MODEL,
-                "messages": [
-                    {"role": "system", "content": sys_msg},
-                    {"role": "user",   "content": msg},
-                ],
+                "messages": hist2,
                 "stream": False,
                 "options": {"temperature": 0.5, "num_predict": 300},
             }, timeout=None)
@@ -396,14 +503,16 @@ print('DONE')
         required = plan.get("required_organs", [])
         if not required:
             # 規劃失敗，直接回答
-            skill_ctx = f"\n\n可用技能：\n{skills_summary}" if skills else ""
-            sys_msg = f"你是「立」，顏立桓的AI助理，用繁體中文回答，最多5句。{skill_ctx}"
+            skill_ctx = ("\n\n可用技能：\n" + skills_summary) if skills else ""
+            _mem = build_memory_prompt() if _HAS_MEMORY else ""
+            sys_msg = "你是「立」，顏立桓的AI助理，用繁體中文回答，最多5句。" + skill_ctx + (("\n\n" + _mem) if _mem else "")
+            hist3 = [{"role": "system", "content": sys_msg}]
+            for h in _conversation_history[-6:]:
+                hist3.append(h)
+            hist3.append({"role": "user", "content": msg})
             r3 = _req.post(OLLAMA_URL, json={
                 "model": OLLAMA_MODEL,
-                "messages": [
-                    {"role": "system", "content": sys_msg},
-                    {"role": "user",   "content": msg},
-                ],
+                "messages": hist3,
                 "stream": False,
                 "options": {"temperature": 0.5, "num_predict": 300},
             }, timeout=None)
@@ -429,14 +538,45 @@ print('DONE')
             for o in ordered:
                 lines.append(f"  🔩 {o['name']}：{o['description']}")
 
-            # 確認工坊在跑
-            import socket as _sk
-            with _sk.socket(_sk.AF_INET, _sk.SOCK_STREAM) as s:
-                ws_on = s.connect_ex(('localhost', 7862)) == 0
+            # 確認工坊在跑，沒開就自動啟動
+            import socket as _sk, subprocess as _sp, time as _t, sys as _sys, pathlib as _pl
+            with _sk.socket(_sk.AF_INET, _sk.SOCK_STREAM) as _s:
+                ws_on = _s.connect_ex(('localhost', 7862)) == 0
 
             if not ws_on:
-                lines.append("\n⚠ 工坊未啟動，請先點漂浮球的「⚙ 工坊」開啟")
-                return "\n".join(lines)
+                # 工坊沒在跑，用 powershell 開新終端視窗（和手動點相同方式）
+                _ws_path = _pl.Path(__file__).parent / "workshop_ui.py"
+                if not _ws_path.exists():
+                    _ws_path = BASE_DIR / "workshop_ui.py"
+                if not _ws_path.exists():
+                    lines.append("\n⚠ 找不到 workshop_ui.py，請手動開啟工坊")
+                    return "\n".join(lines)
+                lines.append("\n🔄 工坊未啟動，自動啟動中...")
+                # 寫一個暫時的 .bat 啟動工坊，避免路徑中文/空格引號問題
+                _bat_path = _ws_path.parent / "_start_workshop_tmp.bat"
+                _bat_path.write_text(
+                    f"@echo off\ncd /d \"{_ws_path.parent}\"\npython \"{_ws_path}\"\npause\n",
+                    encoding="cp950", errors="replace"
+                )
+                _sp.Popen(
+                    ["cmd", "/c", "start", "", str(_bat_path)],
+                    cwd=str(_ws_path.parent),
+                    creationflags=_sp.CREATE_NO_WINDOW,
+                )
+                # 等 /health 回應才算真的 ready
+                import urllib.request as _ur, webbrowser as _wb
+                for _ in range(40):
+                    _t.sleep(1)
+                    try:
+                        _ur.urlopen("http://localhost:7862/health", timeout=2)
+                        ws_on = True
+                        _wb.open("http://localhost:7862")
+                        break
+                    except Exception:
+                        pass
+                if not ws_on:
+                    lines.append("\n⚠ 工坊啟動失敗，請手動點漂浮球的「⚙ 工坊」開啟")
+                    return "\n".join(lines)
 
             # 送工坊依序製作
             lines.append("\n🏭 開始依序製作...")
@@ -450,7 +590,7 @@ print('DONE')
                         "name":         o["name"],
                         "requirement":  o["description"],
                         "callback_url": "http://localhost:7861/api/workshop_callback",
-                    }, timeout=10)
+                    }, timeout=30)
                     d = r_ws.json()
                     if d.get("ok"):
                         results.append(f"  ✅ 已送出：{o['name']}{dep_str}")
@@ -467,17 +607,25 @@ print('DONE')
 # ── 問立AI 對話框 ─────────────────────────────────────────────────────────────
 
 class AskDialog(QWidget):
+    _reply_signal = pyqtSignal(str)
     def __init__(self):
         super().__init__(None,
             Qt.WindowType.Window |
             Qt.WindowType.FramelessWindowHint |
             Qt.WindowType.WindowStaysOnTopHint)
+        self.setWindowTitle("問立 AI")
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        # 讓視窗在工作列顯示
+        self.setWindowFlags(self.windowFlags() & ~Qt.WindowType.Tool)
         self._worker = None
         self._build()
 
     def _build(self):
-        self.setFixedWidth(340)
+        self.setMinimumWidth(300)
+        self.resize(360, 400)  # 預設大小，可拖動調整
+        # 右下角大小調整手柄
+        from PyQt6.QtWidgets import QSizeGrip
+        self._grip = QSizeGrip(self)
         outer = QVBoxLayout(self)
         outer.setContentsMargins(10, 10, 10, 10)
         card = QFrame()
@@ -490,10 +638,21 @@ class AskDialog(QWidget):
         t = QLabel("🦞 問立 AI")
         t.setStyleSheet("color:#e8c547;font-size:13px;font-weight:700;font-family:'Microsoft JhengHei UI';")
         h.addWidget(t); h.addStretch()
+        # 收起按鈕（暫時隱藏，保留內容）
+        self._min_btn = QPushButton("−"); self._min_btn.setFixedSize(22,22)
+        self._min_btn.setStyleSheet("background:none;border:none;color:#888;font-size:15px;font-weight:700;")
+        self._min_btn.clicked.connect(self.showMinimized)
+        h.addWidget(self._min_btn)
+        # 關閉按鈕（隱藏並清空內容）
         cb = QPushButton("✕"); cb.setFixedSize(22,22)
         cb.setStyleSheet("background:none;border:none;color:#555;font-size:13px;")
-        cb.clicked.connect(self.hide)
+        cb.clicked.connect(self._close_clear)
         h.addWidget(cb); v.addLayout(h)
+
+        # 可收起的內容區
+        self._content = QWidget()
+        cv = QVBoxLayout(self._content); cv.setContentsMargins(0,0,0,0); cv.setSpacing(8)
+
         self.inp = QLineEdit()
         self.inp.setPlaceholderText("輸入問題...")
         self.inp.setStyleSheet("""
@@ -502,29 +661,112 @@ class AskDialog(QWidget):
                       font-family:'Microsoft JhengHei UI';}
             QLineEdit:focus{border-color:#e8c547;}
         """)
-        self.inp.returnPressed.connect(self._ask); v.addWidget(self.inp)
-        sb = QPushButton("送出")
+        self.inp.returnPressed.connect(self._ask); cv.addWidget(self.inp)
+        self._sb = QPushButton("送出")
+        sb = self._sb
         sb.setStyleSheet("""
             QPushButton{background:#e8c547;color:#0e0e0f;border:none;border-radius:8px;
                         padding:8px;font-weight:700;font-family:'Microsoft JhengHei UI';}
             QPushButton:hover{background:#f0d060;}
         """)
-        sb.clicked.connect(self._ask); v.addWidget(sb)
-        self.ans = QLabel("...")
-        self.ans.setWordWrap(True)
+        sb.clicked.connect(self._ask); cv.addWidget(sb)
+        from PyQt6.QtWidgets import QTextEdit
+        self.ans = QTextEdit()
+        self.ans.setReadOnly(True)
+        self.ans.setPlainText("...")
         self.ans.setStyleSheet("""
-            color:#e8e6e0;font-size:12px;font-family:'Microsoft JhengHei UI';
-            background:#0e0e0f;border-radius:8px;padding:10px;min-height:60px;
+            QTextEdit{
+                color:#e8e6e0;font-size:12px;font-family:'Microsoft JhengHei UI';
+                background:#0e0e0f;border-radius:8px;padding:10px;
+                border:none;
+            }
         """)
-        v.addWidget(self.ans); outer.addWidget(card)
+        self.ans.setMinimumHeight(80)
+        cv.addWidget(self.ans)
+        v.addWidget(self._content)
+        outer.addWidget(card)
+
+    def _close_clear(self):
+        """關閉並清空內容。"""
+        self.inp.clear()
+        self.ans.setPlainText("...")
+        self.hide()
+        self._reply_signal.connect(lambda r: self.ans.setPlainText(r))
 
     def _ask(self):
         q = self.inp.text().strip()
         if not q: return
-        self.ans.setText("思考中...")
+        self.inp.clear()
+
+        # 如果是緊急工坊問題的回答
+        human_id = getattr(self, "_urgent_human_id", None)
+        if human_id:
+            self.ans.setPlainText("立AI 正在整理修復方向...")
+            self._urgent_human_id = None
+            import threading as _th4
+            def _send_answer():
+                try:
+                    import requests as _rq2
+                    r = _rq2.post("http://localhost:7861/api/workshop_answer",
+                                  json={"human_id": human_id, "answer": q},
+                                  timeout=30)
+                    data = r.json()
+                    hint = data.get("repair_hint", q)
+                    # 回到主執行緒更新 UI
+                    from PyQt6.QtCore import QMetaObject, Qt
+                    self._last_reply = f"✅ 已送出修復方向：\n{hint}\n\n工坊會繼續嘗試修復。"
+                    self._reply_signal.emit(self._last_reply)
+                    # 停止閃爍
+                    ball = self.parent()
+                    if ball and hasattr(ball, "_stop_flash"):
+                        ball._stop_flash()
+                except Exception as e:
+                    self._last_reply = f"送出失敗：{e}"
+                    from PyQt6.QtCore import QMetaObject, Qt
+                    self._reply_signal.emit(self._last_reply)
+            _th4.Thread(target=_send_answer, daemon=True).start()
+            return
+
+        # 立AI 主動聊天回應
+        if getattr(self, "_is_urgent_chat", False):
+            self._is_urgent_chat = False
+            self.ans.setPlainText("傳送中...")
+            import threading as _th5
+            def _reply_to_liai():
+                try:
+                    import requests as _rq3
+                    r2 = _rq3.post("http://localhost:7861/api/chat",
+                                   json={"message": q}, timeout=60)
+                    self._last_reply = r2.json().get("reply", "（無回應）")
+                except Exception as e:
+                    self._last_reply = f"（連線失敗：{e}）"
+                self._reply_signal.emit(self._last_reply)
+                try:
+                    import requests as _rq4
+                    _rq4.post("http://localhost:7861/api/workshop_answer",
+                              json={"human_id": "", "answer": q}, timeout=5)
+                except Exception:
+                    pass
+                ball = self.parent()
+                if ball:
+                    if hasattr(ball, "_stop_flash"):
+                        ball._stop_flash()
+                    ball._urgent_showing = False
+            _th5.Thread(target=_reply_to_liai, daemon=True).start()
+            return
+
+        # 一般問題
+        self.ans.setPlainText("思考中...")
         self._worker = AskWorker(q)
-        self._worker.result.connect(lambda r: (self.ans.setText(r), self.adjustSize()))
+        self._worker.result.connect(lambda r: self.ans.setPlainText(r))
         self._worker.start()
+
+    def _update_ans_from_thread(self):
+        self.ans.setPlainText(getattr(self, "_last_reply", ""))
+
+    @pyqtSlot(str)
+    def _update_ans_slot(self, text: str):
+        self.ans.setPlainText(text)
 
     def show_near(self, gpos):
         self.adjustSize()
@@ -532,7 +774,127 @@ class AskDialog(QWidget):
         x = min(gpos.x() + 80, sc.right() - self.width() - 10)
         y = max(gpos.y() - self.height() - 10, sc.top() + 10)
         self.move(x, y); self.show()
-        self.inp.setFocus(); self.inp.clear(); self.ans.setText("...")
+        self.inp.setFocus(); self.inp.clear(); self.ans.setPlainText("...")
+        self._urgent_human_id = None
+
+    def show_urgent(self, question: str, human_id: str, context: str):
+        self._urgent_human_id = human_id
+        self._is_urgent_chat  = (human_id == "")
+
+        # 重新連接送出按鈕
+        try: self.inp.returnPressed.disconnect()
+        except Exception: pass
+        try: self._sb.clicked.disconnect()
+        except Exception: pass
+
+        if human_id == "":
+            self.ans.setPlainText(question)
+            self.inp.setPlaceholderText("回覆立AI...")
+
+            def _send_chat():
+                q = self.inp.text().strip()
+                if not q: return
+                self.inp.clear()
+                self.ans.setPlainText("思考中...")
+                # 用 AskWorker 一樣的方式，走 knowledge_ui 回應
+                import threading as _tc
+                def _do():
+                    try:
+                        import requests as _rc
+                        r = _rc.post("http://localhost:7861/api/chat",
+                                     json={"message": q}, timeout=None)
+                        reply = r.json().get("reply", "（無回應）")
+                    except Exception as e:
+                        reply = f"連線失敗：{e}"
+                    # 清佇列
+                    try:
+                        import requests as _rc2
+                        _rc2.post("http://localhost:7861/api/workshop_answer",
+                                  json={"human_id": "", "answer": q}, timeout=5)
+                    except Exception: pass
+                    # 用 AskWorker 相同的 signal 更新 UI
+                    self._worker = None
+                    self._reply_signal.emit(reply)
+                    ball = self.parent()
+                    if ball and hasattr(ball, "_stop_flash"):
+                        ball._stop_flash()
+                    ball._urgent_showing = False if ball else None
+                _tc.Thread(target=_do, daemon=True).start()
+            self.inp.returnPressed.connect(_send_chat)
+            self._sb.clicked.connect(_send_chat)
+        else:
+            self.ans.setPlainText(f"⚠ {context}\n\n{question}\n\n（請在上方輸入你的回答）")
+            self.inp.setPlaceholderText("輸入你的解釋或修復方向...")
+            self.inp.returnPressed.connect(self._ask)
+            self._sb.clicked.connect(self._ask)
+
+        self.inp.setFocus()
+
+    EDGE = 8  # 邊框感應範圍
+
+    def _get_edge(self, pos):
+        """判斷滑鼠在哪個邊緣，回傳 (left, right, top, bottom)。"""
+        x, y, w, h = pos.x(), pos.y(), self.width(), self.height()
+        return (x < self.EDGE, x > w - self.EDGE,
+                y < self.EDGE, y > h - self.EDGE)
+
+    def mousePressEvent(self, e):
+        if e.button() == Qt.MouseButton.LeftButton:
+            self._drag_pos  = e.globalPosition().toPoint() - self.frameGeometry().topLeft()
+            self._resize_edge = self._get_edge(e.position().toPoint())
+            self._resize_start_geom = self.geometry()
+            self._resize_start_global = e.globalPosition().toPoint()
+
+    def mouseMoveEvent(self, e):
+        if not e.buttons() == Qt.MouseButton.LeftButton:
+            # 更新游標樣式
+            edge = self._get_edge(e.position().toPoint())
+            l, r, t, b = edge
+            if (l and t) or (r and b):
+                self.setCursor(Qt.CursorShape.SizeFDiagCursor)
+            elif (r and t) or (l and b):
+                self.setCursor(Qt.CursorShape.SizeBDiagCursor)
+            elif l or r:
+                self.setCursor(Qt.CursorShape.SizeHorCursor)
+            elif t or b:
+                self.setCursor(Qt.CursorShape.SizeVerCursor)
+            else:
+                self.setCursor(Qt.CursorShape.ArrowCursor)
+            return
+
+        if not hasattr(self, '_resize_edge'):
+            return
+
+        l, r, t, b = self._resize_edge
+        is_resize = any([l, r, t, b])
+
+        if is_resize:
+            # 調整大小
+            gpos  = e.globalPosition().toPoint()
+            delta = gpos - self._resize_start_global
+            geom  = self._resize_start_geom
+            new_geom = self.geometry()
+
+            if r: new_geom.setRight(geom.right() + delta.x())
+            if b: new_geom.setBottom(geom.bottom() + delta.y())
+            if l:
+                new_geom.setLeft(geom.left() + delta.x())
+            if t:
+                new_geom.setTop(geom.top() + delta.y())
+
+            if new_geom.width() >= 280 and new_geom.height() >= 200:
+                self.setGeometry(new_geom)
+        elif hasattr(self, '_drag_pos'):
+            # 移動視窗
+            self.move(e.globalPosition().toPoint() - self._drag_pos)
+
+    def mouseReleaseEvent(self, e):
+        if hasattr(self, '_drag_pos'):
+            del self._drag_pos
+        if hasattr(self, '_resize_edge'):
+            del self._resize_edge
+        self.setCursor(Qt.CursorShape.ArrowCursor)
+
 
 # ── 小圓 ─────────────────────────────────────────────────────────────────────
 
@@ -597,6 +959,7 @@ class MiniOrb(QWidget):
 # ── 主浮動球 ──────────────────────────────────────────────────────────────────
 
 class FloatingBall(QWidget):
+    _urgent_signal = pyqtSignal(dict)
     def __init__(self):
         super().__init__()
         self.setWindowFlags(
@@ -621,8 +984,15 @@ class FloatingBall(QWidget):
         self._dpos   = QPoint()
 
         self._ask_dlg = AskDialog()
+        self._flash_timer = None
+        self._original_color = None
+        # 背景監聽 knowledge_ui 的緊急問題推送
+        self._urgent_signal.connect(self._show_urgent_question)
+        self._urgent_showing = False
+        import threading as _th3
+        _th3.Thread(target=self._listen_urgent, daemon=True).start()
 
-        handlers = [self._do_library, self._do_ask, self._do_dual_ai, self._do_terminal, self._do_main, self._do_vmagic, self._do_workshop, self._do_comfyui, self._do_filmora]
+        handlers = [self._do_library, self._do_ask, self._do_dual_ai, self._do_terminal, self._do_main, self._do_vmagic, self._do_workshop, self._do_comfyui, self._do_filmora, self._do_hermes]
         self._orbs = []
         for i, (em, lb, col) in enumerate(ACTIONS):
             orb = MiniOrb(em, lb, col, self)
@@ -705,6 +1075,20 @@ class FloatingBall(QWidget):
     def paintEvent(self, e):
         p = QPainter(self)
         p.setRenderHint(QPainter.RenderHint.Antialiasing)
+        # 緊急閃爍：覆蓋紅色
+        if getattr(self, "_urgent_flash", False):
+            cx = cy = BALL_SIZE // 2
+            r  = BALL_SIZE // 2 - 4
+            grad = QRadialGradient(cx - r//3, cy - r//3, r*2)
+            grad.setColorAt(0, QColor(255, 80, 80))
+            grad.setColorAt(1, QColor(180, 20, 20))
+            p.setBrush(QBrush(grad))
+            p.setPen(Qt.PenStyle.NoPen)
+            p.drawEllipse(cx-r, cy-r, r*2, r*2)
+            p.setFont(QFont("Segoe UI Emoji", r))
+            p.setPen(QColor(255,255,255))
+            p.drawText(QRect(0,0,BALL_SIZE,BALL_SIZE), Qt.AlignmentFlag.AlignCenter, "❗")
+            return
         cx = cy = self._ws // 2
         r  = BALL_SIZE // 2
 
@@ -736,6 +1120,60 @@ class FloatingBall(QWidget):
         p.setFont(QFont("Segoe UI Emoji", 22))
         p.setPen(QColor(255,255,255))
         p.drawText(QRect(cx-r, cy-r, r*2, r*2), Qt.AlignmentFlag.AlignCenter, "🦞")
+
+    def _listen_urgent(self):
+        """背景輪詢 knowledge_ui，偵測緊急問題推送。"""
+        import time
+        while True:
+            try:
+                import requests as _rq
+                r = _rq.get("http://localhost:7861/api/urgent_pending", timeout=3)
+                if r.status_code == 200:
+                    data = r.json()
+                    if data.get("has_question") and not getattr(self, "_urgent_showing", False):
+                        self._urgent_data    = data
+                        self._urgent_showing = True
+                        from PyQt6.QtCore import QMetaObject, Qt
+                        self._urgent_signal.emit(data)
+            except Exception:
+                pass
+            time.sleep(3)
+
+    @pyqtSlot(dict)
+    def _show_urgent_question(self, data: dict = None):
+        if data is None:
+            data = getattr(self, "_urgent_data", None)
+        if not data:
+            return
+        self._start_flash()
+        dlg = self._ask_dlg
+        dlg.show_near(self.mapToGlobal(self.rect().center()))
+        dlg.show_urgent(
+            data.get("question", ""),
+            data.get("human_id", ""),
+            data.get("context", ""),
+        )
+
+    def _start_flash(self):
+        from PyQt6.QtCore import QTimer
+        self._flash_count = 0
+        self._flash_timer = QTimer(self)
+        self._flash_timer.timeout.connect(self._do_flash)
+        self._flash_timer.start(500)
+
+    def _do_flash(self):
+        self._flash_count = getattr(self, "_flash_count", 0) + 1
+        self._urgent_flash = (self._flash_count % 2 == 1)
+        self.update()
+        if self._flash_count > 20:
+            self._stop_flash()
+
+    def _stop_flash(self):
+        if self._flash_timer:
+            self._flash_timer.stop()
+            self._flash_timer = None
+        self._urgent_flash = False
+        self.update()
 
     def mousePressEvent(self, e):
         if e.button() == Qt.MouseButton.LeftButton:
@@ -796,9 +1234,34 @@ class FloatingBall(QWidget):
         self._ask_dlg.show_near(gp)
 
     def _do_terminal(self):
-        subprocess.Popen(["powershell","-Command",
+        from PyQt6.QtWidgets import QMenu
+        from PyQt6.QtGui import QAction, QCursor
+        menu = QMenu()
+        menu.setStyleSheet("""
+            QMenu { background:#1a1a2e; color:#e8e6e0; border:1px solid #333; border-radius:8px; padding:4px; }
+            QMenu::item { padding:8px 20px; border-radius:4px; }
+            QMenu::item:selected { background:#2a2a3e; }
+        """)
+        act1 = QAction("🤖 AI Agent (PowerShell)", menu)
+        act2 = QAction("🐧 WSL Ubuntu-24.04", menu)
+        act1.triggered.connect(self._do_terminal_agent)
+        act2.triggered.connect(self._do_terminal_wsl)
+        menu.addAction(act1)
+        menu.addAction(act2)
+        menu.exec(QCursor.pos())
+
+    def _do_terminal_agent(self):
+        """開啟 PowerShell 終端機（AI Agent 目錄）。"""
+        subprocess.Popen(["powershell", "-Command",
             f'Start-Process powershell -ArgumentList "-NoExit","-Command","cd \'{BASE_DIR}\'"'],
             creationflags=subprocess.CREATE_NO_WINDOW)
+
+    def _do_terminal_wsl(self):
+        """開啟 WSL Ubuntu-24.04 終端機。"""
+        subprocess.Popen(
+            "cmd.exe /k wsl.exe -d Ubuntu-24.04 -u acerli --cd ~",
+            creationflags=subprocess.CREATE_NEW_CONSOLE
+        )
 
     def _do_dual_ai(self):
         dual = BASE_DIR / "dual_ai_chat.py"
@@ -925,6 +1388,40 @@ public class WinHider2 {
                 time.sleep(6)
             webbrowser.open("http://localhost:8188")
         threading.Thread(target=_go, daemon=True).start()
+
+    def _do_hermes(self):
+        """開啟 WSL 並啟動 Hermes Agent 和 Telegram Gateway。"""
+        import subprocess
+        # 確認 desktop_control_server 有在跑
+        try:
+            import requests as _rq
+            _rq.get("http://172.23.48.1:7864/health", timeout=2)
+        except Exception:
+            _server = BASE_DIR / "desktop_control_server.py"
+            if _server.exists():
+                subprocess.Popen(
+                    [sys.executable, str(_server)],
+                    creationflags=subprocess.CREATE_NO_WINDOW,
+                    cwd=str(BASE_DIR)
+                )
+
+        hermes_bin = "/home/acerli/.hermes/hermes-agent/venv/bin/hermes"
+
+        # 背景啟動 gateway（Telegram）
+        subprocess.Popen([
+            "wsl.exe", "-d", "Ubuntu-24.04", "-u", "acerli",
+            "--", "bash", "-c", f"{hermes_bin} gateway"
+        ], creationflags=subprocess.CREATE_NO_WINDOW)
+
+        # 前景開啟 Hermes 對話介面
+        try:
+            subprocess.Popen([
+                "cmd.exe", "/k",
+                f"wsl.exe -d Ubuntu-24.04 -u acerli -- bash -c \"{hermes_bin}\""
+            ], creationflags=subprocess.CREATE_NEW_CONSOLE)
+        except Exception as e:
+            from PyQt6.QtWidgets import QMessageBox
+            QMessageBox.warning(None, "Hermes", f"無法開啟 Hermes：{e}")
 
     def _do_filmora(self):
         """開啟 Filmora 14 並顯示控制面板。"""
@@ -1185,6 +1682,43 @@ class FilmoraPanel(QWidget):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
+
+    import subprocess as _sp, socket as _sk, threading as _th_main
+
+    def _bg_start(script_name):
+        path = BASE_DIR / script_name
+        if not path.exists():
+            return
+        try:
+            _log = open(str(BASE_DIR / (script_name + ".log")), "w", encoding="utf-8")
+            _kw = {"cwd": str(BASE_DIR), "stdout": _log, "stderr": _log}
+            if hasattr(_sp, "CREATE_NO_WINDOW"):
+                _kw["creationflags"] = _sp.CREATE_NO_WINDOW
+            _sp.Popen([sys.executable, str(path)], **_kw)
+        except Exception as e:
+            open(str(BASE_DIR / (script_name + ".log")), "w", encoding="utf-8").write(str(e))
+
+    def _start_services():
+        """背景啟動所有服務，不阻塞漂浮球顯示。"""
+        import time
+        # 啟動 desktop_control_server
+        _bg_start("desktop_control_server.py")
+        # 啟動 knowledge_ui（立AI 大腦）
+        with _sk.socket(_sk.AF_INET, _sk.SOCK_STREAM) as s:
+            if s.connect_ex(("localhost", 7861)) != 0:
+                _bg_start("knowledge_ui.py")
+                # 等 knowledge_ui 就緒
+                for _ in range(30):
+                    time.sleep(1)
+                    with _sk.socket(_sk.AF_INET, _sk.SOCK_STREAM) as s2:
+                        if s2.connect_ex(("localhost", 7861)) == 0:
+                            break
+        # 啟動 interest_reader
+        _bg_start("interest_reader.py")
+
+    # 背景啟動服務，漂浮球立刻出現
+    _th_main.Thread(target=_start_services, daemon=True).start()
+
     app.setQuitOnLastWindowClosed(False)
     ball = FloatingBall()
     ball.show()

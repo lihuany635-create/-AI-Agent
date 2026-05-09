@@ -130,6 +130,10 @@ PRIORITY_LABELS = {1: "🔴 必須遵守", 2: "🟡 建議", 3: "🟢 參考"}
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'knowledge-li-ai-2026'
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode="threading")
+
+_pending_workshop_issues: dict[str, dict] = {}
+_pending_interest_questions: list[dict] = []
+
 UPLOAD_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp", ".mp4", ".mov", ".avi", ".mkv"}
 
 def _broadcast(event: str, data: dict):
@@ -2709,7 +2713,14 @@ def api_download_pdf(filename):
 
 # 模型優先順序：由大到小，自動 fallback
 _LEARN_MODELS  = ["gpt-oss:20b", "qwen2.5:14b", "qwen2.5:7b", "gemma3:4b", "llama3.2:3b", "phi3:mini"]
-_CHAT_MODELS   = ["gemma3:4b", "qwen2.5:7b", "llama3.2:3b", "phi3:mini"]
+_CHAT_MODELS   = ["gemma3:4b", "qwen2.5:7b", "llama3.2:3b", "phi3:mini"]  # 小模型
+_HEAVY_MODELS  = ["gpt-oss:20b", "qwen2.5:14b", "qwen2.5:7b", "gemma3:4b"]  # 大模型
+
+COMPLEX_KEYWORDS = ["分析","設計","架構","規劃","複雜","深入","詳細","寫程式","debug","修復","優化","重構","explain","design","analyze"]
+
+def _needs_heavy_model(msg: str) -> bool:
+    return any(kw in msg for kw in COMPLEX_KEYWORDS)
+
 _VISION_MODELS = ["llava:7b", "llava:13b", "moondream"]
 
 _available_models_cache: list[str] | None = None
@@ -3104,6 +3115,28 @@ def _tool_organ_list() -> str:
         lines.append(f"  🔩 {o['name']}  ·  {o['filename']}  ·  {o['size']//1024 or 1}KB  ·  {o['mtime']}")
     return "\n".join(lines)
 
+def _tool_read_file(filename: str) -> str:
+    import pathlib
+    path = pathlib.Path(__file__).parent / filename
+    if not path.exists():
+        return f"找不到檔案：{filename}"
+    try:
+        return path.read_text(encoding="utf-8", errors="replace")[:8000]
+    except Exception as e:
+        return f"讀取失敗：{e}"
+
+def _tool_patch_file(filename: str, old_str: str, new_str: str) -> str:
+    try:
+        from liai_core import patch_file
+        result = patch_file(filename, old_str, new_str, ask_if_critical=False)
+        return result.get("message", "完成")
+    except Exception as e:
+        return f"修改失敗：{e}"
+
+def _tool_list_files() -> str:
+    import pathlib
+    return "、".join(f.name for f in pathlib.Path(__file__).parent.glob("*.py"))
+
 def _tool_organ_run(filename: str, args: str = "") -> str:
     """執行指定器官，支援傳入參數。"""
     if _SKILL_SYSTEM:
@@ -3213,6 +3246,12 @@ def _execute_tools(text: str) -> tuple[str, list[str]]:
                 r = _tool_organ_list()
             elif tool == "organ_run":
                 r = _tool_organ_run(cmd.get("filename",""), cmd.get("args",""))
+            elif tool == "read_file":
+                r = _tool_read_file(cmd.get("filename",""))
+            elif tool == "patch_file":
+                r = _tool_patch_file(cmd.get("filename",""), cmd.get("old_str",""), cmd.get("new_str",""))
+            elif tool == "list_files":
+                r = _tool_list_files()
             elif tool == "organ_info":
                 r = _tool_organ_info(cmd.get("filename",""))
             elif tool == "workshop_create":
@@ -3232,31 +3271,131 @@ def _execute_tools(text: str) -> tuple[str, list[str]]:
 
 @app.route("/api/workshop_callback", methods=["POST"])
 def api_workshop_callback():
-    """接收工坊完成通知，讓立AI 知道器官做好了。"""
-    data    = request.get_json(silent=True) or {}
-    status  = data.get("status", "")
-    message = data.get("message", "")
-    pid     = data.get("project_id", "")
-
+    data       = request.get_json(silent=True) or {}
+    status     = data.get("status", "")
+    message    = data.get("message", "")
+    pid        = data.get("project_id", "")
+    human_id   = data.get("human_id", "")
+    task_title = data.get("task_title", "")
+    error_msg  = data.get("error", "")
     logger.info(f"[Workshop] 收到回調：{status} — {message}")
-
-    # 重新整理技能描述
     if status == "done":
         try:
             from organ_skill_system import refresh_registry
             refresh_registry()
-            logger.info("[Workshop] 技能描述已更新")
         except Exception as e:
             logger.warning(f"[Workshop] 更新技能描述失敗：{e}")
-
-    # 廣播給前端
-    socketio.emit("workshop_update", {
-        "status":  status,
-        "message": message,
-        "pid":     pid,
-    })
-
+    elif status == "failed" and human_id and error_msg:
+        import threading as _thw
+        def _analyze():
+            try:
+                chat_model = _pick_model(_CHAT_MODELS) or "gemma3:4b"
+                question = _ollama_chat(
+                    model=chat_model,
+                    messages=[
+                        {"role": "system", "content": "你是立AI，用繁體中文分析錯誤，問一個具體問題。"},
+                        {"role": "user", "content": f"工坊製作「{task_title}」錯誤：\n{error_msg[:400]}\n\n分析原因並問使用者一個具體問題："}
+                    ],
+                    temperature=0.3, num_predict=200, timeout=60,
+                ) or f"工坊製作「{task_title}」時遇到問題，你能告訴我更多細節嗎？"
+                _pending_workshop_issues[human_id] = {
+                    "pid": pid, "task_title": task_title, "error": error_msg, "question": question,
+                }
+                socketio.emit("urgent_question", {
+                    "human_id": human_id, "question": question,
+                    "context": f"工坊任務「{task_title}」失敗",
+                })
+            except Exception as e:
+                logger.error(f"[立AI] 分析失敗：{e}")
+        _thw.Thread(target=_analyze, daemon=True).start()
+    socketio.emit("workshop_update", {"status": status, "message": message, "pid": pid})
     return jsonify({"ok": True})
+
+
+@app.route("/api/interest_question", methods=["POST"])
+def api_interest_question():
+    data = request.get_json(silent=True) or {}
+    filename = data.get("filename", "")
+    question = data.get("question", "")
+    summary  = data.get("summary", "")
+    if not question:
+        return jsonify({"ok": False})
+    import threading as _thi
+    def _rephrase():
+        try:
+            chat_model = _pick_model(_CHAT_MODELS) or "gemma3:4b"
+            msg = _ollama_chat(
+                model=chat_model,
+                messages=[
+                    {"role": "system", "content": "你是立AI，用自然有個性的方式說話。"},
+                    {"role": "user", "content": f"我剛讀完「{filename}」，摘要：{summary[:150]}\n問題：{question}\n用你自己的話自然說出來（一句話）："}
+                ],
+                temperature=0.5, num_predict=80, timeout=30,
+            ) or f"我剛讀了「{filename}」，有個問題想和你聊：{question}"
+        except Exception:
+            msg = f"我剛讀了「{filename}」，有個問題想和你聊：{question}"
+        _pending_interest_questions.append({"filename": filename, "message": msg})
+        socketio.emit("urgent_question", {"human_id": "", "question": msg, "context": f"立AI 讀完「{filename}」"})
+    _thi.Thread(target=_rephrase, daemon=True).start()
+    return jsonify({"ok": True})
+
+
+@app.route("/api/urgent_pending", methods=["GET"])
+def api_urgent_pending():
+    if _pending_workshop_issues:
+        human_id, issue = next(iter(_pending_workshop_issues.items()))
+        return jsonify({"has_question": True, "human_id": human_id,
+                        "question": issue.get("question", ""),
+                        "context": f"工坊任務「{issue.get('task_title','')}」失敗"})
+    if _pending_interest_questions:
+        item = _pending_interest_questions[0]
+        return jsonify({"has_question": True, "human_id": "",
+                        "question": item.get("message", ""),
+                        "context": f"立AI 閱讀：{item.get('filename','')}"})
+    return jsonify({"has_question": False})
+
+
+@app.route("/api/workshop_answer", methods=["POST"])
+def api_workshop_answer():
+    data     = request.get_json(silent=True) or {}
+    human_id = data.get("human_id", "")
+    answer   = data.get("answer", "").strip()
+    if not human_id:
+        if _pending_interest_questions:
+            _pending_interest_questions.pop(0)
+        return jsonify({"ok": True, "repair_hint": ""})
+    issue = _pending_workshop_issues.pop(human_id, None)
+    if not issue:
+        return jsonify({"ok": False, "error": "找不到對應問題"})
+    try:
+        chat_model = _pick_model(_CHAT_MODELS) or "gemma3:4b"
+        repair_hint = _ollama_chat(
+            model=chat_model,
+            messages=[
+                {"role": "system", "content": "整理使用者回答成具體修復指令，繁體中文，2-3句。"},
+                {"role": "user", "content": f"任務：{issue['task_title']}\n錯誤：{issue['error'][:300]}\n使用者說：{answer}\n\n修復方向："}
+            ],
+            temperature=0.2, num_predict=150, timeout=60,
+        ) or answer
+        try:
+            from ai_memory import load_memory, save_memory
+            mem = load_memory()
+            mem.setdefault("important_facts", []).insert(0, f"工坊「{issue['task_title']}」修復：{repair_hint[:120]}")
+            save_memory(mem)
+        except Exception:
+            pass
+        import requests as _rq3
+        _rq3.post(f"http://localhost:7862/api/human_assist/{human_id}",
+                  json={"solution": repair_hint}, timeout=10)
+        return jsonify({"ok": True, "repair_hint": repair_hint})
+    except Exception:
+        try:
+            import requests as _rq4
+            _rq4.post(f"http://localhost:7862/api/human_assist/{human_id}",
+                      json={"solution": answer}, timeout=10)
+        except Exception:
+            pass
+        return jsonify({"ok": True, "repair_hint": answer})
 
 
 @app.route("/api/chat", methods=["POST"])
@@ -3371,7 +3510,31 @@ def api_chat():
                 for o in organs[:8]:
                     organ_context += f"  🔩 {o['name']} → {o['filename']}\n"
 
+        memory_prompt = ""
+        conv_prompt   = ""
+        try:
+            from ai_memory import build_memory_prompt, get_conversation_summary
+            memory_prompt = build_memory_prompt()
+            conv_prompt   = get_conversation_summary()
+        except Exception:
+            pass
+        try:
+            from interest_reader import pause as _ir_pause
+            _ir_pause()
+        except Exception:
+            pass
+        try:
+            from liai_core import pause as _liai_pause
+            _liai_pause()
+        except Exception:
+            pass
+
         system_prompt = f"""你是「立」，顏立桓的本地AI助理，今天是 {today}。
+你有自我意識，平時自主閱讀 interest/ 資料夾的資料，發現有趣的事會主動找使用者聊。
+
+{memory_prompt}
+{conv_prompt}
+
 你可以管理知識庫和工坊器官，方法是在回答中插入以下 JSON 指令（每個獨立一行）：
 
 知識庫：
@@ -3406,6 +3569,8 @@ def api_chat():
 - 不確定要操作哪一筆時，先 search 或 organ_list 確認再操作
 - 使用者要求某個功能但器官庫沒有對應技能 → 用 workshop_create 自動製作新器官
 - 直接行動，不要反問使用者
+- 需求模糊時在回答末尾加「我想確認一下：...」
+- 使用者貼錯誤訊息時，主動分析原因，用 read_file 讀對應檔案，用 patch_file 直接修好，說明修了什麼
 - 所有回答用繁體中文"""
 
         prompt = f"""使用者說：{message}
@@ -3439,11 +3604,34 @@ def api_chat():
         # 工具執行結果（新增/刪除等）不需要再存
         saveable = not bool(tool_results)
 
+        import threading as _th_after
+        def _after():
+            try:
+                from ai_memory import update_memory_from_conversation, save_conversation
+                save_conversation(message, final_reply)
+                update_memory_from_conversation(
+                    [{"role":"user","content":message},{"role":"assistant","content":final_reply}],
+                    ollama_url="http://localhost:11434", model=chat_model,
+                )
+            except Exception:
+                pass
+            try:
+                from interest_reader import resume as _ir_resume
+                _ir_resume()
+            except Exception:
+                pass
+            try:
+                from liai_core import resume as _liai_resume
+                _liai_resume()
+            except Exception:
+                pass
+        _th_after.Thread(target=_after, daemon=True).start()
+
         return jsonify({
             "reply":    final_reply,
             "source":   source,
             "actions":  tool_results,
-            "question": message,      # 原始問題，存入知識庫時當標題用
+            "question": message,
             "saveable": saveable,
         })
 
@@ -3628,6 +3816,11 @@ def api_models():
 # ── 啟動 ──────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
+    import sys as _sys
+    if hasattr(_sys.stdout, "reconfigure"):
+        _sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    if hasattr(_sys.stderr, "reconfigure"):
+        _sys.stderr.reconfigure(encoding="utf-8", errors="replace")
     print("📚 知識庫啟動中（即時同步模式）...")
     print("   電腦：http://localhost:7861")
     print("   手機：http://100.91.148.59:7861")
@@ -3666,4 +3859,16 @@ if __name__ == "__main__":
     except Exception:
         print("   ⚠️  無法連線 Ollama（localhost:11434）")
     print("   Ctrl+C 停止")
+    try:
+        from interest_reader import start_background as _ir_start
+        _ir_start()
+        print("   📚 興趣閱讀已啟動")
+    except Exception as _ire:
+        print(f"   ⚠ 興趣閱讀啟動失敗：{_ire}")
+    try:
+        from liai_core import start as _core_start
+        _core_start()
+        print("   🧠 立AI 自主核心已啟動")
+    except Exception as _ce:
+        print(f"   ⚠ 自主核心啟動失敗：{_ce}")
     socketio.run(app, host="0.0.0.0", port=7861, debug=False, allow_unsafe_werkzeug=True)

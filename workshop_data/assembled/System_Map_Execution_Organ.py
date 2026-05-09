@@ -6,6 +6,7 @@
 from pathlib import Path
 from typing import Dict, List
 import glob
+import logging
 import importlib.util
 import os
 import pathlib
@@ -31,7 +32,6 @@ def scan_python_files(directory):
     except Exception as e:
         print(f'An error occurred: {e}')
 
-scan_python_files('path/to/your/project')
 
 def parse_imports(file_path):
     try:
@@ -44,28 +44,20 @@ def parse_imports(file_path):
         return {}
 
 def build_dependency_graph(directory_path: str) -> Dict[str, List[str]]:
+    """掃描目錄建立依賴圖。"""
     graph_data = {}
-    for root, _, files in os.scandir(directory_path):
-        if root.is_dir():
-            for entry in os.scandir(root):
-                if entry.name.endswith('.py'):
-                    module_name = os.path.abspath(entry.path).replace(os.sep, '.')
-                    with open(entry.path, 'r') as file:
+    for root, _, files in os.walk(directory_path):
+        for fname in files:
+            if fname.endswith('.py'):
+                fpath = os.path.join(root, fname)
+                try:
+                    with open(fpath, 'r', encoding='utf-8') as file:
                         lines = file.readlines()
-                        imports = []
-                        for line in lines:
-                            if line.strip().startswith('import'):
-                                imports.append(line.strip())
-                    if module_name not in graph_data:
-                        graph_data[module_name] = []
-                    graph_data[module_name].extend(imports)
+                    imports = [l.strip() for l in lines if l.strip().startswith(('import ', 'from '))]
+                    graph_data[fpath] = imports
+                except Exception:
+                    pass
     return graph_data
-
-directory_path = 'path/to/your/directory'
-
-graph_data = build_dependency_graph(directory_path)
-
-print(graph_data)
 
 def detect_missing_modules(file_list):
     """
@@ -87,12 +79,6 @@ def detect_missing_modules(file_list):
         except (ImportError, ModuleNotFoundError) as e:
             print(f'Error importing {file}: {e}')
     return missing_modules
-
-file_list = ['module1.py', 'module2.py']
-
-missing_modules = detect_missing_modules(file_list)
-
-print(missing_modules)
 
 def generate_report_data(directory_path):
     graph_data = {}
@@ -127,12 +113,6 @@ def generate_report_data(directory_path):
     walk_modules(directory_path, directory_path)
     return graph_data
 
-directory_path = 'path/to/your/directory'
-
-graph_data = generate_report_data(directory_path)
-
-print(graph_data)
-
 def save_markdown_report(report_data):
     report_path = Path('reports/system_map_report.md')
     if not report_path.parent.exists():
@@ -146,10 +126,6 @@ def save_markdown_report(report_data):
                 file.write(line)
     except Exception as e:
         print(f'Failed to write markdown report: {e}')
-
-report_data = {'system_map': [['module1.py', 'import sys'], ['module2.py', 'from module3 import function']]}
-
-save_markdown_report(report_data)
 
 def system_map_main():
     """

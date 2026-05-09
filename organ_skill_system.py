@@ -192,7 +192,21 @@ def _ai_describe_skill(organ_path: Path, basic: dict) -> dict:
         start, end = raw.find("{"), raw.rfind("}") + 1
         if start == -1:
             return basic
-        ai_info = json.loads(raw[start:end])
+
+        json_str = raw[start:end]
+        # 修正常見 JSON 問題：控制字元、換行在字串值裡
+        json_str = re.sub(r'(?<=: ")(.*?)(?="[,\}])',
+                          lambda m: m.group(0).replace('\n', '\\n').replace('\r', ''),
+                          json_str, flags=re.DOTALL)
+        try:
+            ai_info = json.loads(json_str)
+        except json.JSONDecodeError:
+            # 嘗試更寬鬆的解析：只取各欄位
+            ai_info = {}
+            for field in ["description", "when_to_use", "outputs", "example"]:
+                m = re.search(rf'"{field}"\s*:\s*"([^"]*)"', json_str)
+                if m:
+                    ai_info[field] = m.group(1)
 
         # 合併 basic 和 AI 生成的描述
         result = dict(basic)

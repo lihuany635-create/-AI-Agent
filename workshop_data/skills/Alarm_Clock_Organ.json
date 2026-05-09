@@ -2,19 +2,84 @@
   "name": "Alarm Clock Organ",
   "filename": "Alarm_Clock_Organ.py",
   "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\Alarm_Clock_Organ.py",
-  "description": "管理與觸發鬧鐘，並播放音訊",
-  "functions": [],
-  "example": "schedule_alarm({'id':'1','time':'2026-05-04T07:00:00','message':'起床','sound_file':'alarm.wav'})",
-  "has_main": true,
-  "needs_args": false,
-  "when_to_use": "需要設定定時提醒並播放聲音時使用",
-  "inputs": [
+  "description": "鬧鐘系統：支援設定、取消、列出鬧鐘，時間到時播放音效並顯示通知。",
+  "functions": [
     {
-      "name": "alarm",
-      "description": "鬧鐘資料（字典或 Alarm 物件）",
-      "required": true
+      "name": "play_sound",
+      "description": "播放音效，回傳是否成功。",
+      "inputs": [
+        "sound_file"
+      ]
+    },
+    {
+      "name": "show_notification",
+      "description": "顯示系統通知彈窗。",
+      "inputs": [
+        "title",
+        "message"
+      ]
+    },
+    {
+      "name": "set_alarm",
+      "description": "設定鬧鐘。\n回傳鬧鐘 ID，失敗回傳空字串。\n\n範例：\n    alarm_id = set_alarm(datetime(2026, 5, 3, 8, 0), \"早安！\")",
+      "inputs": [
+        "trigger_time",
+        "message",
+        "sound_file"
+      ]
+    },
+    {
+      "name": "cancel_alarm",
+      "description": "取消指定 ID 的鬧鐘。",
+      "inputs": [
+        "alarm_id"
+      ]
+    },
+    {
+      "name": "list_alarms",
+      "description": "列出所有待觸發的鬧鐘。",
+      "inputs": []
+    },
+    {
+      "name": "from_dict",
+      "description": "",
+      "inputs": [
+        "cls",
+        "data"
+      ]
+    },
+    {
+      "name": "to_dict",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "add",
+      "description": "新增鬧鐘。",
+      "inputs": [
+        "self",
+        "alarm"
+      ]
+    },
+    {
+      "name": "cancel",
+      "description": "取消鬧鐘。",
+      "inputs": [
+        "self",
+        "alarm_id"
+      ]
+    },
+    {
+      "name": "list_alarms",
+      "description": "列出所有鬧鐘。",
+      "inputs": [
+        "self"
+      ]
     }
   ],
-  "outputs": "已排程鬧鐘，或在觸發時播放聲音並顯示訊息",
-  "ai_described": true
+  "example": "python Alarm_Clock_Organ.py",
+  "has_main": true,
+  "needs_args": false
 }

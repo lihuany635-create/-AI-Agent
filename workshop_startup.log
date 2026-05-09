@@ -1,0 +1,237 @@
+win32gui πw∏¸•¢±—°GDLL load failed while importing win32gui: ß‰§£®Ï´¸©w™∫º“≤’°C
+[23:51:44] [31mERROR[0m [Agent.long_term_memory] ∞Oæ–∏¸§J•¢±—°GExpecting value: line 1 column 1 (char 0)°A≠´∏m¨∞™≈•’
+[23:51:44] [32mINFO[0m [Agent.long_term_memory] ™¯¥¡∞Oæ–®t≤Œ±“∞ °A§w∏¸§J 0 µß∞Oæ–
+[workshop] Â∑•ÂùäÂïüÂãï‰∏≠...
+   http://localhost:7862
+   Ë¶èÂäÉÊ®°ÂûãÔºögpt-oss-large:latest
+   ÁîüÊàêÊ®°ÂûãÔºödeepseek-coder:6.7b-instruct-q4_K_M
+   Ctrl+C ÂÅúÊ≠¢
+ * Serving Flask app 'workshop_ui'
+ * Debug mode: off
+2026-05-05 23:51:46 [INFO] werkzeug: [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:7862
+ * Running on http://10.80.11.98:7862
+2026-05-05 23:51:46 [INFO] werkzeug: [33mPress CTRL+C to quit[0m
+2026-05-05 23:51:48 [INFO] workshop: [83879379] \U0001f916 •ﬂAI ¶€∞ ´ÿ•ﬂ±MÆ◊°GImage Explanation Organ
+2026-05-05 23:51:48 [INFO] werkzeug: 127.0.0.1 - - [05/May/2026 23:51:48] "POST /api/auto_create HTTP/1.1" 200 -
+2026-05-05 23:54:35 [INFO] werkzeug: 127.0.0.1 - - [05/May/2026 23:54:35] "GET / HTTP/1.1" 200 -
+2026-05-05 23:54:39 [INFO] werkzeug: 127.0.0.1 - - [05/May/2026 23:54:39] "GET /api/projects HTTP/1.1" 200 -
+2026-05-05 23:54:39 [INFO] werkzeug: 127.0.0.1 - - [05/May/2026 23:54:39] "GET /api/models HTTP/1.1" 200 -
+2026-05-05 23:54:41 [INFO] werkzeug: 127.0.0.1 - - [05/May/2026 23:54:41] "GET /api/projects/8ffb9483-ea02-4ee5-930d-ddee3810a9a9 HTTP/1.1" 200 -
+2026-05-05 23:54:43 [INFO] werkzeug: 127.0.0.1 - - [05/May/2026 23:54:43] "DELETE /api/projects/8ffb9483-ea02-4ee5-930d-ddee3810a9a9 HTTP/1.1" 200 -
+2026-05-05 23:54:44 [INFO] werkzeug: 127.0.0.1 - - [05/May/2026 23:54:44] "[33mGET /api/projects/8ffb9483-ea02-4ee5-930d-ddee3810a9a9 HTTP/1.1[0m" 404 -
+2026-05-05 23:54:44 [INFO] werkzeug: 127.0.0.1 - - [05/May/2026 23:54:44] "GET /api/projects HTTP/1.1" 200 -
+2026-05-05 23:54:45 [INFO] werkzeug: 127.0.0.1 - - [05/May/2026 23:54:45] "GET /api/projects/83879379-ab61-4241-9d66-2f0f8f69127d HTTP/1.1" 200 -
+2026-05-05 23:56:20 [INFO] workshop: [83879379] \U0001f4cb ª›®D§¿™Rßπ¶®°G®œ•Œ agent_basic ∂}±“•N≤z°Aagent_logger ∞Oø˝°F≥zπL ai_bridge ∞e§Jµ¯ƒ±≈‹¥´æπ¥£®˙ØSºx°Aµ≤¶X ai_chat_memory ªP ai_memory ™∫ªy®•º“´¨•Õ¶®πœ§˘...
+2026-05-05 23:59:58 [INFO] workshop: [83879379] ≥Wπ∫ßπ¶®°G5 ≠”•Ù∞»
+2026-05-05 23:59:58 [INFO] workshop: [83879379] \U0001f50d ∞eºf¨dAgentºf¨d≥Wπ∫...
+2026-05-05 23:59:59 [INFO] workshop: [83879379] \U0001f50d §w∞eºf¨dAgent°]session=c0ae3d1b°Atype=plan°^
+2026-05-05 23:59:59 [INFO] workshop: [83879379] \u23f3 µ•´›ºf¨dµ≤™G°]≥Ã¶h 60 §¿ƒ¡°^...
+2026-05-05 23:59:59 [INFO] werkzeug: 127.0.0.1 - - [05/May/2026 23:59:59] "GET /api/projects/83879379-ab61-4241-9d66-2f0f8f69127d HTTP/1.1" 200 -
+2026-05-06 00:05:46 [INFO] workshop: [ReviewCallback] ¶¨®Ïºf¨dµ≤™G°Gtask=83879379-ab61-4241-9d66-2f0f8f69127d_plan type=plan session=c0ae3d1b
+2026-05-06 00:05:46 [INFO] workshop: [83879379] \u2705 ¶¨®Ïºf¨dµ≤™G
+Exception in thread Thread-3 (_auto_run):
+Traceback (most recent call last):
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\ACER\OneDrive\Æ‡≠±\AI-Agent\workshop_ui.py", line 2561, in _auto_run
+    req0 = c.execute("SELECT requirement FROM projects WHERE id=?", (pid,)).fetchone()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: requirement
+2026-05-06 00:05:46 [INFO] werkzeug: 100.91.121.85 - - [06/May/2026 00:05:46] "POST /api/review_callback HTTP/1.1" 200 -
+2026-05-06 00:18:03 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:18:03] "GET / HTTP/1.1" 200 -
+2026-05-06 00:18:04 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:18:04] "GET /api/projects HTTP/1.1" 200 -
+2026-05-06 00:18:04 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:18:04] "GET /api/models HTTP/1.1" 200 -
+2026-05-06 00:18:07 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:18:07] "GET /api/projects/83879379-ab61-4241-9d66-2f0f8f69127d HTTP/1.1" 200 -
+2026-05-06 00:18:13 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:18:13] "POST /api/projects/83879379-ab61-4241-9d66-2f0f8f69127d/run HTTP/1.1" 200 -
+2026-05-06 00:18:13 [INFO] workshop: [83879379] \U0001f50d ∞eºf¨dAgentºf¨d≥Wπ∫...
+Exception in thread Thread-90 (_run_project):
+Traceback (most recent call last):
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\ACER\OneDrive\Æ‡≠±\AI-Agent\workshop_ui.py", line 2915, in _run_project
+    _ptxt = "\n".join(
+            ^^^^^^^^^^
+  File "C:\Users\ACER\OneDrive\Æ‡≠±\AI-Agent\workshop_ui.py", line 2916, in <genexpr>
+    f"{t['seq']}. {t['title']}°G{t.get('description','')}" for t in _tlist
+                                ^^^^^
+AttributeError: 'sqlite3.Row' object has no attribute 'get'
+2026-05-06 00:18:14 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:18:14] "GET /api/projects/83879379-ab61-4241-9d66-2f0f8f69127d HTTP/1.1" 200 -
+2026-05-06 00:23:49 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:23:49] "GET /api/projects/83879379-ab61-4241-9d66-2f0f8f69127d HTTP/1.1" 200 -
+2026-05-06 00:23:52 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:23:52] "DELETE /api/projects/83879379-ab61-4241-9d66-2f0f8f69127d HTTP/1.1" 200 -
+2026-05-06 00:23:52 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:23:52] "[33mGET /api/projects/83879379-ab61-4241-9d66-2f0f8f69127d HTTP/1.1[0m" 404 -
+2026-05-06 00:23:52 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:23:52] "GET /api/projects HTTP/1.1" 200 -
+2026-05-06 00:26:17 [INFO] workshop: [1e0d7035] \U0001f916 •ﬂAI ¶€∞ ´ÿ•ﬂ±MÆ◊°GImage Explanation Organ
+2026-05-06 00:26:17 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:26:17] "POST /api/auto_create HTTP/1.1" 200 -
+2026-05-06 00:26:55 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:26:55] "GET / HTTP/1.1" 200 -
+2026-05-06 00:27:01 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:27:01] "GET /api/projects HTTP/1.1" 200 -
+2026-05-06 00:27:01 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:27:01] "GET /api/models HTTP/1.1" 200 -
+2026-05-06 00:27:03 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:27:03] "GET /api/projects/1e0d7035-d29e-4d48-9bd9-7dd53bbbe31f HTTP/1.1" 200 -
+2026-05-06 00:27:13 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:27:13] "GET /api/projects/1e0d7035-d29e-4d48-9bd9-7dd53bbbe31f HTTP/1.1" 200 -
+2026-05-06 00:27:19 [INFO] workshop: [1e0d7035] \u26a0 ª›®D§¿™R•¢±—°G('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-05-06 00:27:24 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:27:24] "GET /api/projects/1e0d7035-d29e-4d48-9bd9-7dd53bbbe31f HTTP/1.1" 200 -
+Exception in thread Thread-117 (_auto_run):
+Traceback (most recent call last):
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\ACER\OneDrive\Æ‡≠±\AI-Agent\workshop_ui.py", line 2500, in _auto_run
+    plan_raw = _lobster_plan(_analyzed_req, ("\n\n" + sys_c) if sys_c else "")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\OneDrive\Æ‡≠±\AI-Agent\workshop_ui.py", line 278, in _lobster_plan
+    return _ollama_once(_pick(PLANNER_MODELS),
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\OneDrive\Æ‡≠±\AI-Agent\workshop_ui.py", line 268, in _ollama_once
+    r.raise_for_status()
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\requests\models.py", line 1026, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: http://localhost:11434/api/generate
+2026-05-06 00:27:26 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:27:26] "DELETE /api/projects/1e0d7035-d29e-4d48-9bd9-7dd53bbbe31f HTTP/1.1" 200 -
+2026-05-06 00:27:26 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:27:26] "[33mGET /api/projects/1e0d7035-d29e-4d48-9bd9-7dd53bbbe31f HTTP/1.1[0m" 404 -
+2026-05-06 00:27:26 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:27:26] "GET /api/projects HTTP/1.1" 200 -
+2026-05-06 00:27:27 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:27:27] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2026-05-06 00:27:28 [ERROR] werkzeug: Error on request:
+Traceback (most recent call last):
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 371, in run_wsgi
+    execute(self.server.app)
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 337, in execute
+    write(b"")
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 262, in write
+    assert status_set is not None, "write() before start_response"
+AssertionError: write() before start_response
+2026-05-06 00:27:38 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:27:38] "GET / HTTP/1.1" 200 -
+2026-05-06 00:27:40 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:27:40] "GET /api/projects HTTP/1.1" 200 -
+2026-05-06 00:27:44 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:27:44] "GET /api/models HTTP/1.1" 200 -
+2026-05-06 00:30:43 [INFO] workshop: [29952d12] \U0001f916 •ﬂAI ¶€∞ ´ÿ•ﬂ±MÆ◊°GImage Explanation Organ
+2026-05-06 00:30:43 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:30:43] "POST /api/auto_create HTTP/1.1" 200 -
+2026-05-06 00:31:36 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:31:36] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2026-05-06 00:31:36 [ERROR] werkzeug: Error on request:
+Traceback (most recent call last):
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 371, in run_wsgi
+    execute(self.server.app)
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 337, in execute
+    write(b"")
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 262, in write
+    assert status_set is not None, "write() before start_response"
+AssertionError: write() before start_response
+2026-05-06 00:32:44 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:32:44] "GET / HTTP/1.1" 200 -
+2026-05-06 00:32:47 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:32:47] "GET /api/projects HTTP/1.1" 200 -
+2026-05-06 00:32:47 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:32:47] "GET /api/models HTTP/1.1" 200 -
+2026-05-06 00:32:48 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:32:48] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:34:58 [INFO] workshop: [29952d12] \U0001f4cb ª›®D§¿™Rßπ¶®°G±µ¶¨πœ§˘°AßQ•Œµ¯ƒ±≈‹¥´æπ¥£®˙ØSºx°Aµ≤¶Xªy®•º“´¨•Õ¶®§Â¶rª°©˙°C®œ•Œ agent_basic°Bagent_logger°Bai_bridge°Bai_chat_memory°Bai_memory º“≤’°A®√≥zπL ...
+2026-05-06 00:38:25 [INFO] workshop: [29952d12] ≥Wπ∫ßπ¶®°G6 ≠”•Ù∞»
+2026-05-06 00:38:25 [INFO] workshop: [29952d12] \U0001f50d ∞eºf¨dAgentºf¨d≥Wπ∫...
+2026-05-06 00:38:25 [INFO] workshop: [29952d12] \U0001f50d §w∞eºf¨dAgent°]session=496777d8°Atype=plan°^
+2026-05-06 00:38:25 [INFO] workshop: [29952d12] \u23f3 µ•´›ºf¨dµ≤™G°]≥Ã¶h 60 §¿ƒ¡°^...
+2026-05-06 00:38:25 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:38:25] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:44:58 [INFO] workshop: [ReviewCallback] ¶¨®Ïºf¨dµ≤™G°Gtask=29952d12-4654-4874-9f87-38902cffe456_plan type=plan session=496777d8
+2026-05-06 00:44:58 [INFO] werkzeug: 100.91.121.85 - - [06/May/2026 00:44:58] "POST /api/review_callback HTTP/1.1" 200 -
+2026-05-06 00:44:58 [INFO] workshop: [29952d12] \u2705 ¶¨®Ïºf¨dµ≤™G
+Exception in thread Thread-153 (_auto_run):
+Traceback (most recent call last):
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\ACER\OneDrive\Æ‡≠±\AI-Agent\workshop_ui.py", line 2561, in _auto_run
+    req0 = c.execute("SELECT requirement FROM projects WHERE id=?", (pid,)).fetchone()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+sqlite3.OperationalError: no such column: requirement
+2026-05-06 00:47:09 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:47:09] "POST /api/projects/29952d12-4654-4874-9f87-38902cffe456/run HTTP/1.1" 200 -
+2026-05-06 00:47:09 [INFO] workshop: [29952d12] \U0001f50d ∞eºf¨dAgentºf¨d≥Wπ∫...
+Exception in thread Thread-203 (_run_project):
+Traceback (most recent call last):
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\ACER\OneDrive\Æ‡≠±\AI-Agent\workshop_ui.py", line 2915, in _run_project
+    _ptxt = "\n".join(
+            ^^^^^^^^^^
+  File "C:\Users\ACER\OneDrive\Æ‡≠±\AI-Agent\workshop_ui.py", line 2916, in <genexpr>
+    f"{t['seq']}. {t['title']}°G{t.get('description','')}" for t in _tlist
+                                ^^^^^
+AttributeError: 'sqlite3.Row' object has no attribute 'get'
+2026-05-06 00:47:09 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:47:09] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:48:00 [INFO] workshop: [29952d12] \U0001f504 Ollama §w≠´±“
+2026-05-06 00:48:00 [INFO] workshop: [29952d12] \u23f8 §wº»∞±°AOllama §w§§¬_
+2026-05-06 00:48:00 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:48:00] "POST /api/projects/29952d12-4654-4874-9f87-38902cffe456/pause HTTP/1.1" 200 -
+2026-05-06 00:48:00 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:48:00] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:48:00 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:48:00] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:48:03 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:48:03] "POST /api/projects/29952d12-4654-4874-9f87-38902cffe456/resume HTTP/1.1" 200 -
+2026-05-06 00:48:03 [INFO] workshop: [29952d12] \u25b6 [1] Initialize Runtime Guard and Basic Agent
+2026-05-06 00:48:03 [INFO] workshop: [29952d12] \u2699 •Õ¶® [1] Initialize Runtime Guard and Basic Agent (attempt 1)
+2026-05-06 00:48:04 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:48:04] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:48:04 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:48:04] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:51:01 [INFO] workshop: [29952d12] \U0001f4cb ¨I§u≠pµe°G¨I§u≠pµe°G
+
+°i•≠•xΩTª{°j•ª±MÆ◊•D≠n¶b Windows ®t≤Œ§W∂i¶Ê°A®œ•Œ Python ÆM•Û®”πÍ≤{©“ª›•\Ø‡°Cß⁄≠Ã∑|∏T•Œ xdotool/scrot/Linux ´¸•O°A•H¡◊ßK•iØ‡™∫¶w•˛© ∞›√D°C
+
+°iIm...
+2026-05-06 00:51:01 [INFO] workshop: [29952d12] \U0001f504 §¡¥´º“´¨ °˜ deepseek-coder:6.7b-instruct-q4_K_M°A√ˆ≥¨ Ollama...
+2026-05-06 00:51:06 [INFO] workshop: [29952d12] \u23f3 µ•´› deepseek-coder:6.7b-instruct-q4_K_M ∏¸§J...
+2026-05-06 00:51:10 [INFO] workshop: [29952d12] \u2705 deepseek-coder:6.7b-instruct-q4_K_M §w¥N∫¸
+2026-05-06 00:51:11 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:51:11] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:52:03 [INFO] workshop: [29952d12] \u23f1 πw¶Ù•Õ¶®Æ…∂°°G4 §¿ƒ¡
+2026-05-06 00:53:00 [INFO] workshop: [29952d12] µ{¶°ΩX§w•Õ¶®°]350 ¶r§∏°^°A∞ı¶Ê§§...
+2026-05-06 00:53:01 [INFO] workshop: [29952d12] \u274c ∞ı¶Ê•¢±—°]attempt 1°^°GFile "C:\Users\ACER\OneDrive\Æ‡≠±\AI-Agent\workshop_data\tmp_29952d12.py", line 10
+    ≥o¨qµ{¶°ΩX≠∫•˝±q `agent_runtime_guard` º“≤’§ﬁ§J
+2026-05-06 00:53:01 [INFO] workshop: [29952d12] \U0001f527 ≠◊¥_ [1] Initialize Runtime Guard and Basic Agent (attempt 2)
+2026-05-06 00:53:01 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:53:01] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:53:04 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:53:04] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:54:04 [INFO] workshop: [29952d12] \u23f3 •Õ¶®§§°]1/5 §¿ƒ¡°A0 tokens°^... [Initialize Runtime Guard and Basic Agent]
+2026-05-06 00:54:05 [INFO] workshop: [29952d12] µ{¶°ΩX§w•Õ¶®°]426 ¶r§∏°^°A∞ı¶Ê§§...
+2026-05-06 00:54:05 [INFO] workshop: [29952d12] \u274c ∞ı¶Ê•¢±—°]attempt 2°^°GFile "C:\Users\ACER\OneDrive\Æ‡≠±\AI-Agent\workshop_data\tmp_29952d12.py", line 11
+    ≥o¨qµ{¶°ΩX≠∫•˝±q `agent_runtime_guard` º“≤’§ﬁ§J
+2026-05-06 00:54:05 [INFO] workshop: [29952d12] \U0001f527 ≠◊¥_ [1] Initialize Runtime Guard and Basic Agent (attempt 3)
+2026-05-06 00:54:05 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:54:05] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:54:07 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:54:07] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:55:07 [INFO] workshop: [29952d12] \u23f3 •Õ¶®§§°]1/5 §¿ƒ¡°A0 tokens°^... [Initialize Runtime Guard and Basic Agent]
+2026-05-06 00:55:09 [INFO] workshop: [29952d12] µ{¶°ΩX§w•Õ¶®°]454 ¶r§∏°^°A∞ı¶Ê§§...
+2026-05-06 00:55:09 [INFO] workshop: [29952d12] \u274c ∞ı¶Ê•¢±—°]attempt 3°^°GFile "C:\Users\ACER\OneDrive\Æ‡≠±\AI-Agent\workshop_data\tmp_29952d12.py", line 11
+    ≥o¨qµ{¶°ΩX≠∫•˝±q `agent_runtime_guard` º“≤’§ﬁ§J
+2026-05-06 00:55:09 [INFO] workshop: [29952d12] \U0001f527 ≠◊¥_ [1] Initialize Runtime Guard and Basic Agent (attempt 4)
+2026-05-06 00:55:10 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:55:10] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:55:12 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:55:12] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:56:00 [INFO] workshop: [29952d12] µ{¶°ΩX§w•Õ¶®°]454 ¶r§∏°^°A∞ı¶Ê§§...
+2026-05-06 00:56:00 [INFO] workshop: [29952d12] \u274c ∞ı¶Ê•¢±—°]attempt 4°^°GFile "C:\Users\ACER\OneDrive\Æ‡≠±\AI-Agent\workshop_data\tmp_29952d12.py", line 11
+    ≥o¨qµ{¶°ΩX≠∫•˝±q `agent_runtime_guard` º“≤’§ﬁ§J
+2026-05-06 00:56:00 [INFO] workshop: [29952d12] \u26a0 [1] ≠◊¥_ 3 ¶∏§¥•¢±—°Aµ•´›§H§u®ÛßU
+Exception in thread Thread-216 (_run_project):
+Traceback (most recent call last):
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1038, in _bootstrap_inner
+    self.run()
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 975, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\ACER\OneDrive\Æ‡≠±\AI-Agent\workshop_ui.py", line 2981, in _run_project
+    result = _execute_task(pid, dict(task), stop_ev)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\ACER\OneDrive\Æ‡≠±\AI-Agent\workshop_ui.py", line 3596, in _execute_task
+    "error":      error_msg,
+                  ^^^^^^^^^
+NameError: name 'error_msg' is not defined. Did you mean: 'err_msg'?
+2026-05-06 00:56:00 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:56:00] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:56:30 [INFO] workshop: [29952d12] \U0001f504 Ollama §w≠´±“
+2026-05-06 00:56:30 [INFO] workshop: [29952d12] \u23f8 §wº»∞±°AOllama §w§§¬_
+2026-05-06 00:56:30 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:56:30] "POST /api/projects/29952d12-4654-4874-9f87-38902cffe456/pause HTTP/1.1" 200 -
+2026-05-06 00:56:30 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:56:30] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:56:30 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:56:30] "GET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:56:36 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:56:36] "DELETE /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1" 200 -
+2026-05-06 00:56:37 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:56:37] "[33mGET /api/projects/29952d12-4654-4874-9f87-38902cffe456 HTTP/1.1[0m" 404 -
+2026-05-06 00:56:37 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:56:37] "GET /api/projects HTTP/1.1" 200 -
+2026-05-06 00:56:38 [INFO] werkzeug: 127.0.0.1 - - [06/May/2026 00:56:38] "[35m[1mGET /socket.io/?EIO=4&transport=websocket HTTP/1.1[0m" 500 -
+2026-05-06 00:56:38 [ERROR] werkzeug: Error on request:
+Traceback (most recent call last):
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 371, in run_wsgi
+    execute(self.server.app)
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 337, in execute
+    write(b"")
+  File "C:\Users\ACER\AppData\Local\Programs\Python\Python311\Lib\site-packages\werkzeug\serving.py", line 262, in write
+    assert status_set is not None, "write() before start_response"
+AssertionError: write() before start_response

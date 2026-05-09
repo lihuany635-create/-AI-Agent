@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "C:\Users\ACER\OneDrive\桌面\AI-Agent\desktop_control_server.py", line 108, in <module>
+    print(f"\U0001f5a5 桌面控制 Server 啟動在 port {port}")
+UnicodeEncodeError: 'cp950' codec can't encode character '\U0001f5a5' in position 0: illegal multibyte sequence

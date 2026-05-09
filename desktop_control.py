@@ -1,6 +1,54 @@
 # desktop_control.py — 桌面控制引擎
 # 功能：截圖、OCR、滑鼠鍵盤控制、視窗管理、畫面監控
 # 使用方式：在對話框輸入自然語言指令
+"""
+desktop_control.py — Windows 桌面控制引擎
+使用方式：from desktop_control import get_control; ctrl = get_control()
+
+【可用函式（DesktopControl 類別）】
+截圖與視覺：
+  ctrl.screenshot()              → 截圖並儲存，回傳路徑
+  ctrl.ocr_screen()              → OCR 辨識全螢幕文字
+  ctrl.ocr_find_text(target)     → 找到文字的座標 (x, y)
+
+滑鼠控制：
+  ctrl.click(x, y)               → 點擊座標
+  ctrl.click_text(target)        → 找到文字並點擊
+  ctrl.move_mouse(x, y)          → 移動滑鼠
+  ctrl.drag(x1, y1, x2, y2)     → 拖曳
+  ctrl.scroll(clicks, direction) → 滾輪（direction: up/down）
+
+鍵盤控制：
+  ctrl.type_text(text)           → 輸入英文文字
+  ctrl.type_chinese(text)        → 輸入中文文字
+  ctrl.press_key(key)            → 按下按鍵（如 ctrl+c, enter）
+
+視窗管理：
+  ctrl.list_windows()            → 列出所有視窗
+  ctrl.manage_window(text)       → 用文字描述管理視窗（最大化/最小化/關閉）
+  ctrl.get_active_window()       → 取得目前視窗標題
+
+畫面監控：
+  ctrl.start_monitor(interval)   → 開始監控畫面變化
+  ctrl.stop_monitor()            → 停止監控
+
+系統資訊：
+  ctrl.get_screen_size()         → 螢幕解析度
+  ctrl.get_mouse_pos()           → 目前滑鼠位置
+
+檔案操作：
+  ctrl.copy_file(src, dst)       → 複製檔案
+  ctrl.move_file(src, dst)       → 移動檔案
+  ctrl.delete_file(path)         → 刪除檔案
+  ctrl.list_folder(folder)       → 列出資料夾內容
+  ctrl.open_url(url)             → 開啟網址
+
+音量：
+  ctrl.set_volume(level)         → 設定音量 0-100
+  ctrl.adjust_volume(delta)      → 調整音量（+/-）
+
+注意：這是 Windows 專用模組，不要用 xdotool 或 scrot 等 Linux 指令
+"""
 
 import subprocess
 import pathlib

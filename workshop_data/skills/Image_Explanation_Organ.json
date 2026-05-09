@@ -1,0 +1,99 @@
+{
+  "name": "Image Explanation Organ",
+  "filename": "Image_Explanation_Organ.py",
+  "path": "C:\\Users\\ACER\\OneDrive\\桌面\\AI-Agent\\workshop_data\\assembled\\Image_Explanation_Organ.py",
+  "description": "接收圖片，利用視覺變換器提取特徵，結合語言模型生成文字說明。可使用ai_bridge、ai_chat_memory、ai_memory等模組協同完成。",
+  "functions": [
+    {
+      "name": "extract_features",
+      "description": "",
+      "inputs": [
+        "image_path"
+      ]
+    },
+    {
+      "name": "load_image",
+      "description": "",
+      "inputs": [
+        "self",
+        "path"
+      ]
+    },
+    {
+      "name": "is_valid_url",
+      "description": "",
+      "inputs": [
+        "self",
+        "url"
+      ]
+    },
+    {
+      "name": "load_image_features",
+      "description": "",
+      "inputs": [
+        "self",
+        "image_path"
+      ]
+    },
+    {
+      "name": "update_image_features",
+      "description": "",
+      "inputs": [
+        "self",
+        "image_path",
+        "new_features"
+      ]
+    },
+    {
+      "name": "save_image_features",
+      "description": "",
+      "inputs": [
+        "self",
+        "image_path",
+        "features"
+      ]
+    },
+    {
+      "name": "set_image_features",
+      "description": "",
+      "inputs": [
+        "self",
+        "image_features"
+      ]
+    },
+    {
+      "name": "set_memory_context",
+      "description": "",
+      "inputs": [
+        "self",
+        "memory_context"
+      ]
+    },
+    {
+      "name": "build_prompt",
+      "description": "",
+      "inputs": [
+        "self"
+      ]
+    },
+    {
+      "name": "generate",
+      "description": "",
+      "inputs": [
+        "self",
+        "image_path"
+      ]
+    },
+    {
+      "name": "generate_description",
+      "description": "",
+      "inputs": [
+        "self",
+        "image_path"
+      ]
+    }
+  ],
+  "example": "python Image_Explanation_Organ.py",
+  "has_main": false,
+  "needs_args": false
+}
